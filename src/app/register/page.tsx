@@ -1,18 +1,15 @@
-"use client";
-
-// import login from "@/actions/login";
-import React from "react";
+import register from "@/actions/register";
 import Button from "../components/button";
 import Input from "../components/input";
-import login from "@/actions/login";
 
-export default function Login() {
+export default function Register() {
     return <div className="flex flex-col">
-        <h2 className="text-xl font-medium">Login</h2>
+        <h2 className="text-xl font-medium">Register</h2>
         <br />
-        <form action={login} className="flex flex-col gap-1">
+        <form action={register} className="flex flex-col gap-1">
             <Input type="email" name="email" id="email" placeholder="E-Mail" className="p-1" />
             <Input type="password" name="password" id="password" placeholder="Password" className="p-1" />
+            <Input type="password" name="password" id="password" placeholder="Repeat Password" className="p-1" />
             <Button type="submit" value="Login">Submit</Button>
         </form>
     </div>;

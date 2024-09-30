@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./components/header";
 
@@ -17,7 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Header />
-        <main className="flex flex-col justify-center gap-1">
+        <main className="flex flex-row justify-center gap-1 p-1">
           {children}
         </main>
       </body>
