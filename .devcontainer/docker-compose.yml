@@ -10,6 +10,4 @@ services:
   db:
     image: mysql:8.0
     ports:
-      - "${MYSQL_TCP_PORT}:${MYSQL_TCP_PORT}"
-    # env_file:
-    #   - .env
+      - ${MYSQL_TCP_PORT}:${MYSQL_TCP_PORT}

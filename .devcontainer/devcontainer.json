@@ -30,8 +30,8 @@
 			]
 		}
 	},
-	"initializeCommand": "cp ./.env.development ./.devcontainer/.env",
-	"postCreateCommand": "npm install nextui-cli -g"
+	"initializeCommand": "cp -p ./.env.development ./.devcontainer/.env",
+	"postCreateCommand": "sudo chown -R node:node . && npm install nextui-cli -g && npm i -g typeorm"
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
 }
