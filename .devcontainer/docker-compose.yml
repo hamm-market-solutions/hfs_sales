@@ -6,12 +6,10 @@ services:
     command: sleep infinity
     depends_on:
       - db
-    env_file:
-      - .env
 
   db:
     image: mysql:8.0
     ports:
       - "${MYSQL_TCP_PORT}:${MYSQL_TCP_PORT}"
-    env_file:
-      - .env
+    # env_file:
+    #   - .env

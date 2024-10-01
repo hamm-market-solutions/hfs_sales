@@ -13,6 +13,7 @@ export default function Login() {
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
     setEmailError(null);
     setPasswordError(null);
     const formData = new FormData(event.currentTarget);
