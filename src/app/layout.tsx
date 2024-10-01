@@ -1,12 +1,10 @@
 import "@/styles/globals.css";
-import { Metadata, Viewport } from "next";
-import { Link } from "@nextui-org/link";
+import { Metadata } from "next";
 import clsx from "clsx";
-
-import { Providers } from "./providers";
 
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
+import Header from "@/components/core/header";
 
 export const metadata: Metadata = {
   title: {
@@ -19,13 +17,6 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
-};
-
 export default function RootLayout({
   children,
 }: {
@@ -33,21 +24,14 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <head />
       <body
         className={clsx(
-          "min-h-screen bg-background font-sans antialiased",
+          "min-h-screen font-sans antialiased",
           fontSans.variable,
         )}
       >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="relative flex flex-col h-screen">
-            {/* <Navbar /> */}
-            <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
-              {children}
-            </main>
-          </div>
-        </Providers>
+        <Header />
+        <main className="flex flex-row justify-center p-5">{children}</main>
       </body>
     </html>
   );

@@ -25,7 +25,8 @@
 				"ms-vscode.vscode-typescript-next",
 				"p1c2u.docker-compose",
 				"ms-azuretools.vscode-docker",
-				"IronGeek.vscode-env"
+				"IronGeek.vscode-env",
+				"esbenp.prettier-vscode"
 			]
 		}
 	},
