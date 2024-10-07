@@ -1,20 +1,35 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { SignJWT, jwtVerify } from "jose";
 
-// This function can be marked `async` if using `await` inside
-export function middleware(request: NextRequest) {
-  return NextResponse.redirect(new URL("/home", request.url));
-}
+import { authConfig } from "@/config/auth";
 
-export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico, sitemap.xml, robots.txt (metadata files)
-     */
-    "/((?!login|api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
-  ],
+export const signJWT = async (
+  payload: { sub: string },
+  options: { exp: string }
+) => {
+  try {
+    const secret = new TextEncoder().encode(authConfig.jwt.secret_key);
+    const alg = "HS256";
+
+    return new SignJWT(payload)
+      .setProtectedHeader({ alg })
+      .setExpirationTime(options.exp)
+      .setIssuedAt()
+      .setSubject(payload.sub)
+      .sign(secret);
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const verifyJWT = async <T>(token: string): Promise<T> => {
+  try {
+    const { payload } = await jwtVerify(
+      token,
+      new TextEncoder().encode(authConfig.jwt.secret_key)
+    );
+
+    return payload as T;
+  } catch (error) {
+    throw new Error("Your token has expired.");
+  }
 };

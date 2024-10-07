@@ -1,4 +1,4 @@
-import "../envConfig.js";
+import "../envConfig.ts";
 
 export const dbConfig = {
   dbCredentials: {
