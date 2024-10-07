@@ -1,6 +1,6 @@
-import "../envConfig.ts";
+import "../envConfig.js";
 
-export const ormConfig = {
+export const dbConfig = {
   dbCredentials: {
     username: process.env.MYSQL_USER ?? "root",
     password: process.env.MYSQL_PASSWORD!,

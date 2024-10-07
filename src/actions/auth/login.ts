@@ -1,21 +1,16 @@
 "use server";
 
-import { LoginFormSchema } from "@/lib/schemas";
-import { LoginResponse } from "@/types/response";
+import { hashSync } from "bcrypt-ts";
+
+import { LoginParams } from "@/lib/db/models/user";
+import { LoginResponse } from "@/types/responses";
 
 export async function login(formData: FormData): Promise<LoginResponse> {
-  // Validate form fields
-  const validatedFields = LoginFormSchema.safeParse({
-    email: formData.get("email"),
-    password: formData.get("password"),
-  });
+  const loginEmail = formData.get("email") as string;
+  const loginPassword = formData.get("password") as string;
+  const loginUser = new LoginParams(loginEmail, loginPassword);
 
-  if (!validatedFields.success) {
-    return {
-      status: 400,
-      errors: validatedFields.error?.flatten().fieldErrors,
-    };
-  }
+  (await loginUser.validate()).unwrap();
 
   return { status: 200 };
 }
