@@ -1,12 +1,9 @@
 import { IsEmail, IsStrongPassword, Length, validate } from "class-validator";
-import { EntityManager } from "typeorm";
-import { hashSync } from "bcrypt-ts";
+import { compareSync, hashSync } from "bcrypt-ts";
 import { Err, Ok } from "ts-results";
 
-import { User } from "./entities/User";
-
 import HfsError, { HfsResult } from "@/lib/HfsError";
-import { AppDataSource } from "@/data-source";
+import prisma from "@/lib/db/prisma";
 
 export class LoginParams {
   @IsEmail()
@@ -34,9 +31,7 @@ export class LoginParams {
       return Err(HfsError.fromValidationErrors(400, errors));
     }
 
-    const manager = AppDataSource.manager;
-
-    if (!(await validatePassword(manager, this))) {
+    if (!(await matchPassword(this))) {
       return Err(new HfsError(401, ["Invalid email or password"]));
     }
 
@@ -44,20 +39,16 @@ export class LoginParams {
   }
 }
 
-export async function getUserByEmail(
-  manager: EntityManager,
-  email: string
-): Promise<User | null> {
-  return manager.findOneBy(User, { email: email });
+export async function getUserByEmail(email: string) {
+  return prisma.user.findFirst({ where: { email: email } });
 }
 
-export async function validatePassword(
-  manager: EntityManager,
-  loginParams: LoginParams
+export async function matchPassword(
+  loginParams: LoginParams,
 ): Promise<boolean> {
-  const user = await getUserByEmail(manager, loginParams.email);
+  const user = await getUserByEmail(loginParams.email);
 
   if (!user) return false;
 
-  return user.password === hashSync(loginParams.password, 10);
+  return compareSync(loginParams.password, user.password);
 }

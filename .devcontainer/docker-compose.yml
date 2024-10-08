@@ -6,8 +6,26 @@ services:
     command: sleep infinity
     depends_on:
       - db
+    networks:
+      - hfs_sales
 
   db:
     image: mysql:8.0
+    volumes:
+      - db:/var/lib/mysql
     ports:
       - ${MYSQL_TCP_PORT}:${MYSQL_TCP_PORT}
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_ROOT_HOST: "%"
+    command: mysqld --sql_mode="" --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0
+    networks:
+      - hfs_sales
+
+volumes:
+  db:
+    driver: local
+
+networks:
+  hfs_sales: {}

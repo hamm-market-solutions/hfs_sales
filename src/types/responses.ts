@@ -1,19 +1,15 @@
-export type HfsResponse = {
+export type HfsResponse = HfsOkResponse | HfsErrResponse;
+
+export type HfsOkResponse = {
   status: number;
-  body?: object;
-  errors?: object;
+  data: object;
 };
 
-export type LoginResponse = Override<
-  HfsResponse,
-  {
-    errors?: {
-      email?: string[];
-      password?: string[];
-    };
-    body?: {
-      token: string;
-      tokenExpiration: number;
-    };
-  }
->;
+export type HfsErrResponse = {
+  status: number;
+  errors: object;
+  name: string;
+  message: string;
+  stack?: string;
+  cause?: unknown;
+};

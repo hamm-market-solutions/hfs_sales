@@ -6,6 +6,9 @@ import React from "react";
 
 import { login } from "@/actions/auth/login";
 import { LoginFormSchema } from "@/lib/schemas";
+import axios from "axios";
+import { routes } from "@/config/routes";
+import { LoginRequest, LoginResponse } from "@/types/auth";
 
 export default function Login() {
   const [emailError, setEmailError] = React.useState<string | null>(null);
@@ -31,13 +34,18 @@ export default function Login() {
     }
     if (errors) return;
 
-    let response = (await login(formData)).errors;
+    let request: LoginRequest = {
+      email: formData.get("email") as string,
+      password: formData.get("password") as string,
+    };
+    let response: LoginResponse = (await axios.post(routes.api.login, request))
+      .data;
 
-    if (response?.email) {
-      setEmailError(response.email[0]);
+    if (response.errors?.email) {
+      setEmailError(response.errors?.email[0]);
     }
-    if (response?.password) {
-      setPasswordError(response.password[0]);
+    if (response.errors?.password) {
+      setPasswordError(response.errors?.password[0]);
     }
   }
 
