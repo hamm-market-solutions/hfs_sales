@@ -3,12 +3,14 @@
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
 import React from "react";
+import axios, { AxiosError } from "axios";
 
-import { login } from "@/actions/auth/login";
 import { LoginFormSchema } from "@/lib/schemas";
-import axios from "axios";
 import { routes } from "@/config/routes";
-import { LoginRequest, LoginResponse } from "@/types/auth";
+import { LoginRequest } from "@/types/auth";
+import { HfsErrResponse, HfsOkResponse, HfsResponse } from "@/types/responses";
+import { ValidationError } from "class-validator";
+import { LoginParams } from "@/lib/db/models/user";
 
 export default function Login() {
   const [emailError, setEmailError] = React.useState<string | null>(null);
@@ -20,33 +22,48 @@ export default function Login() {
     setEmailError(null);
     setPasswordError(null);
     const formData = new FormData(event.currentTarget);
-    const validatedFields = LoginFormSchema.safeParse({
-      email: formData.get("email"),
-      password: formData.get("password"),
-    });
-    let errors = validatedFields.error?.flatten().fieldErrors;
+    // const validatedFields = LoginFormSchema.safeParse({
+    //   email: formData.get("email"),
+    //   password: formData.get("password"),
+    // });
+    // let errors = validatedFields.error?.flatten().fieldErrors;
 
-    if (errors?.email) {
-      setEmailError(errors.email[0]);
-    }
-    if (errors?.password) {
-      setPasswordError(errors.password[0]);
-    }
-    if (errors) return;
+    // if (errors?.email) {
+    //   setEmailError(errors.email[0]);
+    // }
+    // if (errors?.password) {
+    //   setPasswordError(errors.password[0]);
+    // }
+    // if (errors) return;
 
     let request: LoginRequest = {
       email: formData.get("email") as string,
       password: formData.get("password") as string,
     };
-    let response: LoginResponse = (await axios.post(routes.api.login, request))
-      .data;
 
-    if (response.errors?.email) {
-      setEmailError(response.errors?.email[0]);
-    }
-    if (response.errors?.password) {
-      setPasswordError(response.errors?.password[0]);
-    }
+    axios
+      .post(routes.api.login, request)
+      .then((ok: HfsOkResponse<{ token: string }>) => {
+        console.log(ok);
+      })
+      .catch(
+        (
+          err: AxiosError<
+            HfsErrResponse<{ [P in keyof LoginParams]: Array<string> }>
+          >,
+        ) => {
+          const errors = err.response?.data.errors;
+
+          if (errors?.email) {
+            setEmailError(errors.email[0]);
+          }
+          if (errors?.password) {
+            setPasswordError(errors.password[0]);
+          }
+        },
+      );
+
+    // cookies().set("Authorization", response, {)
   }
 
   return (

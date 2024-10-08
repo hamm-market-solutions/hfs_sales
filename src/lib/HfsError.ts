@@ -19,9 +19,20 @@ export default class HfsError extends Error {
     status: number,
     errors: ValidationError[],
   ): HfsError {
-    return new HfsError(status, {
-      validationErrors: errors.map((error) => error.constraints),
+    let err = {};
+
+    errors.forEach((error) => {
+      const field = error.property;
+      const constraints = Object.values(error.constraints as object);
+
+      err = { ...err, [field]: constraints };
     });
+
+    return new HfsError(status, err);
+  }
+
+  public static fromErrors(status: number, errors: Error[]): HfsError {
+    return new HfsError(status, errors);
   }
 
   // public toJSON() {
