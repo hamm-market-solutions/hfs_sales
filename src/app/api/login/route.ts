@@ -15,6 +15,7 @@ import {
 import { HfsResponse } from "@/types/responses";
 import { signJWT } from "@/lib/auth/jwt";
 import { LoginFormSchema } from "@/lib/schemas";
+import { authConfig } from "@/config/auth";
 
 export async function POST(
   request: NextRequest,
@@ -58,18 +59,24 @@ export async function POST(
   }
   // Store JWT token in cookie
   const accessToken = await signJWT(
-    updatedUser.val.refresh_token!,
+    authConfig.jwt_secret,
     { sub: user.val.id.toString() },
-    { exp: "1h" },
+    { exp: "5m" },
   );
+
+  if (accessToken.err) {
+    return resultToResponse(accessToken);
+  }
   const oneHour = 60 * 60 * 1000;
 
-  cookies().set("accessToken", accessToken, {
+  cookies().set("accessToken", accessToken.val, {
+    httpOnly: true,
     expires: Date.now() + oneHour,
     secure: true,
     sameSite: "strict",
   });
   cookies().set("refreshToken", updatedUser.val.refresh_token!, {
+    httpOnly: true,
     expires: updatedUser.val.refresh_token_expiration!,
     secure: true,
     sameSite: "strict",

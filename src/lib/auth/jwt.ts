@@ -17,23 +17,28 @@ export function generateRandomToken(length: number): string {
   return token;
 }
 
+// TODO: Implement HfsResult type
 export const signJWT = async (
   secret: string,
   payload: { sub: string },
   options: { exp: string },
-) => {
+): Promise<HfsResult<string>> => {
   try {
     const encoded = new TextEncoder().encode(secret);
     const alg = "HS256";
 
-    return new SignJWT(payload)
-      .setProtectedHeader({ alg })
-      .setExpirationTime(options.exp)
-      .setIssuedAt()
-      .setSubject(payload.sub)
-      .sign(encoded);
+    return Ok(
+      await new SignJWT(payload)
+        .setProtectedHeader({ alg })
+        .setExpirationTime(options.exp)
+        .setIssuedAt()
+        .setSubject(payload.sub)
+        .sign(encoded),
+    );
   } catch (error) {
-    throw error;
+    return Err(
+      HfsError.fromErrors(500, ["Unable to sign new JWT"], error as Error),
+    );
   }
 };
 
@@ -49,6 +54,12 @@ export const verifyJWT = async <T>(
 
     return Ok(payload as T);
   } catch (error) {
-    return Err(new HfsError(401, ["Token has been expired"]));
+    return Err(
+      new HfsError(
+        401,
+        { accessToken: "Access token is expired" },
+        error as Error,
+      ),
+    );
   }
 };

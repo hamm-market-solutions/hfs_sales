@@ -7,12 +7,14 @@ export default class HfsError extends Error {
   public status: number;
   public errors: object;
   public name: string;
+  public cause?: Error;
 
-  constructor(status: number, messages: object) {
-    super();
+  constructor(status: number, messages: object, cause?: Error) {
+    super(cause?.message);
     this.status = status;
     this.errors = messages;
     this.name = "HfsError";
+    this.cause = cause;
   }
 
   public static fromValidationErrors(
@@ -31,7 +33,11 @@ export default class HfsError extends Error {
     return new HfsError(status, err);
   }
 
-  public static fromErrors(status: number, errors: Error[]): HfsError {
-    return new HfsError(status, errors);
+  public static fromErrors(
+    status: number,
+    messages: object,
+    cause?: Error,
+  ): HfsError {
+    return new HfsError(status, messages, cause);
   }
 }

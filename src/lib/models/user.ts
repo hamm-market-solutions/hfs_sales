@@ -63,10 +63,30 @@ export async function updateRefreshToken(
   );
 }
 
+export async function verifyRefreshToken(
+  userId: number,
+): Promise<HfsResult<true>> {
+  const user = await getUserById(userId);
+
+  if (user.none) {
+    return Err(new HfsError(404, ["User not found"]));
+  }
+  const isTokenValid =
+    user.val.refresh_token &&
+    user.val.refresh_token_expiration &&
+    user.val.refresh_token_expiration > new Date();
+
+  if (!isTokenValid) {
+    return Err(new HfsError(401, { refreshToken: "Refresh token is expired" }));
+  }
+
+  return Ok(true);
+}
+
 export async function verifyPassword(
   loginUserId: number,
   loginPassword: string,
-): Promise<HfsResult<boolean>> {
+): Promise<HfsResult<true>> {
   const userOpt = await getUserById(loginUserId);
   const doPasswordsMatch = userOpt.map((u) =>
     compareSync(loginPassword, u.password),

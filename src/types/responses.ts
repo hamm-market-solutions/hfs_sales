@@ -13,5 +13,5 @@ export type HfsErrResponse<T extends object> = {
   name: string;
   message: string;
   stack?: string;
-  cause?: unknown;
+  cause?: Error;
 };
