@@ -1,8 +1,9 @@
 import { decodeJwt } from "jose";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+import { user } from "@prisma/client";
 
-import { optionToNotFound } from "@/utils/conversions";
+import { optionToNotFound, resultToResponse } from "@/utils/conversions";
 import { getUserById } from "@/lib/models/user";
 
 export async function GET() {
@@ -11,7 +12,7 @@ export async function GET() {
   const user = await getUserById(Number(userId));
 
   if (user.none) {
-    return optionToNotFound(user);
+    return resultToResponse(optionToNotFound<user>(user));
   }
 
   return NextResponse.json({ refreshToken: user.val.refresh_token });
