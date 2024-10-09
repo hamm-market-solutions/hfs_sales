@@ -65,5 +65,8 @@
   },
   "prisma": {
     "seed": "ts-node prisma/seed.js"
+  },
+  "browser": {
+      "crypto": false
   }
 }

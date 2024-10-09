@@ -1,16 +1,20 @@
 import { SignJWT, jwtVerify } from "jose";
+import { Err, Ok } from "ts-results";
 
-import { authConfig } from "@/config/auth";
-import { randomUUID } from "crypto";
-import { getUserById, updateJwtToken } from "../db/models/user";
-import { Err, Result } from "ts-results";
 import HfsError, { HfsResult } from "../HfsError";
-import { user } from "@prisma/client";
 
-export function createVerificationToken(
-  userId: number,
-): string {
-  return randomUUID(); // Generates a unique verification token
+export function generateRandomToken(length: number): string {
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let token = "";
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+
+    token += characters[randomIndex];
+  }
+
+  return token;
 }
 
 export const signJWT = async (
@@ -33,15 +37,18 @@ export const signJWT = async (
   }
 };
 
-export const verifyJWT = async <T>(token: string): Promise<T> => {
+export const verifyJWT = async <T>(
+  secret: string,
+  token: string,
+): Promise<HfsResult<T>> => {
   try {
     const { payload } = await jwtVerify(
       token,
-      new TextEncoder().encode(authConfig.jwt.secret_key),
+      new TextEncoder().encode(secret),
     );
 
-    return payload as T;
+    return Ok(payload as T);
   } catch (error) {
-    throw new Error("Your token has expired.");
+    return Err(new HfsError(401, ["Token has been expired"]));
   }
 };

@@ -4,6 +4,8 @@ services:
     volumes:
       - ../..:/workspaces:cached
     command: sleep infinity
+    env_file:
+      - ./.env
     depends_on:
       - db
     networks:

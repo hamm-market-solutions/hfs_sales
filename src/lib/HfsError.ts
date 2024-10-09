@@ -34,13 +34,4 @@ export default class HfsError extends Error {
   public static fromErrors(status: number, errors: Error[]): HfsError {
     return new HfsError(status, errors);
   }
-
-  // public toJSON() {
-  //   const errorResponse: HfsResponse = {
-  //     status: this.status,
-  //     errors: this.errors,
-  //   };
-
-  //   return JSON.stringify(errorResponse);
-  // }
 }
