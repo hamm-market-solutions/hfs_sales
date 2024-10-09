@@ -1,5 +1,3 @@
-import "../envConfig.ts";
-
 export const dbConfig = {
   dbCredentials: {
     username: process.env.MYSQL_USER!,

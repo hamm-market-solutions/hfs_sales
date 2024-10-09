@@ -1,4 +1,4 @@
-import { SignJWT, jwtVerify } from "jose";
+import { JWTPayload, SignJWT, decodeJwt, jwtVerify } from "jose";
 import { Err, Ok } from "ts-results";
 
 import HfsError, { HfsResult } from "../HfsError";
@@ -16,6 +16,20 @@ export function generateRandomToken(length: number): string {
 
   return token;
 }
+
+export const decodeJWT = (token: string): HfsResult<JWTPayload> => {
+  try {
+    return Ok(decodeJwt(token));
+  } catch (error) {
+    return Err(
+      new HfsError(
+        401,
+        { accessToken: "Failed to decode JWT" },
+        error as Error,
+      ),
+    );
+  }
+};
 
 // TODO: Implement HfsResult type
 export const signJWT = async (

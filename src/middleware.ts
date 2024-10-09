@@ -1,19 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { decodeJwt } from "jose";
 
-import { verifyJWT } from "./lib/auth/jwt";
+import { decodeJWT, verifyJWT } from "./lib/auth/jwt";
+import { authConfig } from "./config/auth";
 import { resultToResponse } from "./utils/conversions";
 
 export async function middleware(request: NextRequest) {
   const accessToken = cookies().get("accessToken")?.value ?? "";
   const refreshToken = cookies().get("refreshToken")?.value ?? "";
-  const userId = decodeJwt(accessToken)?.sub;
+  const decodeRes = decodeJWT(accessToken);
 
-  if (!userId) {
+  if (decodeRes.err) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
-  const verifyRes = await verifyJWT<{ sub: string }>(refreshToken, accessToken);
+  const verifyRes = await verifyJWT<{ sub: string }>(
+    authConfig.jwt_secret,
+    accessToken,
+  );
 
   if (verifyRes.err) {
     return resultToResponse(verifyRes);

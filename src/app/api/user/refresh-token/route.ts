@@ -6,6 +6,7 @@ import { user } from "@prisma/client";
 import { optionToNotFound, resultToResponse } from "@/utils/conversions";
 import { getUserById, updateRefreshToken } from "@/lib/models/user";
 import { signJWT, verifyJWT } from "@/lib/auth/jwt";
+import { authConfig } from "@/config/auth";
 
 export async function GET() {
   const accessToken = cookies().get("token")?.value ?? "";
@@ -29,7 +30,7 @@ export async function GET() {
     return resultToResponse(updatedUser);
   }
   const newAccessTokenRes = await signJWT(
-    updatedUser.val.refresh_token!,
+    authConfig.jwt_secret,
     { sub: user.val.id.toString() },
     { exp: "1h" },
   );
