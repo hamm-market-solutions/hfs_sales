@@ -13,7 +13,10 @@ import { getOrUpdateAccessToken } from "@/lib/models/user";
 export async function middleware(
   request: NextRequest,
 ): Promise<NextResponse<HfsResponse>> {
-  if (request.nextUrl.pathname.startsWith("/api/login")) {
+  if (
+    request.nextUrl.pathname.startsWith("/api/login") ||
+    request.nextUrl.pathname.startsWith("/api/refresh")
+  ) {
     return NextResponse.next() as NextResponse<HfsResponse>;
   }
   /*

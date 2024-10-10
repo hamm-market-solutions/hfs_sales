@@ -48,6 +48,6 @@ export default class HfsError extends Error {
   }
 
   public is(type: string): boolean {
-    return Object.keys(this.errors).includes(type);
+    return Object.values(this.errors).includes(type);
   }
 }

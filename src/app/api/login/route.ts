@@ -49,7 +49,6 @@ export async function POST(
   if (passwordVerifyRes.err) {
     return resultToResponse(passwordVerifyRes);
   }
-
   const updateRes = await updateAccessToken(user.val.id);
 
   if (updateRes.err) {

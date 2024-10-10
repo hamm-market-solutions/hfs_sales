@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { middleware as apiMiddleware } from "./app/api/middleware";
 import { getOrUpdateAccessToken } from "./lib/models/user";
 import { appConfig } from "./config/app";
+import JwtError, { ACCESS_TOKEN } from "./lib/errors/JwtError";
 
 export async function middleware(
   request: NextRequest,
@@ -19,7 +20,21 @@ export async function middleware(
   const accessTokenRes = await getOrUpdateAccessToken();
 
   if (accessTokenRes.err) {
-    return NextResponse.redirect(appConfig.url + "/login");
+    // if (!accessTokenRes.val.is(JwtError.notFound(ACCESS_TOKEN))) {
+      return NextResponse.redirect(appConfig.url + "/login");
+    // }
+    // const response = await fetch(appConfig.url + "/api/refresh", {
+    //   method: "GET",
+    //   credentials: "include",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // });
+
+    // if (!response.ok) {
+    //   console.log(response);
+    //   return NextResponse.redirect(appConfig.url + "/login");
+    // }
   }
 
   return NextResponse.next();

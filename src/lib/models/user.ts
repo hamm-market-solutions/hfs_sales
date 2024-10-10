@@ -5,7 +5,7 @@ import { decodeJwt, JWTPayload } from "jose";
 import { cookies } from "next/headers";
 
 import UserModelError from "../errors/UserModelError";
-import JwtError from "../errors/JwtError";
+import JwtError, { ACCESS_TOKEN, REFRESH_TOKEN } from "../errors/JwtError";
 
 import HfsError, { HfsResult } from "@/lib/errors/HfsError";
 import prisma from "@/lib/prisma";
@@ -82,7 +82,10 @@ export const getOrUpdateRefreshToken = async (
 
   if (verifyRes.err) {
     // If the refresh token is expired, update the refresh token. If the refresh token is invalid, return the error.
-    if (verifyRes.val.is(JwtError.expired())) {
+    if (
+      verifyRes.val.is(JwtError.expired()) ||
+      verifyRes.val.is(JwtError.notFound(REFRESH_TOKEN))
+    ) {
       return await updateRefreshToken(userId);
     }
 
@@ -98,10 +101,10 @@ export const getOrUpdateRefreshToken = async (
 export const updateAccessToken = async (
   userId: number,
 ): Promise<HfsResult<{ accessToken: string; refreshToken: string }>> => {
-  const refreshToken = await getOrUpdateRefreshToken(userId);
+  const refreshTokenRes = await getOrUpdateRefreshToken(userId);
 
-  if (refreshToken.err) {
-    return refreshToken;
+  if (refreshTokenRes.err) {
+    return refreshTokenRes;
   }
   const newAccessTokenRes = await signJWT(
     authConfig.access_token_secret,
@@ -115,7 +118,7 @@ export const updateAccessToken = async (
 
   return Ok({
     accessToken: newAccessTokenRes.val,
-    refreshToken: refreshToken.val[0],
+    refreshToken: refreshTokenRes.val[0],
   });
 };
 
@@ -128,11 +131,20 @@ export const getOrUpdateAccessToken = async (): Promise<
   const accessTokenRes = await getAccessTokenAndVerify();
 
   if (accessTokenRes.err) {
-    if (accessTokenRes.val.is(JwtError.expired())) {
+    if (accessTokenRes.val.is(JwtError.expired(ACCESS_TOKEN))) {
       const accessToken = cookies().get("accessToken")!;
       const decodeRes = decodeJwt(accessToken.value);
 
       return await updateAccessToken(parseInt(decodeRes.sub!));
+    }
+    if (accessTokenRes.val.is(JwtError.notFound(ACCESS_TOKEN))) {
+      const refreshTokenRes = await getRefreshTokenAndVerify();
+
+      if (refreshTokenRes.err) {
+        return refreshTokenRes;
+      }
+
+      return await updateAccessToken(parseInt(refreshTokenRes.val[1].sub!));
     }
 
     return accessTokenRes;

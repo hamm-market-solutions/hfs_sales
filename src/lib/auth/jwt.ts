@@ -46,7 +46,8 @@ export const verifyJWT = async (
   token: string,
 ): Promise<HfsResult<JWTPayload>> => {
   try {
-    // First just decode the token to check if it's expired
+    // First just decode the token to check if it's expired to return
+    // a reliable error message if we would like to math the error
     const decodedRes = decodeJWT(token);
 
     if (decodedRes.err) {

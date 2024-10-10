@@ -1,48 +1,45 @@
-import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
-import { decodeJWT } from "@/lib/auth/jwt";
 import { updateAccessToken } from "@/lib/models/user";
+import { getRefreshTokenAndVerify } from "@/lib/auth/jwt";
+import { cookies } from "next/headers";
+import { HfsResponse } from "@/types/responses";
 import { resultToResponse } from "@/utils/conversions";
 
-export async function GET(request: NextRequest, response: NextResponse) {
-  const accessToken = cookies().get("accessToken")!; // We checked if the access token is present in the middleware
-  const decodeRes = decodeJWT(accessToken.value).unwrap(); // Safe to unwrap since we checked if the access token is malformed in the middleware
-  /*
-   * Verify that the access token is valid. If the access token is invalid,
-   * simply update the cookie with the new access token
-   */
-  const userId = parseInt(decodeRes.sub!);
-  const updateRes = await updateAccessToken(userId);
+export async function GET(request: NextRequest): Promise<NextResponse<HfsResponse>> {
+  const refreshTokenRes = await getRefreshTokenAndVerify();
 
-  if (updateRes.err) {
-    return resultToResponse(updateRes);
+  if (refreshTokenRes.err) {
+    return resultToResponse(refreshTokenRes);
   }
-  response.cookies.set("accessToken", updateRes.val.accessToken, {
-    httpOnly: true,
-    secure: true,
-    sameSite: "strict",
-  });
-  response.cookies.set("refreshToken", updateRes.val.refreshToken, {
-    httpOnly: true,
-    secure: true,
-    sameSite: "strict",
-  });
-  //   cookies().set("accessToken", updateRes.val.accessToken, {
-  //     httpOnly: true,
-  //     secure: true,
-  //     sameSite: "strict",
-  //   });
-  //   console.log(cookies().get("accessToken"));
 
-  //   cookies().set("refreshToken", updateRes.val.refreshToken, {
-  //     httpOnly: true,
-  //     secure: true,
-  //     sameSite: "strict",
-  //   });
+  const accessTokenRes = await updateAccessToken(parseInt(refreshTokenRes.val[1].sub!));
 
-  //   return NextResponse.json({
-  //     accessToken: updateRes.val.accessToken,
-  //     refreshToken: updateRes.val.refreshToken,
-  //   });
+  if (accessTokenRes.err) {
+    return resultToResponse(accessTokenRes);
+  }
+  // response.cookies.set("accessToken", accessTokenRes.val.accessToken, {
+  //   httpOnly: true,
+  //   secure: true,
+  //   sameSite: "strict",
+  // });
+  // response.cookies.set("refreshToken", accessTokenRes.val.refreshToken, {
+  //   httpOnly: true,
+  //   secure: true,
+  //   sameSite: "strict",
+  // });
+    cookies().set("accessToken", accessTokenRes.val.accessToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+    });
+    console.log(cookies().get("accessToken"));
+
+    cookies().set("refreshToken", accessTokenRes.val.refreshToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+    });
+
+  return resultToResponse(accessTokenRes);
 }
