@@ -1,6 +1,8 @@
 import { ValidationError } from "class-validator";
 import { Result } from "ts-results";
 
+import ErrorVariant from "./ErrorVariant";
+
 export type HfsResult<T> = Result<T, HfsError>;
 
 export default class HfsError extends Error {
@@ -9,8 +11,12 @@ export default class HfsError extends Error {
   public name: string;
   public cause?: Error;
 
-  constructor(status: number, messages: object, cause?: Error) {
-    super(cause?.message);
+  constructor(
+    status: number,
+    messages: { [type: string]: ErrorVariant },
+    cause?: Error,
+  ) {
+    super(JSON.stringify(messages));
     this.status = status;
     this.errors = messages;
     this.name = "HfsError";
@@ -35,9 +41,13 @@ export default class HfsError extends Error {
 
   public static fromErrors(
     status: number,
-    messages: object,
+    message: string,
     cause?: Error,
   ): HfsError {
-    return new HfsError(status, messages, cause);
+    return new HfsError(status, { thrownError: message }, cause);
+  }
+
+  public is(type: string): boolean {
+    return Object.keys(this.errors).includes(type);
   }
 }

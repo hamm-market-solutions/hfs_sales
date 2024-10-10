@@ -1,3 +1,4 @@
 export const authConfig = {
-  jwt_secret: process.env.JWT_SECRET_KEY!,
+  access_token_secret: process.env.ACCESS_TOKEN_SECRET!,
+  refresh_token_secret: process.env.REFRESH_TOKEN_SECRET!,
 };

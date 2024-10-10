@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { LoginRequest } from "@/types/auth";
 import {
   getUserByEmail,
-  updateRefreshToken,
+  updateAccessToken,
   verifyPassword,
 } from "@/lib/models/user";
 import {
@@ -13,9 +13,7 @@ import {
   schemaToResult,
 } from "@/utils/conversions";
 import { HfsResponse } from "@/types/responses";
-import { signJWT } from "@/lib/auth/jwt";
 import { LoginFormSchema } from "@/lib/schemas";
-import { authConfig } from "@/config/auth";
 
 export async function POST(
   request: NextRequest,
@@ -51,41 +49,27 @@ export async function POST(
   if (passwordVerifyRes.err) {
     return resultToResponse(passwordVerifyRes);
   }
-  // Update the JWT refresh token
-  const updatedUser = await updateRefreshToken(user.val.id);
 
-  if (updatedUser.err) {
-    return resultToResponse(updatedUser);
+  const updateRes = await updateAccessToken(user.val.id);
+
+  if (updateRes.err) {
+    return resultToResponse(updateRes);
   }
-  // Store JWT token in cookie
-  const accessToken = await signJWT(
-    authConfig.jwt_secret,
-    { sub: user.val.id.toString() },
-    { exp: "5m" },
-  );
+  const fiveMinutesFromNow = Date.now() + 10 * 1000;
+  const oneDayFromNow = Date.now() + 24 * 60 * 60 * 1000;
 
-  if (accessToken.err) {
-    return resultToResponse(accessToken);
-  }
-  const oneHour = 60 * 60 * 1000;
-
-  cookies().set("accessToken", accessToken.val, {
+  cookies().set("accessToken", updateRes.val.accessToken, {
     httpOnly: true,
-    expires: Date.now() + oneHour,
     secure: true,
     sameSite: "strict",
+    expires: fiveMinutesFromNow,
   });
-  cookies().set("refreshToken", updatedUser.val.refresh_token!, {
+  cookies().set("refreshToken", updateRes.val.refreshToken, {
     httpOnly: true,
-    expires: updatedUser.val.refresh_token_expiration!,
     secure: true,
     sameSite: "strict",
+    expires: oneDayFromNow,
   });
 
-  return NextResponse.json({
-    status: 200,
-    data: {
-      token: accessToken,
-    },
-  });
+  return resultToResponse(updateRes);
 }

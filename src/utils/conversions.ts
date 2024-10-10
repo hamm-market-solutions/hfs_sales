@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { SafeParseReturnType } from "zod";
 import { Err, Ok, Option } from "ts-results";
 
-import HfsError, { HfsResult } from "../lib/HfsError";
+import HfsError, { HfsResult } from "../lib/errors/HfsError";
 import { HfsResponse } from "../types/responses";
 
 export function resultToResponse<T extends object>(
