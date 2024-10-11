@@ -6,3 +6,7 @@ export type LoginRequest = {
   email: string;
   password: string;
 } & HfsRequest;
+
+export type RefreshRequest = {
+  refreshToken: string;
+} & HfsRequest;

@@ -1,77 +1,56 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Err } from "ts-results";
 
 import { middleware as apiMiddleware } from "./app/api/middleware";
 import { appConfig } from "./config/app";
 import { getOrUpdateAccessToken } from "./lib/models/user";
+import { resultToResponse } from "./utils/conversions";
+import HfsError from "./lib/errors/HfsError";
+import ErrorVariant from "./lib/errors/ErrorVariant";
 
 export async function middleware(
   request: NextRequest,
 ): Promise<NextResponse<unknown>> {
-  if (request.nextUrl.pathname.startsWith("/api")) {
-    return apiMiddleware(request);
+  try {
+    if (request.nextUrl.pathname.startsWith("/api")) {
+      return apiMiddleware(request);
+    }
+    /*
+     * Check if the access token is present and decode it to get the user ID.
+     * If the access token is not present or malformed, redirect to the login page.
+     * This does not validate if the access token is still valid. This is done in
+     * the next step.
+     */
+    const accessTokenRes = await getOrUpdateAccessToken();
+
+    if (accessTokenRes.err) {
+      return NextResponse.redirect(appConfig.url + "/login");
+    }
+    const nextResponse = NextResponse.next();
+
+    nextResponse.cookies.set("accessToken", accessTokenRes.val.accessToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+    });
+    nextResponse.cookies.set("refreshToken", accessTokenRes.val.refreshToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+    });
+
+    return nextResponse;
+  } catch (error) {
+    return resultToResponse(
+      Err(
+        new HfsError(
+          500,
+          { unexpected: ErrorVariant.unexpected() },
+          error as Error,
+        ),
+      ),
+    );
   }
-  /*
-   * Check if the access token is present and decode it to get the user ID.
-   * If the access token is not present or malformed, redirect to the login page.
-   * This does not validate if the access token is still valid. This is done in
-   * the next step.
-   */
-  const accessTokenRes = await getOrUpdateAccessToken();
-
-  if (accessTokenRes.err) {
-    // if (!accessTokenRes.val.is(JwtError.notFound(ACCESS_TOKEN))) {
-    return NextResponse.redirect(appConfig.url + "/login");
-    // }
-    // const cookieString = request.headers.get("cookie");
-    // const response = await fetch(appConfig.url + "/api/refresh", {
-    //   method: "GET",
-    //   credentials: "include",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Cookie: cookieString!,
-    //   },
-    // });
-
-    // if (!response.ok) {
-    //   return NextResponse.redirect(appConfig.url + "/login");
-    // }
-    // const refreshResponse: HfsOkResponse<{
-    //   accessToken: string;
-    //   refreshToken: string;
-    // }> = await response.json();
-    // const nextResponse = NextResponse.next();
-
-    // nextResponse.cookies.set("accessToken", refreshResponse.data.accessToken, {
-    //   httpOnly: true,
-    //   secure: true,
-    //   sameSite: "strict",
-    // });
-    // nextResponse.cookies.set(
-    //   "refreshToken",
-    //   refreshResponse.data.refreshToken,
-    //   {
-    //     httpOnly: true,
-    //     secure: true,
-    //     sameSite: "strict",
-    //   },
-    // );
-
-    // return nextResponse;
-  }
-  const nextResponse = NextResponse.next();
-
-  nextResponse.cookies.set("accessToken", accessTokenRes.val.accessToken, {
-    httpOnly: true,
-    secure: true,
-    sameSite: "strict",
-  });
-  nextResponse.cookies.set("refreshToken", accessTokenRes.val.refreshToken, {
-    httpOnly: true,
-    secure: true,
-    sameSite: "strict",
-  });
-
-  return nextResponse;
 }
 
 export const config = {

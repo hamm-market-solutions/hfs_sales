@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { HfsResponse } from "@/types/responses";
 import { resultToResponse } from "@/utils/conversions";
 import { getAccessTokenAndVerify } from "@/lib/auth/jwt";
+import { routes } from "@/config/routes";
 
 /**
  * Middleware to check if the user is authenticated. If the user is not
@@ -13,8 +14,8 @@ export async function middleware(
   request: NextRequest,
 ): Promise<NextResponse<HfsResponse>> {
   if (
-    request.nextUrl.pathname.startsWith("/api/login") ||
-    request.nextUrl.pathname.startsWith("/api/refresh")
+    request.nextUrl.pathname.startsWith(routes.api.login) ||
+    request.nextUrl.pathname.startsWith(routes.api.refresh)
   ) {
     return NextResponse.next() as NextResponse<HfsResponse>;
   }

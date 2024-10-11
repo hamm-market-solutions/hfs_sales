@@ -1,7 +1,7 @@
 export const routes = {
   api: {
-    login: "/api/login",
-    refresh: "/api/refresh",
+    login: "/api/auth/login",
+    refresh: "/api/auth/refresh",
   },
   login: "/login",
 };

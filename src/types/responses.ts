@@ -15,3 +15,33 @@ export type HfsErrResponse<T extends object> = {
   stack?: string;
   cause?: Error;
 };
+
+type HfsUnknownError = HfsErrResponse<{ unknownError?: string }>;
+
+export type LoginResponse = LoginOkResponse | LoginErrResponse;
+
+export type LoginOkResponse = HfsOkResponse<{
+  accessToken: string;
+  refreshToken: string;
+}>;
+
+export type LoginErrResponse = HfsErrResponse<{
+  login?: string;
+  token?: string;
+  accessToken?: string;
+  refreshToken?: string;
+}> &
+  HfsUnknownError;
+
+export type RefreshResponse = RefreshOkResponse | RefreshErrResponse;
+
+export type RefreshOkResponse = HfsOkResponse<{
+  accessToken: string;
+}>;
+
+export type RefreshErrResponse = HfsErrResponse<{
+  token?: string;
+  accessToken?: string;
+  refreshToken?: string;
+}> &
+  HfsUnknownError;

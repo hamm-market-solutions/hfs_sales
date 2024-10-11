@@ -11,12 +11,16 @@ import {
   resultToResponse,
   schemaToResult,
 } from "@/utils/conversions";
-import { HfsResponse } from "@/types/responses";
+import {
+  LoginErrResponse,
+  LoginOkResponse,
+  LoginResponse,
+} from "@/types/responses";
 import { LoginFormSchema } from "@/lib/schemas";
 
 export async function POST(
   request: NextRequest,
-): Promise<NextResponse<HfsResponse>> {
+): Promise<NextResponse<LoginResponse>> {
   // Validate the login request
   const json: LoginRequest = await request.json();
   const loginEmail = json["email"];
@@ -29,7 +33,7 @@ export async function POST(
   );
 
   if (validatedFields.err) {
-    return resultToResponse(validatedFields);
+    return resultToResponse(validatedFields) as NextResponse<LoginErrResponse>;
   }
   // Get the user by email. If the user is not found, return a 404
   const user = optionToNotFound(
@@ -37,7 +41,7 @@ export async function POST(
   );
 
   if (user.err) {
-    return resultToResponse(user);
+    return resultToResponse(user) as NextResponse<LoginErrResponse>;
   }
   // Verify the password. If the password is incorrect, return a 401
   const passwordVerifyRes = await verifyPassword(
@@ -46,27 +50,16 @@ export async function POST(
   );
 
   if (passwordVerifyRes.err) {
-    return resultToResponse(passwordVerifyRes);
+    return resultToResponse(
+      passwordVerifyRes,
+    ) as NextResponse<LoginErrResponse>;
   }
   const updateRes = await updateAccessToken(user.val.id);
 
   if (updateRes.err) {
-    return resultToResponse(updateRes);
+    return resultToResponse(updateRes) as NextResponse<LoginErrResponse>;
   }
   const response = resultToResponse(updateRes);
 
-  // response.cookies.set("accessToken", updateRes.val.accessToken, {
-  //   httpOnly: true,
-  //   secure: true,
-  //   sameSite: "strict",
-  //   expires: Date.now() + ACCESS_TOKEN_LIFETIME * 1000,
-  // });
-  // response.cookies.set("refreshToken", updateRes.val.refreshToken, {
-  //   httpOnly: true,
-  //   secure: true,
-  //   sameSite: "strict",
-  //   expires: Date.now() + REFRESH_TOKEN_LIFETIME * 1000,
-  // });
-
-  return response;
+  return response as NextResponse<LoginOkResponse>;
 }

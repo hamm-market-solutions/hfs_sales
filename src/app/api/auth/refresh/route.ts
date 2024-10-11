@@ -3,16 +3,23 @@ import { Ok } from "ts-results";
 
 import { updateAccessToken } from "@/lib/models/user";
 import { getRefreshTokenAndVerify } from "@/lib/auth/jwt";
-import { HfsResponse } from "@/types/responses";
+import {
+  HfsResponse,
+  RefreshErrResponse,
+  RefreshOkResponse,
+  RefreshResponse,
+} from "@/types/responses";
 import { resultToResponse } from "@/utils/conversions";
 
 export async function GET(
   _request: NextRequest,
-): Promise<NextResponse<HfsResponse>> {
+): Promise<NextResponse<RefreshResponse>> {
   const refreshTokenRes = await getRefreshTokenAndVerify();
 
   if (refreshTokenRes.err) {
-    return resultToResponse(refreshTokenRes);
+    return resultToResponse(
+      refreshTokenRes,
+    ) as NextResponse<RefreshErrResponse>;
   }
 
   const accessTokenRes = await updateAccessToken(
@@ -20,10 +27,12 @@ export async function GET(
   );
 
   if (accessTokenRes.err) {
-    return resultToResponse(accessTokenRes);
+    return resultToResponse(accessTokenRes) as NextResponse<RefreshErrResponse>;
   }
 
-  return resultToResponse(Ok({ accessToken: accessTokenRes.val.accessToken }));
+  return resultToResponse(
+    Ok({ accessToken: accessTokenRes.val.accessToken }),
+  ) as NextResponse<RefreshOkResponse>;
 }
 
 export async function POST(
