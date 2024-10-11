@@ -20,7 +20,7 @@ export const decodeJWT = (token: string): HfsResult<JWTPayload> => {
 export const signJWT = async (
   secret: string,
   payload: { sub: string },
-  options: { exp: string },
+  options: { exp: number },
 ): Promise<HfsResult<string>> => {
   try {
     const encoded = new TextEncoder().encode(secret);
@@ -76,7 +76,7 @@ export const verifyJWT = async (
 const getAccessTokenFromCookie = async (): Promise<Option<string>> => {
   const accessToken = cookies().get("accessToken");
 
-  if (accessToken) {
+  if (accessToken && accessToken.value !== "") {
     return Some(accessToken.value);
   }
 
@@ -97,26 +97,65 @@ const getAccessTokenFromBearer = async (): Promise<Option<string>> => {
   return None;
 };
 
+export const getAccessToken = async (): Promise<HfsResult<string>> => {
+  const fromCookie = await getAccessTokenFromCookie();
+
+  if (fromCookie.some) {
+    return Ok(fromCookie.val);
+  }
+  const fromBearer = await getAccessTokenFromBearer();
+
+  if (fromBearer.some) {
+    return Ok(fromBearer.val);
+  }
+
+  return Err(
+    new HfsError(401, {
+      accessToken: JwtError.notFound(ACCESS_TOKEN),
+    }),
+  );
+};
+
 /**
  * Get the access token from the cookie. If the access token is malformed or expired, return 401.
  */
 export const getAccessTokenAndVerify = async (): Promise<
   HfsResult<[string, JWTPayload]>
 > => {
-  const accessToken = await getAccessTokenFromCookie();
+  const accessToken = await getAccessToken();
 
-  if (accessToken.none) {
-    return Err(
-      new HfsError(401, { accessToken: JwtError.notFound(ACCESS_TOKEN) }),
-    );
+  if (accessToken.err) {
+    return accessToken;
   }
-
   const payloadRes = await verifyJWT(
     authConfig.access_token_secret,
     accessToken.val,
   );
 
-  return payloadRes.map((payload) => [accessToken.val, payload]);
+  if (payloadRes.err) {
+    if (payloadRes.val.is(JwtError.expired())) {
+      return Err(
+        new HfsError(
+          401,
+          { accessToken: JwtError.expired(ACCESS_TOKEN) },
+          payloadRes.val,
+        ),
+      );
+    }
+    if (payloadRes.val.is(JwtError.invalid())) {
+      return Err(
+        new HfsError(
+          401,
+          { accessToken: JwtError.invalid(ACCESS_TOKEN) },
+          payloadRes.val,
+        ),
+      );
+    }
+
+    return payloadRes;
+  }
+
+  return Ok([accessToken.val, payloadRes.val]);
 };
 
 /** Get the refresh token from the cookie. If the refresh token is invalid, return None.
@@ -124,22 +163,8 @@ export const getAccessTokenAndVerify = async (): Promise<
 const getRefreshTokenFromCookie = async (): Promise<Option<string>> => {
   const refreshToken = cookies().get("refreshToken");
 
-  if (refreshToken) {
+  if (refreshToken && refreshToken.value !== "") {
     return Some(refreshToken.value);
-  }
-
-  return None;
-};
-
-const getRefreshTokenFromBearer = async (): Promise<Option<string>> => {
-  const authorization = headers().get("authorization");
-
-  if (authorization) {
-    const [type, token] = authorization.split(" ");
-
-    if (type === "Bearer") {
-      return Some(token);
-    }
   }
 
   return None;
@@ -148,21 +173,50 @@ const getRefreshTokenFromBearer = async (): Promise<Option<string>> => {
 /**
  * Get the refresh token from the cookie. If the refresh token is malformed or expired, return 401.
  */
-export const getRefreshTokenAndVerify = async (): Promise<
-  HfsResult<[string, JWTPayload]>
-> => {
-  const refreshToken = await getRefreshTokenFromCookie();
+export const getRefreshTokenAndVerify = async (
+  refreshToken?: string,
+): Promise<HfsResult<[string, JWTPayload]>> => {
+  let workingRefreshToken;
 
-  if (refreshToken.none) {
-    return Err(
-      new HfsError(401, { refreshToken: JwtError.notFound(REFRESH_TOKEN) }),
-    );
+  if (!refreshToken) {
+    const fromCookieOpt = await getRefreshTokenFromCookie();
+
+    if (fromCookieOpt.none) {
+      return Err(
+        new HfsError(401, { refreshToken: JwtError.notFound(REFRESH_TOKEN) }),
+      );
+    }
+    workingRefreshToken = fromCookieOpt.val;
+  } else {
+    workingRefreshToken = refreshToken;
   }
-
   const payloadRes = await verifyJWT(
     authConfig.refresh_token_secret,
-    refreshToken.val,
+    workingRefreshToken,
   );
 
-  return payloadRes.map((payload) => [refreshToken.val, payload]);
+  if (payloadRes.err) {
+    if (payloadRes.val.is(JwtError.expired())) {
+      return Err(
+        new HfsError(
+          401,
+          { refreshToken: JwtError.expired(REFRESH_TOKEN) },
+          payloadRes.val,
+        ),
+      );
+    }
+    if (payloadRes.val.is(JwtError.invalid())) {
+      return Err(
+        new HfsError(
+          401,
+          { refreshToken: JwtError.invalid(REFRESH_TOKEN) },
+          payloadRes.val,
+        ),
+      );
+    }
+
+    return payloadRes;
+  }
+
+  return Ok([workingRefreshToken, payloadRes.val]);
 };

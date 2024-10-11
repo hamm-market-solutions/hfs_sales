@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { cookies } from "next/headers";
 
 import { HfsResponse } from "@/types/responses";
 import { resultToResponse } from "@/utils/conversions";
-import { getOrUpdateAccessToken } from "@/lib/models/user";
+import { getAccessTokenAndVerify } from "@/lib/auth/jwt";
 
 /**
  * Middleware to check if the user is authenticated. If the user is not
@@ -25,22 +24,11 @@ export async function middleware(
    * page. This does not validate if the access token is still valid. This
    * is done in the next step.
    */
-  const accessTokenRes = await getOrUpdateAccessToken();
+  const accessTokenRes = await getAccessTokenAndVerify();
 
   if (accessTokenRes.err) {
     return resultToResponse(accessTokenRes);
   }
-
-  cookies().set("accessToken", accessTokenRes.val.accessToken, {
-    httpOnly: true,
-    secure: true,
-    sameSite: "strict",
-  });
-  cookies().set("refreshToken", accessTokenRes.val.refreshToken, {
-    httpOnly: true,
-    secure: true,
-    sameSite: "strict",
-  });
 
   return NextResponse.next() as NextResponse<HfsResponse>;
 }

@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { cookies } from "next/headers";
 
-import { LoginRequest } from "@/types/auth";
+import { LoginRequest } from "@/types/requests";
 import {
   getUserByEmail,
   updateAccessToken,
@@ -54,21 +53,20 @@ export async function POST(
   if (updateRes.err) {
     return resultToResponse(updateRes);
   }
-  const fiveMinutesFromNow = Date.now() + 10 * 1000;
-  const oneDayFromNow = Date.now() + 24 * 60 * 60 * 1000;
+  const response = resultToResponse(updateRes);
 
-  cookies().set("accessToken", updateRes.val.accessToken, {
-    httpOnly: true,
-    secure: true,
-    sameSite: "strict",
-    expires: fiveMinutesFromNow,
-  });
-  cookies().set("refreshToken", updateRes.val.refreshToken, {
-    httpOnly: true,
-    secure: true,
-    sameSite: "strict",
-    expires: oneDayFromNow,
-  });
+  // response.cookies.set("accessToken", updateRes.val.accessToken, {
+  //   httpOnly: true,
+  //   secure: true,
+  //   sameSite: "strict",
+  //   expires: Date.now() + ACCESS_TOKEN_LIFETIME * 1000,
+  // });
+  // response.cookies.set("refreshToken", updateRes.val.refreshToken, {
+  //   httpOnly: true,
+  //   secure: true,
+  //   sameSite: "strict",
+  //   expires: Date.now() + REFRESH_TOKEN_LIFETIME * 1000,
+  // });
 
-  return resultToResponse(updateRes);
+  return response;
 }

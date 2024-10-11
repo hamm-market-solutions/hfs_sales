@@ -3,12 +3,10 @@
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
 import React from "react";
-import axios, { AxiosError } from "axios";
 
 import { LoginFormSchema } from "@/lib/schemas";
-import { routes } from "@/config/routes";
-import { LoginRequest } from "@/types/auth";
 import { HfsErrResponse } from "@/types/responses";
+import { handleLogin } from "@/actions/auth/login";
 
 export default function Login() {
   const [emailError, setEmailError] = React.useState<string | null>(null);
@@ -33,34 +31,23 @@ export default function Login() {
     }
     if (errors) return;
 
-    let request: LoginRequest = {
-      email: formData.get("email") as string,
-      password: formData.get("password") as string,
-    };
+    const response = await handleLogin(
+      formData.get("email") as string,
+      formData.get("password") as string,
+    );
 
-    axios
-      .post(routes.api.login, request, {
-        headers: { "Content-Type": "application/json" },
-      })
-      .then((_) => {
-        document.location.href = "/";
-      })
-      .catch(
-        (
-          err: AxiosError<
-            HfsErrResponse<{ email?: string; password?: string }>
-          >,
-        ) => {
-          const errors = err.response?.data.errors;
+    if (response.err) {
+      const errors: HfsErrResponse<{ email?: string; password?: string }> =
+        response.val;
 
-          if (errors?.email) {
-            setEmailError(errors.email[0]);
-          }
-          if (errors?.password) {
-            setPasswordError(errors.password[0]);
-          }
-        },
-      );
+      if (errors?.errors.email) {
+        setEmailError(errors.errors.email[0]);
+      }
+      if (errors?.errors.password) {
+        setPasswordError(errors.errors.password[0]);
+      }
+    }
+    document.location.href = "/";
   }
 
   return (

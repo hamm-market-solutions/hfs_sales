@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { middleware as apiMiddleware } from "./app/api/middleware";
-import { getOrUpdateAccessToken } from "./lib/models/user";
 import { appConfig } from "./config/app";
-import JwtError, { ACCESS_TOKEN } from "./lib/errors/JwtError";
+import { getOrUpdateAccessToken } from "./lib/models/user";
 
 export async function middleware(
   request: NextRequest,
@@ -21,23 +20,58 @@ export async function middleware(
 
   if (accessTokenRes.err) {
     // if (!accessTokenRes.val.is(JwtError.notFound(ACCESS_TOKEN))) {
-      return NextResponse.redirect(appConfig.url + "/login");
+    return NextResponse.redirect(appConfig.url + "/login");
     // }
+    // const cookieString = request.headers.get("cookie");
     // const response = await fetch(appConfig.url + "/api/refresh", {
     //   method: "GET",
     //   credentials: "include",
     //   headers: {
     //     "Content-Type": "application/json",
+    //     Cookie: cookieString!,
     //   },
     // });
 
     // if (!response.ok) {
-    //   console.log(response);
     //   return NextResponse.redirect(appConfig.url + "/login");
     // }
-  }
+    // const refreshResponse: HfsOkResponse<{
+    //   accessToken: string;
+    //   refreshToken: string;
+    // }> = await response.json();
+    // const nextResponse = NextResponse.next();
 
-  return NextResponse.next();
+    // nextResponse.cookies.set("accessToken", refreshResponse.data.accessToken, {
+    //   httpOnly: true,
+    //   secure: true,
+    //   sameSite: "strict",
+    // });
+    // nextResponse.cookies.set(
+    //   "refreshToken",
+    //   refreshResponse.data.refreshToken,
+    //   {
+    //     httpOnly: true,
+    //     secure: true,
+    //     sameSite: "strict",
+    //   },
+    // );
+
+    // return nextResponse;
+  }
+  const nextResponse = NextResponse.next();
+
+  nextResponse.cookies.set("accessToken", accessTokenRes.val.accessToken, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "strict",
+  });
+  nextResponse.cookies.set("refreshToken", accessTokenRes.val.refreshToken, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "strict",
+  });
+
+  return nextResponse;
 }
 
 export const config = {

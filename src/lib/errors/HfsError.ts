@@ -1,7 +1,8 @@
-import { ValidationError } from "class-validator";
 import { Result } from "ts-results";
 
 import ErrorVariant from "./ErrorVariant";
+
+import { HfsErrResponse } from "@/types/responses";
 
 export type HfsResult<T> = Result<T, HfsError>;
 
@@ -23,28 +24,18 @@ export default class HfsError extends Error {
     this.cause = cause;
   }
 
-  public static fromValidationErrors(
-    status: number,
-    errors: ValidationError[],
-  ): HfsError {
-    let err = {};
-
-    errors.forEach((error) => {
-      const field = error.property;
-      const constraints = Object.values(error.constraints as object);
-
-      err = { ...err, [field]: constraints };
-    });
-
-    return new HfsError(status, err);
-  }
-
   public static fromErrors(
     status: number,
     message: string,
     cause?: Error,
   ): HfsError {
     return new HfsError(status, { thrownError: message }, cause);
+  }
+
+  public static fromHfsResponse<T extends { [type: string]: ErrorVariant }>(
+    response: HfsErrResponse<T>,
+  ): HfsError {
+    return new HfsError(response.status, response.errors, response.cause);
   }
 
   public is(type: string): boolean {

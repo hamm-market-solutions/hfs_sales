@@ -16,6 +16,7 @@ import {
   decodeJWT,
 } from "@/lib/auth/jwt";
 import { authConfig } from "@/config/auth";
+import { ACCESS_TOKEN_LIFETIME, REFRESH_TOKEN_LIFETIME } from "@/types/auth";
 
 export const getUserById = async (id: number): Promise<Option<user>> => {
   const user = await prisma.user.findFirst({ where: { id: id } });
@@ -45,10 +46,11 @@ export const updateRefreshToken = async (
   if (user.none) {
     return Err(new HfsError(404, { user: UserModelError.notFound("user") }));
   }
+  const refreshTokenExp = Date.now() / 1000 + REFRESH_TOKEN_LIFETIME;
   const refreshTokenRes = await signJWT(
     authConfig.refresh_token_secret,
     { sub: user.val.id.toString() },
-    { exp: "1d" },
+    { exp: refreshTokenExp },
   );
 
   if (refreshTokenRes.err) {
@@ -106,10 +108,11 @@ export const updateAccessToken = async (
   if (refreshTokenRes.err) {
     return refreshTokenRes;
   }
+  const accessTokenExp = Date.now() / 1000 + ACCESS_TOKEN_LIFETIME;
   const newAccessTokenRes = await signJWT(
     authConfig.access_token_secret,
     { sub: userId.toString() },
-    { exp: "10s" },
+    { exp: accessTokenExp },
   );
 
   if (newAccessTokenRes.err) {
