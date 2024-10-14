@@ -18,3 +18,32 @@ model user {
   refresh_token            String?   @db.VarChar(255)
   refresh_token_expiration DateTime? @db.Timestamp(0)
 }
+
+model role {
+  id          Int     @id @default(autoincrement()) @db.UnsignedInt
+  name        String  @unique(map: "role_name_uindex") @db.VarChar(50)
+  description String? @db.VarChar(50)
+}
+
+model permission {
+  id                  Int                   @id @default(autoincrement()) @db.UnsignedInt
+  name                String                @unique(map: "permission_name_uindex") @db.VarChar(50)
+  user_has_permission user_has_permission[]
+}
+
+model user_has_permission {
+  user_id       Int        @db.UnsignedInt
+  permission_id Int        @db.UnsignedInt
+  permission    permission @relation(fields: [permission_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "permission___fk")
+
+  @@id([user_id, permission_id])
+  @@unique([user_id, permission_id], map: "user_has_permission_user_id_permission_id_uindex")
+  @@index([permission_id], map: "permission___fk")
+}
+
+model user_has_role {
+  user_id Int @db.UnsignedInt
+  role_id Int @db.UnsignedInt
+
+  @@unique([user_id, role_id], map: "user_has_role_user_id_role_id_uindex")
+}

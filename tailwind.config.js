@@ -1,4 +1,4 @@
-import { colors, nextui } from "@nextui-org/theme";
+import { nextui } from "@nextui-org/theme";
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -14,7 +14,16 @@ module.exports = {
         mono: ["var(--font-mono)"],
       },
       colors: {
-        hf: "#333",
+        primary: "#5A6A70",
+        secondary: "#b89d81",
+        tertiary: "#83B4C5",
+        alert: "#e74c3c",
+        "orange-light": "#F0B678",
+        "yellow-light": "#F3E89E",
+        "sky-blue": "#55D2FF",
+        "mint-green": "#0CF8BF",
+        "magenta": "#C83DAF",
+        "dark-red": "#CB0C4E",
       },
     },
   },

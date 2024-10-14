@@ -102,7 +102,12 @@ export const getOrUpdateRefreshToken = async (
  */
 export const updateAccessToken = async (
   userId: number,
-): Promise<HfsResult<{ accessToken: string; refreshToken: string }>> => {
+): Promise<
+  HfsResult<{
+    accessToken: [string, JWTPayload];
+    refreshToken: [string, JWTPayload];
+  }>
+> => {
   const refreshTokenRes = await getOrUpdateRefreshToken(userId);
 
   if (refreshTokenRes.err) {
@@ -119,9 +124,11 @@ export const updateAccessToken = async (
     return newAccessTokenRes;
   }
 
+  const accessTokenPayload = decodeJWT(newAccessTokenRes.val).unwrap();
+
   return Ok({
-    accessToken: newAccessTokenRes.val,
-    refreshToken: refreshTokenRes.val[0],
+    accessToken: [newAccessTokenRes.val, accessTokenPayload],
+    refreshToken: refreshTokenRes.val,
   });
 };
 
@@ -129,7 +136,10 @@ export const updateAccessToken = async (
  * Get or update the access token for a user.
  */
 export const getOrUpdateAccessToken = async (): Promise<
-  HfsResult<{ accessToken: string; refreshToken: string }>
+  HfsResult<{
+    accessToken: [string, JWTPayload];
+    refreshToken: [string, JWTPayload];
+  }>
 > => {
   const accessTokenRes = await getAccessTokenAndVerify();
 
@@ -161,8 +171,8 @@ export const getOrUpdateAccessToken = async (): Promise<
   }
 
   return Ok({
-    accessToken: accessTokenRes.val[0],
-    refreshToken: refreshTokenRes.val[0],
+    accessToken: accessTokenRes.val,
+    refreshToken: refreshTokenRes.val,
   });
 };
 

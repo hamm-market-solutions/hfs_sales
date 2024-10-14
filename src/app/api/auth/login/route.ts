@@ -59,7 +59,12 @@ export async function POST(
   if (updateRes.err) {
     return resultToResponse(updateRes) as NextResponse<LoginErrResponse>;
   }
-  const response = resultToResponse(updateRes);
 
-  return response as NextResponse<LoginOkResponse>;
+  return NextResponse.json({
+    status: 200,
+    data: {
+      accessToken: updateRes.val.accessToken[0],
+      refreshToken: updateRes.val.refreshToken[0],
+    },
+  }) as NextResponse<LoginOkResponse>;
 }

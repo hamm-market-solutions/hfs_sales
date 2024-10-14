@@ -27,7 +27,8 @@
         "ms-azuretools.vscode-docker",
         "IronGeek.vscode-env",
         "esbenp.prettier-vscode",
-        "Prisma.prisma"
+        "Prisma.prisma",
+        "naumovs.color-highlight"
       ]
     }
   },

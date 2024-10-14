@@ -7,6 +7,7 @@ import React from "react";
 import { LoginFormSchema } from "@/lib/schemas";
 import { HfsErrResponse } from "@/types/responses";
 import { handleLogin } from "@/actions/auth/login";
+import { routes } from "@/config/routes";
 
 export default function Login() {
   const [emailError, setEmailError] = React.useState<string | null>(null);
@@ -47,7 +48,7 @@ export default function Login() {
         setPasswordError(errors.errors.password[0]);
       }
     }
-    document.location.href = "/";
+    document.location.href = routes.dashboard;
   }
 
   return (
@@ -70,7 +71,9 @@ export default function Login() {
           type="password"
           variant="bordered"
         />
-        <Button type="submit">Submit</Button>
+        <Button className="bg-secondary" type="submit">
+          Submit
+        </Button>
       </form>
     </section>
   );

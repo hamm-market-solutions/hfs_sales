@@ -7,12 +7,13 @@ import { getOrUpdateAccessToken } from "./lib/models/user";
 import { resultToResponse } from "./utils/conversions";
 import HfsError from "./lib/errors/HfsError";
 import ErrorVariant from "./lib/errors/ErrorVariant";
+import { routes } from "./config/routes";
 
 export async function middleware(
   request: NextRequest,
 ): Promise<NextResponse<unknown>> {
   try {
-    if (request.nextUrl.pathname.startsWith("/api")) {
+    if (request.nextUrl.pathname.startsWith(routes.api.base)) {
       return apiMiddleware(request);
     }
     /*
@@ -28,16 +29,22 @@ export async function middleware(
     }
     const nextResponse = NextResponse.next();
 
-    nextResponse.cookies.set("accessToken", accessTokenRes.val.accessToken, {
+    nextResponse.cookies.set("accessToken", accessTokenRes.val.accessToken[0], {
       httpOnly: true,
       secure: true,
       sameSite: "strict",
+      expires: accessTokenRes.val.accessToken[1].exp! * 1000,
     });
-    nextResponse.cookies.set("refreshToken", accessTokenRes.val.refreshToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "strict",
-    });
+    nextResponse.cookies.set(
+      "refreshToken",
+      accessTokenRes.val.refreshToken[0],
+      {
+        httpOnly: true,
+        secure: true,
+        sameSite: "strict",
+        expires: accessTokenRes.val.refreshToken[1].exp! * 1000,
+      },
+    );
 
     return nextResponse;
   } catch (error) {

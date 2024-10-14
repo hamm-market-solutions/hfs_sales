@@ -36,3 +36,6 @@ yarn-error.log*
 next-env.d.ts
 
 prisma/migrations/20241008143155_add_user_table
+prisma/migrations/20241014114057_add_role_table
+prisma/migrations/20241014114259_add_permission_table
+prisma/migrations/20241014114416_add_user_has_permission_table
