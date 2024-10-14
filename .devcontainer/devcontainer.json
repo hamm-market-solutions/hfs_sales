@@ -33,7 +33,7 @@
     }
   },
   "initializeCommand": "cp -p ./.env.development ./.devcontainer/.env",
-  "postCreateCommand": "cp -r .devcontainer/migrations/20241008143155_add_user_table prisma/migrations/ && npm install nextui-cli -g"
+  "postCreateCommand": "cp -r .devcontainer/migrations/* prisma/migrations/ && npm install nextui-cli -g"
   // use local user
   // "remoteUser": "${localEnv:USER}"
 }
