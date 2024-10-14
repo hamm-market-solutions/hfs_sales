@@ -176,6 +176,16 @@ export const getOrUpdateAccessToken = async (): Promise<
   });
 };
 
+export async function isUserAuthenticated(): Promise<boolean> {
+  try {
+    (await getOrUpdateAccessToken()).unwrap();
+
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
+
 export async function verifyPassword(
   loginUserId: number,
   loginPassword: string,

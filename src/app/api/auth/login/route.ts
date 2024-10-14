@@ -28,7 +28,7 @@ export async function POST(
   const validatedFields = schemaToResult(
     LoginFormSchema.safeParse({
       email: loginEmail,
-      password: loginPassword,
+      // password: loginPassword,
     }),
   );
 
@@ -44,10 +44,7 @@ export async function POST(
     return resultToResponse(user) as NextResponse<LoginErrResponse>;
   }
   // Verify the password. If the password is incorrect, return a 401
-  const passwordVerifyRes = await verifyPassword(
-    user.val.id,
-    validatedFields.val.password,
-  );
+  const passwordVerifyRes = await verifyPassword(user.val.id, loginPassword);
 
   if (passwordVerifyRes.err) {
     return resultToResponse(

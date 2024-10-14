@@ -16,7 +16,7 @@ export async function handleLogin(email: string, password: string) {
   const response = await Client.instance.post<{
     accessToken: string;
     refreshToken: string;
-  }>(routes.api.login, request);
+  }>(routes.api.auth.login, request);
 
   if (response.err) {
     return response;

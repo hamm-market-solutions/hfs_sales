@@ -28,7 +28,7 @@ export default class Client {
     url: string,
     data?: HfsRequest,
   ): Promise<HfsResult<HfsOkResponse<T>>> {
-    if (!Client.accessToken && url !== routes.api.login) {
+    if (!Client.accessToken && url !== routes.api.auth.login) {
       Client.refreshAccessToken();
     }
     const decoded = decodeJWT(Client.accessToken!);
@@ -59,7 +59,7 @@ export default class Client {
     });
     const result = await this.handleResponse<T>(response);
 
-    if (result.ok && url === routes.api.refresh) {
+    if (result.ok && url === routes.api.auth.refresh) {
       const resp = result.val as HfsOkResponse<{ accessToken: string }>;
 
       Client.accessToken = resp.data.accessToken;
@@ -83,7 +83,7 @@ export default class Client {
     });
     const result = await this.handleResponse<T>(response);
 
-    if (result.ok && url.endsWith(routes.api.login)) {
+    if (result.ok && url.endsWith(routes.api.auth.login)) {
       const resp = result.val as HfsOkResponse<{ accessToken: string }>;
 
       Client.accessToken = resp.data.accessToken;
@@ -103,7 +103,7 @@ export default class Client {
   }
 
   private static async refreshAccessToken(): Promise<HfsResult<string>> {
-    const response = await fetch(appConfig.url + routes.api.refresh, {
+    const response = await fetch(appConfig.url + routes.api.auth.refresh, {
       method: "GET",
       credentials: "include",
       headers: {

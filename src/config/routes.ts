@@ -1,8 +1,11 @@
 export const routes = {
   api: {
     base: "/api",
-    login: "/api/auth/login",
-    refresh: "/api/auth/refresh",
+    auth: {
+      base: "/api/auth",
+      login: "/api/auth/login",
+      refresh: "/api/auth/refresh",
+    },
   },
   login: "/login",
   dashboard: "/dashboard",
@@ -10,16 +13,35 @@ export const routes = {
     base: "/sales",
     report: {
       base: "/sales/report",
-      "[countryId]": {
-        base: "/sales/report/[countryId]",
-        forecast: "/sales/report/[countryId]/forecast",
+      forecast: {
+        base: "/sales/report/forecast",
+        "[countryId]": {
+          base: "/sales/report/forecast/[countryId]",
+          "[brandId]": "/sales/report/forecast/[countryId]/[brandId]",
+        },
       },
     },
   },
 };
 
-export const publicRoutes = [routes.login];
+export const publicRoutes = [
+  routes.login,
+  routes.api.auth.login,
+  routes.api.auth.refresh,
+];
 
-export const salesPersonRoutes = [routes.sales.report["[countryId]"].forecast];
+export const salesPersonRoutes = [
+  routes.sales.report.forecast.base,
+  routes.sales.report.forecast["[countryId]"]["[brandId]"],
+];
 
 export const salesRoutes = [...salesPersonRoutes];
+
+export function permission(permission: string) {
+  return function (target: any, propertyKey: string) {
+    if (!target.permissions) {
+      target.permissions = {};
+    }
+    target.permissions[propertyKey] = permission;
+  };
+}

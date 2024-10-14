@@ -28,7 +28,9 @@
         "IronGeek.vscode-env",
         "esbenp.prettier-vscode",
         "Prisma.prisma",
-        "naumovs.color-highlight"
+        "naumovs.color-highlight",
+        "formulahendry.auto-rename-tag",
+        "formulahendry.auto-close-tag"
       ]
     }
   },

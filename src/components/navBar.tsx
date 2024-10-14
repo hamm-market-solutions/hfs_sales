@@ -23,7 +23,9 @@ export default function NavBar() {
           alt="logo"
           className="rounded-none"
           src="/assets/logo.png"
-          width={120}
+          width={150}
+          disableSkeleton
+          disableAnimation
         />
       </NavbarBrand>
       <NavbarContent justify="center">
@@ -37,15 +39,12 @@ export default function NavBar() {
           </Link>
         </NavbarItem>
         <NavbarItem
-          isActive={matchPath(
-            routes.sales.report["[countryId]"].forecast,
-            pathname,
-          )}
+          isActive={matchPath(routes.sales.report.forecast.base, pathname)}
         >
           <Link
             className="text-primary"
             color="foreground"
-            href={routes.dashboard}
+            href={routes.sales.report.forecast.base}
           >
             Forecast
           </Link>

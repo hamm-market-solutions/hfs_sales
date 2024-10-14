@@ -22,9 +22,11 @@ export function schemaToResult<Output extends any, Input = Output>(
     return Err(
       new HfsError(
         400,
-        schema.error?.flatten().fieldErrors ?? [
-          "unknown error during schema validation",
-        ],
+        (schema.error?.flatten().fieldErrors as {
+          [type: string]: string[];
+        }) ?? {
+          formField: "unknown error during schema validation",
+        },
       ),
     );
   }
@@ -34,10 +36,10 @@ export function schemaToResult<Output extends any, Input = Output>(
 
 export function optionToNotFound<T>(
   option: Option<T>,
-  message: string = "Resource not found",
+  errorMessage = { resource: "Resource not found" },
 ): HfsResult<T> {
   if (option.none) {
-    return Err(new HfsError(404, [message]));
+    return Err(new HfsError(404, errorMessage));
   }
 
   return Ok(option.val);

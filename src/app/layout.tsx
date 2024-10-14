@@ -1,4 +1,4 @@
-import "@/styles/globals.css";
+import "@/styles/globals.scss";
 import { Metadata } from "next";
 import clsx from "clsx";
 
@@ -31,7 +31,9 @@ export default function RootLayout({
         )}
       >
         <Header />
-        <main className="flex flex-row justify-center p-5">{children}</main>
+        <main className="main-content flex flex-row justify-center p-5">
+          {children}
+        </main>
       </body>
     </html>
   );
