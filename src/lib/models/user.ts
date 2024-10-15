@@ -16,7 +16,7 @@ import {
   decodeJWT,
 } from "@/lib/auth/jwt";
 import { authConfig } from "@/config/auth";
-import { ACCESS_TOKEN_LIFETIME, REFRESH_TOKEN_LIFETIME } from "@/types/auth";
+import { ACCESS_TOKEN_LIFETIME, REFRESH_TOKEN_LIFETIME } from "@/config/auth";
 
 export const getUserById = async (id: number): Promise<Option<user>> => {
   const user = await prisma.user.findFirst({ where: { id: id } });

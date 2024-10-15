@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 .main-content {
+    /* div with class ending with "-page" */
+    > div[class$="-page"] {
+        @apply  max-w-[1024px] justify-start;
+    }
+
     h2 {
         @apply text-2xl text-secondary font-bold mb-4;
     }

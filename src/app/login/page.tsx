@@ -52,7 +52,7 @@ export default function Login() {
   }
 
   return (
-    <div>
+    <div className="login-page">
       <h2>Login</h2>
       <form className="flex flex-col gap-2" onSubmit={onSubmit}>
         <Input

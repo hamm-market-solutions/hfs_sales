@@ -19,8 +19,6 @@ export async function middleware(
     /*
      * Check if the access token is present and decode it to get the user ID.
      * If the access token is not present or malformed, redirect to the login page.
-     * This does not validate if the access token is still valid. This is done in
-     * the next step.
      */
     const accessTokenRes = await getOrUpdateAccessToken();
 

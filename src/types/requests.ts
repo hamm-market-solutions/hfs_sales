@@ -1,5 +1,5 @@
 export type HfsRequest = {
-  id: number;
+  id?: number;
 };
 
 export type LoginRequest = {
@@ -10,3 +10,5 @@ export type LoginRequest = {
 export type RefreshRequest = {
   refreshToken: string;
 } & HfsRequest;
+
+export type GetUserCountriesRequeest = HfsRequest;

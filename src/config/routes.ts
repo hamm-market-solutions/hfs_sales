@@ -6,6 +6,10 @@ export const routes = {
       login: "/api/auth/login",
       refresh: "/api/auth/refresh",
     },
+    users: {
+      base: "/api/users",
+      countries: "/api/users/countries",
+    },
   },
   login: "/login",
   dashboard: "/dashboard",
@@ -24,24 +28,13 @@ export const routes = {
   },
 };
 
-export const publicRoutes = [
-  routes.login,
-  routes.api.auth.login,
-  routes.api.auth.refresh,
-];
+export const routePermissions = {
+  [routes.login]: ["guest"],
+  [routes.dashboard]: ["user"],
+  [routes.sales.report.forecast.base]: ["forecast.view"],
+};
 
-export const salesPersonRoutes = [
-  routes.sales.report.forecast.base,
-  routes.sales.report.forecast["[countryId]"]["[brandId]"],
-];
-
-export const salesRoutes = [...salesPersonRoutes];
-
-export function permission(permission: string) {
-  return function (target: any, propertyKey: string) {
-    if (!target.permissions) {
-      target.permissions = {};
-    }
-    target.permissions[propertyKey] = permission;
-  };
-}
+export const apiRoutePermissions = {
+  [routes.api.auth.login]: ["guest"],
+  [routes.api.auth.refresh]: ["guest"],
+};

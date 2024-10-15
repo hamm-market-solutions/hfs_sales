@@ -9,7 +9,6 @@ import { decodeJWT } from "@/lib/auth/jwt";
 
 export async function handleLogin(email: string, password: string) {
   const request: LoginRequest = {
-    id: 0,
     email,
     password,
   };

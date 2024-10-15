@@ -116,6 +116,19 @@ export const getAccessToken = async (): Promise<HfsResult<string>> => {
   );
 };
 
+export const getAccessTokenPayload = async (): Promise<
+  HfsResult<JWTPayload>
+> => {
+  const accessTokenRes = await getAccessToken();
+
+  if (accessTokenRes.err) {
+    console.log(accessTokenRes);
+    return accessTokenRes;
+  }
+
+  return decodeJWT(accessTokenRes.val);
+};
+
 /**
  * Get the access token from the cookie. If the access token is malformed or expired, return 401.
  */

@@ -16,7 +16,7 @@ export type HfsErrResponse<T extends object> = {
   cause?: Error;
 };
 
-type HfsUnknownError = HfsErrResponse<{ unknownError?: string }>;
+type HfsThrownError = HfsErrResponse<{ thrownError?: string }>;
 
 export type LoginResponse = LoginOkResponse | LoginErrResponse;
 
@@ -31,7 +31,7 @@ export type LoginErrResponse = HfsErrResponse<{
   accessToken?: string;
   refreshToken?: string;
 }> &
-  HfsUnknownError;
+  HfsThrownError;
 
 export type RefreshResponse = RefreshOkResponse | RefreshErrResponse;
 
@@ -44,4 +44,17 @@ export type RefreshErrResponse = HfsErrResponse<{
   accessToken?: string;
   refreshToken?: string;
 }> &
-  HfsUnknownError;
+  HfsThrownError;
+
+export type GetUserCountriesResponse =
+  | GetUserCountriesOkResponse
+  | GetUserCountriesErrResponse;
+
+export type GetUserCountriesOkResponse = HfsOkResponse<{
+  countries: { code: string; name: string }[];
+}>;
+
+export type GetUserCountriesErrResponse = HfsErrResponse<{
+  userId?: string;
+}> &
+  HfsThrownError;

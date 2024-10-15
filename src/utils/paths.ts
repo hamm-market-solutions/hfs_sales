@@ -26,3 +26,22 @@ export const matchPath = (route: string, path: string) => {
 
   return true;
 };
+
+export const pathIncludes = (route: string, path: string) => {
+  const routeParts = route.split("/");
+  const pathParts = path.split("/");
+
+  for (let i = 0; i < routeParts.length; i++) {
+    if (routeParts[i] === pathParts[i]) {
+      continue;
+    }
+
+    if (routeParts[i].startsWith("[") && routeParts[i].endsWith("]")) {
+      continue;
+    }
+
+    return false;
+  }
+
+  return true;
+};

@@ -1,7 +1,5 @@
 import { Result } from "ts-results";
 
-import ErrorVariant from "./ErrorVariant";
-
 import { HfsErrResponse } from "@/types/responses";
 
 export type HfsResult<T> = Result<T, HfsError>;
@@ -14,7 +12,7 @@ export default class HfsError extends Error {
 
   constructor(
     status: number,
-    messages: { [type: string]: ErrorVariant },
+    messages: { [type: string]: string },
     cause?: Error,
   ) {
     super(JSON.stringify(messages));
@@ -32,7 +30,7 @@ export default class HfsError extends Error {
     return new HfsError(status, { thrownError: message }, cause);
   }
 
-  public static fromHfsResponse<T extends { [type: string]: ErrorVariant }>(
+  public static fromHfsResponse<T extends { [type: string]: string }>(
     response: HfsErrResponse<T>,
   ): HfsError {
     return new HfsError(response.status, response.errors, response.cause);

@@ -8,21 +8,24 @@ datasource db {
 }
 
 model user {
-  id                       Int       @id @default(autoincrement())
-  fname                    String    @db.VarChar(50)
-  name                     String    @db.VarChar(50)
-  password                 String    @db.VarChar(70)
-  email                    String    @unique(map: "email") @db.VarChar(100)
-  passwordcode             String?   @db.VarChar(255)
-  passwordcode_time        DateTime? @db.Timestamp(0)
-  refresh_token            String?   @db.VarChar(255)
-  refresh_token_expiration DateTime? @db.Timestamp(0)
+  id                       Int                @id @default(autoincrement())
+  fname                    String             @db.VarChar(50)
+  name                     String             @db.VarChar(50)
+  password                 String             @db.VarChar(70)
+  email                    String             @unique(map: "email") @db.VarChar(100)
+  passwordcode             String?            @db.VarChar(255)
+  passwordcode_time        DateTime?          @db.Timestamp(0)
+  refresh_token            String?            @db.VarChar(255)
+  refresh_token_expiration DateTime?          @db.Timestamp(0)
+  user_has_country         user_has_country[]
+  user_has_role            user_has_role[]
 }
 
 model role {
-  id          Int     @id @default(autoincrement()) @db.UnsignedInt
-  name        String  @unique(map: "role_name_uindex") @db.VarChar(50)
-  description String? @db.VarChar(50)
+  id            Int             @id @default(autoincrement())
+  name          String          @unique(map: "role_name_uindex") @db.VarChar(50)
+  description   String?         @db.VarChar(50)
+  user_has_role user_has_role[]
 }
 
 model permission {
@@ -42,8 +45,104 @@ model user_has_permission {
 }
 
 model user_has_role {
-  user_id Int @db.UnsignedInt
-  role_id Int @db.UnsignedInt
+  user_id Int
+  role_id Int
+  user    user @relation(fields: [user_id], references: [id], onDelete: Cascade, map: "user_has_role_ibfk_1")
+  role    role @relation(fields: [role_id], references: [id], onDelete: Cascade, map: "user_has_role_ibfk_2")
 
   @@unique([user_id, role_id], map: "user_has_role_user_id_role_id_uindex")
+  @@index([role_id], map: "user_has_role_ibfk_2")
+}
+
+model s_country {
+  code             String             @id @db.VarChar(10)
+  name             String             @db.VarChar(30)
+  timestamp        DateTime           @default(now()) @db.Timestamp(0)
+  user_has_country user_has_country[]
+}
+
+model user_has_country {
+  user_id      Int
+  country_code String    @db.VarChar(10)
+  s_country    s_country @relation(fields: [country_code], references: [code], onDelete: Cascade, map: "country__fk")
+  user         user      @relation(fields: [user_id], references: [id], onDelete: Cascade, map: "user__fk")
+
+  @@id([user_id, country_code])
+  @@unique([user_id, country_code], map: "user_has_country_user_id_country_code_uindex")
+  @@index([country_code], map: "country__fk")
+}
+
+model brand {
+  no        String   @id @db.VarChar(10)
+  name      String   @db.VarChar(30)
+  code      String   @db.VarChar(10)
+  gln       String   @default("") @db.VarChar(50)
+  timestamp DateTime @default(now()) @db.Timestamp(0)
+
+  @@index([code], map: "code")
+}
+
+model s_item_color {
+  item_no                      String    @db.VarChar(20)
+  color_code                   String    @db.VarChar(10)
+  custom_color                 String?   @db.VarChar(30)
+  purchase_price               Int?
+  requested_ex_factory_date    DateTime? @db.Date
+  first_customer_shipment_date DateTime? @db.Date
+  price_confirmed              Int?
+  pre_collection               Int       @db.SmallInt
+  main_collection              Int       @db.SmallInt
+  late_collection              Int       @db.SmallInt
+  Special_collection           Int       @db.SmallInt
+  confirmed_ex_factory_date    DateTime? @db.Date
+  confirmation_sample_sent     Int?      @db.SmallInt
+  timestamp                    DateTime  @default(now()) @db.Timestamp(0)
+
+  @@unique([item_no, color_code], map: "unique_key")
+}
+
+model s_item {
+  no             String   @id @db.VarChar(20)
+  description    String?  @db.VarChar(50)
+  last           String?  @db.VarChar(30)
+  material       String?  @db.VarChar(30)
+  brand_no       String?  @db.VarChar(10)
+  cat_name       String?  @db.VarChar(10)
+  order_qty      Int?
+  min_qty_style  Int?
+  min_qty_last   Int?
+  season_code    Int?     @db.SmallInt
+  nos            Int?     @db.SmallInt
+  vendor_no      String?  @db.VarChar(20)
+  vendor_item_no String?  @db.VarChar(20)
+  style_code     Int?     @db.SmallInt
+  tariff_no      BigInt?
+  timestamp      DateTime @default(now()) @db.Timestamp(0)
+}
+
+model s_season {
+  code      Int      @id @default(0) @db.SmallInt
+  name      String?  @db.VarChar(50)
+  timestamp DateTime @default(now()) @db.Timestamp(0)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model s_season_brand_phase {
+  season_code Int       @default(0) @db.SmallInt
+  brand_no    String?   @db.VarChar(50)
+  phase       Int?      @db.SmallInt
+  start_date  DateTime? @db.Date
+  end_date    DateTime? @db.Date
+  timestamp   DateTime  @default(now()) @db.Timestamp(0)
+
+  @@unique([season_code, brand_no, phase], map: "unique_key")
+  @@ignore
+}
+
+model role_has_permission {
+  role_id       Int
+  permission_id Int @db.UnsignedInt
+
+  @@unique([role_id, permission_id], map: "role_has_permission_role_id_permission_id_uindex")
+  @@index([permission_id], map: "permission_id")
 }

@@ -4,7 +4,7 @@ import clsx from "clsx";
 
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
-import Header from "@/components/core/header";
+import Header from "@/components/organism/core/header";
 
 export const metadata: Metadata = {
   title: {

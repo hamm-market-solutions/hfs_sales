@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { HfsResponse } from "@/types/responses";
 import { resultToResponse } from "@/utils/conversions";
 import { getAccessTokenAndVerify } from "@/lib/auth/jwt";
-import { publicRoutes, routes } from "@/config/routes";
+import { getGuestApiRoutes } from "@/lib/routes";
 
 /**
  * Middleware to check if the user is authenticated. If the user is not
@@ -13,7 +13,7 @@ import { publicRoutes, routes } from "@/config/routes";
 export async function middleware(
   request: NextRequest,
 ): Promise<NextResponse<HfsResponse>> {
-  if (publicRoutes.includes(request.nextUrl.pathname)) {
+  if (getGuestApiRoutes().includes(request.nextUrl.pathname)) {
     return NextResponse.next() as NextResponse<HfsResponse>;
   }
   /*
