@@ -27,12 +27,6 @@ export async function middleware(
     }
     const nextResponse = NextResponse.next();
 
-    nextResponse.cookies.set("accessToken", accessTokenRes.val.accessToken[0], {
-      httpOnly: true,
-      secure: true,
-      sameSite: "strict",
-      expires: accessTokenRes.val.accessToken[1].exp! * 1000,
-    });
     nextResponse.cookies.set(
       "refreshToken",
       accessTokenRes.val.refreshToken[0],

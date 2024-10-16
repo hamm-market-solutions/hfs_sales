@@ -22,11 +22,11 @@ export type LoginResponse = LoginOkResponse | LoginErrResponse;
 
 export type LoginOkResponse = HfsOkResponse<{
   accessToken: string;
-  refreshToken: string;
 }>;
 
 export type LoginErrResponse = HfsErrResponse<{
-  login?: string;
+  email?: string[];
+  password?: string[];
   token?: string;
   accessToken?: string;
   refreshToken?: string;

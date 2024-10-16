@@ -11,7 +11,7 @@ import { appConfig } from "@/config/app";
 
 export default class Client {
   private static singletonInstance: Client;
-  private static accessToken: string | null = null;
+  private accessToken: string | null = null;
 
   private constructor() {}
 
@@ -23,38 +23,38 @@ export default class Client {
     return Client.singletonInstance;
   }
 
-  private static async handle<T extends object>(
+  private async handle<T extends object>(
     method: "GET" | "POST",
     url: string,
     data?: HfsRequest,
-  ): Promise<HfsResult<HfsOkResponse<T>>> {
-    if (!Client.accessToken && url !== routes.api.auth.login) {
-      Client.refreshAccessToken();
+  ): Promise<HfsResult<T>> {
+    if (this.accessToken == null && url !== routes.api.auth.login) {
+      (await this.refreshAccessToken()).unwrap();
     }
-    const decoded = decodeJWT(Client.accessToken!);
+
+    const decoded = decodeJWT(this.accessToken!);
     const isInvalidOrExpired =
-      Client.accessToken &&
-      (decoded.err || decoded.val.exp! < Date.now() / 1000);
+      this.accessToken && (decoded.err || decoded.val.exp! < Date.now() / 1000);
 
     if (isInvalidOrExpired) {
-      Client.refreshAccessToken();
+      await this.refreshAccessToken();
     }
     switch (method) {
       case "GET":
-        return Client.handleGet(appConfig.url + url);
+        return await this.handleGet(appConfig.url + url);
       case "POST":
-        return Client.handlePost(appConfig.url + url, data!);
+        return await this.handlePost(appConfig.url + url, data!);
     }
   }
 
-  private static async handleGet<T extends object>(
+  private async handleGet<T extends object>(
     url: string,
-  ): Promise<HfsResult<HfsOkResponse<T>>> {
+  ): Promise<HfsResult<T>> {
     const response = await fetch(url, {
       method: "GET",
       credentials: "include",
       headers: {
-        Authorization: `Bearer ${Client.accessToken}`,
+        Authorization: `Bearer ${this.accessToken}`,
       },
     });
     const result = await this.handleResponse<T>(response);
@@ -62,21 +62,21 @@ export default class Client {
     if (result.ok && url === routes.api.auth.refresh) {
       const resp = result.val as HfsOkResponse<{ accessToken: string }>;
 
-      Client.accessToken = resp.data.accessToken;
+      this.accessToken = resp.data.accessToken;
     }
 
     return result;
   }
 
-  private static async handlePost<T extends object>(
+  private async handlePost<T extends object>(
     url: string,
     data: HfsRequest,
-  ): Promise<HfsResult<HfsOkResponse<T>>> {
+  ): Promise<HfsResult<T>> {
     const response = await fetch(url, {
       method: "POST",
       credentials: "include",
       headers: {
-        Authorization: `Bearer ${Client.accessToken}`,
+        Authorization: `Bearer ${this.accessToken}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
@@ -86,15 +86,15 @@ export default class Client {
     if (result.ok && url.endsWith(routes.api.auth.login)) {
       const resp = result.val as HfsOkResponse<{ accessToken: string }>;
 
-      Client.accessToken = resp.data.accessToken;
+      this.accessToken = resp.data.accessToken;
     }
 
     return result;
   }
 
-  private static async handleResponse<T extends object>(
+  private async handleResponse<T extends object>(
     response: Response,
-  ): Promise<HfsResult<HfsOkResponse<T>>> {
+  ): Promise<HfsResult<T>> {
     if (response.ok) {
       return Ok(await response.json());
     }
@@ -102,13 +102,14 @@ export default class Client {
     return Err(await response.json());
   }
 
-  private static async refreshAccessToken(): Promise<HfsResult<string>> {
+  private async refreshAccessToken(): Promise<HfsResult<string>> {
     const response = await fetch(appConfig.url + routes.api.auth.refresh, {
-      method: "GET",
-      credentials: "include",
+      method: "POST",
+      body: JSON.stringify({
+        refreshToken: cookies().get("refreshToken")?.value,
+      }),
       headers: {
         "Content-Type": "application/json",
-        Cookies: "refreshToken=" + cookies().get("refreshToken")?.value,
       },
     });
 
@@ -116,7 +117,7 @@ export default class Client {
       const json: HfsOkResponse<{ accessToken: string }> =
         await response.json();
 
-      Client.accessToken = json.data.accessToken;
+      this.accessToken = json.data.accessToken;
 
       return Ok(json.data.accessToken);
     }
@@ -124,16 +125,14 @@ export default class Client {
     return Err(await response.json());
   }
 
-  public async get<T extends object>(
-    url: string,
-  ): Promise<HfsResult<HfsOkResponse<T>>> {
-    return Client.handle("GET", url);
+  public async get<T extends object>(url: string): Promise<HfsResult<T>> {
+    return await this.handle("GET", url);
   }
 
   public async post<T extends object>(
     url: string,
     data: HfsRequest,
-  ): Promise<HfsResult<HfsOkResponse<T>>> {
-    return Client.handle("POST", url, data);
+  ): Promise<HfsResult<T>> {
+    return await this.handle("POST", url, data);
   }
 }

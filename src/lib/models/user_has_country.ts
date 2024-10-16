@@ -19,6 +19,11 @@ export const getUserCountries = async (userId: number) => {
             },
           },
         },
+        orderBy: {
+          s_country: {
+            name: "asc",
+          },
+        },
       }),
     );
   } catch (error) {

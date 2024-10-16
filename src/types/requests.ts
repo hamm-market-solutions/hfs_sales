@@ -11,4 +11,4 @@ export type RefreshRequest = {
   refreshToken: string;
 } & HfsRequest;
 
-export type GetUserCountriesRequeest = HfsRequest;
+export type GetUserCountriesRequest = HfsRequest;

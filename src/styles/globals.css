@@ -5,11 +5,11 @@
 .main-content {
     /* div with class ending with "-page" */
     > div[class$="-page"] {
-        @apply  max-w-[1024px] justify-start;
+        @apply  max-w-[1024px] w-full justify-start p-6;
     }
 
-    h2 {
-        @apply text-2xl text-secondary font-bold mb-4;
+    p {
+        @apply text-base text-primary;
     }
 
     button {

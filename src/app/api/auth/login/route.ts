@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { LoginRequest } from "@/types/requests";
 import {
-  getUserByEmail,
+  getOptUserByEmail,
   updateAccessToken,
   verifyPassword,
 } from "@/lib/models/user";
@@ -16,7 +16,7 @@ import {
   LoginOkResponse,
   LoginResponse,
 } from "@/types/responses";
-import { LoginFormSchema } from "@/lib/schemas";
+import { LoginFormSchema } from "@/lib/schemas/login";
 
 export async function POST(
   request: NextRequest,
@@ -37,7 +37,7 @@ export async function POST(
   }
   // Get the user by email. If the user is not found, return a 404
   const user = optionToNotFound(
-    await getUserByEmail(validatedFields.val.email),
+    await getOptUserByEmail(validatedFields.val.email),
   );
 
   if (user.err) {

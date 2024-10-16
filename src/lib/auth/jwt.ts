@@ -100,12 +100,12 @@ const getAccessTokenFromBearer = async (): Promise<Option<string>> => {
 export const getAccessToken = async (): Promise<HfsResult<string>> => {
   const fromCookie = await getAccessTokenFromCookie();
 
-  if (fromCookie.some) {
+  if (fromCookie.some && fromCookie.val !== "null") {
     return Ok(fromCookie.val);
   }
   const fromBearer = await getAccessTokenFromBearer();
 
-  if (fromBearer.some) {
+  if (fromBearer.some && fromBearer.val !== "null") {
     return Ok(fromBearer.val);
   }
 
@@ -116,13 +116,15 @@ export const getAccessToken = async (): Promise<HfsResult<string>> => {
   );
 };
 
+/**
+ * Gets the access token and decodes it. Verification is not done here.
+ */
 export const getAccessTokenPayload = async (): Promise<
   HfsResult<JWTPayload>
 > => {
   const accessTokenRes = await getAccessToken();
 
   if (accessTokenRes.err) {
-    console.log(accessTokenRes);
     return accessTokenRes;
   }
 

@@ -17,8 +17,9 @@ import {
 } from "@/lib/auth/jwt";
 import { authConfig } from "@/config/auth";
 import { ACCESS_TOKEN_LIFETIME, REFRESH_TOKEN_LIFETIME } from "@/config/auth";
+import { optionToNotFound } from "@/utils/conversions";
 
-export const getUserById = async (id: number): Promise<Option<user>> => {
+export const getOptUserById = async (id: number): Promise<Option<user>> => {
   const user = await prisma.user.findFirst({ where: { id: id } });
 
   if (user) {
@@ -28,7 +29,17 @@ export const getUserById = async (id: number): Promise<Option<user>> => {
   }
 };
 
-export const getUserByEmail = async (email: string): Promise<Option<user>> => {
+export const getUserByEmail = async (
+  email: string,
+): Promise<HfsResult<user>> => {
+  const user = await getOptUserByEmail(email);
+
+  return optionToNotFound(user);
+};
+
+export const getOptUserByEmail = async (
+  email: string,
+): Promise<Option<user>> => {
   const user = await prisma.user.findFirst({ where: { email: email } });
 
   if (user) {
@@ -41,7 +52,7 @@ export const getUserByEmail = async (email: string): Promise<Option<user>> => {
 export const updateRefreshToken = async (
   userId: number,
 ): Promise<HfsResult<[string, JWTPayload]>> => {
-  const user = await getUserById(userId);
+  const user = await getOptUserById(userId);
 
   if (user.none) {
     return Err(new HfsError(404, { user: UserModelError.notFound("user") }));
@@ -190,7 +201,7 @@ export async function verifyPassword(
   loginUserId: number,
   loginPassword: string,
 ): Promise<HfsResult<true>> {
-  const userOpt = await getUserById(loginUserId);
+  const userOpt = await getOptUserById(loginUserId);
   const doPasswordsMatch = userOpt.map((u) =>
     compareSync(loginPassword, u.password),
   );

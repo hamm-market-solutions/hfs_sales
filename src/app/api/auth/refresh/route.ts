@@ -45,7 +45,6 @@ export async function POST(
   if (refreshTokenRes.err) {
     return resultToResponse(refreshTokenRes);
   }
-
   const accessTokenRes = await updateAccessToken(
     parseInt(refreshTokenRes.val[1].sub!),
   );
@@ -54,5 +53,7 @@ export async function POST(
     return resultToResponse(accessTokenRes);
   }
 
-  return resultToResponse(Ok({ accessToken: accessTokenRes.val.accessToken }));
+  return resultToResponse(
+    Ok({ accessToken: accessTokenRes.val.accessToken[0] }),
+  );
 }
