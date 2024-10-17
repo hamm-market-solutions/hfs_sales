@@ -15,10 +15,10 @@ export const routes = {
   dashboard: "/dashboard",
   sales: {
     base: "/sales",
-    report: {
-      base: "/sales/report",
-      forecast: {
-        base: "/sales/report/forecast",
+    reports: {
+      base: "/sales/reports",
+      forecasts: {
+        base: "/sales/reports/forecasts",
         "[countryId]": {
           base: "/sales/report/forecast/[countryId]",
           "[brandId]": "/sales/report/forecast/[countryId]/[brandId]",
@@ -31,7 +31,7 @@ export const routes = {
 export const routePermissions = {
   [routes.login]: ["guest"],
   [routes.dashboard]: ["user"],
-  [routes.sales.report.forecast.base]: ["forecast.view"],
+  [routes.sales.reports.forecasts.base]: ["forecast.view"],
 };
 
 export const apiRoutePermissions = {

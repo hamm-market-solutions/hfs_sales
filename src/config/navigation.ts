@@ -1,8 +1,10 @@
+import { routes } from "./routes";
+
 export const navigatonTree = {
   dashboard: "/dashboard",
   reports: {
     forecast: {
-      url: "/sales/report/forecast",
+      url: routes.sales.reports.forecasts.base,
       icon: "/assets/icons/forecast.png",
       roles: ["sales"],
       title: "Forecast",

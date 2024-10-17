@@ -35,6 +35,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+public/assets/flags
+
 prisma/migrations/20241008143155_add_user_table
 prisma/migrations/20241014114259_add_permission_table
 prisma/migrations/20241014114416_add_user_has_permission_table

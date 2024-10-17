@@ -3,52 +3,40 @@
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
 import React from "react";
+import { useFormState } from "react-dom";
 
 import { handleLogin } from "@/actions/auth/login";
 import Title from "@/components/molecules/title";
-// import { LoginErrResponse } from "@/types/responses";
+import { LoginErrResponse } from "@/types/responses";
 
 export default function Login() {
-  // const [emailError, setEmailError] = React.useState<string | null>(null);
-  // const [passwordError, setPasswordError] = React.useState<string | null>(null);
-
-  // async function login(form: FormData) {
-  //   const response = await handleLogin(form);
-  //   console.log(response);
-
-  //   if (response.err) {
-  //     const res = response.val as LoginErrResponse;
-
-  //     if (res.errors.email) {
-  //       setEmailError(res.errors.email[0]);
-  //     } else {
-  //       setEmailError(null);
-  //     }
-  //     if (res.errors.password) {
-  //       setPasswordError(res.errors.password[0]);
-  //     } else {
-  //       setPasswordError(null);
-  //     }
-  //   }
-  // }
+  const [message, formAction, isPending] = useFormState(handleLogin, undefined);
 
   return (
     <div className="login-page">
       <Title title="Login" />
-      <form action={handleLogin} className="flex flex-col gap-2">
+      <form action={formAction} className="flex flex-col gap-2">
         <Input
-          required
-          // errorMessage={emailError}
-          // isInvalid={emailError ? true : false}
+          isRequired
+          errorMessage={
+            !isPending && message?.err
+              ? (message.val as LoginErrResponse).errors.email
+              : ""
+          }
+          isInvalid={!isPending && message?.err}
           label="Email"
           name="email"
           type="email"
           variant="bordered"
         />
         <Input
-          required
-          // errorMessage={passwordError}
-          // isInvalid={passwordError ? true : false}
+          isRequired
+          errorMessage={
+            !isPending && message?.err
+              ? (message.val as LoginErrResponse).errors.password
+              : ""
+          }
+          isInvalid={!isPending && message?.err}
           label="Password"
           name="password"
           type="password"
@@ -57,6 +45,7 @@ export default function Login() {
         <Button className="bg-secondary" type="submit">
           Submit
         </Button>
+        {isPending ? <p>Loading...</p> : message}
       </form>
     </div>
   );

@@ -1,35 +1,31 @@
 "use client";
 
-import {
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-} from "@nextui-org/navbar";
-import { Image } from "@nextui-org/image";
-import { Link } from "@nextui-org/link";
+import { Button } from "@nextui-org/button";
 import {
   Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
 } from "@nextui-org/dropdown";
-import { Button } from "@nextui-org/button";
-import { usePathname } from "next/navigation";
+import { NavbarItem } from "@nextui-org/navbar";
 import clsx from "clsx";
-
-import Icon from "../atoms/icon";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { matchPath, pathIncludes } from "@/utils/paths";
 import { navigatonTree } from "@/config/navigation";
+import Icon from "@/components/atoms/icon";
 import { routes } from "@/config/routes";
 
-export default function NavBar() {
+export default function NavBarItems({
+  navRoutes,
+}: {
+  navRoutes: typeof navigatonTree;
+}) {
   const pathname = usePathname();
   const navBarItems = [];
 
-  // if (await isUserAuthenticated()) {
-  for (const [route, name] of Object.entries(navigatonTree)) {
+  for (const [route, name] of Object.entries(navRoutes)) {
     if (typeof name === "string") {
       navBarItems.push(
         <NavbarItem key={route} isActive={matchPath(name, pathname)}>
@@ -63,7 +59,7 @@ export default function NavBar() {
                 disableRipple
                 className={clsx(
                   "text-primary text-base p-0 bg-transparent data-[hover=true]:bg-transparent",
-                  pathIncludes(routes.sales.report.base, pathname)
+                  pathIncludes(routes.sales.reports.base, pathname)
                     ? "font-bold"
                     : "",
                 )}
@@ -93,21 +89,6 @@ export default function NavBar() {
       );
     }
   }
-  // }
 
-  return (
-    <Navbar isBordered>
-      <NavbarBrand className="gap-3">
-        <Link href="/dashboard">
-          <Image
-            alt="logo"
-            className="rounded-none"
-            src="/assets/logo.png"
-            width={150}
-          />
-        </Link>
-      </NavbarBrand>
-      <NavbarContent justify="center">{navBarItems}</NavbarContent>
-    </Navbar>
-  );
+  return <>{navBarItems}</>;
 }

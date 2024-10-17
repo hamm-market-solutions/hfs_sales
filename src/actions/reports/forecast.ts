@@ -1,11 +1,32 @@
-import { routes } from "@/config/routes";
-import Client from "@/lib/client";
-import { GetUserCountriesResponse } from "@/types/responses";
+import { Ok } from "ts-results";
 
-export async function getUserCountries() {
-  const response = await Client.instance.get<GetUserCountriesResponse>(
-    routes.api.users.countries,
-  );
+import { getUserCountries } from "@/lib/models/user_has_country";
+import { GetUserCountriesOkResponse } from "@/types/responses";
+import { HfsResult } from "@/lib/errors/HfsError";
+import { getOrUpdateAccessToken } from "@/lib/models/user";
 
-  return response;
+export async function getUserCountriesAction(): Promise<
+  HfsResult<GetUserCountriesOkResponse>
+> {
+  const payloadRes = await getOrUpdateAccessToken();
+
+  if (payloadRes.err) {
+    return payloadRes;
+  }
+  const userId = Number(payloadRes.val.accessToken[1].sub!);
+  const userCountriesRes = await getUserCountries(userId);
+
+  if (userCountriesRes.err) {
+    return userCountriesRes;
+  }
+
+  return Ok({
+    status: 200,
+    data: {
+      countries: userCountriesRes.val.map((userCountry) => ({
+        code: userCountry.country_code,
+        name: userCountry.s_country.name,
+      })),
+    },
+  });
 }

@@ -17,5 +17,10 @@ export const LoginFormSchema = z.object({
 export const validateLoginForm = (
   data: FormData,
 ): HfsResult<LoginFormValues> => {
-  return schemaToResult(LoginFormSchema.safeParse(data));
+  return schemaToResult(
+    LoginFormSchema.safeParse({
+      email: data.get("email"),
+      password: data.get("password"),
+    }),
+  );
 };
