@@ -1,19 +1,19 @@
 import { CardFooter } from "@nextui-org/card";
 
 import { PicCards } from "./picCards";
+
 import { brandLogos } from "@/lib/brands";
 
 export function BrandNavigation({
   brands,
-  brandSetter,
 }: {
   brands: { code: string; name: string }[];
-  brandSetter: (country: string) => void;
 }) {
   const dataSets = brands.map((brand) => ({
     key: brand.code,
     // @ts-ignore
     pic: brandLogos[brand.name.toLowerCase()].pic,
+    // @ts-ignore
     bgColor: brandLogos[brand.name.toLowerCase()].bgColor,
     footer: (
       <CardFooter className="flex flex-col items-start">
@@ -25,7 +25,7 @@ export function BrandNavigation({
 
   return (
     <div className="brand-navigation flex flex-wrap justify-between gap-4">
-      <PicCards dataSets={dataSets} dataSetter={brandSetter} />
+      <PicCards dataSets={dataSets} />
     </div>
   );
 }

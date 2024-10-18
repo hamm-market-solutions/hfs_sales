@@ -4,7 +4,7 @@ export enum BrandHasLogo {
 
 export const brandLogos = {
   gant: {
-    pic: "/assets/brands/gant.png",
-    bgColor: "bg-tertiary",
+    pic: "/assets/brands/gant-expanded.png",
+    bgColor: "bg-[#F0C678]",
   },
 };

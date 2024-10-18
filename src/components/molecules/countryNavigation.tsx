@@ -4,10 +4,8 @@ import { PicCards } from "./picCards";
 
 export function CountryNavigation({
   userCountries,
-  countrySetter,
 }: {
   userCountries: { countries: { code: string; name: string }[] };
-  countrySetter: (country: string) => void;
 }) {
   const dataSets = userCountries.countries.map((country) => ({
     key: country.code,
@@ -22,7 +20,7 @@ export function CountryNavigation({
 
   return (
     <div className="country-navigation flex flex-wrap justify-between gap-4">
-      <PicCards dataSets={dataSets} dataSetter={countrySetter} />
+      <PicCards dataSets={dataSets} />
     </div>
   );
 }
