@@ -8,7 +8,8 @@ export function PicCards({
 }: {
   dataSets: {
     key: string;
-    pic: string;
+    pic?: string;
+    picComponent?: React.ReactNode;
     footer: React.ReactNode;
     bgColor?: string;
   }[];
@@ -26,12 +27,16 @@ export function PicCards({
           dataSetter?.(data.key);
         }}
       >
-        <CardBody className="flex items-center place-content-center p-0">
-          <Image
-            alt={data.key}
-            className={`w-48 ${data.bgColor ?? ""}`}
-            src={data.pic}
-          />
+        <CardBody className="flex items-center place-content-start p-0">
+          {data.pic ? (
+            <Image
+              alt={data.key}
+              className={`w-48 ${data.bgColor ?? ""}`}
+              src={data.pic}
+            />
+          ) : (
+            data.picComponent
+          )}
         </CardBody>
         {data.footer}
       </Card>,

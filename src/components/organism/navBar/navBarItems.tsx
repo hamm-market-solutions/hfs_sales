@@ -10,7 +10,7 @@ import {
 import { NavbarItem } from "@nextui-org/navbar";
 import clsx from "clsx";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { matchPath, pathIncludes } from "@/utils/paths";
 import { navigatonTree } from "@/config/navigation";
@@ -22,6 +22,7 @@ export default function NavBarItems({
 }: {
   navRoutes: typeof navigatonTree;
 }) {
+  const router = useRouter();
   const pathname = usePathname();
   const navBarItems = [];
 
@@ -44,7 +45,9 @@ export default function NavBarItems({
             className={matchPath(subName.url, pathname) ? "bg-primary-50" : ""}
             description={subName.description}
             startContent={<Icon alt="dropdown-item-icon" src={subName.icon} />}
-            onPress={() => (location.href = subName.url)}
+            onPress={() => {
+              router.push(subName.url);
+            }}
           >
             {subName.title}
           </DropdownItem>,
