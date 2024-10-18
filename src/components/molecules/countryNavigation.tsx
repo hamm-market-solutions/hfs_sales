@@ -3,11 +3,13 @@ import { CardFooter } from "@nextui-org/card";
 import { PicCards } from "./picCards";
 
 export function CountryNavigation({
-  userCountries,
+  countries,
+  countrySetter,
 }: {
-  userCountries: { countries: { code: string; name: string }[] };
+  countries: { code: string; name: string }[];
+  countrySetter?: (country: string) => void;
 }) {
-  const dataSets = userCountries.countries.map((country) => ({
+  const dataSets = countries.map((country) => ({
     key: country.code,
     pic: `/assets/flags/${country.code.toLowerCase()}.svg`,
     footer: (
@@ -20,7 +22,7 @@ export function CountryNavigation({
 
   return (
     <div className="country-navigation flex flex-wrap justify-between gap-4">
-      <PicCards dataSets={dataSets} />
+      <PicCards dataSets={dataSets} dataSetter={countrySetter} />
     </div>
   );
 }

@@ -21,6 +21,7 @@ export function PicCards({
       <Card
         key={data.key}
         isPressable
+        className="max-w-48 max-h-52"
         onPress={() => {
           dataSetter?.(data.key);
         }}

@@ -6,8 +6,10 @@ import { brandLogos } from "@/lib/brands";
 
 export function BrandNavigation({
   brands,
+  brandSetter,
 }: {
   brands: { code: string; name: string }[];
+  brandSetter?: (brand: string) => void;
 }) {
   const dataSets = brands.map((brand) => ({
     key: brand.code,
@@ -25,7 +27,7 @@ export function BrandNavigation({
 
   return (
     <div className="brand-navigation flex flex-wrap justify-between gap-4">
-      <PicCards dataSets={dataSets} />
+      <PicCards dataSets={dataSets} dataSetter={brandSetter} />
     </div>
   );
 }
