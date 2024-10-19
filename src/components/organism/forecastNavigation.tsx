@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { BrandNavigation } from "../molecules/brandNavigation";
 import { CountryNavigation } from "../molecules/countryNavigation";
 import TabNavigation from "../molecules/tabNavigation";
+import SeasonNavigation from "../molecules/seasonNavigation";
 
 import { routes } from "@/config/routes";
 
@@ -20,6 +21,8 @@ export default function ForecastNavigation({
   const [country, setCountry] = useState("");
   const [oldCountry, setOldCountry] = useState("");
   const [brand, setBrand] = useState("");
+  const [oldBrand, setOldBrand] = useState("");
+  const [season, setSeason] = useState("");
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [oldActiveTabIndex, setOldActiveTabIndex] = useState(0);
 
@@ -29,6 +32,13 @@ export default function ForecastNavigation({
       setCountry("");
       setOldCountry("");
       setBrand("");
+      setOldBrand("");
+    }
+    if (activeTabIndex === 1) {
+      setBrand("");
+      setOldBrand("");
+      setSeason("");
+      setOldBrand("");
     }
   }
 
@@ -37,12 +47,16 @@ export default function ForecastNavigation({
     setActiveTabIndex(1);
   }
 
+  if (brand !== oldBrand) {
+    setOldBrand(brand);
+    setActiveTabIndex(2);
+  }
+
   useEffect(() => {
-    if (brand && country) {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
+    if (brand && country && season) {
       router.push(`${routes.sales.reports.forecasts.base}/${country}/${brand}`);
     }
-  }, [router, brand, country]);
+  }, [router, brand, country, season]);
 
   return (
     <TabNavigation
@@ -62,6 +76,16 @@ export default function ForecastNavigation({
           key: "brand",
           name: "Brand",
           node: <BrandNavigation brandSetter={setBrand} brands={brands} />,
+        },
+        {
+          key: "season",
+          name: "Season",
+          node: (
+            <SeasonNavigation
+              seasonSetter={setSeason}
+              seasons={[{ code: "31", name: "Winter" }]}
+            />
+          ),
         },
       ]}
     />

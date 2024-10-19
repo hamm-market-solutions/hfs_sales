@@ -31,7 +31,7 @@ export function PicCards({
           {data.pic ? (
             <Image
               alt={data.key}
-              className={`w-48 ${data.bgColor ?? ""}`}
+              className={`${data.bgColor ?? ""}`}
               src={data.pic}
             />
           ) : (
