@@ -4,6 +4,12 @@ import { getUserCountries } from "@/lib/models/user_has_country";
 import { GetUserCountriesOkResponse } from "@/types/responses";
 import { HfsResult } from "@/lib/errors/HfsError";
 import { getOrUpdateAccessToken } from "@/lib/models/user";
+import { getForecastData } from "@/lib/tables/forecast";
+import {
+  ForecastTableData,
+  ForecastTableRequest,
+  TableResponse,
+} from "@/types/table";
 
 export async function getUserCountriesAction(): Promise<
   HfsResult<GetUserCountriesOkResponse>
@@ -29,4 +35,10 @@ export async function getUserCountriesAction(): Promise<
       })),
     },
   });
+}
+
+export async function getForecastTableData(
+  { start, size, sorting, brand, season_code }: ForecastTableRequest
+): Promise<TableResponse<ForecastTableData>> {
+  return getForecastData({ start, size, sorting, brand, season_code });
 }

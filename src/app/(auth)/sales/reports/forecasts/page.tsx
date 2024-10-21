@@ -22,8 +22,8 @@ export default async function ForecastNavigationPage() {
       />
       <ForecastNavigation
         brands={brands}
-        userCountries={userCountries}
         seasons={seasons as { code: number; name: string | undefined }[]}
+        userCountries={userCountries}
       />
     </div>
   );
