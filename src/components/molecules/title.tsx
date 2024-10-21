@@ -8,7 +8,7 @@ export default function Title({
   return (
     <>
       <h2 className="title text-2xl text-secondary font-bold">{title}</h2>
-      <p className="subtitle text-sm text-secondary mb-4">{subtitle}</p>
+      <p className="subtitle text-sm text-primary mb-4">{subtitle}</p>
     </>
   );
 }

@@ -13,9 +13,11 @@ import { routes } from "@/config/routes";
 export default function ForecastNavigation({
   userCountries,
   brands,
+  seasons,
 }: {
   userCountries: { countries: { code: string; name: string }[] };
   brands: { code: string; name: string }[];
+  seasons: { code: number; name?: string }[];
 }) {
   const router = useRouter();
   const [country, setCountry] = useState("");
@@ -54,7 +56,9 @@ export default function ForecastNavigation({
 
   useEffect(() => {
     if (brand && country && season) {
-      router.push(`${routes.sales.reports.forecasts.base}/${country}/${brand}`);
+      router.push(
+        `${routes.sales.reports.forecasts.base}/${country.toLowerCase()}/${brand.toLowerCase()}/${season}`,
+      );
     }
   }, [router, brand, country, season]);
 
@@ -80,12 +84,7 @@ export default function ForecastNavigation({
         {
           key: "season",
           name: "Season",
-          node: (
-            <SeasonNavigation
-              seasonSetter={setSeason}
-              seasons={[{ code: "31", name: "Winter" }]}
-            />
-          ),
+          node: <SeasonNavigation seasonSetter={setSeason} seasons={seasons} />,
         },
       ]}
     />

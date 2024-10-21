@@ -7,8 +7,4 @@
     > div[class$="-page"] {
         @apply  max-w-[1024px] w-full justify-start p-6;
     }
-
-    p {
-        @apply text-base text-primary;
-    }
 }

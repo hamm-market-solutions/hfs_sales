@@ -28,7 +28,7 @@ export const getUserCountries = async (userId: number) => {
     );
   } catch (error) {
     return Err(
-      HfsError.fromErrors(
+      HfsError.fromThrow(
         500,
         UserHasCountryModelError.getError(),
         error as Error,

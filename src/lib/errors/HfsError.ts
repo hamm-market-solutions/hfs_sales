@@ -22,7 +22,7 @@ export default class HfsError extends Error {
     this.cause = cause;
   }
 
-  public static fromErrors(
+  public static fromThrow(
     status: number,
     message: string,
     cause?: Error,

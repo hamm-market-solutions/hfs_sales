@@ -8,11 +8,11 @@ export default function SeasonNavigation({
   seasons,
   seasonSetter,
 }: {
-  seasons: { code: string; name: string }[];
+  seasons: { code: number; name?: string }[];
   seasonSetter?: (season: string) => void;
 }) {
   const dataSets = seasons.map((season) => ({
-    key: season.code,
+    key: season.code.toString(),
     picComponent: SeasonImage({ code: season.code, name: season.name }),
     footer: (
       <CardFooter className="flex flex-col items-start">

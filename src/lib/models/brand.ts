@@ -15,7 +15,7 @@ export const getAllBrands = async () => {
     );
   } catch (error) {
     return Err(
-      HfsError.fromErrors(500, BrandModelError.getError(), error as Error),
+      HfsError.fromThrow(500, BrandModelError.getError(), error as Error),
     );
   }
 };
