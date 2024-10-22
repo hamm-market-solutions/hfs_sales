@@ -1,3 +1,5 @@
+"use server";
+
 import { compareSync } from "bcrypt-ts";
 import { Err, None, Ok, Option, Some } from "ts-results";
 import { user } from "@prisma/client";
@@ -156,7 +158,7 @@ export const getOrUpdateAccessToken = async (): Promise<
 
   if (accessTokenRes.err) {
     if (accessTokenRes.val.is(JwtError.expired(ACCESS_TOKEN))) {
-      const accessToken = cookies().get("accessToken")!;
+      const accessToken = (await cookies()).get("accessToken")!;
       const decodeRes = decodeJwt(accessToken.value);
 
       return await updateAccessToken(parseInt(decodeRes.sub!));

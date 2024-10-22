@@ -74,7 +74,7 @@ export const verifyJWT = async (
 };
 
 const getAccessTokenFromCookie = async (): Promise<Option<string>> => {
-  const accessToken = cookies().get("accessToken");
+  const accessToken = (await cookies()).get("accessToken");
 
   if (accessToken && accessToken.value !== "") {
     return Some(accessToken.value);
@@ -84,7 +84,7 @@ const getAccessTokenFromCookie = async (): Promise<Option<string>> => {
 };
 
 const getAccessTokenFromBearer = async (): Promise<Option<string>> => {
-  const authorization = headers().get("authorization");
+  const authorization = (await headers()).get("authorization");
 
   if (authorization) {
     const [type, token] = authorization.split(" ");
@@ -176,7 +176,7 @@ export const getAccessTokenAndVerify = async (): Promise<
 /** Get the refresh token from the cookie. If the refresh token is invalid, return None.
  */
 const getRefreshTokenFromCookie = async (): Promise<Option<string>> => {
-  const refreshToken = cookies().get("refreshToken");
+  const refreshToken = (await cookies()).get("refreshToken");
 
   if (refreshToken && refreshToken.value !== "") {
     return Some(refreshToken.value);

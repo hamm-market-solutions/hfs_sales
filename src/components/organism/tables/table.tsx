@@ -1,10 +1,14 @@
+"use client";
+
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import {
   ColumnDef,
+  flexRender,
   getCoreRowModel,
   getSortedRowModel,
   OnChangeFn,
+  Row,
   SortingState,
   useReactTable,
 } from "@tanstack/react-table";
@@ -12,7 +16,7 @@ import { keepPreviousData, useInfiniteQuery } from "@tanstack/react-query";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import React from "react";
 
-import Icon from "../atoms/icon";
+import Icon from "../../atoms/icons/icon";
 
 import { TableResponse } from "@/types/table";
 
@@ -29,6 +33,8 @@ export default function Table<T extends object>({
     sorting: SortingState,
   ) => Promise<TableResponse<T>>;
 }) {
+  console.log("loading table");
+
   //we need a reference to the scrolling element for logic down below
   const tableContainerRef = React.useRef<HTMLDivElement>(null);
   const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -44,6 +50,7 @@ export default function Table<T extends object>({
     queryFn: async ({ pageParam = 0 }) => {
       const start = (pageParam as number) * fetchSize;
       const fetchedData = await fetchFn(start, fetchSize, sorting); //pretend api call
+      console.log("fetch data", fetchedData);
 
       return fetchedData;
     },
@@ -52,6 +59,8 @@ export default function Table<T extends object>({
     refetchOnWindowFocus: false,
     placeholderData: keepPreviousData,
   });
+  console.log("this data", data);
+
 
   //flatten the array of arrays from the useInfiniteQuery hook
   const flatData = React.useMemo(
@@ -112,6 +121,8 @@ export default function Table<T extends object>({
   }));
 
   const { rows } = table.getRowModel();
+  console.log("rows model", rows);
+  console.log(rows.length);
 
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
@@ -125,6 +136,8 @@ export default function Table<T extends object>({
         : undefined,
     overscan: 5,
   });
+  console.log(rowVirtualizer.getTotalSize());
+
 
   if (isLoading) {
     return <>Loading...</>;
@@ -137,6 +150,98 @@ export default function Table<T extends object>({
           <Icon alt="Filters" src="/assets/icons/filter.svg" />
         </Button>
         <Input label="Search..." size="sm" type="text" />
+      </div>
+      <div className="table-container">
+      <table style={{ display: 'grid' }}>
+          <thead
+          className="sticky top-0 z-10"
+            style={{
+              display: 'grid',
+              position: 'sticky',
+              top: 0,
+              zIndex: 1,
+            }}
+          >
+            {table.getHeaderGroups().map(headerGroup => (
+              <tr
+                key={headerGroup.id}
+                style={{ display: 'flex', width: '100%' }}
+              >
+                {headerGroup.headers.map(header => {
+                  return (
+                    <th
+                      key={header.id}
+                      style={{
+                        display: 'flex',
+                        width: header.getSize(),
+                      }}
+                    >
+                      <div
+                        {...{
+                          className: header.column.getCanSort()
+                            ? 'cursor-pointer select-none'
+                            : '',
+                          onClick: header.column.getToggleSortingHandler(),
+                        }}
+                      >
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                        {{
+                          asc: ' 🔼',
+                          desc: ' 🔽',
+                        }[header.column.getIsSorted() as string] ?? null}
+                      </div>
+                    </th>
+                  )
+                })}
+              </tr>
+            ))}
+          </thead>
+          <tbody
+            style={{
+              display: 'grid',
+              height: `${rowVirtualizer.getTotalSize()}px`, //tells scrollbar how big the table is
+              position: 'relative', //needed for absolute positioning of rows
+            }}
+          >
+            {rowVirtualizer.getVirtualItems().map(virtualRow => {
+              const row = rows[virtualRow.index] as Row<T>
+              console.log("row", row);
+              return (
+                <tr
+                  data-index={virtualRow.index} //needed for dynamic row height measurement
+                  ref={node => rowVirtualizer.measureElement(node)} //measure dynamic row height
+                  key={row.id}
+                  style={{
+                    display: 'flex',
+                    position: 'absolute',
+                    transform: `translateY(${virtualRow.start}px)`, //this should always be a `style` as it changes on scroll
+                    width: '100%',
+                  }}
+                >
+                  {row.getVisibleCells().map(cell => {
+                    return (
+                      <td
+                        key={cell.id}
+                        style={{
+                          display: 'flex',
+                          width: cell.column.getSize(),
+                        }}
+                      >
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </td>
+                    )
+                  })}
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
       </div>
     </section>
   );

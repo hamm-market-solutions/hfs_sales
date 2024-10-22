@@ -2,15 +2,14 @@
 
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
-import React from "react";
-import { useFormState } from "react-dom";
+import React, { useActionState } from "react";
 
 import { handleLogin } from "@/actions/auth/login";
 import Title from "@/components/molecules/title";
 import { LoginErrResponse } from "@/types/responses";
 
 export default function Login() {
-  const [message, formAction, isPending] = useFormState(handleLogin, undefined);
+  const [message, formAction, isPending] = useActionState(handleLogin, undefined);
 
   return (
     <div className="login-page">

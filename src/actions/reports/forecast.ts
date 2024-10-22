@@ -37,8 +37,12 @@ export async function getUserCountriesAction(): Promise<
   });
 }
 
-export async function getForecastTableData(
-  { start, size, sorting, brand, season_code }: ForecastTableRequest
-): Promise<TableResponse<ForecastTableData>> {
+export async function getForecastTableData({
+  start,
+  size,
+  sorting,
+  brand,
+  season_code,
+}: ForecastTableRequest): Promise<TableResponse<ForecastTableData>> {
   return getForecastData({ start, size, sorting, brand, season_code });
 }

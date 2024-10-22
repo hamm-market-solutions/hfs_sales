@@ -1,3 +1,5 @@
+"use server";
+
 import { Err, Ok } from "ts-results";
 
 import prisma from "../prisma";

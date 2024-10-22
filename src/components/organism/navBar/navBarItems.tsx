@@ -14,7 +14,7 @@ import { usePathname, useRouter } from "next/navigation";
 
 import { matchPath, pathIncludes } from "@/utils/paths";
 import { navigatonTree } from "@/config/navigation";
-import Icon from "@/components/atoms/icon";
+import Icon from "@/components/atoms/icons/icon";
 import { routes } from "@/config/routes";
 
 export default function NavBarItems({
@@ -69,8 +69,8 @@ export default function NavBarItems({
                 endContent={
                   <Icon
                     alt="arrow-down"
-                    className="w-6"
-                    src={"/assets/icons/arrow-down.png"}
+                    className="w-5"
+                    src={"/assets/icons/arrow-down.svg"}
                   />
                 }
                 radius="sm"

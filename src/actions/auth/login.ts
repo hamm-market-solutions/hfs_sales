@@ -38,7 +38,7 @@ export async function handleLogin(
   if (accessTokenRes.err) {
     return accessTokenRes;
   }
-  cookies().set("refreshToken", accessTokenRes.val.refreshToken[0], {
+  (await cookies()).set("refreshToken", accessTokenRes.val.refreshToken[0], {
     httpOnly: true,
     secure: true,
     sameSite: "strict",
