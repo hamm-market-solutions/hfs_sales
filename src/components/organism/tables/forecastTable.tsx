@@ -4,7 +4,7 @@ import { ColumnDef, SortingState } from "@tanstack/react-table";
 import { useParams } from "next/navigation";
 import React from "react";
 
-import Table from "./table";
+import BaseTable from "./table";
 
 import { ForecastTableData } from "@/types/table";
 import { getForecastTableData } from "@/actions/reports/forecast";
@@ -69,7 +69,7 @@ export default function ForecastTable() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Table
+      <BaseTable
         columns={columns}
         fetchFn={async (start: number, size: number, sorting: SortingState) => {
           return await getForecastTableData({

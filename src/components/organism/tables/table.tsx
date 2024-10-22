@@ -15,6 +15,7 @@ import {
 import { keepPreviousData, useInfiniteQuery } from "@tanstack/react-query";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import React from "react";
+import {Table, TableBody, TableColumn, TableHeader, TableRow} from "@nextui-org/table";
 
 import Icon from "../../atoms/icons/icon";
 
@@ -22,7 +23,7 @@ import { TableResponse } from "@/types/table";
 
 const fetchSize = 50;
 
-export default function Table<T extends object>({
+export default function BaseTable<T extends object>({
   columns,
   fetchFn,
 }: {
@@ -152,8 +153,8 @@ export default function Table<T extends object>({
         <Input label="Search..." size="sm" type="text" />
       </div>
       <div className="table-container">
-      <table style={{ display: 'grid' }}>
-          <thead
+      <Table style={{ display: 'grid' }}>
+          <TableHeader
           className="sticky top-0 z-10"
             style={{
               display: 'grid',
@@ -163,7 +164,7 @@ export default function Table<T extends object>({
             }}
           >
             {table.getHeaderGroups().map(headerGroup => (
-              <tr
+              <TableColumn
                 key={headerGroup.id}
                 style={{ display: 'flex', width: '100%' }}
               >
@@ -196,10 +197,10 @@ export default function Table<T extends object>({
                     </th>
                   )
                 })}
-              </tr>
+              </TableColumn>
             ))}
-          </thead>
-          <tbody
+          </TableHeader>
+          <TableBody
             style={{
               display: 'grid',
               height: `${rowVirtualizer.getTotalSize()}px`, //tells scrollbar how big the table is
@@ -210,7 +211,7 @@ export default function Table<T extends object>({
               const row = rows[virtualRow.index] as Row<T>
               console.log("row", row);
               return (
-                <tr
+                <TableRow
                   data-index={virtualRow.index} //needed for dynamic row height measurement
                   ref={node => rowVirtualizer.measureElement(node)} //measure dynamic row height
                   key={row.id}
@@ -237,11 +238,11 @@ export default function Table<T extends object>({
                       </td>
                     )
                   })}
-                </tr>
+                </TableRow>
               )
             })}
-          </tbody>
-        </table>
+          </TableBo>
+        </Table>
       </div>
     </section>
   );
