@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --turbo",
     "build": "next build",
-    "start": "NODE_ENV=production next build && next start -H $APP_HOST -p $APP_PORT",
+    "start": "source .env.production && next build && next start -H $APP_HOST -p $APP_PORT",
     "lint": "eslint . --fix",
     "prisma": "prisma"
   },
