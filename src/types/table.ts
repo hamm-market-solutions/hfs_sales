@@ -1,5 +1,3 @@
-import { SortingState } from "@tanstack/react-table";
-
 export type TableResponse<T extends object> = {
   data: T[];
   meta: { totalRowCount: number };
@@ -8,7 +6,7 @@ export type TableResponse<T extends object> = {
 export type TableRequest = {
   start: number;
   size: number;
-  sorting: SortingState;
+  sorting: object;
 };
 
 export type ForecastTableRequest = {

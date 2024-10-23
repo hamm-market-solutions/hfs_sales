@@ -3,7 +3,7 @@ import { nextui } from "@nextui-org/theme";
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './src/**/*.{js,ts,jsx,tsx,mdx}',
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
@@ -23,7 +23,7 @@ module.exports = {
         "yellow-light": "#F3E89E",
         "sky-blue": "#55D2FF",
         "mint-green": "#0CF8BF",
-        "magenta": "#C83DAF",
+        magenta: "#C83DAF",
         "dark-red": "#CB0C4E",
       },
     },

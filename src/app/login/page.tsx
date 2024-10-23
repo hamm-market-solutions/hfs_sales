@@ -9,7 +9,10 @@ import Title from "@/components/molecules/title";
 import { LoginErrResponse } from "@/types/responses";
 
 export default function Login() {
-  const [message, formAction, isPending] = useActionState(handleLogin, undefined);
+  const [message, formAction, isPending] = useActionState(
+    handleLogin,
+    undefined,
+  );
 
   return (
     <div className="login-page">
