@@ -164,14 +164,13 @@ export default function BaseTable<T extends object>({
   });
 
   return (
-    <section className="table">
+    <section className="hfs-table flex flex-col gap-4">
       <div className="table-filters flex flex-row gap-2">
         <Button isIconOnly aria-label="Filters" color="primary" size="lg">
           <Icon alt="Filters" src="/assets/icons/filter.svg" />
         </Button>
         <Input label="Search..." size="sm" type="text" />
       </div>
-      <br />
       <div ref={tableContainerRef} className="table-container">
         <Table>
           <TableHeader>
