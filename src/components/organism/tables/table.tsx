@@ -15,11 +15,21 @@ import {
 import { keepPreviousData, useInfiniteQuery } from "@tanstack/react-query";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import React from "react";
-import {Table, TableBody, TableColumn, TableHeader, TableRow} from "@nextui-org/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableColumn,
+  TableHeader,
+  TableRow,
+} from "@nextui-org/table";
 
 import Icon from "../../atoms/icons/icon";
 
 import { TableResponse } from "@/types/table";
+import ArrowUpIcon from "@/components/atoms/icons/arrowUp";
+import ArrowDownIcon from "@/components/atoms/icons/arrowDown";
+import clsx from "clsx";
 
 const fetchSize = 50;
 
@@ -51,6 +61,7 @@ export default function BaseTable<T extends object>({
     queryFn: async ({ pageParam = 0 }) => {
       const start = (pageParam as number) * fetchSize;
       const fetchedData = await fetchFn(start, fetchSize, sorting); //pretend api call
+
       console.log("fetch data", fetchedData);
 
       return fetchedData;
@@ -60,6 +71,7 @@ export default function BaseTable<T extends object>({
     refetchOnWindowFocus: false,
     placeholderData: keepPreviousData,
   });
+
   console.log("this data", data);
 
   //flatten the array of arrays from the useInfiniteQuery hook
@@ -121,6 +133,7 @@ export default function BaseTable<T extends object>({
   }));
 
   const { rows } = table.getRowModel();
+
   console.log("rows model", rows);
   console.log(rows.length);
 
@@ -136,12 +149,19 @@ export default function BaseTable<T extends object>({
         : undefined,
     overscan: 5,
   });
-  console.log(rowVirtualizer.getTotalSize());
 
+  console.log(rowVirtualizer.getTotalSize());
 
   if (isLoading) {
     return <>Loading...</>;
   }
+
+  const tableHeaderGroups = table.getHeaderGroups();
+  const tableHeadersFlattened = tableHeaderGroups.flatMap((headerGroup) => {
+    return headerGroup.headers.map((header) => {
+      return header;
+    });
+  });
 
   return (
     <section className="table">
@@ -151,94 +171,76 @@ export default function BaseTable<T extends object>({
         </Button>
         <Input label="Search..." size="sm" type="text" />
       </div>
-      <div className="table-container">
-      <Table style={{ display: 'grid' }}>
+      <br />
+      <div className="table-container" ref={tableContainerRef}>
+        <Table>
           <TableHeader
-          className="sticky top-0 z-10"
-            style={{
-              display: 'grid',
-              position: 'sticky',
-              top: 0,
-              zIndex: 1,
-            }}
           >
-            {table.getHeaderGroups().map(headerGroup => (
-              <TableColumn
-                key={headerGroup.id}
-                style={{ display: 'flex', width: '100%' }}
-              >
-                {headerGroup.headers.map(header => {
+              {tableHeadersFlattened.map((header) => {
                   return (
-                    <th
+                    <TableColumn
                       key={header.id}
                       style={{
-                        display: 'flex',
                         width: header.getSize(),
                       }}
                     >
                       <div
                         {...{
-                          className: header.column.getCanSort()
-                            ? 'cursor-pointer select-none'
-                            : '',
+                          className: clsx("flex flex-row gap-1 items-center", header.column.getCanSort()
+                          ? "cursor-pointer select-none"
+                          : ""),
                           onClick: header.column.getToggleSortingHandler(),
                         }}
                       >
                         {flexRender(
                           header.column.columnDef.header,
-                          header.getContext()
+                          header.getContext(),
                         )}
                         {{
-                          asc: ' 🔼',
-                          desc: ' 🔽',
+                          asc: <ArrowUpIcon className="w-5" />,
+                          desc: <ArrowDownIcon className="w-5" />,
                         }[header.column.getIsSorted() as string] ?? null}
                       </div>
-                    </th>
-                  )
+                    </TableColumn>
+                  );
                 })}
-              </TableColumn>
-            ))}
           </TableHeader>
           <TableBody
             style={{
-              display: 'grid',
               height: `${rowVirtualizer.getTotalSize()}px`, //tells scrollbar how big the table is
-              position: 'relative', //needed for absolute positioning of rows
             }}
           >
-            {rowVirtualizer.getVirtualItems().map(virtualRow => {
-              const row = rows[virtualRow.index] as Row<T>
+            {rowVirtualizer.getVirtualItems().map((virtualRow) => {
+              const row = rows[virtualRow.index] as Row<T>;
+
               console.log("row", row);
+
               return (
                 <TableRow
+                  style={{
+                    transform: `translateY(${virtualRow.start}px)`, //this should always be a `style` as it changes on scroll
+                  }}
                   data-index={virtualRow.index} //needed for dynamic row height measurement
                   // ref={node => rowVirtualizer.measureElement(node)} //measure dynamic row height
                   key={row.id}
-                  style={{
-                    display: 'flex',
-                    position: 'absolute',
-                    transform: `translateY(${virtualRow.start}px)`, //this should always be a `style` as it changes on scroll
-                    width: '100%',
-                  }}
                 >
-                  {row.getVisibleCells().map(cell => {
+                  {row.getVisibleCells().map((cell) => {
                     return (
-                      <td
+                      <TableCell
                         key={cell.id}
                         style={{
-                          display: 'flex',
                           width: cell.column.getSize(),
                         }}
                       >
                         {flexRender(
                           cell.column.columnDef.cell,
-                          cell.getContext()
+                          cell.getContext(),
                         )}
-                      </td>
-                    )
+                      </TableCell>
+                    );
                   })}
                 </TableRow>
-              )
+              );
             })}
           </TableBody>
         </Table>

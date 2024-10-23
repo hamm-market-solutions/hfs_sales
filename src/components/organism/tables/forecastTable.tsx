@@ -3,12 +3,12 @@
 import { ColumnDef, SortingState } from "@tanstack/react-table";
 import { useParams } from "next/navigation";
 import React from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import BaseTable from "./table";
 
 import { ForecastTableData } from "@/types/table";
 import { getForecastTableData } from "@/actions/reports/forecast";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export default function ForecastTable() {
   const params = useParams<{
@@ -61,11 +61,11 @@ export default function ForecastTable() {
 
   const queryClient = new QueryClient({
     defaultOptions: {
-        queries: {
-            refetchOnWindowFocus: false,
-        },
+      queries: {
+        refetchOnWindowFocus: false,
+      },
     },
-});
+  });
 
   return (
     <QueryClientProvider client={queryClient}>

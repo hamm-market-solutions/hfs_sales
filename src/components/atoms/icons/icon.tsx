@@ -4,15 +4,11 @@ import clsx from "clsx";
 export default function Icon({
   src,
   className,
-  width = 40,
-  ...props
 }: ImageProps): JSX.Element {
   return (
     <Image
-      className={clsx("rounded-none", className)}
+      className={clsx("rounded-none w-10", className)}
       src={src}
-      width={width}
-      {...props}
     />
   );
 }

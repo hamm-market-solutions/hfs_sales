@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --turbo",
     "build": "next build",
-    "start": "export $(grep -v '^#' .env.production | xargs) && next build && next start -H $APP_HOST -p $APP_PORT",
+    "start": "next build && next start -H $APP_HOST -p $APP_PORT",
     "lint": "eslint . --fix",
     "prisma": "prisma"
   },
