@@ -23,13 +23,13 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/table";
+import clsx from "clsx";
 
 import Icon from "../../atoms/icons/icon";
 
 import { TableResponse } from "@/types/table";
 import ArrowUpIcon from "@/components/atoms/icons/arrowUp";
 import ArrowDownIcon from "@/components/atoms/icons/arrowDown";
-import clsx from "clsx";
 
 const fetchSize = 50;
 
@@ -172,38 +172,40 @@ export default function BaseTable<T extends object>({
         <Input label="Search..." size="sm" type="text" />
       </div>
       <br />
-      <div className="table-container" ref={tableContainerRef}>
+      <div ref={tableContainerRef} className="table-container">
         <Table>
-          <TableHeader
-          >
-              {tableHeadersFlattened.map((header) => {
-                  return (
-                    <TableColumn
-                      key={header.id}
-                      style={{
-                        width: header.getSize(),
-                      }}
-                    >
-                      <div
-                        {...{
-                          className: clsx("flex flex-row gap-1 items-center", header.column.getCanSort()
+          <TableHeader>
+            {tableHeadersFlattened.map((header) => {
+              return (
+                <TableColumn
+                  key={header.id}
+                  style={{
+                    width: header.getSize(),
+                  }}
+                >
+                  <div
+                    {...{
+                      className: clsx(
+                        "flex flex-row gap-1 items-center",
+                        header.column.getCanSort()
                           ? "cursor-pointer select-none"
-                          : ""),
-                          onClick: header.column.getToggleSortingHandler(),
-                        }}
-                      >
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )}
-                        {{
-                          asc: <ArrowUpIcon className="w-5" />,
-                          desc: <ArrowDownIcon className="w-5" />,
-                        }[header.column.getIsSorted() as string] ?? null}
-                      </div>
-                    </TableColumn>
-                  );
-                })}
+                          : "",
+                      ),
+                      onClick: header.column.getToggleSortingHandler(),
+                    }}
+                  >
+                    {flexRender(
+                      header.column.columnDef.header,
+                      header.getContext(),
+                    )}
+                    {{
+                      asc: <ArrowUpIcon className="w-3" />,
+                      desc: <ArrowDownIcon className="w-3" />,
+                    }[header.column.getIsSorted() as string] ?? null}
+                  </div>
+                </TableColumn>
+              );
+            })}
           </TableHeader>
           <TableBody
             style={{

@@ -8,11 +8,11 @@ export function BrandNavigation({
   brands,
   brandSetter,
 }: {
-  brands: { code: string; name: string }[];
+  brands: { no: string; code: string; name: string }[];
   brandSetter?: (brand: string) => void;
 }) {
   const dataSets = brands.map((brand) => ({
-    key: brand.code,
+    key: brand.no.toString(),
     // @ts-ignore
     pic: brandLogos[brand.name.toLowerCase()].pic,
     // @ts-ignore

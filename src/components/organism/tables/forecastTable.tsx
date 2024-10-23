@@ -76,6 +76,7 @@ export default function ForecastTable() {
             start: start,
             size: size,
             sorting: sorting,
+            country: params.countryId,
             brand: params.brandId,
             season_code: Number(params.seasonCode),
           });

@@ -3,28 +3,36 @@ import {
   ForecastTableRequest,
   TableResponse,
 } from "@/types/table";
+import { getForecastItemColorData } from "../models/item_color";
 
 export const getForecastData = async ({
   start,
   size,
   sorting,
+  country,
   brand,
   season_code,
 }: ForecastTableRequest): Promise<TableResponse<ForecastTableData>> => {
+  const itemColorData = await getForecastItemColorData({
+    start,
+    size,
+    sorting,
+    country,
+    brand,
+    season_code,
+  });
   return {
-    data: [
-      {
-        img_src: "https://via.placeholder.com/150",
-        brand: "Gant",
-        season_code: "31",
-        drop: "Drop 1",
-        item_no: 1234,
-        description: "Description",
-        item_color: "Red",
-        min_qty_per_order: 1,
-        price: 100,
-      },
-    ],
-    meta: { totalRowCount: 10 },
+    data: itemColorData.unwrap().map((data) => ({
+      img_src: "",
+      brand: data.s_item.brand_no,
+      season_code: data.s_item.season_code,
+      drop: "",
+      item_no: data.item_no,
+      description: data.s_item.description,
+      item_color: data.color_code,
+      min_qty_per_order: data.s_item.min_qty_style,
+      price: data.purchase_price,
+    })),
+    meta: { totalRowCount: itemColorData.unwrap().length },
   };
 };

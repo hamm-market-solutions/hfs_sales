@@ -41,8 +41,12 @@ export async function getForecastTableData({
   start,
   size,
   sorting,
+  country,
   brand,
   season_code,
 }: ForecastTableRequest): Promise<TableResponse<ForecastTableData>> {
-  return getForecastData({ start, size, sorting, brand, season_code });
+  const data = await getForecastData({ start, size, sorting, country, brand, season_code });
+  console.log(data);
+
+  return data;
 }

@@ -97,27 +97,29 @@ model s_item_color {
   confirmed_ex_factory_date    DateTime? @db.Date
   confirmation_sample_sent     Int?      @db.SmallInt
   timestamp                    DateTime  @default(now()) @db.Timestamp(0)
+  s_item                       s_item    @relation(fields: [item_no], references: [no], onDelete: Cascade, map: "s_item_color_s_item_FK")
 
   @@unique([item_no, color_code], map: "unique_key")
 }
 
 model s_item {
-  no             String   @id @db.VarChar(20)
-  description    String?  @db.VarChar(50)
-  last           String?  @db.VarChar(30)
-  material       String?  @db.VarChar(30)
-  brand_no       String?  @db.VarChar(10)
-  cat_name       String?  @db.VarChar(10)
+  no             String         @id @db.VarChar(20)
+  description    String?        @db.VarChar(50)
+  last           String?        @db.VarChar(30)
+  material       String?        @db.VarChar(30)
+  brand_no       String?        @db.VarChar(10)
+  cat_name       String?        @db.VarChar(10)
   order_qty      Int?
   min_qty_style  Int?
   min_qty_last   Int?
-  season_code    Int?     @db.SmallInt
-  nos            Int?     @db.SmallInt
-  vendor_no      String?  @db.VarChar(20)
-  vendor_item_no String?  @db.VarChar(20)
-  style_code     Int?     @db.SmallInt
+  season_code    Int?           @db.SmallInt
+  nos            Int?           @db.SmallInt
+  vendor_no      String?        @db.VarChar(20)
+  vendor_item_no String?        @db.VarChar(20)
+  style_code     Int?           @db.SmallInt
   tariff_no      BigInt?
-  timestamp      DateTime @default(now()) @db.Timestamp(0)
+  timestamp      DateTime       @default(now()) @db.Timestamp(0)
+  s_item_color   s_item_color[]
 }
 
 model s_season {

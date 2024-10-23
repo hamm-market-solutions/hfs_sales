@@ -16,7 +16,7 @@ export default function ForecastNavigation({
   seasons,
 }: {
   userCountries: { countries: { code: string; name: string }[] };
-  brands: { code: string; name: string }[];
+  brands: { no: number; code: string; name: string }[];
   seasons: { code: number; name?: string }[];
 }) {
   const router = useRouter();

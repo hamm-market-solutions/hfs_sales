@@ -11,8 +11,8 @@ async function main() {
   await seedBrandTable();
   await seedSeasonBrandPhaseTable();
   await seedUserHasCountryTable();
-  await seedItemColorTable();
   await seedItemTable();
+  await seedItemColorTable();
 }
 
 async function seedUserHasCountryTable() {
