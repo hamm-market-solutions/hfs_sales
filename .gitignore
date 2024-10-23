@@ -48,3 +48,6 @@ prisma/migrations/20241015082707_add_s_item_table
 prisma/migrations/20241015083955_add_s_season_table
 prisma/migrations/20241015084033_add_s_season_brand_phase_table
 prisma/migrations/20241015092639_add_role_has_permission_table
+
+# Mittwald
+.mwservice.yaml
