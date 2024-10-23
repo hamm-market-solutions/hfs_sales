@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --turbo",
     "build": "next build",
-    "start": "next start",
+    "start": "next build && next start -H $APP_HOST -p $APP_PORT",
     "lint": "eslint . -c .eslintrc.json --fix",
     "prisma": "prisma"
   },

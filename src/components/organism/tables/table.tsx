@@ -62,7 +62,6 @@ export default function BaseTable<T extends object>({
   });
   console.log("this data", data);
 
-
   //flatten the array of arrays from the useInfiniteQuery hook
   const flatData = React.useMemo(
     () => data?.pages?.flatMap((page) => page.data) ?? [],
@@ -241,7 +240,7 @@ export default function BaseTable<T extends object>({
                 </TableRow>
               )
             })}
-          </TableBo>
+          </TableBody>
         </Table>
       </div>
     </section>
