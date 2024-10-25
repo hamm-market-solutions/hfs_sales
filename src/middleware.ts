@@ -13,6 +13,10 @@ export async function middleware(
   request: NextRequest,
 ): Promise<NextResponse<unknown>> {
   try {
+    if (["_next/static", "_next/image", "assets", "favicon.ico"].includes(request.nextUrl.pathname)) {
+      return NextResponse.next();
+    }
+
     if (request.nextUrl.pathname.startsWith(routes.api.base)) {
       return apiMiddleware(request);
     }
@@ -61,6 +65,6 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      */
-    "/((?!login|assets|_next/static|_next/image|favicon.ico).*)",
+    "/((?!login).*)",
   ],
 };
