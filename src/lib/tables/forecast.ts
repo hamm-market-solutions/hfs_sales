@@ -1,9 +1,10 @@
+import { getForecastItemColorData } from "../models/item_color";
+
 import {
   ForecastTableData,
   ForecastTableRequest,
   TableResponse,
 } from "@/types/table";
-import { getForecastItemColorData } from "../models/item_color";
 
 export const getForecastData = async ({
   start,
@@ -21,6 +22,7 @@ export const getForecastData = async ({
     brand,
     season_code,
   });
+
   return {
     data: itemColorData.unwrap().map((data) => ({
       img_src: "",

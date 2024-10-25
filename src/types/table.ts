@@ -19,12 +19,12 @@ export type ForecastTableRequest = {
 
 export type ForecastTableData = {
   img_src: string;
-  brand: string|null;
-  season_code: number|null;
+  brand: string | null;
+  season_code: number | null;
   drop: string;
-  item_no: string|null;
-  description: string|null;
+  item_no: string | null;
+  description: string | null;
   item_color: string;
-  min_qty_per_order: number|null;
-  price: number|null;
+  min_qty_per_order: number | null;
+  price: number | null;
 };

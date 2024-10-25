@@ -1,3 +1,5 @@
+"use server";
+
 import { Ok } from "ts-results";
 
 import { getUserCountries } from "@/lib/models/user_has_country";
@@ -45,7 +47,15 @@ export async function getForecastTableData({
   brand,
   season_code,
 }: ForecastTableRequest): Promise<TableResponse<ForecastTableData>> {
-  const data = await getForecastData({ start, size, sorting, country, brand, season_code });
+  const data = await getForecastData({
+    start,
+    size,
+    sorting,
+    country,
+    brand,
+    season_code,
+  });
+
   console.log(data);
 
   return data;
