@@ -15,24 +15,10 @@ import {
 import { keepPreviousData, useInfiniteQuery } from "@tanstack/react-query";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import React from "react";
-import {
-  getKeyValue,
-  Table,
-  TableBody,
-  TableCell,
-  TableColumn,
-  TableHeader,
-  TableRow,
-} from "@nextui-org/table";
-import clsx from "clsx";
-import { useInfiniteScroll } from "@nextui-org/use-infinite-scroll";
-import { Spinner } from "@nextui-org/spinner";
 
 import Icon from "../../atoms/icons/icon";
 
 import { TableResponse } from "@/types/table";
-import ArrowUpIcon from "@/components/atoms/icons/arrowUp";
-import ArrowDownIcon from "@/components/atoms/icons/arrowDown";
 
 const fetchSize = 50;
 
@@ -47,7 +33,6 @@ export default function BaseTable<T extends object>({
     sorting: SortingState,
   ) => Promise<TableResponse<T>>;
 }) {
-  const [hasMore, setHasMore] = React.useState<boolean>(true);
   //we need a reference to the scrolling element for logic down below
   const tableContainerRef = React.useRef<HTMLDivElement>(null);
   const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -62,12 +47,6 @@ export default function BaseTable<T extends object>({
     queryFn: async ({ pageParam = 0 }) => {
       const start = (pageParam as number) * fetchSize;
       const fetchedData = await fetchFn(start, fetchSize, sorting); //pretend api call
-      if (fetchedData.data.length > 0) {
-        setHasMore(true);
-      } else {
-        setHasMore(false);
-      }
-
       return fetchedData;
     },
     initialPageParam: 0,
@@ -80,38 +59,30 @@ export default function BaseTable<T extends object>({
     () => data?.pages?.flatMap((page) => page.data) ?? [],
     [data],
   );
-  // const totalDBRowCount = data?.pages?.[0]?.meta?.totalRowCount ?? 0;
-  // const totalFetched = flatData.length;
-  // //called on scroll and possibly on mount to fetch more data as the user scrolls and reaches bottom of table
-  // const fetchMoreOnBottomReached = React.useCallback(
-  //   (containerRefElement?: HTMLDivElement | null) => {
-  //     console.log(containerRefElement);
-  //     if (containerRefElement) {
-  //       const { scrollHeight, scrollTop, clientHeight } = containerRefElement;
+  const totalDBRowCount = data?.pages?.[0]?.meta?.totalRowCount ?? 0;
+  const totalFetched = flatData.length;
+  //called on scroll and possibly on mount to fetch more data as the user scrolls and reaches bottom of table
+  const fetchMoreOnBottomReached = React.useCallback(
+    (containerRefElement?: HTMLDivElement | null) => {
+      if (containerRefElement) {
+        const { scrollHeight, scrollTop, clientHeight } = containerRefElement;
+        //once the user has scrolled within 500px of the bottom of the table, fetch more data if we can
+        if (
+          scrollHeight - scrollTop - clientHeight < 500 &&
+          !isFetching &&
+          totalFetched < totalDBRowCount
+        ) {
+          fetchNextPage();
+        }
+      }
+    },
+    [fetchNextPage, isFetching, totalFetched, totalDBRowCount],
+  );
 
-  //       console.log(
-  //         scrollHeight - scrollTop - clientHeight < 500,
-  //         !isFetching,
-  //         totalFetched < totalDBRowCount,
-  //       );
-
-  //       //once the user has scrolled within 500px of the bottom of the table, fetch more data if we can
-  //       if (
-  //         scrollHeight - scrollTop - clientHeight < 500 &&
-  //         !isFetching &&
-  //         totalFetched < totalDBRowCount
-  //       ) {
-  //         fetchNextPage();
-  //       }
-  //     }
-  //   },
-  //   [fetchNextPage, isFetching, totalFetched, totalDBRowCount],
-  // );
-
-  // //a check on mount and after a fetch to see if the table is already scrolled to the bottom and immediately needs to fetch more data
-  // React.useEffect(() => {
-  //   fetchMoreOnBottomReached(tableContainerRef.current);
-  // }, [fetchMoreOnBottomReached]);
+  //a check on mount and after a fetch to see if the table is already scrolled to the bottom and immediately needs to fetch more data
+  React.useEffect(() => {
+    fetchMoreOnBottomReached(tableContainerRef.current);
+  }, [fetchMoreOnBottomReached]);
   const table = useReactTable({
     data: flatData,
     columns,
@@ -130,6 +101,8 @@ export default function BaseTable<T extends object>({
       rowVirtualizer.scrollToIndex?.(0);
     }
   };
+  console.log("sort",sorting);
+
   //since this table option is derived from table row model state, we're using the table.setOptions utility
   table.setOptions((prev) => ({
     ...prev,
@@ -148,96 +121,101 @@ export default function BaseTable<T extends object>({
         : undefined,
     overscan: 5,
   });
-  console.log(rowVirtualizer.getVirtualItems());
-
-  const [loaderRef, scrollerRef] = useInfiniteScroll({
-    hasMore,
-    onLoadMore: async () => {
-      console.log("loading more");
-      await fetchNextPage()
-    },
-  });
-  const tableHeaderGroups = table.getHeaderGroups();
-  const tableHeadersFlattened = tableHeaderGroups.flatMap((headerGroup) => {
-    return headerGroup.headers.map((header) => {
-      return header;
-    });
-  });
-  const topContent = (
-    <div className="table-filters flex flex-row gap-2">
-      <Button isIconOnly aria-label="Filters" color="primary" size="lg">
-        <Icon alt="Filters" src="/assets/icons/filter.svg" />
-      </Button>
-      <Input label="Search..." size="sm" type="text" />
-    </div>
-  );
 
   return (
     <section className="hfs-table flex flex-col gap-4">
-      <div className="table-container">
-        <Table
-          isHeaderSticky
-          isStriped
-          aria-label="Table"
-          baseRef={scrollerRef}
-          classNames={{
-            base: `max-h-[650px] overflow-scroll`,
-          }}
-          topContent={topContent}
-        >
-          <TableHeader>
-            {tableHeadersFlattened.map((header) => {
-              return (
-                <TableColumn
-                  key={header.id}
-                  style={{
-                    width: header.getSize(),
-                  }}
-                >
-                  <div
-                    {...{
-                      className: clsx(
-                        "flex flex-row gap-1 items-center",
-                        header.column.getCanSort()
-                          ? "cursor-pointer select-none"
-                          : "",
-                      ),
-                      onClick: header.column.getToggleSortingHandler(),
-                    }}
-                  >
-                    {flexRender(
-                      header.column.columnDef.header,
-                      header.getContext(),
-                    )}
-                    {{
-                      asc: <ArrowUpIcon className="w-3" />,
-                      desc: <ArrowDownIcon className="w-3" />,
-                    }[header.column.getIsSorted() as string] ?? null}
-                  </div>
-                </TableColumn>
-              );
-            })}
-          </TableHeader>
-          <TableBody
-            loadingContent={<Spinner color="primary" />}
-            isLoading={isFetching}
-            items={table.getRowModel().rows as Iterable<T>}
+      <div className="table-filters flex flex-row gap-2">
+        <Button isIconOnly aria-label="Filters" color="primary" size="lg">
+          <Icon alt="Filters" src="/assets/icons/filter.svg" />
+        </Button>
+        <Input label="Search..." size="sm" type="text" />
+      </div>
+      <div
+        ref={tableContainerRef}
+        className="table-container py-2 rounded-2xl bg-white shadow-xl"
+        style={{
+          overflow: "auto", //our scrollable table container
+          position: "relative", //needed for sticky header
+          height: "600px", //should be a fixed height
+        }}
+        onScroll={(e) => fetchMoreOnBottomReached(e.target as HTMLDivElement)}
+      >
+        <table style={{ display: "grid" }} className="mx-4">
+          <thead
+            style={{
+              display: "grid",
+              position: "sticky",
+              top: 0,
+              zIndex: 1,
+            }}
+            className="p-4 rounded-lg bg-gray-100"
           >
-            {/* {rowVirtualizer.getVirtualItems().map((virtualRow) => {
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr
+                key={headerGroup.id}
+                style={{ display: "flex", width: "100%" }}
+              >
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <th
+                      key={header.id}
+                      style={{
+                        display: "flex",
+                        width: header.getSize(),
+                      }}
+                    >
+                      <div
+                        {...{
+                          className: header.column.getCanSort()
+                            ? "cursor-pointer select-none"
+                            : "",
+                          onClick: header.column.getToggleSortingHandler(),
+                        }}
+                      >
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
+                        {{
+                          asc: " 🔼",
+                          desc: " 🔽",
+                        }[header.column.getIsSorted() as string] ?? null}
+                      </div>
+                    </th>
+                  );
+                })}
+              </tr>
+            ))}
+          </thead>
+          <tbody
+            style={{
+              display: "grid",
+              height: `${rowVirtualizer.getTotalSize()}px`, //tells scrollbar how big the table is
+              position: "relative", //needed for absolute positioning of rows
+            }}
+          >
+            {rowVirtualizer.getVirtualItems().map((virtualRow) => {
               const row = rows[virtualRow.index] as Row<T>;
 
               return (
-                <TableRow
+                <tr
                   key={row.id}
+                  ref={(node) => rowVirtualizer.measureElement(node)} //measure dynamic row height
                   data-index={virtualRow.index} //needed for dynamic row height measurement
-                  // @ts-ignore
-                  ref={node => rowVirtualizer.measureElement(node)} //measure dynamic row height
+                  style={{
+                    display: "flex",
+                    position: "absolute",
+                    transform: `translateY(${virtualRow.start}px)`, //this should always be a `style` as it changes on scroll
+                    width: "100%",
+                  }}
+                  className="p-4 border-b-1 border-gray-200"
                 >
                   {row.getVisibleCells().map((cell) => {
                     return (
-                      <TableCell
+                      <td
                         key={cell.id}
                         style={{
+                          display: "flex",
                           width: cell.column.getSize(),
                         }}
                       >
@@ -245,21 +223,14 @@ export default function BaseTable<T extends object>({
                           cell.column.columnDef.cell,
                           cell.getContext(),
                         )}
-                      </TableCell>
+                      </td>
                     );
                   })}
-                </TableRow>
+                </tr>
               );
-            })} */}
-            {(item: T) => (
-              <TableRow>
-                {(columnKey) => (
-                  <TableCell>{getKeyValue(item, columnKey)}</TableCell>
-                )}
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
+            })}
+          </tbody>
+        </table>
       </div>
     </section>
   );

@@ -28,7 +28,7 @@ export const getForecastData = async ({
     late_collection: number;
     Special_collection: number;
   }) => {
-    console.log(data);
+    console.log(sorting);
 
     if (data.pre_collection !== 0) {
       return "1";
@@ -46,7 +46,7 @@ export const getForecastData = async ({
   return {
     data: itemColorData.unwrap().map((data) => ({
       img_src: "/assets/img-placeholder.svg",
-      brand: data.s_item.brand_no,
+      brand_no: data.s_item.brand_no,
       season_code: data.s_item.season_code,
       drop: getDrop(data),
       item_no: data.item_no,

@@ -21,11 +21,11 @@ export default function ForecastTable() {
       {
         header: "Image",
         accessorKey: "img_src",
-        cell: (cell) => <img alt="img" src={cell.getValue() as string} />,
+        cell: (cell) => <img alt="img" src={cell.getValue() as string} className="h-11" />,
       },
       {
         header: "Brand",
-        accessorKey: "brand",
+        accessorKey: "brand_no",
       },
       {
         header: "Season Code",
@@ -48,7 +48,7 @@ export default function ForecastTable() {
         accessorKey: "item_color",
       },
       {
-        header: "Min. Qty Per Order",
+        header: "Min. Qty.",
         accessorKey: "min_qty_per_order",
       },
       {
