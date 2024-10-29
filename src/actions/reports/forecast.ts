@@ -56,7 +56,7 @@ export async function getForecastTableData({
     season_code,
   });
 
-  console.log(data);
+  // console.log(data);
 
   return data;
 }

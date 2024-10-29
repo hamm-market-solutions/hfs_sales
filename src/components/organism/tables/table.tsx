@@ -16,6 +16,7 @@ import { keepPreviousData, useInfiniteQuery } from "@tanstack/react-query";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import React from "react";
 import {
+  getKeyValue,
   Table,
   TableBody,
   TableCell,
@@ -24,6 +25,8 @@ import {
   TableRow,
 } from "@nextui-org/table";
 import clsx from "clsx";
+import { useInfiniteScroll } from "@nextui-org/use-infinite-scroll";
+import { Spinner } from "@nextui-org/spinner";
 
 import Icon from "../../atoms/icons/icon";
 
@@ -44,12 +47,10 @@ export default function BaseTable<T extends object>({
     sorting: SortingState,
   ) => Promise<TableResponse<T>>;
 }) {
-  console.log("loading table");
-
+  const [hasMore, setHasMore] = React.useState<boolean>(true);
   //we need a reference to the scrolling element for logic down below
   const tableContainerRef = React.useRef<HTMLDivElement>(null);
   const [sorting, setSorting] = React.useState<SortingState>([]);
-
   //react-query has a useInfiniteQuery hook that is perfect for this use case
   const { data, fetchNextPage, isFetching, isLoading } = useInfiniteQuery<
     TableResponse<T>
@@ -61,8 +62,11 @@ export default function BaseTable<T extends object>({
     queryFn: async ({ pageParam = 0 }) => {
       const start = (pageParam as number) * fetchSize;
       const fetchedData = await fetchFn(start, fetchSize, sorting); //pretend api call
-
-      console.log("fetch data", fetchedData);
+      if (fetchedData.data.length > 0) {
+        setHasMore(true);
+      } else {
+        setHasMore(false);
+      }
 
       return fetchedData;
     },
@@ -71,41 +75,43 @@ export default function BaseTable<T extends object>({
     refetchOnWindowFocus: false,
     placeholderData: keepPreviousData,
   });
-
-  console.log("this data", data);
-
   //flatten the array of arrays from the useInfiniteQuery hook
   const flatData = React.useMemo(
     () => data?.pages?.flatMap((page) => page.data) ?? [],
     [data],
   );
-  const totalDBRowCount = data?.pages?.[0]?.meta?.totalRowCount ?? 0;
-  const totalFetched = flatData.length;
+  // const totalDBRowCount = data?.pages?.[0]?.meta?.totalRowCount ?? 0;
+  // const totalFetched = flatData.length;
+  // //called on scroll and possibly on mount to fetch more data as the user scrolls and reaches bottom of table
+  // const fetchMoreOnBottomReached = React.useCallback(
+  //   (containerRefElement?: HTMLDivElement | null) => {
+  //     console.log(containerRefElement);
+  //     if (containerRefElement) {
+  //       const { scrollHeight, scrollTop, clientHeight } = containerRefElement;
 
-  //called on scroll and possibly on mount to fetch more data as the user scrolls and reaches bottom of table
-  const fetchMoreOnBottomReached = React.useCallback(
-    (containerRefElement?: HTMLDivElement | null) => {
-      if (containerRefElement) {
-        const { scrollHeight, scrollTop, clientHeight } = containerRefElement;
+  //       console.log(
+  //         scrollHeight - scrollTop - clientHeight < 500,
+  //         !isFetching,
+  //         totalFetched < totalDBRowCount,
+  //       );
 
-        //once the user has scrolled within 500px of the bottom of the table, fetch more data if we can
-        if (
-          scrollHeight - scrollTop - clientHeight < 500 &&
-          !isFetching &&
-          totalFetched < totalDBRowCount
-        ) {
-          fetchNextPage();
-        }
-      }
-    },
-    [fetchNextPage, isFetching, totalFetched, totalDBRowCount],
-  );
+  //       //once the user has scrolled within 500px of the bottom of the table, fetch more data if we can
+  //       if (
+  //         scrollHeight - scrollTop - clientHeight < 500 &&
+  //         !isFetching &&
+  //         totalFetched < totalDBRowCount
+  //       ) {
+  //         fetchNextPage();
+  //       }
+  //     }
+  //   },
+  //   [fetchNextPage, isFetching, totalFetched, totalDBRowCount],
+  // );
 
-  //a check on mount and after a fetch to see if the table is already scrolled to the bottom and immediately needs to fetch more data
-  React.useEffect(() => {
-    fetchMoreOnBottomReached(tableContainerRef.current);
-  }, [fetchMoreOnBottomReached]);
-
+  // //a check on mount and after a fetch to see if the table is already scrolled to the bottom and immediately needs to fetch more data
+  // React.useEffect(() => {
+  //   fetchMoreOnBottomReached(tableContainerRef.current);
+  // }, [fetchMoreOnBottomReached]);
   const table = useReactTable({
     data: flatData,
     columns,
@@ -117,7 +123,6 @@ export default function BaseTable<T extends object>({
     manualSorting: true,
     debugTable: true,
   });
-
   //scroll to top of table when sorting changes
   const handleSortingChange: OnChangeFn<SortingState> = (updater) => {
     setSorting(updater);
@@ -125,18 +130,12 @@ export default function BaseTable<T extends object>({
       rowVirtualizer.scrollToIndex?.(0);
     }
   };
-
   //since this table option is derived from table row model state, we're using the table.setOptions utility
   table.setOptions((prev) => ({
     ...prev,
     onSortingChange: handleSortingChange,
   }));
-
   const { rows } = table.getRowModel();
-
-  console.log("rows model", rows);
-  console.log(rows.length);
-
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
     estimateSize: () => 33, //estimate row height for accurate scrollbar dragging
@@ -149,30 +148,43 @@ export default function BaseTable<T extends object>({
         : undefined,
     overscan: 5,
   });
+  console.log(rowVirtualizer.getVirtualItems());
 
-  console.log(rowVirtualizer.getTotalSize());
-
-  if (isLoading) {
-    return <>Loading...</>;
-  }
-
+  const [loaderRef, scrollerRef] = useInfiniteScroll({
+    hasMore,
+    onLoadMore: async () => {
+      console.log("loading more");
+      await fetchNextPage()
+    },
+  });
   const tableHeaderGroups = table.getHeaderGroups();
   const tableHeadersFlattened = tableHeaderGroups.flatMap((headerGroup) => {
     return headerGroup.headers.map((header) => {
       return header;
     });
   });
+  const topContent = (
+    <div className="table-filters flex flex-row gap-2">
+      <Button isIconOnly aria-label="Filters" color="primary" size="lg">
+        <Icon alt="Filters" src="/assets/icons/filter.svg" />
+      </Button>
+      <Input label="Search..." size="sm" type="text" />
+    </div>
+  );
 
   return (
     <section className="hfs-table flex flex-col gap-4">
-      <div className="table-filters flex flex-row gap-2">
-        <Button isIconOnly aria-label="Filters" color="primary" size="lg">
-          <Icon alt="Filters" src="/assets/icons/filter.svg" />
-        </Button>
-        <Input label="Search..." size="sm" type="text" />
-      </div>
-      <div ref={tableContainerRef} className="table-container">
-        <Table>
+      <div className="table-container">
+        <Table
+          isHeaderSticky
+          isStriped
+          aria-label="Table"
+          baseRef={scrollerRef}
+          classNames={{
+            base: `max-h-[650px] overflow-scroll`,
+          }}
+          topContent={topContent}
+        >
           <TableHeader>
             {tableHeadersFlattened.map((header) => {
               return (
@@ -207,23 +219,19 @@ export default function BaseTable<T extends object>({
             })}
           </TableHeader>
           <TableBody
-            style={{
-              height: `${rowVirtualizer.getTotalSize()}px`, //tells scrollbar how big the table is
-            }}
+            loadingContent={<Spinner color="primary" />}
+            isLoading={isFetching}
+            items={table.getRowModel().rows as Iterable<T>}
           >
-            {rowVirtualizer.getVirtualItems().map((virtualRow) => {
+            {/* {rowVirtualizer.getVirtualItems().map((virtualRow) => {
               const row = rows[virtualRow.index] as Row<T>;
-
-              console.log("row", row);
 
               return (
                 <TableRow
-                  style={{
-                    transform: `translateY(${virtualRow.start}px)`, //this should always be a `style` as it changes on scroll
-                  }}
-                  data-index={virtualRow.index} //needed for dynamic row height measurement
-                  // ref={node => rowVirtualizer.measureElement(node)} //measure dynamic row height
                   key={row.id}
+                  data-index={virtualRow.index} //needed for dynamic row height measurement
+                  // @ts-ignore
+                  ref={node => rowVirtualizer.measureElement(node)} //measure dynamic row height
                 >
                   {row.getVisibleCells().map((cell) => {
                     return (
@@ -242,7 +250,14 @@ export default function BaseTable<T extends object>({
                   })}
                 </TableRow>
               );
-            })}
+            })} */}
+            {(item: T) => (
+              <TableRow>
+                {(columnKey) => (
+                  <TableCell>{getKeyValue(item, columnKey)}</TableCell>
+                )}
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </div>
