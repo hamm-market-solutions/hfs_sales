@@ -15,13 +15,13 @@ app.prepare().then(() => {
 
   if (socketPath && socketPath.startsWith("/")) {
     server.listen(socketPath, () => {
-      console.log(`> Ready on socket ${socketPath}`);
+      console.log(`> Ready on socket ${socketPath} in ${dev ? "dev" : "prod"}`);
     });
   } else {
     const portNumber = socketPath || 3000;
     server.listen(portNumber, (err) => {
       if (err) throw err;
-      console.log(`> Ready on http://localhost:${portNumber}`);
+      console.log(`> Ready on http://localhost:${portNumber} in ${dev ? "dev" : "prod"}`);
     });
   }
 });
