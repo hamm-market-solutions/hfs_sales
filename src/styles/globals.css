@@ -8,3 +8,10 @@
     @apply max-w-[1024px] w-full justify-start p-6;
   }
 }
+
+.cut-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 160px;
+  white-space: nowrap;
+}

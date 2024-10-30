@@ -15,6 +15,7 @@ import {
 import { keepPreviousData, useInfiniteQuery } from "@tanstack/react-query";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import React from "react";
+import { Spinner } from "@nextui-org/spinner";
 
 import Icon from "../../atoms/icons/icon";
 
@@ -47,6 +48,7 @@ export default function BaseTable<T extends object>({
     queryFn: async ({ pageParam = 0 }) => {
       const start = (pageParam as number) * fetchSize;
       const fetchedData = await fetchFn(start, fetchSize, sorting); //pretend api call
+
       return fetchedData;
     },
     initialPageParam: 0,
@@ -66,6 +68,7 @@ export default function BaseTable<T extends object>({
     (containerRefElement?: HTMLDivElement | null) => {
       if (containerRefElement) {
         const { scrollHeight, scrollTop, clientHeight } = containerRefElement;
+
         //once the user has scrolled within 500px of the bottom of the table, fetch more data if we can
         if (
           scrollHeight - scrollTop - clientHeight < 500 &&
@@ -101,7 +104,6 @@ export default function BaseTable<T extends object>({
       rowVirtualizer.scrollToIndex?.(0);
     }
   };
-  console.log("sort",sorting);
 
   //since this table option is derived from table row model state, we're using the table.setOptions utility
   table.setOptions((prev) => ({
@@ -123,8 +125,8 @@ export default function BaseTable<T extends object>({
   });
 
   return (
-    <section className="hfs-table flex flex-col gap-4">
-      <div className="table-filters flex flex-row gap-2">
+    <section className="hfs-table flex flex-col p-4 text-sm rounded-2xl bg-white shadow-2xl">
+      <div className="table-filters flex flex-row gap-2 mb-4">
         <Button isIconOnly aria-label="Filters" color="primary" size="lg">
           <Icon alt="Filters" src="/assets/icons/filter.svg" />
         </Button>
@@ -132,7 +134,7 @@ export default function BaseTable<T extends object>({
       </div>
       <div
         ref={tableContainerRef}
-        className="table-container py-2 rounded-2xl bg-white shadow-xl"
+        className="table-container"
         style={{
           overflow: "auto", //our scrollable table container
           position: "relative", //needed for sticky header
@@ -140,15 +142,15 @@ export default function BaseTable<T extends object>({
         }}
         onScroll={(e) => fetchMoreOnBottomReached(e.target as HTMLDivElement)}
       >
-        <table style={{ display: "grid" }} className="mx-4">
+        <table className="rounded-lg" style={{ display: "grid" }}>
           <thead
+            className="p-4 rounded-lg bg-gray-100"
             style={{
               display: "grid",
               position: "sticky",
               top: 0,
               zIndex: 1,
             }}
-            className="p-4 rounded-lg bg-gray-100"
           >
             {table.getHeaderGroups().map((headerGroup) => (
               <tr
@@ -194,44 +196,54 @@ export default function BaseTable<T extends object>({
               position: "relative", //needed for absolute positioning of rows
             }}
           >
-            {rowVirtualizer.getVirtualItems().map((virtualRow) => {
-              const row = rows[virtualRow.index] as Row<T>;
+            {!isFetching ? (
+              rowVirtualizer.getVirtualItems().map((virtualRow) => {
+                const row = rows[virtualRow.index] as Row<T>;
 
-              return (
-                <tr
-                  key={row.id}
-                  ref={(node) => rowVirtualizer.measureElement(node)} //measure dynamic row height
-                  data-index={virtualRow.index} //needed for dynamic row height measurement
-                  style={{
-                    display: "flex",
-                    position: "absolute",
-                    transform: `translateY(${virtualRow.start}px)`, //this should always be a `style` as it changes on scroll
-                    width: "100%",
-                  }}
-                  className="p-4 border-b-1 border-gray-200"
-                >
-                  {row.getVisibleCells().map((cell) => {
-                    return (
-                      <td
-                        key={cell.id}
-                        style={{
-                          display: "flex",
-                          width: cell.column.getSize(),
-                        }}
-                      >
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext(),
-                        )}
-                      </td>
-                    );
-                  })}
-                </tr>
-              );
-            })}
+                return (
+                  <tr
+                    key={row.id}
+                    ref={(node) => rowVirtualizer.measureElement(node)} //measure dynamic row height
+                    className="px-4 py-2 border-b-1 border-gray-200"
+                    data-index={virtualRow.index} //needed for dynamic row height measurement
+                    style={{
+                      display: "flex",
+                      position: "absolute",
+                      transform: `translateY(${virtualRow.start}px)`, //this should always be a `style` as it changes on scroll
+                      width: "100%",
+                    }}
+                  >
+                    {row.getVisibleCells().map((cell) => {
+                      return (
+                        <td
+                          key={cell.id}
+                          className="flex-col justify-center"
+                          style={{
+                            display: "flex",
+                            width: cell.column.getSize(),
+                          }}
+                        >
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext(),
+                          )}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
+              })
+            ) : (
+              <tr>
+                <td>
+                  <Spinner />
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
+      <p className="px-4 py-2 border-t-1">{`${table.getRowCount()} of ${totalDBRowCount}`}</p>
     </section>
   );
 }

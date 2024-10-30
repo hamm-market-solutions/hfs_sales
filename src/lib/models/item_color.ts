@@ -1,12 +1,43 @@
 import { Err, Ok } from "ts-results";
 
-import HfsError, { HfsResult } from "../errors/HfsError";
+import HfsError from "../errors/HfsError";
 import prisma from "../prisma";
 import ItemColorModelError from "../errors/ItemColorModelError";
 
-import { ForecastTableData, ForecastTableRequest } from "@/types/table";
-import { sortingToPrisma } from "@/utils/conversions";
+import { ForecastTableRequest } from "@/types/table";
+import { sortingStateToPrisma } from "@/utils/conversions";
 import { deepCopy } from "@/utils/objects";
+
+export const getForecastItemColorDataCount = async ({
+  country,
+  brand,
+  season_code,
+}: {
+  country: string;
+  brand: number;
+  season_code: number;
+}) => {
+  try {
+    return Ok(
+      await prisma.s_item_color.count({
+        where: {
+          s_item: {
+            brand_no: brand.toString(),
+            season_code: season_code,
+          },
+        },
+      }),
+    );
+  } catch (error) {
+    return Err(
+      HfsError.fromThrow(
+        500,
+        ItemColorModelError.getForecastDataCountError(),
+        error as Error,
+      ),
+    );
+  }
+};
 
 export const getForecastItemColorData = async ({
   start,
@@ -35,16 +66,16 @@ export const getForecastItemColorData = async ({
       purchase_price: true,
     };
     const selectClone = deepCopy(select);
-    const orderBy = sortingToPrisma(selectClone, sorting);
+    const orderBy = sortingStateToPrisma(selectClone, sorting);
 
     return Ok(
       await prisma.s_item_color.findMany({
         select: select,
         where: {
-            s_item: {
-                brand_no: brand,
-                season_code: season_code,
-            },
+          s_item: {
+            brand_no: brand.toString(),
+            season_code: season_code,
+          },
         },
         orderBy: orderBy,
         skip: start,
@@ -52,6 +83,8 @@ export const getForecastItemColorData = async ({
       }),
     );
   } catch (error) {
+    console.log(error);
+
     return Err(
       HfsError.fromThrow(
         500,

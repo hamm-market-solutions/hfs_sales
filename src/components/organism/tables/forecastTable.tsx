@@ -8,7 +8,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import BaseTable from "./table";
 
 import { ForecastTableData } from "@/types/table";
-import { getForecastTableData } from "@/actions/reports/forecast";
+import { getForecastTableData, saveForecast } from "@/actions/reports/forecast";
+import { phaseToDrop } from "@/utils/conversions";
+import TableInput from "@/components/molecules/tableInput";
 
 export default function ForecastTable() {
   const params = useParams<{
@@ -21,44 +23,117 @@ export default function ForecastTable() {
       {
         header: "Image",
         accessorKey: "img_src",
-        cell: (cell) => <img alt="img" src={cell.getValue() as string} className="h-11" />,
+        cell: (cell) => (
+          <img
+            alt="img"
+            className="h-7 self-start"
+            src={cell.getValue() as string}
+          />
+        ),
+        enableSorting: false,
+        size: 60,
       },
       {
         header: "Brand",
-        accessorKey: "brand_no",
+        accessorKey: "brand_name",
+        size: 60,
       },
       {
-        header: "Season Code",
+        header: "Season",
         accessorKey: "season_code",
+        size: 80,
       },
       {
         header: "Drop",
-        accessorKey: "drop",
+        cell: (cell) => {
+          const row = cell.row.original;
+          const drop = phaseToDrop({
+            pre_collection: row.pre_collection,
+            main_collection: row.main_collection,
+            late_collection: row.late_collection,
+            Special_collection: row.Special_collection,
+          });
+
+          return drop > 0 ? drop : "";
+        },
+        sortingFn: (a, b) => {
+          const dropA = phaseToDrop({
+            pre_collection: a.original.pre_collection,
+            main_collection: a.original.main_collection,
+            late_collection: a.original.late_collection,
+            Special_collection: a.original.Special_collection,
+          });
+          const dropB = phaseToDrop({
+            pre_collection: b.original.pre_collection,
+            main_collection: b.original.main_collection,
+            late_collection: b.original.late_collection,
+            Special_collection: b.original.Special_collection,
+          });
+
+          return dropA - dropB;
+        },
+        enableSorting: true,
+        size: 60,
       },
       {
         header: "Item No",
         accessorKey: "item_no",
+        size: 80,
       },
       {
         header: "Description",
         accessorKey: "description",
+        size: 170,
+        cell: (cell) => {
+          return <span className="cut-text">{cell.getValue<string>()}</span>;
+        },
       },
       {
         header: "Item Color",
-        accessorKey: "item_color",
+        accessorKey: "color_code",
+        size: 100,
       },
       {
         header: "Min. Qty.",
-        accessorKey: "min_qty_per_order",
+        accessorKey: "min_qty_style",
+        cell: (cell) => {
+          const minQty = cell.getValue() as number;
+
+          return minQty / 1000;
+        },
+        size: 90,
       },
       {
         header: "Price",
-        accessorKey: "price",
+        accessorKey: "purchase_price",
+        cell: (cell) => {
+          const price = cell.getValue() as number;
+
+          return (price / 1000).toFixed(2);
+        },
+        size: 90,
+      },
+      {
+        header: "Amount",
+        cell: (cell) => {
+          const row = cell.row.original;
+
+          return (
+            <TableInput<ForecastTableData>
+              min={0}
+              step={1}
+              submitFn={saveForecast}
+              tableRow={row}
+              type="number"
+              variant="bordered"
+            />
+          );
+        },
+        size: 100,
       },
     ],
     [],
   );
-
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
@@ -77,7 +152,7 @@ export default function ForecastTable() {
             size: size,
             sorting: sorting,
             country: params.countryId,
-            brand: params.brandId,
+            brand: Number(params.brandId),
             season_code: Number(params.seasonCode),
           });
         }}

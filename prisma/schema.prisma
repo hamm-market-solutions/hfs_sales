@@ -78,6 +78,7 @@ model brand {
   code      String   @db.VarChar(10)
   gln       String   @default("") @db.VarChar(50)
   timestamp DateTime @default(now()) @db.Timestamp(0)
+  s_item    s_item[]
 
   @@index([code], map: "code")
 }
@@ -119,7 +120,11 @@ model s_item {
   style_code     Int?           @db.SmallInt
   tariff_no      BigInt?
   timestamp      DateTime       @default(now()) @db.Timestamp(0)
+  forecast       forecast[]
+  brand          brand?         @relation(fields: [brand_no], references: [no], onDelete: NoAction, onUpdate: NoAction, map: "s_item_ibfk_1")
   s_item_color   s_item_color[]
+
+  @@index([brand_no], map: "brand_no")
 }
 
 model s_season {
@@ -147,4 +152,15 @@ model role_has_permission {
 
   @@unique([role_id, permission_id], map: "role_has_permission_role_id_permission_id_uindex")
   @@index([permission_id], map: "permission_id")
+}
+
+model forecast {
+  id         Int      @id @default(autoincrement())
+  item_no    String   @db.VarChar(20)
+  color_code String   @db.VarChar(10)
+  amount     Int
+  timestamp  DateTime @default(now()) @db.Timestamp(0)
+  s_item     s_item   @relation(fields: [item_no], references: [no], onDelete: NoAction, onUpdate: NoAction, map: "forecast_ibfk_1")
+
+  @@index([item_no], map: "item_no")
 }

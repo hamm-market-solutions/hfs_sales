@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import { object, SafeParseReturnType } from "zod";
+import { SafeParseReturnType } from "zod";
 import { Err, Ok, Option } from "ts-results";
+import { SortingState } from "@tanstack/react-table";
 
 import HfsError, { HfsResult } from "../lib/errors/HfsError";
 import { HfsResponse } from "../types/responses";
-import { SortingState } from "@tanstack/react-table";
 
 export function resultToResponse<T extends object, R = HfsResponse>(
   result: HfsResult<T>,
@@ -53,14 +53,24 @@ export function optionToNotFound<T>(
   return Ok(option.val);
 }
 
-export const sortingToPrisma = (prismaSelect: { [key: string]: any }, sorting: SortingState) => {
-  let flattenedSorting: {[key: string]: string} = {};
+export const sortingStateToPrisma = (
+  prismaSelect: { [key: string]: any },
+  sorting: SortingState,
+) => {
+  let flattenedSorting: { [key: string]: string } = {};
+
   for (const sort of sorting) {
-    flattenedSorting = { ...flattenedSorting, [sort.id]: sort.desc ? "desc" : "asc" };
+    flattenedSorting = {
+      ...flattenedSorting,
+      [sort.id]: sort.desc ? "desc" : "asc",
+    };
   }
   for (const key in prismaSelect) {
     if (typeof prismaSelect[key] === "object") {
-      prismaSelect[key] = sortingToPrisma(prismaSelect[key]["select"], sorting);
+      prismaSelect[key] = sortingStateToPrisma(
+        prismaSelect[key]["select"],
+        sorting,
+      );
       if (Object.keys(prismaSelect[key]).length === 0) {
         delete prismaSelect[key];
       }
@@ -74,4 +84,28 @@ export const sortingToPrisma = (prismaSelect: { [key: string]: any }, sorting: S
   }
 
   return prismaSelect;
+};
+
+export const phaseToDrop = ({
+  pre_collection,
+  main_collection,
+  late_collection,
+  Special_collection,
+}: {
+  pre_collection: number;
+  main_collection: number;
+  late_collection: number;
+  Special_collection: number;
+}) => {
+  if (pre_collection !== 0) {
+    return 1;
+  } else if (main_collection !== 0) {
+    return 2;
+  } else if (late_collection !== 0) {
+    return 3;
+  } else if (Special_collection !== 0) {
+    return 4;
+  }
+
+  return 0;
 };

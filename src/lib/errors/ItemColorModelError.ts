@@ -8,4 +8,8 @@ export default class ItemColorModelError extends ModelError {
   public static getForecastDataError(): string {
     return "Failed to get forecast data from item color";
   }
+
+  public static getForecastDataCountError(): string {
+    return "Failed to get forecast data count from item color";
+  }
 }
