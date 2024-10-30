@@ -9,7 +9,6 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = createServer((req, res) => {
     const parsedUrl = parse(req.url, true);
-
     handle(req, res, parsedUrl);
   });
   const socketPath = process.env.PORT;
@@ -20,7 +19,6 @@ app.prepare().then(() => {
     });
   } else {
     const portNumber = socketPath || 3000;
-
     server.listen(portNumber, (err) => {
       if (err) throw err;
       console.log(`> Ready on http://localhost:${portNumber}`);

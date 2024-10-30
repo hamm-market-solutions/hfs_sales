@@ -51,3 +51,4 @@ prisma/migrations/20241015092639_add_role_has_permission_table
 
 # Mittwald
 .mwservice.yaml
+.htaccess
