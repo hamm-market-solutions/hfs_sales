@@ -1,7 +1,7 @@
 import { createServer } from "http";
 import { parse } from "url";
-
 import next from "next";
+
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -9,8 +9,17 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = createServer((req, res) => {
     const parsedUrl = parse(req.url, true);
+
+    // Check if the request is not secure (http) and redirect to https
+    if (!dev && req.headers["x-forwarded-proto"] !== "https") {
+      res.writeHead(301, { Location: `https://${req.headers.host}${req.url}` });
+      res.end();
+      return;
+    }
+
     handle(req, res, parsedUrl);
   });
+
   const socketPath = process.env.PORT;
 
   if (socketPath && socketPath.startsWith("/")) {
