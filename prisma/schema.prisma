@@ -1,7 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-  previewFeatures = ["prismaSchemaFolder"]
-  binaryTargets   = ["native", "debian-openssl-1.1.x", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
@@ -19,6 +17,7 @@ model user {
   passwordcode_time        DateTime?          @db.Timestamp(0)
   refresh_token            String?            @db.VarChar(255)
   refresh_token_expiration DateTime?          @db.Timestamp(0)
+  forecast                 forecast[]
   user_has_country         user_has_country[]
   user_has_role            user_has_role[]
 }
@@ -60,6 +59,7 @@ model s_country {
   code             String             @id @db.VarChar(10)
   name             String             @db.VarChar(30)
   timestamp        DateTime           @default(now()) @db.Timestamp(0)
+  forecast         forecast[]
   user_has_country user_has_country[]
 }
 
@@ -157,12 +157,18 @@ model role_has_permission {
 }
 
 model forecast {
-  id         Int      @id @default(autoincrement())
-  item_no    String   @db.VarChar(20)
-  color_code String   @db.VarChar(10)
-  amount     Int
-  timestamp  DateTime @default(now()) @db.Timestamp(0)
-  s_item     s_item   @relation(fields: [item_no], references: [no], onDelete: NoAction, onUpdate: NoAction, map: "forecast_ibfk_1")
+  id           Int       @id @default(autoincrement())
+  item_no      String    @db.VarChar(20)
+  color_code   String    @db.VarChar(10)
+  country_code String    @db.VarChar(10)
+  amount       Int
+  created_by   Int
+  timestamp    DateTime  @default(now()) @db.Timestamp(0)
+  s_item       s_item    @relation(fields: [item_no], references: [no], onDelete: NoAction, onUpdate: NoAction, map: "forecast_ibfk_1")
+  user         user      @relation(fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "forecast_ibfk_2")
+  s_country    s_country @relation(fields: [country_code], references: [code], onDelete: NoAction, onUpdate: NoAction, map: "forecast_ibfk_3")
 
   @@index([item_no], map: "item_no")
+  @@index([country_code], map: "country_code")
+  @@index([created_by], map: "created_by")
 }

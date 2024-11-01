@@ -122,7 +122,7 @@ export default function ForecastTable() {
             <TableInput<ForecastTableData>
               min={0}
               step={1}
-              submitFn={saveForecast}
+              submitFn={(row, value) => saveForecast(row, params.countryId, value)}
               tableRow={row}
               type="number"
               variant="bordered"

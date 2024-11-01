@@ -6,6 +6,7 @@ import HfsError, { HfsResult } from "../errors/HfsError";
 import JwtError, { ACCESS_TOKEN, REFRESH_TOKEN } from "../errors/JwtError";
 
 import { authConfig } from "@/config/auth";
+import { getOrUpdateAccessToken } from "../models/user";
 
 export const decodeJWT = (token: string): HfsResult<JWTPayload> => {
   try {
@@ -122,13 +123,13 @@ export const getAccessToken = async (): Promise<HfsResult<string>> => {
 export const getAccessTokenPayload = async (): Promise<
   HfsResult<JWTPayload>
 > => {
-  const accessTokenRes = await getAccessToken();
+  const accessTokenRes = await getOrUpdateAccessToken();
 
   if (accessTokenRes.err) {
     return accessTokenRes;
   }
 
-  return decodeJWT(accessTokenRes.val);
+  return Ok(accessTokenRes.val.accessToken[1]);
 };
 
 /**

@@ -60,10 +60,12 @@ export async function getForecastTableData({
   return data;
 }
 
-export async function saveForecast(row: ForecastTableData, value: any) {
+export async function saveForecast(row: ForecastTableData, countryCode: string, value: any) {
   const itemNo = Number(row.item_no);
   const colorCode = row.color_code;
   const amount = Number(value);
 
-  (await createForecast(itemNo, colorCode, amount)).unwrap();
+  (await createForecast(itemNo, colorCode, countryCode, amount)).unwrap();
+  console.log("Saved forecast");
+
 }

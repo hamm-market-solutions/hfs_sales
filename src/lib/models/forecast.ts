@@ -4,10 +4,12 @@ import { forecast } from "@prisma/client";
 import prisma from "../prisma";
 import HfsError, { HfsResult } from "../errors/HfsError";
 import ForecastModelError from "../errors/ForecastModelError";
+import { getAccessTokenPayload } from "../auth/jwt";
 
 export const createForecast = async (
   itemNo: number,
   colorCode: string,
+  countryCode: string,
   amount: number,
 ) => {
   try {
@@ -18,19 +20,24 @@ export const createForecast = async (
     if (latestForecast && latestForecast.amount === amount) {
       return Ok(latestForecast);
     }
+    const user = await getAccessTokenPayload();
 
-    return Ok(
-      await prisma.forecast.create({
-        data: {
-          item_no: itemNo.toString(),
-          color_code: colorCode,
-          amount: amount,
-        },
-      }),
-    );
+    if (user.err) {
+      return user;
+    }
+    const userId = user.val.sub!;
+    const newForecast = await prisma.forecast.create({
+      data: {
+        item_no: itemNo.toString(),
+        color_code: colorCode,
+        amount: amount,
+        country_code: countryCode.toUpperCase(),
+        created_by: Number(userId),
+      },
+    });
+
+    return Ok(newForecast);
   } catch (error) {
-    console.error(error);
-
     return Err(
       HfsError.fromThrow(
         500,
