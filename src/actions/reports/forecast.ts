@@ -2,8 +2,8 @@
 
 import { Ok } from "ts-results";
 
-import { getUserCountries } from "@/lib/models/user_has_country";
-import { GetUserCountriesOkResponse } from "@/types/responses";
+import { getUserCountries, userHasCountry } from "@/lib/models/userHasCountry";
+import { GetUserCountriesOkResponse, HfsResponse } from "@/types/responses";
 import { HfsResult } from "@/lib/errors/HfsError";
 import { getOrUpdateAccessToken } from "@/lib/models/user";
 import { getForecastData } from "@/lib/tables/forecast";
@@ -13,6 +13,8 @@ import {
   TableResponse,
 } from "@/types/table";
 import { createForecast } from "@/lib/models/forecast";
+import { getAccessTokenPayload } from "@/lib/auth/jwt";
+import { resultToResponse } from "@/utils/conversions";
 
 export async function getUserCountriesAction(): Promise<
   HfsResult<GetUserCountriesOkResponse>
@@ -60,12 +62,28 @@ export async function getForecastTableData({
   return data;
 }
 
-export async function saveForecast(row: ForecastTableData, countryCode: string, value: any) {
+export async function saveForecast(
+  row: ForecastTableData,
+  countryCode: string,
+  value: any,
+): Promise<HfsResponse<{}>> {
+  const user = await await getAccessTokenPayload();
+
+  if (user.err) {
+    return user.val;
+  }
+  const userId = Number(user.val.sub);
+  // Check if the user has access to the country
+  const hasCountry = await userHasCountry(userId, countryCode);
+
+  if (hasCountry.err) {
+    return hasCountry.val;
+  }
   const itemNo = Number(row.item_no);
   const colorCode = row.color_code;
   const amount = Number(value);
 
-  (await createForecast(itemNo, colorCode, countryCode, amount)).unwrap();
-  console.log("Saved forecast");
+  (await createForecast(itemNo, colorCode, countryCode, amount)).unwrap(); // we want to throw if there is an error, returning a 500
 
+  return { status: 200, data: {} };
 }

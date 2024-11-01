@@ -6,18 +6,18 @@ export type HfsResult<T> = Result<T, HfsError>;
 
 export default class HfsError extends Error {
   public status: number;
-  public errors: object;
+  public error: string;
   public name: string;
   public cause?: Error;
 
   constructor(
     status: number,
-    messages: { [type: string]: string },
+    message: string ,
     cause?: Error,
   ) {
-    super(JSON.stringify(messages));
+    super(JSON.stringify(message));
     this.status = status;
-    this.errors = messages;
+    this.error = message;
     this.name = "HfsError";
     this.cause = cause;
   }
@@ -27,16 +27,16 @@ export default class HfsError extends Error {
     message: string,
     cause?: Error,
   ): HfsError {
-    return new HfsError(status, { thrownError: message }, cause);
+    return new HfsError(status, message, cause);
   }
 
-  public static fromHfsResponse<T extends { [type: string]: string }>(
-    response: HfsErrResponse<T>,
+  public static fromHfsResponse(
+    response: HfsErrResponse,
   ): HfsError {
-    return new HfsError(response.status, response.errors, response.cause);
+    return new HfsError(response.status, response.error, response.cause);
   }
 
   public is(type: string): boolean {
-    return Object.values(this.errors).includes(type);
+    return Object.values(this.error).includes(type);
   }
 }

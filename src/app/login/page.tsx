@@ -22,7 +22,7 @@ export default function Login() {
           isRequired
           errorMessage={
             !isPending && message?.err
-              ? (message.val as LoginErrResponse).errors.email
+              ? (message.val as LoginErrResponse).error.email
               : ""
           }
           isInvalid={!isPending && message?.err}
@@ -35,7 +35,7 @@ export default function Login() {
           isRequired
           errorMessage={
             !isPending && message?.err
-              ? (message.val as LoginErrResponse).errors.password
+              ? (message.val as LoginErrResponse).error.password
               : ""
           }
           isInvalid={!isPending && message?.err}

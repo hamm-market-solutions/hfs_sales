@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { Ok } from "ts-results";
 
 import { getAccessTokenPayload } from "@/lib/auth/jwt";
-import { getUserCountries } from "@/lib/models/user_has_country";
+import { getUserCountries } from "@/lib/models/userHasCountry";
 import { GetUserCountriesResponse } from "@/types/responses";
 import { resultToResponse } from "@/utils/conversions";
 

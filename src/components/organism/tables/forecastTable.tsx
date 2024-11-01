@@ -11,6 +11,7 @@ import { ForecastTableData } from "@/types/table";
 import { getForecastTableData, saveForecast } from "@/actions/reports/forecast";
 import { phaseToDrop } from "@/utils/conversions";
 import TableInput from "@/components/molecules/tableInput";
+import { Ok } from "ts-results";
 
 export default function ForecastTable() {
   const params = useParams<{

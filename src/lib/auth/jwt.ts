@@ -4,9 +4,9 @@ import { cookies, headers } from "next/headers";
 
 import HfsError, { HfsResult } from "../errors/HfsError";
 import JwtError, { ACCESS_TOKEN, REFRESH_TOKEN } from "../errors/JwtError";
+import { getOrUpdateAccessToken } from "../models/user";
 
 import { authConfig } from "@/config/auth";
-import { getOrUpdateAccessToken } from "../models/user";
 
 export const decodeJWT = (token: string): HfsResult<JWTPayload> => {
   try {
