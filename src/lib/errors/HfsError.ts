@@ -10,11 +10,7 @@ export default class HfsError extends Error {
   public name: string;
   public cause?: Error;
 
-  constructor(
-    status: number,
-    message: string ,
-    cause?: Error,
-  ) {
+  constructor(status: number, message: string, cause?: Error) {
     super(JSON.stringify(message));
     this.status = status;
     this.error = message;
@@ -30,9 +26,7 @@ export default class HfsError extends Error {
     return new HfsError(status, message, cause);
   }
 
-  public static fromHfsResponse(
-    response: HfsErrResponse,
-  ): HfsError {
+  public static fromHfsResponse(response: HfsErrResponse): HfsError {
     return new HfsError(response.status, response.error, response.cause);
   }
 

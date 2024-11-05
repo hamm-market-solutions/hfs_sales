@@ -24,8 +24,7 @@ export type LoginOkResponse = HfsOkResponse<{
   accessToken: string;
 }>;
 
-export type LoginErrResponse = HfsErrResponse &
-  HfsThrownError;
+export type LoginErrResponse = HfsErrResponse & HfsThrownError;
 
 export type RefreshResponse = RefreshOkResponse | RefreshErrResponse;
 
@@ -33,8 +32,7 @@ export type RefreshOkResponse = HfsOkResponse<{
   accessToken: string;
 }>;
 
-export type RefreshErrResponse = HfsErrResponse &
-  HfsThrownError;
+export type RefreshErrResponse = HfsErrResponse & HfsThrownError;
 
 export type GetUserCountriesResponse =
   | GetUserCountriesOkResponse
@@ -44,5 +42,4 @@ export type GetUserCountriesOkResponse = HfsOkResponse<{
   countries: { code: string; name: string }[];
 }>;
 
-export type GetUserCountriesErrResponse = HfsErrResponse &
-  HfsThrownError;
+export type GetUserCountriesErrResponse = HfsErrResponse & HfsThrownError;

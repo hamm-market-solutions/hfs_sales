@@ -1,14 +1,18 @@
 "use client";
 
-import { HfsErrResponse, HfsResponse } from "@/types/responses";
 import { Input, InputProps } from "@nextui-org/input";
 import { useState } from "react";
+
+import { HfsErrResponse, HfsResponse } from "@/types/responses";
 
 export default function TableInput<T extends object>({
   tableRow,
   submitFn,
   ...props
-}: { tableRow: T; submitFn: (row: T, value: any) => Promise<HfsResponse> } & InputProps) {
+}: {
+  tableRow: T;
+  submitFn: (row: T, value: any) => Promise<HfsResponse>;
+} & InputProps) {
   const [value, setValue] = useState<
     string | (readonly string[] & string) | undefined
   >("");
@@ -16,12 +20,15 @@ export default function TableInput<T extends object>({
 
   return (
     <Input
+      errorMessage={error}
+      isInvalid={error !== undefined}
       value={value}
       onBlur={async () => {
         if (value == "") {
           return;
         }
         const response = await submitFn(tableRow, value);
+
         console.log(response);
 
         if (response.status !== 200) {
@@ -29,8 +36,6 @@ export default function TableInput<T extends object>({
         }
       }}
       onChange={(e) => setValue(e.target.value)}
-      errorMessage={error}
-      isInvalid={error !== undefined}
       {...props}
     />
   );

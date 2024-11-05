@@ -14,7 +14,6 @@ import {
 } from "@/types/table";
 import { createForecast } from "@/lib/models/forecast";
 import { getAccessTokenPayload } from "@/lib/auth/jwt";
-import { resultToResponse } from "@/utils/conversions";
 
 export async function getUserCountriesAction(): Promise<
   HfsResult<GetUserCountriesOkResponse>

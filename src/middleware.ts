@@ -41,13 +41,7 @@ export async function middleware(
     return nextResponse;
   } catch (error) {
     return resultToResponse(
-      Err(
-        new HfsError(
-          500,
-          ErrorVariant.unexpected(),
-          error as Error,
-        ),
-      ),
+      Err(new HfsError(500, ErrorVariant.unexpected(), error as Error)),
     );
   }
 }

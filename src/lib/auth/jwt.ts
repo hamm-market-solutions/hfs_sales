@@ -12,9 +12,7 @@ export const decodeJWT = (token: string): HfsResult<JWTPayload> => {
   try {
     return Ok(decodeJwt(token));
   } catch (error) {
-    return Err(
-      new HfsError(401, JwtError.decodingError(), error as Error),
-    );
+    return Err(new HfsError(401, JwtError.decodingError(), error as Error));
   }
 };
 
@@ -36,9 +34,7 @@ export const signJWT = async (
         .sign(encoded),
     );
   } catch (error) {
-    return Err(
-      new HfsError(500, JwtError.signingError(), error as Error),
-    );
+    return Err(new HfsError(500, JwtError.signingError(), error as Error));
   }
 };
 
@@ -55,9 +51,7 @@ export const verifyJWT = async (
       return decodedRes;
     }
     if (decodedRes.val.exp! < Date.now() / 1000) {
-      return Err(
-        new HfsError(401, JwtError.expired()),
-      );
+      return Err(new HfsError(401, JwtError.expired()));
     }
     const { payload } = await jwtVerify(
       token,
@@ -66,9 +60,7 @@ export const verifyJWT = async (
 
     return Ok(payload);
   } catch (error) {
-    return Err(
-      new HfsError(401, JwtError.invalid(), error as Error),
-    );
+    return Err(new HfsError(401, JwtError.invalid(), error as Error));
   }
 };
 
@@ -108,9 +100,7 @@ export const getAccessToken = async (): Promise<HfsResult<string>> => {
     return Ok(fromBearer.val);
   }
 
-  return Err(
-    new HfsError(401, JwtError.notFound(ACCESS_TOKEN)),
-  );
+  return Err(new HfsError(401, JwtError.notFound(ACCESS_TOKEN)));
 };
 
 /**
@@ -147,20 +137,12 @@ export const getAccessTokenAndVerify = async (): Promise<
   if (payloadRes.err) {
     if (payloadRes.val.is(JwtError.expired())) {
       return Err(
-        new HfsError(
-          401,
-          JwtError.expired(ACCESS_TOKEN),
-          payloadRes.val,
-        ),
+        new HfsError(401, JwtError.expired(ACCESS_TOKEN), payloadRes.val),
       );
     }
     if (payloadRes.val.is(JwtError.invalid())) {
       return Err(
-        new HfsError(
-          401,
-          JwtError.invalid(ACCESS_TOKEN),
-          payloadRes.val,
-        ),
+        new HfsError(401, JwtError.invalid(ACCESS_TOKEN), payloadRes.val),
       );
     }
 
@@ -194,9 +176,7 @@ export const getRefreshTokenAndVerify = async (
     const fromCookieOpt = await getRefreshTokenFromCookie();
 
     if (fromCookieOpt.none) {
-      return Err(
-        new HfsError(401, JwtError.notFound(REFRESH_TOKEN)),
-      );
+      return Err(new HfsError(401, JwtError.notFound(REFRESH_TOKEN)));
     }
     workingRefreshToken = fromCookieOpt.val;
   } else {
@@ -210,20 +190,12 @@ export const getRefreshTokenAndVerify = async (
   if (payloadRes.err) {
     if (payloadRes.val.is(JwtError.expired())) {
       return Err(
-        new HfsError(
-          401,
-          JwtError.expired(REFRESH_TOKEN),
-          payloadRes.val,
-        ),
+        new HfsError(401, JwtError.expired(REFRESH_TOKEN), payloadRes.val),
       );
     }
     if (payloadRes.val.is(JwtError.invalid())) {
       return Err(
-        new HfsError(
-          401,
-          JwtError.invalid(REFRESH_TOKEN),
-          payloadRes.val,
-        ),
+        new HfsError(401, JwtError.invalid(REFRESH_TOKEN), payloadRes.val),
       );
     }
 

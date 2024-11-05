@@ -1,6 +1,6 @@
 "use server";
 
-import { compareSync }  from "bcrypt-ts";
+import { compareSync } from "bcrypt-ts";
 import { Err, None, Ok, Option, Some } from "ts-results";
 import { user } from "@prisma/client";
 import { decodeJwt, JWTPayload } from "jose";
@@ -207,7 +207,7 @@ export async function verifyPassword(
   );
 
   if (doPasswordsMatch.none || !doPasswordsMatch.val) {
-    return Err(new HfsError(401,  UserModelError.passwordMismatch()));
+    return Err(new HfsError(401, UserModelError.passwordMismatch()));
   }
 
   return Ok(true);

@@ -50,7 +50,7 @@ async function seedBrandTable() {
 }
 
 async function seedUserTable() {
-  const admin = await prisma.user.upsert({
+  await prisma.user.upsert({
     where: { email: "admin@hfs.com" },
     update: {},
     create: {
@@ -60,7 +60,7 @@ async function seedUserTable() {
       password: "$2a$10$ScRf6ODeuuIJW/F0XN3GlejAZN17U6Fd4XmFLxRtTd3CdZtjbZHbu", // Test1234.
     },
   });
-  const sales = await prisma.user.upsert({
+  await prisma.user.upsert({
     where: { email: "sales@hfs.com" },
     update: {},
     create: {
@@ -70,7 +70,7 @@ async function seedUserTable() {
       password: "$2a$10$ScRf6ODeuuIJW/F0XN3GlejAZN17U6Fd4XmFLxRtTd3CdZtjbZHbu", // Test1234.
     },
   });
-  const salesPerson = await prisma.user.upsert({
+  await prisma.user.upsert({
     where: { email: "salesperson@hfs.com" },
     update: {},
     create: {

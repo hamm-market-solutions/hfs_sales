@@ -12,13 +12,13 @@ export const userHasCountry = async (userId: number, countryCode: string) => {
   if (userCountries.err) {
     return userCountries;
   }
-  const countryCodes = userCountries.val.map(
-    (userCountry) => userCountry.s_country.code.toUpperCase(),
+  const countryCodes = userCountries.val.map((userCountry) =>
+    userCountry.s_country.code.toUpperCase(),
   );
 
   if (!countryCodes.includes(countryCode.toUpperCase())) {
     return Err(
-      new HfsError(403,  UserHasCountryModelError.hasCountryError(countryCode)),
+      new HfsError(403, UserHasCountryModelError.hasCountryError(countryCode)),
     );
   }
 

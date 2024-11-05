@@ -11,7 +11,6 @@ import { ForecastTableData } from "@/types/table";
 import { getForecastTableData, saveForecast } from "@/actions/reports/forecast";
 import { phaseToDrop } from "@/utils/conversions";
 import TableInput from "@/components/molecules/tableInput";
-import { Ok } from "ts-results";
 
 export default function ForecastTable() {
   const params = useParams<{
@@ -123,7 +122,9 @@ export default function ForecastTable() {
             <TableInput<ForecastTableData>
               min={0}
               step={1}
-              submitFn={(row, value) => saveForecast(row, params.countryId, value)}
+              submitFn={(row, value) =>
+                saveForecast(row, params.countryId, value)
+              }
               tableRow={row}
               type="number"
               variant="bordered"
