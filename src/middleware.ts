@@ -44,7 +44,7 @@ export async function middleware(
       Err(
         new HfsError(
           500,
-          { unexpected: ErrorVariant.unexpected() },
+          ErrorVariant.unexpected(),
           error as Error,
         ),
       ),

@@ -1,6 +1,6 @@
 "use server";
 
-import { compareSync } from "bcrypt-ts";
+import { compareSync }  from "bcrypt-ts";
 import { Err, None, Ok, Option, Some } from "ts-results";
 import { user } from "@prisma/client";
 import { decodeJwt, JWTPayload } from "jose";
@@ -57,7 +57,7 @@ export const updateRefreshToken = async (
   const user = await getOptUserById(userId);
 
   if (user.none) {
-    return Err(new HfsError(404, { user: UserModelError.notFound("user") }));
+    return Err(new HfsError(404, UserModelError.notFound("user")));
   }
   const refreshTokenExp = Date.now() / 1000 + REFRESH_TOKEN_LIFETIME;
   const refreshTokenRes = await signJWT(
@@ -78,9 +78,7 @@ export const updateRefreshToken = async (
     return Err(
       new HfsError(
         500,
-        {
-          refreshToken: UserModelError.updateError("refresh token"),
-        },
+        UserModelError.updateError("refresh token"),
         error as Error,
       ),
     );
@@ -209,7 +207,7 @@ export async function verifyPassword(
   );
 
   if (doPasswordsMatch.none || !doPasswordsMatch.val) {
-    return Err(new HfsError(401, { login: UserModelError.passwordMismatch() }));
+    return Err(new HfsError(401,  UserModelError.passwordMismatch()));
   }
 
   return Ok(true);

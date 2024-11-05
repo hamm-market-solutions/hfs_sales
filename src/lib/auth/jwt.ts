@@ -13,7 +13,7 @@ export const decodeJWT = (token: string): HfsResult<JWTPayload> => {
     return Ok(decodeJwt(token));
   } catch (error) {
     return Err(
-      new HfsError(401, { token: JwtError.decodingError() }, error as Error),
+      new HfsError(401, JwtError.decodingError(), error as Error),
     );
   }
 };
@@ -37,7 +37,7 @@ export const signJWT = async (
     );
   } catch (error) {
     return Err(
-      new HfsError(500, { token: JwtError.signingError() }, error as Error),
+      new HfsError(500, JwtError.signingError(), error as Error),
     );
   }
 };
@@ -56,9 +56,7 @@ export const verifyJWT = async (
     }
     if (decodedRes.val.exp! < Date.now() / 1000) {
       return Err(
-        new HfsError(401, {
-          token: JwtError.expired(),
-        }),
+        new HfsError(401, JwtError.expired()),
       );
     }
     const { payload } = await jwtVerify(
@@ -69,7 +67,7 @@ export const verifyJWT = async (
     return Ok(payload);
   } catch (error) {
     return Err(
-      new HfsError(401, { token: JwtError.invalid() }, error as Error),
+      new HfsError(401, JwtError.invalid(), error as Error),
     );
   }
 };
@@ -111,9 +109,7 @@ export const getAccessToken = async (): Promise<HfsResult<string>> => {
   }
 
   return Err(
-    new HfsError(401, {
-      accessToken: JwtError.notFound(ACCESS_TOKEN),
-    }),
+    new HfsError(401, JwtError.notFound(ACCESS_TOKEN)),
   );
 };
 
@@ -153,7 +149,7 @@ export const getAccessTokenAndVerify = async (): Promise<
       return Err(
         new HfsError(
           401,
-          { accessToken: JwtError.expired(ACCESS_TOKEN) },
+          JwtError.expired(ACCESS_TOKEN),
           payloadRes.val,
         ),
       );
@@ -162,7 +158,7 @@ export const getAccessTokenAndVerify = async (): Promise<
       return Err(
         new HfsError(
           401,
-          { accessToken: JwtError.invalid(ACCESS_TOKEN) },
+          JwtError.invalid(ACCESS_TOKEN),
           payloadRes.val,
         ),
       );
@@ -199,7 +195,7 @@ export const getRefreshTokenAndVerify = async (
 
     if (fromCookieOpt.none) {
       return Err(
-        new HfsError(401, { refreshToken: JwtError.notFound(REFRESH_TOKEN) }),
+        new HfsError(401, JwtError.notFound(REFRESH_TOKEN)),
       );
     }
     workingRefreshToken = fromCookieOpt.val;
@@ -216,7 +212,7 @@ export const getRefreshTokenAndVerify = async (
       return Err(
         new HfsError(
           401,
-          { refreshToken: JwtError.expired(REFRESH_TOKEN) },
+          JwtError.expired(REFRESH_TOKEN),
           payloadRes.val,
         ),
       );
@@ -225,7 +221,7 @@ export const getRefreshTokenAndVerify = async (
       return Err(
         new HfsError(
           401,
-          { refreshToken: JwtError.invalid(REFRESH_TOKEN) },
+          JwtError.invalid(REFRESH_TOKEN),
           payloadRes.val,
         ),
       );
