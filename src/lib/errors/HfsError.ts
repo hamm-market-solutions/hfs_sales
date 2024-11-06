@@ -31,6 +31,6 @@ export default class HfsError extends Error {
   }
 
   public is(type: string): boolean {
-    return Object.values(this.error).includes(type);
+    return this.error == type;
   }
 }

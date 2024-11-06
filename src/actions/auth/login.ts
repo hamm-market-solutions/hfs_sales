@@ -33,8 +33,8 @@ export async function handleLogin(
   if (passwordVerifyRes.err) {
     return passwordVerifyRes;
   }
-  const accessTokenRes = await updateAccessToken(userRes.val.id);
 
+  const accessTokenRes = await updateAccessToken(userRes.val.id);
   if (accessTokenRes.err) {
     return accessTokenRes;
   }

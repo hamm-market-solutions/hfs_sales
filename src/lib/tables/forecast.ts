@@ -1,7 +1,7 @@
 import {
   getForecastItemColorData,
   getForecastItemColorDataCount,
-} from "../models/item_color";
+} from "../models/itemColor";
 
 import {
   ForecastTableData,
