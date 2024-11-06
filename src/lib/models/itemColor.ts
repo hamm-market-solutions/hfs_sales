@@ -7,6 +7,7 @@ import ItemColorModelError from "../errors/ItemColorModelError";
 import { ForecastTableRequest } from "@/types/table";
 import { sortingStateToPrisma } from "@/utils/conversions";
 import { deepCopy } from "@/utils/objects";
+import { getAccessTokenPayload } from "../auth/jwt";
 
 export const getForecastItemColorDataCount = async ({
   country,
@@ -67,6 +68,30 @@ export const getForecastItemColorData = async ({
     };
     const selectClone = deepCopy(select);
     const orderBy = sortingStateToPrisma(selectClone, sorting);
+    const userId = (await getAccessTokenPayload()).unwrap().sub!;
+    const raw = `
+      SELECT
+        si.brand_no,
+        si.season_code,
+        si.description,
+        si.min_qty_style,
+        sic.item_no,
+        sic.color_code,
+        sic.purchase_price,
+        sic.pre_collection,
+        sic.main_collection,
+        sic.late_collection,
+        sic.Special_collection,
+        f.amount
+      FROM s_item_color sic
+      LEFT JOIN s_item si ON sic.item_no = si.item_no
+      LEFT JOIN forecast f ON sic.item_no = f.item_no AND sic.color_code = f.color_code AND f.country_code = ${country} AND f.created_by = ${userId}
+      WHERE si.brand_no = ${brand}
+      AND si.season_code = ${season_code}
+      ORDER BY ${orderBy}
+      LIMIT ${size}
+      OFFSET ${start}
+    `;
 
     return Ok(
       await prisma.s_item_color.findMany({
