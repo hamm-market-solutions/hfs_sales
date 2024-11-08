@@ -6,8 +6,7 @@
     "dev": "next dev --turbo",
     "build": "NODE_ENV=production next build",
     "start": "cp .env.production .env && NODE_ENV=production node server.mjs",
-    "lint": "eslint . --fix",
-    "prisma": "prisma"
+    "lint": "eslint . --fix"
   },
   "dependencies": {
     "@nextui-org/button": "2.0.38",
@@ -27,7 +26,6 @@
     "@nextui-org/table": "^2.0.40",
     "@nextui-org/tabs": "^2.0.37",
     "@nextui-org/theme": "2.2.11",
-    "@prisma/client": "^5.21.1",
     "@react-aria/ssr": "3.9.6",
     "@react-aria/visually-hidden": "3.8.17",
     "@react-stately/data": "^3.11.7",
@@ -38,13 +36,13 @@
     "bcrypt-ts": "^5.0.2",
     "class-validator": "^0.14.1",
     "clsx": "2.1.1",
+    "drizzle-orm": "^0.36.1",
     "framer-motion": "~11.11.9",
     "intl-messageformat": "^10.7.1",
     "jose": "^5.9.6",
-    "mysql2": "^3.11.3",
+    "mysql2": "^3.11.4",
     "next": "^15.0.0",
     "next-themes": "^0.3.0",
-    "prisma": "^5.21.1",
     "react": "18.3.1",
     "react-apexcharts": "^1.4.1",
     "react-dom": "18.3.1",
@@ -58,6 +56,7 @@
     "@typescript-eslint/eslint-plugin": "^8.11.0",
     "@typescript-eslint/parser": "8.11.0",
     "autoprefixer": "10.4.20",
+    "drizzle-kit": "^0.28.0",
     "eslint": "^9.13.0",
     "eslint-config-next": "15.0.0",
     "eslint-config-prettier": "^9.1.0",
@@ -72,9 +71,7 @@
     "tailwind-variants": "0.2.1",
     "tailwindcss": "3.4.14",
     "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
     "typescript": "^5.6.3"
-  },
-  "prisma": {
-    "seed": "ts-node prisma/seed.js"
   }
 }
