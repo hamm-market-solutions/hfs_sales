@@ -1,124 +1,29 @@
-import { mysqlTable, mysqlSchema, AnyMySqlColumn, primaryKey, int, varchar, index, foreignKey, text, tinyint, timestamp, datetime, longtext, unique, tinytext, double, mediumtext, smallint, date, time, bigint, serial } from "drizzle-orm/mysql-core"
-import { desc, sql } from "drizzle-orm"
-import { code } from "@nextui-org/theme";
-import * as t from "drizzle-orm/mysql-core";
-import { table } from "console";
+import { mysqlTable, mysqlSchema, AnyMySqlColumn, primaryKey, unique, int, varchar, timestamp } from "drizzle-orm/mysql-core"
+import { sql } from "drizzle-orm"
 
-// HFS BASE TABLES - tables that are pre filled with data
-
-export const brands = mysqlTable("brands", {
-	id: serial().primaryKey(),
+export const permission = mysqlTable("permission", {
+	id: int({ unsigned: true }).autoincrement().notNull(),
 	name: varchar({ length: 50 }).notNull(),
-	code: varchar({ length: 10 }).notNull(),
-	gln: varchar({ length: 13 }).notNull(),
-});
-
-export const directions = mysqlTable("directions", {
-	id: serial().primaryKey(),
-	name: varchar({ length: 100 }).notNull(),
-});
-
-export const documentTypes = mysqlTable("document_types", {
-	id: serial().primaryKey(),
-	name: varchar({ length: 100 }).notNull(),
-});
-
-export const documentCategories = mysqlTable("document_categories", {
-	id: serial().primaryKey(),
-	name: varchar({ length: 100 }).notNull(),
-	documentType: int("document_type").references(() => documentTypes.id),
-});
-
-export const roles = mysqlTable("roles", {
-	id: serial().primaryKey(),
-	name: varchar({ length: 50 }).notNull().unique(),
-	description: varchar({ length: 255 }),
-});
-
-export const permissions = mysqlTable("permissions", {
-	id: serial().primaryKey(),
-	name: varchar({ length: 50 }).notNull().unique(),
-});
-
-// HFS TABLES - tables that are filled with data by the application
-
-export const users = mysqlTable("users", {
-	id: serial().primaryKey(),
-	name: varchar({ length: 255 }).notNull(),
-	fname: varchar({ length: 255 }),
-	email: varchar({ length: 255 }).unique().notNull(),
-	passwort: varchar({ length: 255 }).notNull(),
-	passwordResetToken: varchar("password_reset_token", { length: 255 }),
-	passwordResetExpires: datetime("password_reset_expires"),
-});
-
-export const userHasRoles = mysqlTable(
-	"user_has_roles",
-	{
-		id: serial().primaryKey(),
-		user: int("user_id").references(() => users.id),
-		role: int("role_id").references(() => roles.id),
-	},
-	(table) => {
-		return {
-			userRoleUnique: t.uniqueIndex("user_role_unique").on(table.user, table.role),
-		};
+},
+(table) => {
+	return {
+		permissionId: primaryKey({ columns: [table.id], name: "permission_id"}),
+		permissionNameUindex: unique("permission_name_uindex").on(table.name),
 	}
-);
-
-export const userHasPermissions = mysqlTable(
-	"user_has_permissions",
-	{
-		id: serial().primaryKey(),
-		user: int("user_id").references(() => users.id),
-		permission: int("permission_id").references(() => permissions.id),
-	},
-	(table) => {
-		return {
-			userPermissionUnique: t.uniqueIndex("user_permission_unique").on(table.user, table.permission),
-		};
-	}
-);
-
-// NAV TABLES - tables that are imported from navision
-
-export const countries = mysqlTable("n_countries", {
-	id: serial().primaryKey(),
-	code: varchar({ length: 2 }).notNull().unique(),
-	name: varchar({ length: 100 }).notNull(),
-	timestamp: timestamp().notNull().defaultNow(),
 });
 
-export const assortments = mysqlTable(
-	"n_assortments",
-	{
-		id: serial().primaryKey(),
-		code: varchar({ length: 30 }).notNull(),
-		sizeCode: varchar({ length: 10 }),
-		qtyPair: int("qty_pair").notNull(),
-	},
-	(table) => {
-		return {
-			assortmentUnique: t.uniqueIndex("assortment_unique").on(table.code, table.sizeCode),
-		};
+export const user = mysqlTable("user", {
+	id: int({ unsigned: true }).autoincrement().notNull(),
+	fname: varchar({ length: 50 }).notNull(),
+	name: varchar({ length: 50 }).notNull(),
+	password: varchar({ length: 70 }).notNull(),
+	email: varchar({ length: 100 }).notNull(),
+	passwordcode: varchar({ length: 255 }),
+	passwordcodeTime: timestamp("passwordcode_time", { mode: 'string' }),
+},
+(table) => {
+	return {
+		userId: primaryKey({ columns: [table.id], name: "user_id"}),
+		userEmailUindex: unique("user_email_uindex").on(table.email),
 	}
-);
-
-export const items = mysqlTable("n_items", {
-	id: serial().primaryKey(),
-	no: varchar({ length: 20 }).notNull().unique(),
-	description: varchar({ length: 100 }),
-	last: varchar({ length: 30 }),
-	material: varchar({ length: 30 }),
-	brandId: int("brand_id").references(() => brands.id),
-	category: varchar({ length: 10 }),
-	qty: int(),
-	minQtyStyle: int("min_qty_style"),
-	minQtyLast: int("min_qty_last"),
-	seasonId: smallint("season_id"),
-	nos: smallint().default(0),
-	vendorId: int("vendor_id"),
-	vendorItemNo: varchar("vendor_item_no", { length: 20 }),
-	styleId: int("style_id"),
-	tariffNo: bigint("tariff_no", { mode: "number" }),
 });

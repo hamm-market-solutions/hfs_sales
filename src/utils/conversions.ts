@@ -44,9 +44,9 @@ export function schemaToResult<Output extends any, Input = Output>(
 
 export function optionToNotFound<T>(
   option: Option<T>,
-  errorMessage = "Resource not found",
+  errorMessage = "resource not found",
 ): HfsResult<T> {
-  if (option.none) {
+  if (option.none || option.val === null || option.val === undefined) {
     return Err(new HfsError(404, errorMessage));
   }
 

@@ -28,13 +28,15 @@ export async function handleLogin(
   if (userRes.err) {
     return userRes;
   }
+  console.log("user found");
   const passwordVerifyRes = await verifyPassword(userRes.val.id, password);
 
   if (passwordVerifyRes.err) {
     return passwordVerifyRes;
   }
-
+  console.log("user logged in");
   const accessTokenRes = await updateAccessToken(userRes.val.id);
+
   if (accessTokenRes.err) {
     return accessTokenRes;
   }
@@ -44,6 +46,7 @@ export async function handleLogin(
     sameSite: "strict",
     expires: accessTokenRes.val.refreshToken[1].exp! * 1000,
   });
+  console.log(await cookies());
 
   redirect("/dashboard");
 }
