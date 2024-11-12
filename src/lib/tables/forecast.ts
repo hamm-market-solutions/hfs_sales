@@ -53,4 +53,4 @@
 
 export const getForecastData = async () => {
   return;
-}
+};

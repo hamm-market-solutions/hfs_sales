@@ -4,6 +4,8 @@ import { compareSync } from "bcrypt-ts";
 import { Err, None, Ok, Option, Some } from "ts-results";
 import { decodeJwt, JWTPayload } from "jose";
 import { cookies } from "next/headers";
+import { eq } from "drizzle-orm";
+import { drizzle } from "drizzle-orm/mysql2";
 
 import UserModelError from "../errors/UserModelError";
 import JwtError, { ACCESS_TOKEN, REFRESH_TOKEN } from "../errors/JwtError";
@@ -19,13 +21,18 @@ import { authConfig } from "@/config/auth";
 import { ACCESS_TOKEN_LIFETIME, REFRESH_TOKEN_LIFETIME } from "@/config/auth";
 import { optionToNotFound } from "@/utils/conversions";
 import { user as userTable } from "@/db/schema";
-import { eq } from "drizzle-orm";
-import { drizzle } from "drizzle-orm/mysql2";
 
+//@ts-ignore
 const db = drizzle(process.env.DATABASE_URL!);
 
-export const getOptUserById = async (id: number): Promise<Option<typeof userTable.$inferSelect>> => {
-  const user = await db.select().from(userTable).where(eq(userTable.id, id)).limit(1);
+export const getOptUserById = async (
+  id: number,
+): Promise<Option<typeof userTable.$inferSelect>> => {
+  const user = await db
+    .select()
+    .from(userTable)
+    .where(eq(userTable.id, id))
+    .limit(1);
 
   if (user) {
     return Some(user[0]);
@@ -45,7 +52,11 @@ export const getUserByEmail = async (
 export const getOptUserByEmail = async (
   email: string,
 ): Promise<Option<typeof userTable.$inferSelect>> => {
-  const user = await db.select().from(userTable).where(eq(userTable.email, email)).limit(1);
+  const user = await db
+    .select()
+    .from(userTable)
+    .where(eq(userTable.email, email))
+    .limit(1);
 
   if (user) {
     return Some(user[0]);

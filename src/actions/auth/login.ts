@@ -13,15 +13,15 @@ import {
 } from "@/lib/models/user";
 
 export async function handleLogin(
-  _prevState: Err<LoginResponse> | undefined,
+  // _prevState: Err<LoginResponse> | undefined,
   form: FormData,
-): Promise<Err<LoginResponse> | undefined> {
+): Promise<boolean> {
   console.log("handling login");
 
   const formValidationRes = validateLoginForm(form);
 
   if (formValidationRes.err) {
-    return formValidationRes;
+    return false;
   }
   console.log("form validated");
   const email = formValidationRes.val.email;
@@ -30,19 +30,19 @@ export async function handleLogin(
   const userRes = await getUserByEmail(email);
 
   if (userRes.err) {
-    return userRes;
+    return false;
   }
   console.log("user found");
   const passwordVerifyRes = await verifyPassword(userRes.val.id, password);
 
   if (passwordVerifyRes.err) {
-    return passwordVerifyRes;
+    return false;
   }
   console.log("password verified");
   const accessTokenRes = await updateAccessToken(userRes.val.id);
 
   if (accessTokenRes.err) {
-    return accessTokenRes;
+    return false;
   }
   console.log("access token updated");
   (await cookies()).set("refreshToken", accessTokenRes.val.refreshToken[0], {
