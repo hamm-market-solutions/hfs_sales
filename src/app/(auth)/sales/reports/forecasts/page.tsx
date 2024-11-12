@@ -1,4 +1,5 @@
 // "use server";
+"use client";
 
 // import { getUserCountriesAction } from "@/actions/reports/forecast";
 // import Title from "@/components/molecules/title";

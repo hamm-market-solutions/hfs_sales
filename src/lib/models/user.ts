@@ -18,9 +18,11 @@ import {
 import { authConfig } from "@/config/auth";
 import { ACCESS_TOKEN_LIFETIME, REFRESH_TOKEN_LIFETIME } from "@/config/auth";
 import { optionToNotFound } from "@/utils/conversions";
-import { db } from "@/db";
 import { user as userTable } from "@/db/schema";
 import { eq } from "drizzle-orm";
+import { drizzle } from "drizzle-orm/mysql2";
+
+const db = drizzle(process.env.DATABASE_URL!);
 
 export const getOptUserById = async (id: number): Promise<Option<typeof userTable.$inferSelect>> => {
   const user = await db.select().from(userTable).where(eq(userTable.id, id)).limit(1);

@@ -12,6 +12,8 @@ import { routes } from "./config/routes";
 export async function middleware(
   request: NextRequest,
 ): Promise<NextResponse<unknown>> {
+  console.log("middleware.ts: Entering middleware");
+
   try {
     if (request.nextUrl.pathname.startsWith(routes.api.base)) {
       return apiMiddleware(request);
@@ -20,10 +22,12 @@ export async function middleware(
      * Check if the access token is present and decode it to get the user ID.
      * If the access token is not present or malformed, redirect to the login page.
      */
+    console.log("middleware.ts: Checking access token");
+
     const accessTokenRes = await getOrUpdateAccessToken();
 
     if (accessTokenRes.err) {
-      return NextResponse.redirect(appConfig.url + "/login");
+      return NextResponse.redirect(appConfig.url + routes.login);
     }
     const nextResponse = NextResponse.next();
 
