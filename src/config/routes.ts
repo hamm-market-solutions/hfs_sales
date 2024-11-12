@@ -6,10 +6,6 @@ export const routes = {
       login: "/api/auth/login",
       refresh: "/api/auth/refresh",
     },
-    users: {
-      base: "/api/users",
-      countries: "/api/users/countries",
-    },
   },
   login: "/login",
   dashboard: "/dashboard",
