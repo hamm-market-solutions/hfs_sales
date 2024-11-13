@@ -1,6 +1,7 @@
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
 import React, { useActionState } from "react";
+import Form from "next/form";
 
 import { handleLogin } from "@/actions/auth/login";
 import Title from "@/components/molecules/title";
@@ -20,7 +21,7 @@ export default function Login() {
   return (
     <div className="login-page">
       <Title title="Login" />
-      <form action={submitLoginData} className="flex flex-col gap-2">
+      <Form action={submitLoginData} className="flex flex-col gap-2">
         <Input
           isRequired
           // errorMessage={
@@ -51,7 +52,7 @@ export default function Login() {
           Submit
         </Button>
         {/* {isPending ? <p>Loading...</p> : message} */}
-      </form>
+      </Form>
     </div>
   );
 }
