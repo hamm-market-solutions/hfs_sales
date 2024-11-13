@@ -30,6 +30,8 @@ export async function handleLogin(
   const userRes = await getUserByEmail(email);
 
   if (userRes.err) {
+    console.log("user not found", userRes.val);
+
     return userRes;
   }
   console.log("user found");
