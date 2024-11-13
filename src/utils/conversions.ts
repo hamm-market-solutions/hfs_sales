@@ -27,10 +27,11 @@ export function schemaToResult<Output extends any, Input = Output>(
 ): HfsResult<Output> {
   if (!schema.success) {
     const fieldErrors = schema.error?.flatten().fieldErrors;
+
     return Err(
       new HfsError(
         400,
-        fieldErrors?[Object.keys(fieldErrors)[0]][0] : "invalid request",
+        fieldErrors ? [Object.keys(fieldErrors)[0]][0] : "invalid request",
       ),
     );
   }

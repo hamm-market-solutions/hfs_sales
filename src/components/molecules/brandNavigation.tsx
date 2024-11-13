@@ -15,6 +15,7 @@ export function BrandNavigation({
   const dataSets = brands.map((brand) => {
     const brandName = brand.name.toLowerCase() as Brand;
     const brandLogo = brandLogos[brandName];
+
     return {
       key: brand.no.toString(),
       pic: brandLogo.pic,
@@ -25,7 +26,7 @@ export function BrandNavigation({
           <small className="text-primary">{brand.code}</small>
         </CardFooter>
       ),
-    }
+    };
   });
 
   return (

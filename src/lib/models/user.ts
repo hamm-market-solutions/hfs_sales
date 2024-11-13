@@ -5,7 +5,6 @@ import { Err, None, Ok, Option, Some } from "ts-results";
 import { decodeJwt, JWTPayload } from "jose";
 import { cookies } from "next/headers";
 import { eq } from "drizzle-orm";
-import { drizzle } from "drizzle-orm/mysql2";
 
 import UserModelError from "../errors/UserModelError";
 import JwtError, { ACCESS_TOKEN, REFRESH_TOKEN } from "../errors/JwtError";
@@ -21,8 +20,7 @@ import { authConfig } from "@/config/auth";
 import { ACCESS_TOKEN_LIFETIME, REFRESH_TOKEN_LIFETIME } from "@/config/auth";
 import { optionToNotFound } from "@/utils/conversions";
 import { user as userTable } from "@/db/schema";
-
-const db = drizzle(process.env.DATABASE_URL!);
+import { db } from "@/db";
 
 export const getOptUserById = async (
   id: number,
@@ -44,6 +42,7 @@ export const getUserByEmail = async (
   email: string,
 ): Promise<HfsResult<typeof userTable.$inferSelect>> => {
   const user = await getOptUserByEmail(email);
+
   console.log("user", user);
 
   return optionToNotFound(user, "user not found");
@@ -58,8 +57,8 @@ export const getOptUserByEmail = async (
     .from(userTable)
     .where(eq(userTable.email, email))
     .limit(1);
-  console.log("found user", user);
 
+  console.log("found user", user);
 
   if (user) {
     return Some(user[0]);

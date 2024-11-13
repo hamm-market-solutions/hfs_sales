@@ -1,48 +1,57 @@
-// "use server";
+"use server";
 
-// import { Err, Ok } from "ts-results";
+import { Err, Ok } from "ts-results";
+import { eq } from "drizzle-orm";
 
-// import HfsError from "../errors/HfsError";
-// import UserHasCountryModelError from "../errors/UserHasCountryModelError";
+import HfsError from "../errors/HfsError";
+import UserHasCountryModelError from "../errors/UserHasCountryModelError";
 
-// export const userHasCountry = async (userId: number, countryCode: string) => {
-//   const userCountries = await getUserCountries(userId);
+import { db } from "@/db";
+import { sCountry, userHasCountry as userHasCountryTable } from "@/db/schema";
 
-//   if (userCountries.err) {
-//     return userCountries;
-//   }
-//   const countryCodes = userCountries.val.map((userCountry) =>
-//     userCountry.s_country.code.toUpperCase(),
-//   );
+export const userHasCountry = async (userId: number, countryCode: string) => {
+  const userCountries = await getUserCountries(userId);
 
-//   if (!countryCodes.includes(countryCode.toUpperCase())) {
-//     return Err(
-//       new HfsError(403, UserHasCountryModelError.hasCountryError(countryCode)),
-//     );
-//   }
+  if (userCountries.err) {
+    return userCountries;
+  }
+  const countryCodes = userCountries.val.map((userCountry) =>
+    userCountry.s_country?.code.toUpperCase(),
+  );
 
-//   return Ok(true);
-// };
+  if (!countryCodes.includes(countryCode.toUpperCase())) {
+    return Err(
+      new HfsError(403, UserHasCountryModelError.hasCountryError(countryCode)),
+    );
+  }
 
-// export const getUserCountries = async (userId: number) => {
-//   try {
-//     return Ok(
-//       await prisma.user_has_country.findMany({
-//         include: {
-//           s_country: true,
-//         },
-//         where: {
-//           user_id: userId,
-//         },
-//       }),
-//     );
-//   } catch (error) {
-//     return Err(
-//       HfsError.fromThrow(
-//         500,
-//         UserHasCountryModelError.getError(),
-//         error as Error,
-//       ),
-//     );
-//   }
-// };
+  return Ok(true);
+};
+
+export const getUserCountries = async (userId: number) => {
+  try {
+    return Ok(
+      //   await prisma.user_has_country.findMany({
+      //     include: {
+      //       s_country: true,
+      //     },
+      //     where: {
+      //       user_id: userId,
+      //     },
+      //   }),
+      await db
+        .select()
+        .from(userHasCountryTable)
+        .leftJoin(sCountry, eq(userHasCountryTable.countryCode, sCountry.code))
+        .where(eq(userHasCountryTable.userId, userId)),
+    );
+  } catch (error) {
+    return Err(
+      HfsError.fromThrow(
+        500,
+        UserHasCountryModelError.getError(),
+        error as Error,
+      ),
+    );
+  }
+};

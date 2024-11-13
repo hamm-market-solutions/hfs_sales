@@ -1,10 +1,8 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { Err } from "ts-results";
 import { redirect } from "next/navigation";
 
-import { LoginResponse } from "@/types/responses";
 import { validateLoginForm } from "@/lib/schemas/login";
 import {
   getUserByEmail,
@@ -29,8 +27,8 @@ export async function handleLogin(
   const password = formValidationRes.val.password;
 
   const userRes = await getUserByEmail(email);
-  console.log("userRes", userRes);
 
+  console.log("userRes", userRes);
 
   if (userRes.err) {
     console.log("user not found", userRes.val);

@@ -32,7 +32,7 @@ export function deepCopy<T>(instance: T): T {
     };
 
     for (var attr in instance) {
-      if ((instance as {[type: string]: unknown}).hasOwnProperty(attr))
+      if ((instance as { [type: string]: unknown }).hasOwnProperty(attr))
         copyInstance[attr] = deepCopy<unknown>((instance as any)[attr] as any);
     }
 

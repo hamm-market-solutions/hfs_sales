@@ -40,7 +40,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "drizzle/seed.js"
+    "drizzle/seed.mjs"
   ],
   "exclude": [
     "node_modules"
