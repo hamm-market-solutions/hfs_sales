@@ -3,10 +3,38 @@
   "dialect": "mysql",
   "entries": [
     {
-      "idx": 0,
+      "idx": 3,
       "version": "5",
-      "when": 1731403801654,
-      "tag": "0000_married_sunset_bain",
+      "when": 1731494146663,
+      "tag": "0003_third_pestilence",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1731494348994,
+      "tag": "0004_special_caretaker",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1731494438168,
+      "tag": "0005_natural_purifiers",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1731494483586,
+      "tag": "0006_windy_texas_twister",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1731494717406,
+      "tag": "0007_chilly_madelyne_pryor",
       "breakpoints": true
     }
   ]

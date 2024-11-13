@@ -1,56 +1,48 @@
 {
-  "id": "00000000-0000-0000-0000-000000000000",
-  "prevId": "",
   "version": "5",
   "dialect": "mysql",
+  "id": "f092fe03-eede-49ce-baa4-730a20f9047c",
+  "prevId": "2651b8a5-72ae-43c7-96f3-da8c5504fc8c",
   "tables": {
     "brand": {
       "name": "brand",
       "columns": {
         "no": {
-          "autoincrement": false,
           "name": "no",
           "type": "varchar(10)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         },
         "name": {
-          "autoincrement": false,
           "name": "name",
           "type": "varchar(30)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         },
         "code": {
-          "autoincrement": false,
           "name": "code",
           "type": "varchar(10)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         },
         "gln": {
-          "default": "''",
-          "autoincrement": false,
           "name": "gln",
           "type": "varchar(50)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
         },
         "timestamp": {
-          "default": "(CURRENT_TIMESTAMP)",
-          "autoincrement": false,
           "name": "timestamp",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "compositePrimaryKeys": {
-        "brand_no": {
-          "name": "brand_no",
-          "columns": [
-            "no"
-          ]
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
         }
       },
       "indexes": {
@@ -63,6 +55,143 @@
         }
       },
       "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "brand_no": {
+          "name": "brand_no",
+          "columns": [
+            "no"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "forecast": {
+      "name": "forecast",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "item_no": {
+          "name": "item_no",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "color_code": {
+          "name": "color_code",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "amount": {
+          "name": "amount",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "timestamp": {
+          "name": "timestamp",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "country_code": {
+          "name": "country_code",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "int unsigned",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "item_no": {
+          "name": "item_no",
+          "columns": [
+            "item_no"
+          ],
+          "isUnique": false
+        },
+        "created_by": {
+          "name": "created_by",
+          "columns": [
+            "created_by"
+          ],
+          "isUnique": false
+        },
+        "country_code": {
+          "name": "country_code",
+          "columns": [
+            "country_code"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "forecast_item_no_s_item_no_fk": {
+          "name": "forecast_item_no_s_item_no_fk",
+          "tableFrom": "forecast",
+          "tableTo": "s_item",
+          "columnsFrom": [
+            "item_no"
+          ],
+          "columnsTo": [
+            "no"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "forecast_country_code_s_country_code_fk": {
+          "name": "forecast_country_code_s_country_code_fk",
+          "tableFrom": "forecast",
+          "tableTo": "s_country",
+          "columnsFrom": [
+            "country_code"
+          ],
+          "columnsTo": [
+            "code"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "forecast_created_by_user_id_fk": {
+          "name": "forecast_created_by_user_id_fk",
+          "tableFrom": "forecast",
+          "tableTo": "user",
+          "columnsFrom": [
+            "created_by"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "forecast_id": {
+          "name": "forecast_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
       "uniqueConstraints": {},
       "checkConstraint": {}
     },
@@ -70,20 +199,22 @@
       "name": "permission",
       "columns": {
         "id": {
-          "autoincrement": true,
           "name": "id",
           "type": "int unsigned",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": true
         },
         "name": {
-          "autoincrement": false,
           "name": "name",
           "type": "varchar(50)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         }
       },
+      "indexes": {},
+      "foreignKeys": {},
       "compositePrimaryKeys": {
         "permission_id": {
           "name": "permission_id",
@@ -92,8 +223,6 @@
           ]
         }
       },
-      "indexes": {},
-      "foreignKeys": {},
       "uniqueConstraints": {
         "permission_name_uindex": {
           "name": "permission_name_uindex",
@@ -108,27 +237,29 @@
       "name": "role",
       "columns": {
         "id": {
-          "autoincrement": true,
           "name": "id",
           "type": "int",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": true
         },
         "name": {
-          "autoincrement": false,
           "name": "name",
           "type": "varchar(50)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         },
         "description": {
-          "autoincrement": false,
           "name": "description",
           "type": "varchar(50)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         }
       },
+      "indexes": {},
+      "foreignKeys": {},
       "compositePrimaryKeys": {
         "role_id": {
           "name": "role_id",
@@ -137,8 +268,6 @@
           ]
         }
       },
-      "indexes": {},
-      "foreignKeys": {},
       "uniqueConstraints": {
         "role_name_uindex": {
           "name": "role_name_uindex",
@@ -153,21 +282,20 @@
       "name": "role_has_permission",
       "columns": {
         "role_id": {
-          "autoincrement": false,
           "name": "role_id",
           "type": "int",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         },
         "permission_id": {
-          "autoincrement": false,
           "name": "permission_id",
           "type": "int unsigned",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         }
       },
-      "compositePrimaryKeys": {},
       "indexes": {
         "permission_id": {
           "name": "permission_id",
@@ -178,6 +306,7 @@
         }
       },
       "foreignKeys": {},
+      "compositePrimaryKeys": {},
       "uniqueConstraints": {
         "role_has_permission_role_id_permission_id_uindex": {
           "name": "role_has_permission_role_id_permission_id_uindex",
@@ -193,28 +322,30 @@
       "name": "s_country",
       "columns": {
         "code": {
-          "autoincrement": false,
           "name": "code",
           "type": "varchar(10)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         },
         "name": {
-          "autoincrement": false,
           "name": "name",
           "type": "varchar(30)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         },
         "timestamp": {
-          "default": "(CURRENT_TIMESTAMP)",
-          "autoincrement": false,
           "name": "timestamp",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
         }
       },
+      "indexes": {},
+      "foreignKeys": {},
       "compositePrimaryKeys": {
         "s_country_code": {
           "name": "s_country_code",
@@ -223,8 +354,6 @@
           ]
         }
       },
-      "indexes": {},
-      "foreignKeys": {},
       "uniqueConstraints": {},
       "checkConstraint": {}
     },
@@ -232,117 +361,141 @@
       "name": "s_item",
       "columns": {
         "no": {
-          "autoincrement": false,
           "name": "no",
           "type": "varchar(20)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         },
         "description": {
-          "autoincrement": false,
           "name": "description",
           "type": "varchar(50)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "last": {
-          "autoincrement": false,
           "name": "last",
           "type": "varchar(30)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "material": {
-          "autoincrement": false,
           "name": "material",
           "type": "varchar(30)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "brand_no": {
-          "autoincrement": false,
           "name": "brand_no",
           "type": "varchar(10)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "cat_name": {
-          "autoincrement": false,
           "name": "cat_name",
           "type": "varchar(10)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "order_qty": {
-          "autoincrement": false,
           "name": "order_qty",
           "type": "int",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "min_qty_style": {
-          "autoincrement": false,
           "name": "min_qty_style",
           "type": "int",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "min_qty_last": {
-          "autoincrement": false,
           "name": "min_qty_last",
           "type": "int",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "season_code": {
-          "autoincrement": false,
           "name": "season_code",
           "type": "smallint",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "nos": {
-          "autoincrement": false,
           "name": "nos",
           "type": "smallint",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "vendor_no": {
-          "autoincrement": false,
           "name": "vendor_no",
           "type": "varchar(20)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "vendor_item_no": {
-          "autoincrement": false,
           "name": "vendor_item_no",
           "type": "varchar(20)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "style_code": {
-          "autoincrement": false,
           "name": "style_code",
           "type": "smallint",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "tariff_no": {
-          "autoincrement": false,
           "name": "tariff_no",
           "type": "bigint",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "timestamp": {
-          "default": "(CURRENT_TIMESTAMP)",
-          "autoincrement": false,
           "name": "timestamp",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        }
+      },
+      "indexes": {
+        "brand_no": {
+          "name": "brand_no",
+          "columns": [
+            "brand_no"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "s_item_brand_no_brand_no_fk": {
+          "name": "s_item_brand_no_brand_no_fk",
+          "tableFrom": "s_item",
+          "tableTo": "brand",
+          "columnsFrom": [
+            "brand_no"
+          ],
+          "columnsTo": [
+            "no"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {
@@ -353,8 +506,6 @@
           ]
         }
       },
-      "indexes": {},
-      "foreignKeys": {},
       "uniqueConstraints": {},
       "checkConstraint": {}
     },
@@ -362,108 +513,122 @@
       "name": "s_item_color",
       "columns": {
         "item_no": {
-          "autoincrement": false,
           "name": "item_no",
           "type": "varchar(20)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         },
         "color_code": {
-          "autoincrement": false,
           "name": "color_code",
           "type": "varchar(10)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         },
         "custom_color": {
-          "autoincrement": false,
           "name": "custom_color",
           "type": "varchar(30)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "purchase_price": {
-          "autoincrement": false,
           "name": "purchase_price",
           "type": "int",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "requested_ex_factory_date": {
-          "autoincrement": false,
           "name": "requested_ex_factory_date",
           "type": "date",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "first_customer_shipment_date": {
-          "autoincrement": false,
           "name": "first_customer_shipment_date",
           "type": "date",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "price_confirmed": {
-          "autoincrement": false,
           "name": "price_confirmed",
           "type": "int",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "pre_collection": {
-          "autoincrement": false,
           "name": "pre_collection",
           "type": "smallint",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         },
         "main_collection": {
-          "autoincrement": false,
           "name": "main_collection",
           "type": "smallint",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         },
         "late_collection": {
-          "autoincrement": false,
           "name": "late_collection",
           "type": "smallint",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         },
         "Special_collection": {
-          "autoincrement": false,
           "name": "Special_collection",
           "type": "smallint",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         },
         "confirmed_ex_factory_date": {
-          "autoincrement": false,
           "name": "confirmed_ex_factory_date",
           "type": "date",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "confirmation_sample_sent": {
-          "autoincrement": false,
           "name": "confirmation_sample_sent",
           "type": "smallint",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "timestamp": {
-          "default": "(CURRENT_TIMESTAMP)",
-          "autoincrement": false,
           "name": "timestamp",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "s_item_color_item_no_s_item_no_fk": {
+          "name": "s_item_color_item_no_s_item_no_fk",
+          "tableFrom": "s_item_color",
+          "tableTo": "s_item",
+          "columnsFrom": [
+            "item_no"
+          ],
+          "columnsTo": [
+            "no"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
         }
       },
       "compositePrimaryKeys": {},
-      "indexes": {},
-      "foreignKeys": {},
       "uniqueConstraints": {
         "unique_key": {
           "name": "unique_key",
@@ -479,29 +644,30 @@
       "name": "s_season",
       "columns": {
         "code": {
-          "default": 0,
-          "autoincrement": false,
           "name": "code",
           "type": "smallint",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         },
         "name": {
-          "autoincrement": false,
           "name": "name",
           "type": "varchar(50)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "timestamp": {
-          "default": "(CURRENT_TIMESTAMP)",
-          "autoincrement": false,
           "name": "timestamp",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
         }
       },
+      "indexes": {},
+      "foreignKeys": {},
       "compositePrimaryKeys": {
         "s_season_code": {
           "name": "s_season_code",
@@ -510,8 +676,6 @@
           ]
         }
       },
-      "indexes": {},
-      "foreignKeys": {},
       "uniqueConstraints": {},
       "checkConstraint": {}
     },
@@ -519,53 +683,52 @@
       "name": "s_season_brand_phase",
       "columns": {
         "season_code": {
-          "default": 0,
-          "autoincrement": false,
           "name": "season_code",
           "type": "smallint",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         },
         "brand_no": {
-          "autoincrement": false,
           "name": "brand_no",
           "type": "varchar(50)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "phase": {
-          "autoincrement": false,
           "name": "phase",
           "type": "smallint",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "start_date": {
-          "autoincrement": false,
           "name": "start_date",
           "type": "date",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "end_date": {
-          "autoincrement": false,
           "name": "end_date",
           "type": "date",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "timestamp": {
-          "default": "(CURRENT_TIMESTAMP)",
-          "autoincrement": false,
           "name": "timestamp",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
         }
       },
-      "compositePrimaryKeys": {},
       "indexes": {},
       "foreignKeys": {},
+      "compositePrimaryKeys": {},
       "uniqueConstraints": {
         "unique_key": {
           "name": "unique_key",
@@ -582,55 +745,57 @@
       "name": "user",
       "columns": {
         "id": {
-          "autoincrement": true,
           "name": "id",
           "type": "int unsigned",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": true
         },
         "fname": {
-          "autoincrement": false,
           "name": "fname",
           "type": "varchar(50)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         },
         "name": {
-          "autoincrement": false,
           "name": "name",
           "type": "varchar(50)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         },
         "password": {
-          "autoincrement": false,
           "name": "password",
           "type": "varchar(70)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         },
         "email": {
-          "autoincrement": false,
           "name": "email",
           "type": "varchar(100)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         },
         "passwordcode": {
-          "autoincrement": false,
           "name": "passwordcode",
           "type": "varchar(255)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         },
         "passwordcode_time": {
-          "autoincrement": false,
           "name": "passwordcode_time",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "autoincrement": false
         }
       },
+      "indexes": {},
+      "foreignKeys": {},
       "compositePrimaryKeys": {
         "user_id": {
           "name": "user_id",
@@ -639,8 +804,6 @@
           ]
         }
       },
-      "indexes": {},
-      "foreignKeys": {},
       "uniqueConstraints": {
         "user_email_uindex": {
           "name": "user_email_uindex",
@@ -651,37 +814,103 @@
       },
       "checkConstraint": {}
     },
+    "user_has_country": {
+      "name": "user_has_country",
+      "columns": {
+        "user_id": {
+          "name": "user_id",
+          "type": "int unsigned",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "country_code": {
+          "name": "country_code",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "country_code": {
+          "name": "country_code",
+          "columns": [
+            "country_code"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "user_has_country_user_id_user_id_fk": {
+          "name": "user_has_country_user_id_user_id_fk",
+          "tableFrom": "user_has_country",
+          "tableTo": "user",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "user_has_country_country_code_s_country_code_fk": {
+          "name": "user_has_country_country_code_s_country_code_fk",
+          "tableFrom": "user_has_country",
+          "tableTo": "s_country",
+          "columnsFrom": [
+            "country_code"
+          ],
+          "columnsTo": [
+            "code"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {
+        "user_has_country_user_id_country_code": {
+          "name": "user_has_country_user_id_country_code",
+          "columns": [
+            "user_id",
+            "country_code"
+          ]
+        }
+      },
+      "uniqueConstraints": {
+        "user_has_country_user_id_country_code_uindex": {
+          "name": "user_has_country_user_id_country_code_uindex",
+          "columns": [
+            "user_id",
+            "country_code"
+          ]
+        }
+      },
+      "checkConstraint": {}
+    },
     "user_has_permission": {
       "name": "user_has_permission",
       "columns": {
         "user_id": {
-          "autoincrement": false,
           "name": "user_id",
           "type": "int unsigned",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         },
         "permission_id": {
-          "autoincrement": false,
           "name": "permission_id",
           "type": "int unsigned",
           "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "compositePrimaryKeys": {
-        "user_has_permission_user_id_permission_id": {
-          "name": "user_has_permission_user_id_permission_id",
-          "columns": [
-            "user_id",
-            "permission_id"
-          ]
+          "notNull": true,
+          "autoincrement": false
         }
       },
       "indexes": {},
       "foreignKeys": {
-        "permission___fk": {
-          "name": "permission___fk",
+        "user_has_permission_permission_id_permission_id_fk": {
+          "name": "user_has_permission_permission_id_permission_id_fk",
           "tableFrom": "user_has_permission",
           "tableTo": "permission",
           "columnsFrom": [
@@ -692,6 +921,15 @@
           ],
           "onDelete": "cascade",
           "onUpdate": "restrict"
+        }
+      },
+      "compositePrimaryKeys": {
+        "user_has_permission_user_id_permission_id": {
+          "name": "user_has_permission_user_id_permission_id",
+          "columns": [
+            "user_id",
+            "permission_id"
+          ]
         }
       },
       "uniqueConstraints": {
@@ -709,21 +947,20 @@
       "name": "user_has_role",
       "columns": {
         "user_id": {
-          "autoincrement": false,
           "name": "user_id",
           "type": "int",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         },
         "role_id": {
-          "autoincrement": false,
           "name": "role_id",
           "type": "int",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "autoincrement": false
         }
       },
-      "compositePrimaryKeys": {},
       "indexes": {
         "user_has_role_ibfk_2": {
           "name": "user_has_role_ibfk_2",
@@ -734,8 +971,8 @@
         }
       },
       "foreignKeys": {
-        "user_has_role_ibfk_1": {
-          "name": "user_has_role_ibfk_1",
+        "user_has_role_role_id_role_id_fk": {
+          "name": "user_has_role_role_id_role_id_fk",
           "tableFrom": "user_has_role",
           "tableTo": "role",
           "columnsFrom": [
@@ -748,6 +985,7 @@
           "onUpdate": "cascade"
         }
       },
+      "compositePrimaryKeys": {},
       "uniqueConstraints": {
         "user_has_role_user_id_role_id_uindex": {
           "name": "user_has_role_user_id_role_id_uindex",
@@ -767,50 +1005,7 @@
     "columns": {}
   },
   "internal": {
-    "tables": {
-      "brand": {
-        "columns": {
-          "timestamp": {
-            "isDefaultAnExpression": true
-          }
-        }
-      },
-      "s_country": {
-        "columns": {
-          "timestamp": {
-            "isDefaultAnExpression": true
-          }
-        }
-      },
-      "s_item": {
-        "columns": {
-          "timestamp": {
-            "isDefaultAnExpression": true
-          }
-        }
-      },
-      "s_item_color": {
-        "columns": {
-          "timestamp": {
-            "isDefaultAnExpression": true
-          }
-        }
-      },
-      "s_season": {
-        "columns": {
-          "timestamp": {
-            "isDefaultAnExpression": true
-          }
-        }
-      },
-      "s_season_brand_phase": {
-        "columns": {
-          "timestamp": {
-            "isDefaultAnExpression": true
-          }
-        }
-      }
-    },
+    "tables": {},
     "indexes": {}
   }
 }
