@@ -122,5 +122,4 @@ ALTER TABLE `user_has_permission` ADD CONSTRAINT `permission___fk` FOREIGN KEY (
 ALTER TABLE `user_has_role` ADD CONSTRAINT `user_has_role_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role`(`id`) ON DELETE cascade ON UPDATE cascade;--> statement-breakpoint
 CREATE INDEX `code` ON `brand` (`code`);--> statement-breakpoint
 CREATE INDEX `permission_id` ON `role_has_permission` (`permission_id`);--> statement-breakpoint
-CREATE INDEX `user_has_role_ibfk_2` ON `user_has_role` (`role_id`);
-*/
+CREATE INDEX `user_has_role_ibfk_2` ON `user_has_role` (`role_id`); */

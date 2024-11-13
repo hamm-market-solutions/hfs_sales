@@ -40,7 +40,7 @@ export const getForecastData = async ({
       pre_collection: data.preCollection,
       main_collection: data.mainCollection,
       late_collection: data.lateCollection,
-      Special_collection: data.SpecialCollection,
+      Special_collection: data.specialCollection,
       item_no: data.itemNo,
       description: data.description,
       color_code: data.colorCode,

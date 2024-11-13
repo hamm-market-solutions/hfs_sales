@@ -50,7 +50,7 @@ export function optionToNotFound<T>(
   return Ok(option.val);
 }
 
-export const sortingStateToPrisma = (
+export const sortingStateToDrizzle = (
   prismaSelect: { [key: string]: any },
   sorting: SortingState,
 ) => {
@@ -64,7 +64,7 @@ export const sortingStateToPrisma = (
   }
   for (const key in prismaSelect) {
     if (typeof prismaSelect[key] === "object") {
-      prismaSelect[key] = sortingStateToPrisma(
+      prismaSelect[key] = sortingStateToDrizzle(
         prismaSelect[key]["select"],
         sorting,
       );
