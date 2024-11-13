@@ -26,15 +26,11 @@ export function schemaToResult<Output extends any, Input = Output>(
   schema: SafeParseReturnType<Input, Output>,
 ): HfsResult<Output> {
   if (!schema.success) {
+    const fieldErrors = schema.error?.flatten().fieldErrors;
     return Err(
       new HfsError(
         400,
-        // @ts-ignore
-        (schema.error?.flatten().fieldErrors as {
-          [type: string]: string;
-        }) ?? {
-          formField: "unknown error during schema validation",
-        },
+        fieldErrors?[Object.keys(fieldErrors)[0]][0] : "invalid request",
       ),
     );
   }

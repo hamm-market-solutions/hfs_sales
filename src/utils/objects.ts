@@ -32,9 +32,8 @@ export function deepCopy<T>(instance: T): T {
     };
 
     for (var attr in instance) {
-      if ((instance as Object).hasOwnProperty(attr))
-        // @ts-ignore
-        copyInstance[attr] = deepCopy<any>(instance[attr]);
+      if ((instance as {[type: string]: unknown}).hasOwnProperty(attr))
+        copyInstance[attr] = deepCopy<unknown>((instance as any)[attr] as any);
     }
 
     return copyInstance as T;

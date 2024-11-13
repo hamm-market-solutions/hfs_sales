@@ -29,6 +29,8 @@ export async function handleLogin(
   const password = formValidationRes.val.password;
 
   const userRes = await getUserByEmail(email);
+  console.log("userRes", userRes);
+
 
   if (userRes.err) {
     console.log("user not found", userRes.val);

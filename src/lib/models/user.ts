@@ -22,7 +22,6 @@ import { ACCESS_TOKEN_LIFETIME, REFRESH_TOKEN_LIFETIME } from "@/config/auth";
 import { optionToNotFound } from "@/utils/conversions";
 import { user as userTable } from "@/db/schema";
 
-//@ts-ignore
 const db = drizzle(process.env.DATABASE_URL!);
 
 export const getOptUserById = async (
@@ -45,6 +44,7 @@ export const getUserByEmail = async (
   email: string,
 ): Promise<HfsResult<typeof userTable.$inferSelect>> => {
   const user = await getOptUserByEmail(email);
+  console.log("user", user);
 
   return optionToNotFound(user, "user not found");
 };
@@ -52,11 +52,14 @@ export const getUserByEmail = async (
 export const getOptUserByEmail = async (
   email: string,
 ): Promise<Option<typeof userTable.$inferSelect>> => {
+  console.log("getting user by email", email);
   const user = await db
     .select()
     .from(userTable)
     .where(eq(userTable.email, email))
     .limit(1);
+  console.log("found user", user);
+
 
   if (user) {
     return Some(user[0]);
