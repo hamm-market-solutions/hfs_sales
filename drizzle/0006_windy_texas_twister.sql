@@ -1,3 +1,5 @@
+BEGIN TRANSACTION;
+
 CREATE TABLE `forecast` (
 	`id` int AUTO_INCREMENT NOT NULL,
 	`item_no` varchar(20) NOT NULL,
@@ -9,3 +11,5 @@ CREATE TABLE `forecast` (
 --> statement-breakpoint
 ALTER TABLE `forecast` ADD CONSTRAINT `forecast_item_no_s_item_no_fk` FOREIGN KEY (`item_no`) REFERENCES `s_item`(`no`) ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 CREATE INDEX `item_no` ON `forecast` (`item_no`);
+
+COMMIT TRANSACTION;
