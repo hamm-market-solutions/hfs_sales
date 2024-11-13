@@ -1,5 +1,7 @@
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+import { drizzle } from "drizzle-orm/mysql2";
+import { sql } from 'drizzle-orm'
+
+const db = drizzle(process.env.DATABASE_URL);
 
 async function main() {
   await seedUserTable();
@@ -16,16 +18,16 @@ async function main() {
 }
 
 async function seedUserHasCountryTable() {
-  const result = await prisma.$executeRaw`
+  const result = await db.execute(sql`
     INSERT INTO user_has_country (user_id,country_code) VALUES
       (1,'DE');
-  `;
+  `);
 
   console.log({ result });
 }
 
 async function seedSeasonBrandPhaseTable() {
-  const result = await prisma.$executeRaw`
+  const result = await db.execute(sql`
     INSERT INTO s_season_brand_phase (season_code,brand_no,phase,start_date,end_date) VALUES
       (31,'3',9,'2024-11-04','2025-03-18'),
       (31,'3',6,'2025-02-13','2025-03-18'),
@@ -35,55 +37,33 @@ async function seedSeasonBrandPhaseTable() {
       (30,'3',6,'2024-08-19','2024-09-23'),
       (30,'3',5,'2024-06-17','2024-08-18'),
       (30,'3',4,'2024-06-17','2024-08-18');
-  `;
+  `);
 
   console.log({ result });
 }
 
 async function seedBrandTable() {
-  const result = await prisma.$executeRaw`
+  const result = await db.execute(sql`
     INSERT INTO brand (no,name,code,gln) VALUES
 	    ('3','Gant','HF','4056734');
-  `;
+  `);
 
   console.log({ result });
 }
 
 async function seedUserTable() {
-  await prisma.user.upsert({
-    where: { email: "admin@hfs.com" },
-    update: {},
-    create: {
-      email: "admin@hfs.com",
-      fname: "HFS",
-      name: "Admin",
-      password: "$2a$10$ScRf6ODeuuIJW/F0XN3GlejAZN17U6Fd4XmFLxRtTd3CdZtjbZHbu", // Test1234.
-    },
-  });
-  await prisma.user.upsert({
-    where: { email: "sales@hfs.com" },
-    update: {},
-    create: {
-      email: "sales@hfs.com",
-      fname: "HFS",
-      name: "Sales",
-      password: "$2a$10$ScRf6ODeuuIJW/F0XN3GlejAZN17U6Fd4XmFLxRtTd3CdZtjbZHbu", // Test1234.
-    },
-  });
-  await prisma.user.upsert({
-    where: { email: "salesperson@hfs.com" },
-    update: {},
-    create: {
-      email: "salesperson@hfs.com",
-      fname: "HFS",
-      name: "SalesPerson",
-      password: "$2a$10$ScRf6ODeuuIJW/F0XN3GlejAZN17U6Fd4XmFLxRtTd3CdZtjbZHbu", // Test1234.
-    },
-  });
+  const result = await db.execute(sql`
+    INSERT INTO user (email,fname,name,password) VALUES
+      ('admin@hfs.com','HFS','Admin','$2a$10$ScRf6ODeuuIJW/F0XN3GlejAZN17U6Fd4XmFLxRtTd3CdZtjbZHbu'),
+      ('sales@hfs.com','HFS','Sales','$2a$10$ScRf6ODeuuIJW/F0XN3GlejAZN17U6Fd4XmFLxRtTd3CdZtjbZHbu'),
+      ('salesperson@hfs.com','HFS','SalesPerson','$2a$10$ScRf6ODeuuIJW/F0XN3GlejAZN17U6Fd4XmFLxRtTd3CdZtjbZHbu');
+  `);
+
+  console.log({ result });
 }
 
 async function seedRoleTable() {
-  const result = await prisma.$executeRaw`
+  const result = await db.execute(sql`
     INSERT INTO role (id,name,description) VALUES
       (1,'super_admin',NULL),
       (2,'admin','admin'),
@@ -100,13 +80,13 @@ async function seedRoleTable() {
       (13,'pm','Product manager'),
       (14,'intern_technical',NULL),
       (15,'marketing','Distribution');
-  `;
+  `);
 
   console.log({ result });
 }
 
 async function seedCountryTable() {
-  const result = await prisma.$executeRaw`
+  const result = await db.execute(sql`
     INSERT INTO s_country (code,name) VALUES
       ('AD','Andorra'),
       ('AE','United Arab Emirates'),
@@ -209,13 +189,13 @@ async function seedCountryTable() {
       ('XK','Republic of Kosovo'),
       ('XS','Serbien'),
       ('ZA','Südafrika');
-  `;
+  `);
 
   console.log({ result });
 }
 
 async function seedPermissionTable() {
-  const result = await prisma.$executeRaw`
+  const result = await db.execute(sql`
     INSERT INTO permission (id,name) VALUES
       (56,'approval.add'),
       (57,'approval.delete'),
@@ -283,13 +263,13 @@ async function seedPermissionTable() {
       (37,'user.setRole'),
       (39,'user.setVendor'),
       (34,'user.view');
-  `;
+  `);
 
   console.log({ result });
 }
 
 async function seedRoleHasPermissionTable() {
-  const result = await prisma.$executeRaw`
+  const result = await db.execute(sql`
     INSERT INTO role_has_permission (role_id,permission_id) VALUES
       (5,1),
       (5,2),
@@ -419,13 +399,13 @@ async function seedRoleHasPermissionTable() {
       (14,31),
       (14,32),
       (14,33);
-  `;
+  `);
 
   console.log({ result });
 }
 
 async function seedItemColorTable() {
-  const result = await prisma.$executeRaw`
+  const result = await db.execute(sql`
     INSERT INTO s_item_color (item_no,color_code,custom_color,purchase_price,requested_ex_factory_date,first_customer_shipment_date,price_confirmed,pre_collection,main_collection,late_collection,Special_collection,confirmed_ex_factory_date,confirmation_sample_sent,timestamp)
     VALUES
       ('30501935','G00','BLACK',16200,'2024-12-30','2025-03-15',NULL,0,1000,0,0,NULL,NULL,'2024-10-17 08:00:04'),
@@ -1268,13 +1248,13 @@ async function seedItemColorTable() {
       ('31673113','G46','DK BROWN 19-0712TCX',0,NULL,NULL,NULL,0,0,0,0,NULL,NULL,'2024-10-16 08:00:03'),
       ('31673115','G00','BLACK',0,NULL,NULL,NULL,0,0,0,0,NULL,NULL,'2024-10-16 08:00:03'),
       ('31673115','G46','DK BROWN 19-0712TCX',0,NULL,NULL,NULL,0,0,0,0,NULL,NULL,'2024-10-16 08:00:03');
-  `;
+  `);
 
   console.log({ result });
 }
 
 async function seedItemTable() {
-  const result = await prisma.$executeRaw`
+  const result = await db.execute(sql`
     INSERT INTO s_item (no,description,last,material,brand_no,cat_name,order_qty,min_qty_style,min_qty_last,season_code,nos,vendor_no,vendor_item_no,style_code,tariff_no,timestamp) VALUES
       ('30501935','Mardale Sport Sandal','Mardale','Cow Leather','3','Damen',2344000,3600000,3600000,30,0,'308873','MARDALE 12A',29,64039938000000,'2024-10-11 08:00:03'),
       ('30501940','Mardale Sport Sandal','Mardale','Cow Leather','3','Damen',1233500,3600000,3600000,30,0,'308873','MARDALE 20A',29,64039938000000,'2024-08-20 08:00:10'),
@@ -1618,27 +1598,26 @@ async function seedItemTable() {
       ('31671114','Lozham Loafer','Lozham','Cow Leather','3','Herren',22000,0,800000,31,0,'308819','LOZHAM 1B',32,NULL,'2024-10-18 08:00:03'),
       ('31673113','Lozham Loafer','Lozham','Cow Suede','3','Herren',22000,0,800000,31,0,'308819','LOZHAM 2A',32,NULL,'2024-10-18 08:00:03'),
       ('31673115','Lozham Loafer','Lozham','Cow Suede','3','Herren',44000,0,800000,31,0,'308819','LOZHAM 1A',32,NULL,'2024-10-18 08:00:03');
-  `;
+  `);
 
   console.log({ result });
 }
 
 async function seedSeasonTable() {
-  const result = await prisma.$executeRaw`
+  const result = await db.execute(sql`
     INSERT INTO s_season (code,name) VALUES
       (30,'Spring/Summer 2025'),
 	    (31,'Autumn/Winter 2025');
-  `;
+  `);
 
   console.log({ result });
 }
 
 main()
   .then(async () => {
-    await prisma.$disconnect();
+    return;
   })
   .catch(async (e) => {
     console.error(e);
-    await prisma.$disconnect();
     process.exit(1);
   });

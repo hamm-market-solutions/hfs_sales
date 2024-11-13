@@ -3,6 +3,13 @@
   "dialect": "mysql",
   "entries": [
     {
+      "idx": 0,
+      "version": "5",
+      "when": 1731493297583,
+      "tag": "0000_sad_aqueduct",
+      "breakpoints": true
+    },
+    {
       "idx": 3,
       "version": "5",
       "when": 1731494146663,
