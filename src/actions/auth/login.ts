@@ -15,13 +15,14 @@ import {
 export async function handleLogin(
   // _prevState: Err<LoginResponse> | undefined,
   form: FormData,
-): Promise<Err<LoginResponse> | undefined> {
+): Promise<void> {
   console.log("handling login");
 
   const formValidationRes = validateLoginForm(form);
 
   if (formValidationRes.err) {
-    return formValidationRes;
+    return;
+    // return formValidationRes;
   }
   console.log("form validated");
   const email = formValidationRes.val.email;
@@ -32,19 +33,22 @@ export async function handleLogin(
   if (userRes.err) {
     console.log("user not found", userRes.val);
 
-    return userRes;
+    // return userRes;
+    return;
   }
   console.log("user found");
   const passwordVerifyRes = await verifyPassword(userRes.val.id, password);
 
   if (passwordVerifyRes.err) {
-    return passwordVerifyRes;
+    // return passwordVerifyRes;
+    return;
   }
   console.log("password verified");
   const accessTokenRes = await updateAccessToken(userRes.val.id);
 
   if (accessTokenRes.err) {
-    return accessTokenRes;
+    // return accessTokenRes;
+    return;
   }
   console.log("access token updated");
   (await cookies()).set("refreshToken", accessTokenRes.val.refreshToken[0], {

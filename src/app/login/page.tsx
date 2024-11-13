@@ -1,27 +1,21 @@
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
-import React, { useActionState } from "react";
+import React from "react";
 import Form from "next/form";
 
 import { handleLogin } from "@/actions/auth/login";
 import Title from "@/components/molecules/title";
-import { LoginErrResponse } from "@/types/responses";
 
 export default function Login() {
   // const [message, formAction, isPending] = useActionState(
   //   handleLogin,
   //   undefined,
   // );
-  const submitLoginData = async (formData: FormData) => {
-    "use server";
-
-    handleLogin(formData);
-  }
 
   return (
     <div className="login-page">
       <Title title="Login" />
-      <Form action={submitLoginData} className="flex flex-col gap-2">
+      <Form action={handleLogin} className="flex flex-col gap-2">
         <Input
           isRequired
           // errorMessage={
