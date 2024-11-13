@@ -1,4 +1,4 @@
-BEGIN TRANSACTION;
+START TRANSACTION;
 
 ALTER TABLE `forecast` ADD `country_code` varchar(10) NOT NULL;--> statement-breakpoint
 ALTER TABLE `forecast` ADD `created_by` int unsigned NOT NULL;--> statement-breakpoint
@@ -7,4 +7,4 @@ ALTER TABLE `forecast` ADD CONSTRAINT `forecast_created_by_user_id_fk` FOREIGN K
 CREATE INDEX `created_by` ON `forecast` (`created_by`);--> statement-breakpoint
 CREATE INDEX `country_code` ON `forecast` (`country_code`);
 
-COMMIT TRANSACTION;
+COMMIT;

@@ -1,7 +1,7 @@
 -- Current sql file was generated after introspecting the database
 -- If you want to run this migration please uncomment this code before executing migrations
 
--- BEGIN TRANSACTION;
+-- START TRANSACTION;
 -- CREATE TABLE `brand` (
 -- 	`no` varchar(10) NOT NULL,
 -- 	`name` varchar(30) NOT NULL,
@@ -125,4 +125,4 @@
 -- CREATE INDEX `permission_id` ON `role_has_permission` (`permission_id`);--> statement-breakpoint
 -- CREATE INDEX `user_has_role_ibfk_2` ON `user_has_role` (`role_id`);
 --
--- COMMIT TRANSACTION;
+-- COMMIT;
