@@ -9,23 +9,28 @@ import Title from "@/components/molecules/title";
 import { LoginErrResponse } from "@/types/responses";
 
 export default function Login() {
-  const [message, formAction, isPending] = useActionState(
-    handleLogin,
-    undefined,
-  );
+  // const [message, formAction, isPending] = useActionState(
+  //   handleLogin,
+  //   undefined,
+  // );
+  const submitLoginData = async (formData: FormData) => {
+    "use server";
+
+    handleLogin(formData);
+  }
 
   return (
     <div className="login-page">
       <Title title="Login" />
-      <form action={formAction} className="flex flex-col gap-2">
+      <form action={submitLoginData} className="flex flex-col gap-2">
         <Input
           isRequired
-          errorMessage={
-            !isPending && message?.err
-              ? (message.val as LoginErrResponse).error
-              : ""
-          }
-          isInvalid={!isPending && message?.err}
+          // errorMessage={
+          //   !isPending && message?.err
+          //     ? (message.val as LoginErrResponse).error
+          //     : ""
+          // }
+          // isInvalid={!isPending && message?.err}
           label="Email"
           name="email"
           type="email"
@@ -33,12 +38,12 @@ export default function Login() {
         />
         <Input
           isRequired
-          errorMessage={
-            !isPending && message?.err
-              ? (message.val as LoginErrResponse).error
-              : ""
-          }
-          isInvalid={!isPending && message?.err}
+          // errorMessage={
+          //   !isPending && message?.err
+          //     ? (message.val as LoginErrResponse).error
+          //     : ""
+          // }
+          // isInvalid={!isPending && message?.err}
           label="Password"
           name="password"
           type="password"
@@ -47,7 +52,7 @@ export default function Login() {
         <Button className="bg-secondary" type="submit">
           Submit
         </Button>
-        {isPending ? <p>Loading...</p> : message}
+        {/* {isPending ? <p>Loading...</p> : message} */}
       </form>
     </div>
   );

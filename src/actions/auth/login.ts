@@ -13,7 +13,7 @@ import {
 } from "@/lib/models/user";
 
 export async function handleLogin(
-  _prevState: Err<LoginResponse> | undefined,
+  // _prevState: Err<LoginResponse> | undefined,
   form: FormData,
 ): Promise<Err<LoginResponse> | undefined> {
   console.log("handling login");
