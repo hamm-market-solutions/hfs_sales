@@ -1,5 +1,3 @@
-"use client";
-
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
 import React, { useActionState } from "react";
