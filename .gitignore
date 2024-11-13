@@ -37,7 +37,7 @@ next-env.d.ts
 
 public/assets/flags
 
-# drizzle/0000_sad_aqueduct.sql
+drizzle/0000_sad_aqueduct.sql
 
 # Mittwald
 .mwservice.yaml
