@@ -9,9 +9,7 @@ import {
   updateAccessToken,
   verifyPassword,
 } from "@/lib/models/user";
-import { HfsErrResponse, LoginResponse } from "@/types/responses";
-import { Err } from "ts-results";
-import HfsError, { HfsResult } from "@/lib/errors/HfsError";
+import HfsError from "@/lib/errors/HfsError";
 
 export async function handleLogin(
   _prevState: HfsError | null,

@@ -1,11 +1,11 @@
 import clsx from "clsx";
 
 export default function SeasonImage({
-  code,
+  _code,
   name,
   className,
 }: {
-  code: number;
+  _code: number;
   name?: string;
   className?: string;
 }) {

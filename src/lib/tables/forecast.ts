@@ -1,6 +1,6 @@
 import {
-  getForecastItemColorData,
-  getForecastItemColorDataCount,
+  getForecastTableData,
+  getForecastTableCount,
 } from "../models/itemColor";
 
 import {
@@ -17,7 +17,7 @@ export const getForecastData = async ({
   brand,
   season_code,
 }: ForecastTableRequest): Promise<TableResponse<ForecastTableData>> => {
-  const itemColorData = await getForecastItemColorData({
+  const itemColorData = await getForecastTableData({
     start,
     size,
     sorting,
@@ -25,8 +25,8 @@ export const getForecastData = async ({
     brand,
     season_code,
   });
-  const itemColorDataCount = await getForecastItemColorDataCount({
-    country,
+
+  const itemColorDataCount = await getForecastTableCount({
     brand,
     season_code,
   });
@@ -46,6 +46,7 @@ export const getForecastData = async ({
       color_code: data.colorCode,
       min_qty_style: data.minQtyStyle,
       purchase_price: data.purchasePrice,
+      forecast_amount: data.forecastAmount,
     })),
     meta: { totalRowCount: itemColorDataCount.unwrap() },
   };

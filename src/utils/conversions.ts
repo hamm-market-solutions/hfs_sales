@@ -2,10 +2,11 @@ import { NextResponse } from "next/server";
 import { SafeParseReturnType } from "zod";
 import { Err, Ok, Option } from "ts-results";
 import { SortingState } from "@tanstack/react-table";
+import { MySqlColumn } from "drizzle-orm/mysql-core";
+import { asc, desc } from "drizzle-orm";
 
 import HfsError, { HfsResult } from "../lib/errors/HfsError";
 import { HfsResponse } from "../types/responses";
-import { MySqlColumn } from "drizzle-orm/mysql-core";
 
 export function resultToResponse<T extends object, R = HfsResponse>(
   result: HfsResult<T>,
@@ -28,13 +29,9 @@ export function schemaToResult<Output extends any, Input = Output>(
 ): HfsResult<Output> {
   if (!schema.success) {
     return Err(
-      new HfsError(
-        400,
-        schema.error?.errors[0].message || "invalid request",
-      ),
+      new HfsError(400, schema.error?.errors[0].message || "invalid request"),
     );
   }
-
 
   return Ok(schema.data!);
 }
@@ -51,10 +48,20 @@ export function optionToNotFound<T>(
 }
 
 export const sortingStateToDrizzle = (
-  prismaSelect: { [key: string]: MySqlColumn },
+  drizzleSelect: { [key: string]: MySqlColumn },
   sorting: SortingState,
 ) => {
-  // let orderBy =
+  let sortings = [];
+
+  for (const sort of sorting) {
+    if (sort.desc) {
+      sortings.push(desc(drizzleSelect[snakeCaseToCamelCase(sort.id)]));
+    } else {
+      sortings.push(asc(drizzleSelect[snakeCaseToCamelCase(sort.id)]));
+    }
+  }
+
+  return sortings;
   // let flattenedSorting: { [key: string]: string } = {};
 
   // for (const sort of sorting) {
@@ -110,4 +117,4 @@ export const phaseToDrop = ({
 
 export const snakeCaseToCamelCase = (str: string) => {
   return str.replace(/([-_]\w)/g, (g) => g[1].toUpperCase());
-}
+};

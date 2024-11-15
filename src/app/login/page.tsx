@@ -9,10 +9,7 @@ import { handleLogin } from "@/actions/auth/login";
 import Title from "@/components/molecules/title";
 
 export default function Login() {
-  const [error, formAction, isPending] = useActionState(
-    handleLogin,
-    null,
-  );
+  const [error, formAction, isPending] = useActionState(handleLogin, null);
 
   return (
     <div className="login-page">
@@ -48,7 +45,9 @@ export default function Login() {
           Submit
         </Button>
         {isPending && <p>Loading...</p>}
-        {(error && !isPending) && <p className="text-red">{error.message.replaceAll("\"", "")}</p>}
+        {error && !isPending && (
+          <p className="text-red">{error.message.replaceAll('"', "")}</p>
+        )}
       </Form>
     </div>
   );

@@ -1,21 +1,19 @@
 import { Err, Ok } from "ts-results";
-import { and, count, eq } from "drizzle-orm";
+import { and, asc, count, desc, eq } from "drizzle-orm";
+import _ from "lodash";
 
 import HfsError from "../errors/HfsError";
 import ItemColorModelError from "../errors/ItemColorModelError";
 
 import { ForecastTableRequest } from "@/types/table";
 import { db } from "@/db";
-import { sItem, sItemColor } from "@/db/schema";
-import { deepCopy } from "@/utils/objects";
+import { forecast, sItem, sItemColor } from "@/db/schema";
 import { sortingStateToDrizzle } from "@/utils/conversions";
 
-export const getForecastItemColorDataCount = async ({
-  country,
+export const getForecastTableCount = async ({
   brand,
   season_code,
 }: {
-  country: string;
   brand: number;
   season_code: number;
 }) => {
@@ -43,7 +41,7 @@ export const getForecastItemColorDataCount = async ({
   }
 };
 
-export const getForecastItemColorData = async ({
+export const getForecastTableData = async ({
   start,
   size,
   sorting,
@@ -64,41 +62,30 @@ export const getForecastItemColorData = async ({
       itemNo: sItemColor.itemNo,
       colorCode: sItemColor.colorCode,
       purchasePrice: sItemColor.purchasePrice,
+      forecastAmount: forecast.amount,
     };
-    // const selectClone = deepCopy(select);
-    // const orderBy = sortingStateToDrizzle(selectClone, sorting);
-    // const userId = (await getAccessTokenPayload()).unwrap().sub!;
+    const selectClone = _.cloneDeep(select);
+    const orderBy = sortingStateToDrizzle(selectClone, sorting);
+    const forecastSq = db.select().from(forecast).orderBy(desc(forecast.timestamp)).groupBy(forecast.itemNo, forecast.colorCode).as("forecast");
 
     return Ok(
-      //   await prisma.s_item_color.findMany({
-      //     select: select,
-      //     where: {
-      //       s_item: {
-      //         brand_no: brand.toString(),
-      //         season_code: season_code,
-      //       },
-      //     },
-      //     orderBy: orderBy,
-      //     skip: start,
-      //     take: size,
-      //   }),
       await db
         .select(select)
         .from(sItemColor)
         .leftJoin(sItem, and(eq(sItemColor.itemNo, sItem.no)))
+        .leftJoin(forecastSq, and(eq(sItemColor.itemNo, forecastSq.itemNo), eq(sItemColor.colorCode, forecastSq.colorCode), eq(forecastSq.countryCode, country)))
         .where(
           and(
             eq(sItem.brandNo, brand.toString()),
             eq(sItem.seasonCode, season_code),
           ),
         )
-        // .orderBy(orderBy)
+        .groupBy(sItemColor.itemNo, sItemColor.colorCode)
+        .orderBy(...orderBy)
         .limit(size)
         .offset(start),
     );
   } catch (error) {
-    console.log(error);
-
     return Err(
       HfsError.fromThrow(
         500,

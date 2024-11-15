@@ -52,6 +52,8 @@ export default [
           args: "after-used",
           ignoreRestSiblings: false,
           argsIgnorePattern: "^_.*?$",
+          varsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_"
         },
       ],
       "import/order": [
