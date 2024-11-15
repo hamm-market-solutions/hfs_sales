@@ -1,15 +1,14 @@
 import { Err, Ok } from "ts-results";
-import { and, count, eq, sql } from "drizzle-orm";
+import { and, count, eq } from "drizzle-orm";
 
 import HfsError from "../errors/HfsError";
 import ItemColorModelError from "../errors/ItemColorModelError";
-import { getAccessTokenPayload } from "../auth/jwt";
 
 import { ForecastTableRequest } from "@/types/table";
-import { sortingStateToDrizzle } from "@/utils/conversions";
-import { deepCopy } from "@/utils/objects";
 import { db } from "@/db";
 import { sItem, sItemColor } from "@/db/schema";
+import { deepCopy } from "@/utils/objects";
+import { sortingStateToDrizzle } from "@/utils/conversions";
 
 export const getForecastItemColorDataCount = async ({
   country,
@@ -22,21 +21,17 @@ export const getForecastItemColorDataCount = async ({
 }) => {
   try {
     const dataCount = await db
-    .select({ count: count() })
-    .from(sItemColor)
-    .leftJoin(
-      sItem,
-      and(
-        eq(sItemColor.itemNo, sItem.no),
-      ),
-    ).where(and(
-      eq(sItem.brandNo, brand.toString()),
-      eq(sItem.seasonCode, season_code),
-    ));
+      .select({ count: count() })
+      .from(sItemColor)
+      .leftJoin(sItem, and(eq(sItemColor.itemNo, sItem.no)))
+      .where(
+        and(
+          eq(sItem.brandNo, brand.toString()),
+          eq(sItem.seasonCode, season_code),
+        ),
+      );
 
-    return Ok(
-      dataCount[0].count,
-    );
+    return Ok(dataCount[0].count);
   } catch (error) {
     return Err(
       HfsError.fromThrow(
@@ -64,7 +59,7 @@ export const getForecastItemColorData = async ({
       minQtyStyle: sItem.minQtyStyle,
       preCollection: sItemColor.preCollection,
       mainCollection: sItemColor.mainCollection,
-      lateCollection:  sItemColor.lateCollection,
+      lateCollection: sItemColor.lateCollection,
       specialCollection: sItemColor.specialCollection,
       itemNo: sItemColor.itemNo,
       colorCode: sItemColor.colorCode,
@@ -90,12 +85,14 @@ export const getForecastItemColorData = async ({
       await db
         .select(select)
         .from(sItemColor)
-        .leftJoin(
-          sItem,
+        .leftJoin(sItem, and(eq(sItemColor.itemNo, sItem.no)))
+        .where(
           and(
-            eq(sItemColor.itemNo, sItem.no),
+            eq(sItem.brandNo, brand.toString()),
+            eq(sItem.seasonCode, season_code),
           ),
         )
+        // .orderBy(orderBy)
         .limit(size)
         .offset(start),
     );

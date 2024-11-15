@@ -1,6 +1,3 @@
--- Current sql file was generated after introspecting the database
--- If you want to run this migration please uncomment this code before executing migrations
-
 /* START TRANSACTION;--> statement-breakpoint
 CREATE TABLE `brand` (
 	`no` varchar(10) NOT NULL,
@@ -124,5 +121,4 @@ ALTER TABLE `user_has_role` ADD CONSTRAINT `user_has_role_ibfk_1` FOREIGN KEY (`
 CREATE INDEX `code` ON `brand` (`code`);--> statement-breakpoint
 CREATE INDEX `permission_id` ON `role_has_permission` (`permission_id`);--> statement-breakpoint
 CREATE INDEX `user_has_role_ibfk_2` ON `user_has_role` (`role_id`);--> statement-breakpoint
-
 COMMIT; */

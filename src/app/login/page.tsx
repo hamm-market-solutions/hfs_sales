@@ -1,21 +1,23 @@
+"use client";
+
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
-import React from "react";
+import React, { useActionState } from "react";
 import Form from "next/form";
 
 import { handleLogin } from "@/actions/auth/login";
 import Title from "@/components/molecules/title";
 
 export default function Login() {
-  // const [message, formAction, isPending] = useActionState(
-  //   handleLogin,
-  //   undefined,
-  // );
+  const [error, formAction, isPending] = useActionState(
+    handleLogin,
+    null,
+  );
 
   return (
     <div className="login-page">
       <Title title="Login" />
-      <Form action={handleLogin} className="flex flex-col gap-2">
+      <Form action={formAction} className="flex flex-col gap-2">
         <Input
           isRequired
           // errorMessage={
@@ -42,10 +44,11 @@ export default function Login() {
           type="password"
           variant="bordered"
         />
-        <Button className="bg-secondary" type="submit">
+        <Button className="bg-secondary text-white" type="submit">
           Submit
         </Button>
-        {/* {isPending ? <p>Loading...</p> : message} */}
+        {isPending && <p>Loading...</p>}
+        {(error && !isPending) && <p className="text-red">{error.message.replaceAll("\"", "")}</p>}
       </Form>
     </div>
   );

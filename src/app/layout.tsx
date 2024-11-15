@@ -1,10 +1,14 @@
 import "@/styles/globals.css";
-import { Metadata } from "next";
+import { GetServerSideProps, Metadata, NextPageContext } from "next";
 import clsx from "clsx";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import Header from "@/components/organism/core/header";
+import { routes } from "@/config/routes";
+import { NextRequest } from "next/server";
 
 export const metadata: Metadata = {
   title: {
@@ -17,7 +21,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export const getServerProps = async () => {
+  const headersList = await headers()
+  const referer = headersList.get("referer") ?? "/";
+  const request = new NextRequest(referer);
+
+  return {
+      request: {
+        referer: referer,
+        path: request.nextUrl.pathname,
+      },
+  };
+};
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;

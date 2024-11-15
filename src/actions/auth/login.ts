@@ -9,55 +9,42 @@ import {
   updateAccessToken,
   verifyPassword,
 } from "@/lib/models/user";
+import { HfsErrResponse, LoginResponse } from "@/types/responses";
+import { Err } from "ts-results";
+import HfsError, { HfsResult } from "@/lib/errors/HfsError";
 
 export async function handleLogin(
-  // _prevState: Err<LoginResponse> | undefined,
+  _prevState: HfsError | null,
   form: FormData,
-): Promise<void> {
-  console.log("handling login");
-
+): Promise<HfsError | null> {
   const formValidationRes = validateLoginForm(form);
 
   if (formValidationRes.err) {
-    return;
-    // return formValidationRes;
+    return formValidationRes.val;
   }
-  console.log("form validated");
   const email = formValidationRes.val.email;
   const password = formValidationRes.val.password;
-
   const userRes = await getUserByEmail(email);
 
-  console.log("userRes", userRes);
-
   if (userRes.err) {
-    console.log("user not found", userRes.val);
-
-    // return userRes;
-    return;
+    return userRes.val;
   }
-  console.log("user found");
   const passwordVerifyRes = await verifyPassword(userRes.val.id, password);
 
   if (passwordVerifyRes.err) {
-    // return passwordVerifyRes;
-    return;
+    return passwordVerifyRes.val;
   }
-  console.log("password verified");
   const accessTokenRes = await updateAccessToken(userRes.val.id);
 
   if (accessTokenRes.err) {
-    // return accessTokenRes;
-    return;
+    return accessTokenRes.val;
   }
-  console.log("access token updated");
   (await cookies()).set("refreshToken", accessTokenRes.val.refreshToken[0], {
     httpOnly: true,
     secure: true,
     sameSite: "strict",
     expires: accessTokenRes.val.refreshToken[1].exp! * 1000,
   });
-  console.log("refresh token set");
 
   redirect("/dashboard");
 }

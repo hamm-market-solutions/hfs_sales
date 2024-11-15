@@ -5,6 +5,7 @@ import { SortingState } from "@tanstack/react-table";
 
 import HfsError, { HfsResult } from "../lib/errors/HfsError";
 import { HfsResponse } from "../types/responses";
+import { MySqlColumn } from "drizzle-orm/mysql-core";
 
 export function resultToResponse<T extends object, R = HfsResponse>(
   result: HfsResult<T>,
@@ -26,15 +27,14 @@ export function schemaToResult<Output extends any, Input = Output>(
   schema: SafeParseReturnType<Input, Output>,
 ): HfsResult<Output> {
   if (!schema.success) {
-    const fieldErrors = schema.error?.flatten().fieldErrors;
-
     return Err(
       new HfsError(
         400,
-        fieldErrors ? [Object.keys(fieldErrors)[0]][0] : "invalid request",
+        schema.error?.errors[0].message || "invalid request",
       ),
     );
   }
+
 
   return Ok(schema.data!);
 }
@@ -51,36 +51,37 @@ export function optionToNotFound<T>(
 }
 
 export const sortingStateToDrizzle = (
-  prismaSelect: { [key: string]: any },
+  prismaSelect: { [key: string]: MySqlColumn },
   sorting: SortingState,
 ) => {
-  let flattenedSorting: { [key: string]: string } = {};
+  // let orderBy =
+  // let flattenedSorting: { [key: string]: string } = {};
 
-  for (const sort of sorting) {
-    flattenedSorting = {
-      ...flattenedSorting,
-      [sort.id]: sort.desc ? "desc" : "asc",
-    };
-  }
-  for (const key in prismaSelect) {
-    if (typeof prismaSelect[key] === "object") {
-      prismaSelect[key] = sortingStateToDrizzle(
-        prismaSelect[key]["select"],
-        sorting,
-      );
-      if (Object.keys(prismaSelect[key]).length === 0) {
-        delete prismaSelect[key];
-      }
-    } else {
-      if (flattenedSorting[key]) {
-        prismaSelect[key] = flattenedSorting[key];
-      } else {
-        delete prismaSelect[key];
-      }
-    }
-  }
+  // for (const sort of sorting) {
+  //   flattenedSorting = {
+  //     ...flattenedSorting,
+  //     [sort.id]: sort.desc ? "desc" : "asc",
+  //   };
+  // }
+  // for (const key in prismaSelect) {
+  //   if (typeof prismaSelect[key] === "object") {
+  //     prismaSelect[key] = sortingStateToDrizzle(
+  //       prismaSelect[key]["select"],
+  //       sorting,
+  //     );
+  //     if (Object.keys(prismaSelect[key]).length === 0) {
+  //       delete prismaSelect[key];
+  //     }
+  //   } else {
+  //     if (flattenedSorting[key]) {
+  //       prismaSelect[key] = flattenedSorting[key];
+  //     } else {
+  //       delete prismaSelect[key];
+  //     }
+  //   }
+  // }
 
-  return prismaSelect;
+  // return prismaSelect;
 };
 
 export const phaseToDrop = ({
@@ -106,3 +107,7 @@ export const phaseToDrop = ({
 
   return 0;
 };
+
+export const snakeCaseToCamelCase = (str: string) => {
+  return str.replace(/([-_]\w)/g, (g) => g[1].toUpperCase());
+}
