@@ -15,7 +15,7 @@ export default function ForecastNavigation({
   brands,
   seasons,
 }: {
-  userCountries: { countries: { code: string; name: string }[] };
+  userCountries: { countries: { code: string; name?: string }[] };
   brands: { no: string; code: string; name: string }[];
   seasons: { code: number; name?: string }[];
 }) {

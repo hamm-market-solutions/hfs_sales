@@ -37,17 +37,7 @@ next-env.d.ts
 
 public/assets/flags
 
-prisma/migrations/20241008143155_add_user_table
-prisma/migrations/20241014114259_add_permission_table
-prisma/migrations/20241014114416_add_user_has_permission_table
-prisma/migrations/20241015073016_add_role_and_user_has_role_table
-prisma/migrations/20241015073402_add_s_country_table
-prisma/migrations/20241015082220_add_brand_table
-prisma/migrations/20241015082531_add_s_item_color_table
-prisma/migrations/20241015082707_add_s_item_table
-prisma/migrations/20241015083955_add_s_season_table
-prisma/migrations/20241015084033_add_s_season_brand_phase_table
-prisma/migrations/20241015092639_add_role_has_permission_table
+drizzle/0000_sad_aqueduct.sql
 
 # Mittwald
 .mwservice.yaml

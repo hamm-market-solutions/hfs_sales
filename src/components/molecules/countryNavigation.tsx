@@ -6,7 +6,7 @@ export function CountryNavigation({
   countries,
   countrySetter,
 }: {
-  countries: { code: string; name: string }[];
+  countries: { code: string; name?: string }[];
   countrySetter?: (country: string) => void;
 }) {
   const dataSets = countries.map((country) => ({

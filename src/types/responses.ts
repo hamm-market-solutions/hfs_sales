@@ -39,7 +39,7 @@ export type GetUserCountriesResponse =
   | GetUserCountriesErrResponse;
 
 export type GetUserCountriesOkResponse = HfsOkResponse<{
-  countries: { code: string; name: string }[];
+  countries: { code: string; name?: string }[];
 }>;
 
 export type GetUserCountriesErrResponse = HfsErrResponse & HfsThrownError;

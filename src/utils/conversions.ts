@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { SafeParseReturnType } from "zod";
 import { Err, Ok, Option } from "ts-results";
 import { SortingState } from "@tanstack/react-table";
+import { MySqlColumn } from "drizzle-orm/mysql-core";
+import { asc, desc, SQL } from "drizzle-orm";
 
 import HfsError, { HfsResult } from "../lib/errors/HfsError";
 import { HfsResponse } from "../types/responses";
@@ -27,15 +29,7 @@ export function schemaToResult<Output extends any, Input = Output>(
 ): HfsResult<Output> {
   if (!schema.success) {
     return Err(
-      new HfsError(
-        400,
-        // @ts-ignore
-        (schema.error?.flatten().fieldErrors as {
-          [type: string]: string;
-        }) ?? {
-          formField: "unknown error during schema validation",
-        },
-      ),
+      new HfsError(400, schema.error?.errors[0].message || "invalid request"),
     );
   }
 
@@ -44,46 +38,57 @@ export function schemaToResult<Output extends any, Input = Output>(
 
 export function optionToNotFound<T>(
   option: Option<T>,
-  errorMessage = "Resource not found",
+  errorMessage = "resource not found",
 ): HfsResult<T> {
-  if (option.none) {
+  if (option.none || option.val === null || option.val === undefined) {
     return Err(new HfsError(404, errorMessage));
   }
 
   return Ok(option.val);
 }
 
-export const sortingStateToPrisma = (
-  prismaSelect: { [key: string]: any },
+export const sortingStateToDrizzle = (
+  drizzleSelect: { [key: string]: MySqlColumn | SQL },
   sorting: SortingState,
 ) => {
-  let flattenedSorting: { [key: string]: string } = {};
+  let sortings = [];
 
   for (const sort of sorting) {
-    flattenedSorting = {
-      ...flattenedSorting,
-      [sort.id]: sort.desc ? "desc" : "asc",
-    };
-  }
-  for (const key in prismaSelect) {
-    if (typeof prismaSelect[key] === "object") {
-      prismaSelect[key] = sortingStateToPrisma(
-        prismaSelect[key]["select"],
-        sorting,
-      );
-      if (Object.keys(prismaSelect[key]).length === 0) {
-        delete prismaSelect[key];
-      }
+    if (sort.desc) {
+      sortings.push(desc(drizzleSelect[snakeCaseToCamelCase(sort.id)]));
     } else {
-      if (flattenedSorting[key]) {
-        prismaSelect[key] = flattenedSorting[key];
-      } else {
-        delete prismaSelect[key];
-      }
+      sortings.push(asc(drizzleSelect[snakeCaseToCamelCase(sort.id)]));
     }
   }
 
-  return prismaSelect;
+  return sortings;
+  // let flattenedSorting: { [key: string]: string } = {};
+
+  // for (const sort of sorting) {
+  //   flattenedSorting = {
+  //     ...flattenedSorting,
+  //     [sort.id]: sort.desc ? "desc" : "asc",
+  //   };
+  // }
+  // for (const key in prismaSelect) {
+  //   if (typeof prismaSelect[key] === "object") {
+  //     prismaSelect[key] = sortingStateToDrizzle(
+  //       prismaSelect[key]["select"],
+  //       sorting,
+  //     );
+  //     if (Object.keys(prismaSelect[key]).length === 0) {
+  //       delete prismaSelect[key];
+  //     }
+  //   } else {
+  //     if (flattenedSorting[key]) {
+  //       prismaSelect[key] = flattenedSorting[key];
+  //     } else {
+  //       delete prismaSelect[key];
+  //     }
+  //   }
+  // }
+
+  // return prismaSelect;
 };
 
 export const phaseToDrop = ({
@@ -108,4 +113,8 @@ export const phaseToDrop = ({
   }
 
   return 0;
+};
+
+export const snakeCaseToCamelCase = (str: string) => {
+  return str.replace(/([-_]\w)/g, (g) => g[1].toUpperCase());
 };

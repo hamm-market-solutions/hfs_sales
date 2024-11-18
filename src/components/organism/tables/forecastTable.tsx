@@ -115,8 +115,10 @@ export default function ForecastTable() {
       },
       {
         header: "Amount",
+        accessorKey: "forecast_amount",
         cell: (cell) => {
           const row = cell.row.original;
+          console.log();
 
           return (
             <TableInput<ForecastTableData>
@@ -126,6 +128,7 @@ export default function ForecastTable() {
                 saveForecast(row, params.countryId, value)
               }
               tableRow={row}
+              initValue={Number(cell.getValue()).toString()}
               type="number"
               variant="bordered"
             />

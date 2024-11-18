@@ -4,7 +4,7 @@ import { Ok } from "ts-results";
 
 import { getUserCountries, userHasCountry } from "@/lib/models/userHasCountry";
 import { GetUserCountriesOkResponse, HfsResponse } from "@/types/responses";
-import { HfsResult } from "@/lib/errors/HfsError";
+import HfsError, { HfsResult } from "@/lib/errors/HfsError";
 import { getOrUpdateAccessToken } from "@/lib/models/user";
 import { getForecastData } from "@/lib/tables/forecast";
 import {
@@ -34,8 +34,8 @@ export async function getUserCountriesAction(): Promise<
     status: 200,
     data: {
       countries: userCountriesRes.val.map((userCountry) => ({
-        code: userCountry.country_code,
-        name: userCountry.s_country.name,
+        code: userCountry.user_has_country.countryCode,
+        name: userCountry.s_country?.name,
       })),
     },
   });
@@ -81,6 +81,10 @@ export async function saveForecast(
   const itemNo = Number(row.item_no);
   const colorCode = row.color_code;
   const amount = Number(value);
+
+  // if (amount <= 0) {
+  //   return new HfsError(400, "Amount must be greater than 0");
+  // }
 
   (await createForecast(itemNo, colorCode, countryCode, amount)).unwrap(); // we want to throw if there is an error, returning a 500
 

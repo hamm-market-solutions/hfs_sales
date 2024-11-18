@@ -1,10 +1,12 @@
-import { Err, Ok } from "ts-results";
-import { forecast } from "@prisma/client";
+import { Err, None, Ok, Option, Some } from "ts-results";
+import { and, desc, eq } from "drizzle-orm";
 
-import prisma from "../prisma";
 import HfsError, { HfsResult } from "../errors/HfsError";
 import ForecastModelError from "../errors/ForecastModelError";
 import { getAccessTokenPayload } from "../auth/jwt";
+
+import { db } from "@/db";
+import { forecast } from "@/db/schema";
 
 export const createForecast = async (
   itemNo: number,
@@ -13,9 +15,9 @@ export const createForecast = async (
   amount: number,
 ) => {
   try {
-    const latestForecast = (
-      await getLatestForecast(itemNo, colorCode)
-    ).unwrapOr(null);
+    const latestForecast = (await getLatestForecast(itemNo, colorCode))
+      .unwrapOr(null)
+      ?.unwrapOr(null);
 
     if (latestForecast && latestForecast.amount === amount) {
       return Ok(latestForecast);
@@ -26,14 +28,12 @@ export const createForecast = async (
       return user;
     }
     const userId = user.val.sub!;
-    const newForecast = await prisma.forecast.create({
-      data: {
-        item_no: itemNo.toString(),
-        color_code: colorCode,
-        amount: amount,
-        country_code: countryCode.toUpperCase(),
-        created_by: Number(userId),
-      },
+    const newForecast = await db.insert(forecast).values({
+      itemNo: itemNo.toString(),
+      colorCode: colorCode,
+      amount: amount,
+      countryCode: countryCode.toUpperCase(),
+      createdBy: Number(userId),
     });
 
     return Ok(newForecast);
@@ -51,19 +51,25 @@ export const createForecast = async (
 export async function getLatestForecast(
   itemNo: number,
   colorCode: string,
-): Promise<HfsResult<forecast | null>> {
+): Promise<HfsResult<Option<typeof forecast.$inferSelect>>> {
   try {
-    return Ok(
-      await prisma.forecast.findFirst({
-        where: {
-          item_no: itemNo.toString(),
-          color_code: colorCode,
-        },
-        orderBy: {
-          timestamp: "desc",
-        },
-      }),
-    );
+    const latestForecast = await db
+      .select()
+      .from(forecast)
+      .where(
+        and(
+          eq(forecast.itemNo, itemNo.toString()),
+          eq(forecast.colorCode, colorCode),
+        ),
+      )
+      .orderBy(desc(forecast.timestamp))
+      .limit(1);
+
+    if (latestForecast) {
+      return Ok(Some(latestForecast[0]));
+    } else {
+      return Ok(None);
+    }
   } catch (error) {
     console.error(error);
 

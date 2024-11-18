@@ -2,15 +2,14 @@
 
 import { compareSync } from "bcrypt-ts";
 import { Err, None, Ok, Option, Some } from "ts-results";
-import { user } from "@prisma/client";
 import { decodeJwt, JWTPayload } from "jose";
 import { cookies } from "next/headers";
+import { eq } from "drizzle-orm";
 
 import UserModelError from "../errors/UserModelError";
 import JwtError, { ACCESS_TOKEN, REFRESH_TOKEN } from "../errors/JwtError";
 
 import HfsError, { HfsResult } from "@/lib/errors/HfsError";
-import prisma from "@/lib/prisma";
 import {
   getRefreshTokenAndVerify,
   signJWT,
@@ -20,12 +19,20 @@ import {
 import { authConfig } from "@/config/auth";
 import { ACCESS_TOKEN_LIFETIME, REFRESH_TOKEN_LIFETIME } from "@/config/auth";
 import { optionToNotFound } from "@/utils/conversions";
+import { user as userTable } from "@/db/schema";
+import { db } from "@/db";
 
-export const getOptUserById = async (id: number): Promise<Option<user>> => {
-  const user = await prisma.user.findFirst({ where: { id: id } });
+export const getOptUserById = async (
+  id: number,
+): Promise<Option<typeof userTable.$inferSelect>> => {
+  const user = await db
+    .select()
+    .from(userTable)
+    .where(eq(userTable.id, id))
+    .limit(1);
 
   if (user) {
-    return Some(user);
+    return Some(user[0]);
   } else {
     return None;
   }
@@ -33,19 +40,28 @@ export const getOptUserById = async (id: number): Promise<Option<user>> => {
 
 export const getUserByEmail = async (
   email: string,
-): Promise<HfsResult<user>> => {
+): Promise<HfsResult<typeof userTable.$inferSelect>> => {
   const user = await getOptUserByEmail(email);
 
-  return optionToNotFound(user);
+  console.log("user", user);
+
+  return optionToNotFound(user, "user not found");
 };
 
 export const getOptUserByEmail = async (
   email: string,
-): Promise<Option<user>> => {
-  const user = await prisma.user.findFirst({ where: { email: email } });
+): Promise<Option<typeof userTable.$inferSelect>> => {
+  console.log("getting user by email", email);
+  const user = await db
+    .select()
+    .from(userTable)
+    .where(eq(userTable.email, email))
+    .limit(1);
+
+  console.log("found user", user);
 
   if (user) {
-    return Some(user);
+    return Some(user[0]);
   } else {
     return None;
   }
@@ -70,10 +86,10 @@ export const updateRefreshToken = async (
     return refreshTokenRes;
   }
   try {
-    await prisma.user.update({
-      where: { id: userId },
-      data: { refresh_token: refreshTokenRes.val },
-    });
+    // await prisma.update({
+    //   where: { id: userId },
+    //   data: { refresh_token: refreshTokenRes.val },
+    // });
   } catch (error) {
     return Err(
       new HfsError(

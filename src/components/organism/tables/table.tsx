@@ -38,7 +38,7 @@ export default function BaseTable<T extends object>({
   const tableContainerRef = React.useRef<HTMLDivElement>(null);
   const [sorting, setSorting] = React.useState<SortingState>([]);
   //react-query has a useInfiniteQuery hook that is perfect for this use case
-  const { data, fetchNextPage, isFetching, isLoading } = useInfiniteQuery<
+  const { data, fetchNextPage, isFetching } = useInfiniteQuery<
     TableResponse<T>
   >({
     queryKey: [
@@ -171,7 +171,15 @@ export default function BaseTable<T extends object>({
                           className: header.column.getCanSort()
                             ? "cursor-pointer select-none"
                             : "",
+                          "aria-hidden": false,
+                          tabIndex: 0, // This makes the element focusable
                           onClick: header.column.getToggleSortingHandler(),
+                          onKeyDown: (e) => {
+                            // if the key is `Enter`, then toggle sorting
+                            if (e.code == "Enter") {
+                              header.column.getToggleSortingHandler()!(e);
+                            }
+                          },
                         }}
                       >
                         {flexRender(

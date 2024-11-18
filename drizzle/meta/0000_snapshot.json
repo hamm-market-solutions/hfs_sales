@@ -1,0 +1,816 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "prevId": "",
+  "version": "5",
+  "dialect": "mysql",
+  "tables": {
+    "brand": {
+      "name": "brand",
+      "columns": {
+        "no": {
+          "autoincrement": false,
+          "name": "no",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "code": {
+          "autoincrement": false,
+          "name": "code",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "gln": {
+          "default": "''",
+          "autoincrement": false,
+          "name": "gln",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "timestamp": {
+          "default": "(CURRENT_TIMESTAMP)",
+          "autoincrement": false,
+          "name": "timestamp",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {
+        "brand_no": {
+          "name": "brand_no",
+          "columns": [
+            "no"
+          ]
+        }
+      },
+      "indexes": {
+        "code": {
+          "name": "code",
+          "columns": [
+            "code"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "permission": {
+      "name": "permission",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int unsigned",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {
+        "permission_id": {
+          "name": "permission_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {
+        "permission_name_uindex": {
+          "name": "permission_name_uindex",
+          "columns": [
+            "name"
+          ]
+        }
+      },
+      "checkConstraint": {}
+    },
+    "role": {
+      "name": "role",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "autoincrement": false,
+          "name": "description",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {
+        "role_id": {
+          "name": "role_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {
+        "role_name_uindex": {
+          "name": "role_name_uindex",
+          "columns": [
+            "name"
+          ]
+        }
+      },
+      "checkConstraint": {}
+    },
+    "role_has_permission": {
+      "name": "role_has_permission",
+      "columns": {
+        "role_id": {
+          "autoincrement": false,
+          "name": "role_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "permission_id": {
+          "autoincrement": false,
+          "name": "permission_id",
+          "type": "int unsigned",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "permission_id": {
+          "name": "permission_id",
+          "columns": [
+            "permission_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "uniqueConstraints": {
+        "role_has_permission_role_id_permission_id_uindex": {
+          "name": "role_has_permission_role_id_permission_id_uindex",
+          "columns": [
+            "role_id",
+            "permission_id"
+          ]
+        }
+      },
+      "checkConstraint": {}
+    },
+    "s_country": {
+      "name": "s_country",
+      "columns": {
+        "code": {
+          "autoincrement": false,
+          "name": "code",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "timestamp": {
+          "default": "(CURRENT_TIMESTAMP)",
+          "autoincrement": false,
+          "name": "timestamp",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {
+        "s_country_code": {
+          "name": "s_country_code",
+          "columns": [
+            "code"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "s_item": {
+      "name": "s_item",
+      "columns": {
+        "no": {
+          "autoincrement": false,
+          "name": "no",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "autoincrement": false,
+          "name": "description",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "last": {
+          "autoincrement": false,
+          "name": "last",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "material": {
+          "autoincrement": false,
+          "name": "material",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "brand_no": {
+          "autoincrement": false,
+          "name": "brand_no",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cat_name": {
+          "autoincrement": false,
+          "name": "cat_name",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "order_qty": {
+          "autoincrement": false,
+          "name": "order_qty",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "min_qty_style": {
+          "autoincrement": false,
+          "name": "min_qty_style",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "min_qty_last": {
+          "autoincrement": false,
+          "name": "min_qty_last",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "season_code": {
+          "autoincrement": false,
+          "name": "season_code",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nos": {
+          "autoincrement": false,
+          "name": "nos",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "vendor_no": {
+          "autoincrement": false,
+          "name": "vendor_no",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "vendor_item_no": {
+          "autoincrement": false,
+          "name": "vendor_item_no",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "style_code": {
+          "autoincrement": false,
+          "name": "style_code",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tariff_no": {
+          "autoincrement": false,
+          "name": "tariff_no",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "timestamp": {
+          "default": "(CURRENT_TIMESTAMP)",
+          "autoincrement": false,
+          "name": "timestamp",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {
+        "s_item_no": {
+          "name": "s_item_no",
+          "columns": [
+            "no"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "s_item_color": {
+      "name": "s_item_color",
+      "columns": {
+        "item_no": {
+          "autoincrement": false,
+          "name": "item_no",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "color_code": {
+          "autoincrement": false,
+          "name": "color_code",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "custom_color": {
+          "autoincrement": false,
+          "name": "custom_color",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "purchase_price": {
+          "autoincrement": false,
+          "name": "purchase_price",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "requested_ex_factory_date": {
+          "autoincrement": false,
+          "name": "requested_ex_factory_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "first_customer_shipment_date": {
+          "autoincrement": false,
+          "name": "first_customer_shipment_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "price_confirmed": {
+          "autoincrement": false,
+          "name": "price_confirmed",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "pre_collection": {
+          "autoincrement": false,
+          "name": "pre_collection",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "main_collection": {
+          "autoincrement": false,
+          "name": "main_collection",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "late_collection": {
+          "autoincrement": false,
+          "name": "late_collection",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "Special_collection": {
+          "autoincrement": false,
+          "name": "Special_collection",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "confirmed_ex_factory_date": {
+          "autoincrement": false,
+          "name": "confirmed_ex_factory_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "confirmation_sample_sent": {
+          "autoincrement": false,
+          "name": "confirmation_sample_sent",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "timestamp": {
+          "default": "(CURRENT_TIMESTAMP)",
+          "autoincrement": false,
+          "name": "timestamp",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {
+        "unique_key": {
+          "name": "unique_key",
+          "columns": [
+            "item_no",
+            "color_code"
+          ]
+        }
+      },
+      "checkConstraint": {}
+    },
+    "s_season": {
+      "name": "s_season",
+      "columns": {
+        "code": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "code",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "timestamp": {
+          "default": "(CURRENT_TIMESTAMP)",
+          "autoincrement": false,
+          "name": "timestamp",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {
+        "s_season_code": {
+          "name": "s_season_code",
+          "columns": [
+            "code"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "s_season_brand_phase": {
+      "name": "s_season_brand_phase",
+      "columns": {
+        "season_code": {
+          "default": 0,
+          "autoincrement": false,
+          "name": "season_code",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "brand_no": {
+          "autoincrement": false,
+          "name": "brand_no",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "phase": {
+          "autoincrement": false,
+          "name": "phase",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "start_date": {
+          "autoincrement": false,
+          "name": "start_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "end_date": {
+          "autoincrement": false,
+          "name": "end_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "timestamp": {
+          "default": "(CURRENT_TIMESTAMP)",
+          "autoincrement": false,
+          "name": "timestamp",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {
+        "unique_key": {
+          "name": "unique_key",
+          "columns": [
+            "season_code",
+            "brand_no",
+            "phase"
+          ]
+        }
+      },
+      "checkConstraint": {}
+    },
+    "user": {
+      "name": "user",
+      "columns": {
+        "id": {
+          "autoincrement": true,
+          "name": "id",
+          "type": "int unsigned",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fname": {
+          "autoincrement": false,
+          "name": "fname",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "password": {
+          "autoincrement": false,
+          "name": "password",
+          "type": "varchar(70)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "autoincrement": false,
+          "name": "email",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "passwordcode": {
+          "autoincrement": false,
+          "name": "passwordcode",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "passwordcode_time": {
+          "autoincrement": false,
+          "name": "passwordcode_time",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {
+        "user_id": {
+          "name": "user_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {
+        "user_email_uindex": {
+          "name": "user_email_uindex",
+          "columns": [
+            "email"
+          ]
+        }
+      },
+      "checkConstraint": {}
+    },
+    "user_has_permission": {
+      "name": "user_has_permission",
+      "columns": {
+        "user_id": {
+          "autoincrement": false,
+          "name": "user_id",
+          "type": "int unsigned",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "permission_id": {
+          "autoincrement": false,
+          "name": "permission_id",
+          "type": "int unsigned",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {
+        "user_has_permission_user_id_permission_id": {
+          "name": "user_has_permission_user_id_permission_id",
+          "columns": [
+            "user_id",
+            "permission_id"
+          ]
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "permission___fk": {
+          "name": "permission___fk",
+          "tableFrom": "user_has_permission",
+          "tableTo": "permission",
+          "columnsFrom": [
+            "permission_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "restrict"
+        }
+      },
+      "uniqueConstraints": {
+        "user_has_permission_user_id_permission_id_uindex": {
+          "name": "user_has_permission_user_id_permission_id_uindex",
+          "columns": [
+            "user_id",
+            "permission_id"
+          ]
+        }
+      },
+      "checkConstraint": {}
+    },
+    "user_has_role": {
+      "name": "user_has_role",
+      "columns": {
+        "user_id": {
+          "autoincrement": false,
+          "name": "user_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "role_id": {
+          "autoincrement": false,
+          "name": "role_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "user_has_role_ibfk_2": {
+          "name": "user_has_role_ibfk_2",
+          "columns": [
+            "role_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "user_has_role_ibfk_1": {
+          "name": "user_has_role_ibfk_1",
+          "tableFrom": "user_has_role",
+          "tableTo": "role",
+          "columnsFrom": [
+            "role_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "uniqueConstraints": {
+        "user_has_role_user_id_role_id_uindex": {
+          "name": "user_has_role_user_id_role_id_uindex",
+          "columns": [
+            "user_id",
+            "role_id"
+          ]
+        }
+      },
+      "checkConstraint": {}
+    }
+  },
+  "views": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "tables": {
+      "brand": {
+        "columns": {
+          "timestamp": {
+            "isDefaultAnExpression": true
+          }
+        }
+      },
+      "s_country": {
+        "columns": {
+          "timestamp": {
+            "isDefaultAnExpression": true
+          }
+        }
+      },
+      "s_item": {
+        "columns": {
+          "timestamp": {
+            "isDefaultAnExpression": true
+          }
+        }
+      },
+      "s_item_color": {
+        "columns": {
+          "timestamp": {
+            "isDefaultAnExpression": true
+          }
+        }
+      },
+      "s_season": {
+        "columns": {
+          "timestamp": {
+            "isDefaultAnExpression": true
+          }
+        }
+      },
+      "s_season_brand_phase": {
+        "columns": {
+          "timestamp": {
+            "isDefaultAnExpression": true
+          }
+        }
+      }
+    },
+    "indexes": {}
+  }
+}
