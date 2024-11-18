@@ -64,7 +64,7 @@ export async function getForecastTableData({
 export async function saveForecast(
   row: ForecastTableData,
   countryCode: string,
-  value: any,
+  value: number,
 ): Promise<HfsResponse<{}>> {
   const user = await getAccessTokenPayload();
 
@@ -80,7 +80,7 @@ export async function saveForecast(
   }
   const itemNo = Number(row.item_no);
   const colorCode = row.color_code;
-  const amount = Number(value);
+  const amount = value;
 
   // if (amount <= 0) {
   //   return new HfsError(400, "Amount must be greater than 0");

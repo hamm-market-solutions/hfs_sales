@@ -24,7 +24,7 @@ export function resultToResponse<T extends object, R = HfsResponse>(
   }
 }
 
-export function schemaToResult<Output extends any, Input = Output>(
+export function schemaToResult<Output, Input = Output>(
   schema: SafeParseReturnType<Input, Output>,
 ): HfsResult<Output> {
   if (!schema.success) {
