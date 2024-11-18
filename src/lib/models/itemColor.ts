@@ -1,5 +1,5 @@
 import { Err, Ok } from "ts-results";
-import { and, asc, count, desc, eq } from "drizzle-orm";
+import { and, asc, count, desc, eq, sql } from "drizzle-orm";
 import _ from "lodash";
 
 import HfsError from "../errors/HfsError";
@@ -62,30 +62,28 @@ export const getForecastTableData = async ({
       itemNo: sItemColor.itemNo,
       colorCode: sItemColor.colorCode,
       purchasePrice: sItemColor.purchasePrice,
-      forecastAmount: forecast.amount,
+      forecastAmount: sql<number>`(SELECT amount FROM forecast WHERE item_no = ${sItemColor.itemNo} AND color_code = ${sItemColor.colorCode} AND country_code = ${country} ORDER BY timestamp DESC LIMIT 1)`.mapWith(Number),
     };
     const selectClone = _.cloneDeep(select);
     const orderBy = sortingStateToDrizzle(selectClone, sorting);
-    const forecastSq = db.select().from(forecast).orderBy(desc(forecast.timestamp)).groupBy(forecast.itemNo, forecast.colorCode).as("forecast");
-
     return Ok(
       await db
         .select(select)
         .from(sItemColor)
         .leftJoin(sItem, and(eq(sItemColor.itemNo, sItem.no)))
-        .leftJoin(forecastSq, and(eq(sItemColor.itemNo, forecastSq.itemNo), eq(sItemColor.colorCode, forecastSq.colorCode), eq(forecastSq.countryCode, country)))
         .where(
           and(
             eq(sItem.brandNo, brand.toString()),
             eq(sItem.seasonCode, season_code),
           ),
         )
-        .groupBy(sItemColor.itemNo, sItemColor.colorCode)
         .orderBy(...orderBy)
         .limit(size)
         .offset(start),
     );
   } catch (error) {
+    console.log(error);
+
     return Err(
       HfsError.fromThrow(
         500,

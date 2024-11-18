@@ -3,7 +3,7 @@ import { SafeParseReturnType } from "zod";
 import { Err, Ok, Option } from "ts-results";
 import { SortingState } from "@tanstack/react-table";
 import { MySqlColumn } from "drizzle-orm/mysql-core";
-import { asc, desc } from "drizzle-orm";
+import { asc, desc, SQL } from "drizzle-orm";
 
 import HfsError, { HfsResult } from "../lib/errors/HfsError";
 import { HfsResponse } from "../types/responses";
@@ -48,7 +48,7 @@ export function optionToNotFound<T>(
 }
 
 export const sortingStateToDrizzle = (
-  drizzleSelect: { [key: string]: MySqlColumn },
+  drizzleSelect: { [key: string]: MySqlColumn | SQL },
   sorting: SortingState,
 ) => {
   let sortings = [];

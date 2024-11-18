@@ -26,7 +26,7 @@ export default function TableInput<T extends object>({
       isInvalid={error !== undefined}
       value={value}
       onBlur={async () => {
-        if (value == "") {
+        if (value == "" || value == undefined || value == null || value == initValue) {
           return;
         }
         const response = await submitFn(tableRow, value);

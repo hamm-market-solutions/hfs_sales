@@ -82,9 +82,9 @@ export async function saveForecast(
   const colorCode = row.color_code;
   const amount = Number(value);
 
-  if (amount <= 0) {
-    return new HfsError(400, "Amount must be greater than 0");
-  }
+  // if (amount <= 0) {
+  //   return new HfsError(400, "Amount must be greater than 0");
+  // }
 
   (await createForecast(itemNo, colorCode, countryCode, amount)).unwrap(); // we want to throw if there is an error, returning a 500
 
