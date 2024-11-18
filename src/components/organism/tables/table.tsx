@@ -142,7 +142,7 @@ export default function BaseTable<T extends object>({
         }}
         onScroll={(e) => fetchMoreOnBottomReached(e.target as HTMLDivElement)}
       >
-        <table className="rounded-lg" style={{ display: "grid" }}>
+        <table className="rounded-lg scroll-smooth" style={{ display: "grid" }}>
           <thead
             className="p-4 rounded-lg bg-gray-100"
             style={{
@@ -203,6 +203,7 @@ export default function BaseTable<T extends object>({
               height: `${rowVirtualizer.getTotalSize()}px`, //tells scrollbar how big the table is
               position: "relative", //needed for absolute positioning of rows
             }}
+            className="overflow-hidden"
           >
             {!isFetching ? (
               rowVirtualizer.getVirtualItems().map((virtualRow) => {

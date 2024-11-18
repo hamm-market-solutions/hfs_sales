@@ -36,7 +36,6 @@
     "@types/lodash": "^4.17.13",
     "apexcharts": "^3.54.1",
     "bcrypt-ts": "^5.0.2",
-    "class-validator": "^0.14.1",
     "clsx": "2.1.1",
     "drizzle-orm": "^0.36.1",
     "framer-motion": "~11.11.9",
