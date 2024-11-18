@@ -4,15 +4,21 @@ import { ColumnDef, SortingState } from "@tanstack/react-table";
 import { useParams } from "next/navigation";
 import React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Image } from "@nextui-org/image";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  useDisclosure,
+} from "@nextui-org/modal";
 
 import BaseTable from "./table";
 
 import { ForecastTableData } from "@/types/table";
 import { getForecastTableData, saveForecast } from "@/actions/reports/forecast";
 import { phaseToDrop } from "@/utils/conversions";
-import TableInput from "@/components/molecules/tableInput";
-import { Image } from "@nextui-org/image";
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/modal";
+import EditableCell from "@/components/molecules/editableCell";
 
 export default function ForecastTable() {
   const params = useParams<{
@@ -26,32 +32,39 @@ export default function ForecastTable() {
         header: "Image",
         accessorKey: "img_src",
         cell: (cell) => {
-          const {isOpen, onOpen, onOpenChange} = useDisclosure();
+          const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-          return <>
-            <Image
-              alt="img"
-              className="h-10 w-10 self-start"
-              radius="sm"
-              src={cell.getValue() as string}
-              fallbackSrc="/assets/img-placeholder.svg"
-              onClick={onOpen}
-            />
-            <Modal backdrop="blur" isOpen={isOpen} onOpenChange={onOpenChange}>
-              <ModalContent>
-                <ModalHeader className="flex flex-col gap-1">Product Image</ModalHeader>
-                <ModalBody className="flex flex-row justify-center">
-                  <Image
-                    alt="img"
-                    className="h-36 w-36"
-                    src={cell.getValue() as string}
-                    fallbackSrc="/assets/img-placeholder.svg"
-                  />
-                </ModalBody>
-              </ModalContent>
-            </Modal>
-
-          </>;
+          return (
+            <>
+              <Image
+                alt="img"
+                className="h-10 w-10 self-start"
+                fallbackSrc="/assets/img-placeholder.svg"
+                radius="sm"
+                src={cell.getValue() as string}
+                onClick={onOpen}
+              />
+              <Modal
+                backdrop="blur"
+                isOpen={isOpen}
+                onOpenChange={onOpenChange}
+              >
+                <ModalContent>
+                  <ModalHeader className="flex flex-col gap-1">
+                    Product Image
+                  </ModalHeader>
+                  <ModalBody className="flex flex-row justify-center">
+                    <Image
+                      alt="img"
+                      className="h-36 w-36"
+                      fallbackSrc="/assets/img-placeholder.svg"
+                      src={cell.getValue() as string}
+                    />
+                  </ModalBody>
+                </ModalContent>
+              </Modal>
+            </>
+          );
         },
         enableSorting: false,
         size: 60,
@@ -63,8 +76,8 @@ export default function ForecastTable() {
       },
       {
         header: "Season",
-        accessorKey: "season_code",
-        size: 80,
+        accessorKey: "season_name",
+        size: 90,
       },
       {
         header: "Drop",
@@ -141,23 +154,25 @@ export default function ForecastTable() {
         accessorKey: "forecast_amount",
         cell: (cell) => {
           const row = cell.row.original;
+
           console.log();
 
           return (
-            <TableInput<ForecastTableData>
+            <EditableCell<ForecastTableData>
+              className="h-10"
+              initValue={Number(cell.getValue()).toString()}
               min={0}
               step={1}
               submitFn={(row, value) =>
                 saveForecast(row, params.countryId, value)
               }
               tableRow={row}
-              initValue={Number(cell.getValue()).toString()}
               type="number"
               variant="bordered"
             />
           );
         },
-        size: 100,
+        size: 90,
       },
     ],
     [],

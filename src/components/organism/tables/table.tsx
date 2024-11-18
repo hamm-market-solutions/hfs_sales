@@ -198,12 +198,12 @@ export default function BaseTable<T extends object>({
             ))}
           </thead>
           <tbody
+            className="overflow-hidden"
             style={{
               display: "grid",
               height: `${rowVirtualizer.getTotalSize()}px`, //tells scrollbar how big the table is
               position: "relative", //needed for absolute positioning of rows
             }}
-            className="overflow-hidden"
           >
             {!isFetching ? (
               rowVirtualizer.getVirtualItems().map((virtualRow) => {

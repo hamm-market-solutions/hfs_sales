@@ -118,3 +118,12 @@ export const phaseToDrop = ({
 export const snakeCaseToCamelCase = (str: string) => {
   return str.replace(/([-_]\w)/g, (g) => g[1].toUpperCase());
 };
+
+export const seasonToShort = (season: string) => {
+  const [firstSeason, secondSeasonAndYear] = season?.split("/") ?? [];
+  const [secondSeason, year] = secondSeasonAndYear.split(" ") ?? [];
+  const firstLetterFirstSeason = firstSeason?.charAt(0).toUpperCase();
+  const firstLetterSecondSeason = secondSeason?.charAt(0).toUpperCase();
+
+  return `${firstLetterFirstSeason}/${firstLetterSecondSeason} ${year}`;
+};

@@ -4,7 +4,7 @@ import { Ok } from "ts-results";
 
 import { getUserCountries, userHasCountry } from "@/lib/models/userHasCountry";
 import { GetUserCountriesOkResponse, HfsResponse } from "@/types/responses";
-import HfsError, { HfsResult } from "@/lib/errors/HfsError";
+import { HfsResult } from "@/lib/errors/HfsError";
 import { getOrUpdateAccessToken } from "@/lib/models/user";
 import { getForecastData } from "@/lib/tables/forecast";
 import {

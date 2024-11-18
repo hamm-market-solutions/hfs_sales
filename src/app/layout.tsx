@@ -1,8 +1,6 @@
 import "@/styles/globals.css";
 import { Metadata } from "next";
 import clsx from "clsx";
-import { headers } from "next/headers";
-import { NextRequest } from "next/server";
 
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";

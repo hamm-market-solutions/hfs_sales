@@ -3,6 +3,7 @@ import {
   getForecastTableCount,
 } from "../models/itemColor";
 
+import { seasonToShort } from "@/utils/conversions";
 import {
   ForecastTableData,
   ForecastTableRequest,
@@ -35,8 +36,9 @@ export const getForecastData = async ({
     data: itemColorData.unwrap().map((data) => ({
       img_src: `https://hfs.hamm-footwear.com/purchase/item/picture?item_no=${data.itemNo}&color=${data.colorCode}`,
       brand_no: data.brandNo,
-      brand_name: "",
+      brand_name: data.brandName,
       season_code: data.seasonCode,
+      season_name: seasonToShort(data.seasonName ?? ""),
       pre_collection: data.preCollection,
       main_collection: data.mainCollection,
       late_collection: data.lateCollection,
