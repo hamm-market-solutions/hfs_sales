@@ -11,6 +11,8 @@ import { ForecastTableData } from "@/types/table";
 import { getForecastTableData, saveForecast } from "@/actions/reports/forecast";
 import { phaseToDrop } from "@/utils/conversions";
 import TableInput from "@/components/molecules/tableInput";
+import { Image } from "@nextui-org/image";
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/modal";
 
 export default function ForecastTable() {
   const params = useParams<{
@@ -23,13 +25,34 @@ export default function ForecastTable() {
       {
         header: "Image",
         accessorKey: "img_src",
-        cell: (cell) => (
-          <img
-            alt="img"
-            className="h-7 self-start"
-            src={cell.getValue() as string}
-          />
-        ),
+        cell: (cell) => {
+          const {isOpen, onOpen, onOpenChange} = useDisclosure();
+
+          return <>
+            <Image
+              alt="img"
+              className="h-10 w-10 self-start"
+              radius="sm"
+              src={cell.getValue() as string}
+              fallbackSrc="/assets/img-placeholder.svg"
+              onClick={onOpen}
+            />
+            <Modal backdrop="blur" isOpen={isOpen} onOpenChange={onOpenChange}>
+              <ModalContent>
+                <ModalHeader className="flex flex-col gap-1">Product Image</ModalHeader>
+                <ModalBody className="flex flex-row justify-center">
+                  <Image
+                    alt="img"
+                    className="h-36 w-36"
+                    src={cell.getValue() as string}
+                    fallbackSrc="/assets/img-placeholder.svg"
+                  />
+                </ModalBody>
+              </ModalContent>
+            </Modal>
+
+          </>;
+        },
         enableSorting: false,
         size: 60,
       },

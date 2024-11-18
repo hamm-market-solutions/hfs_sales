@@ -19,19 +19,6 @@ export const metadata: Metadata = {
   },
 };
 
-export const getServerProps = async () => {
-  const headersList = await headers();
-  const referer = headersList.get("referer") ?? "/";
-  const request = new NextRequest(referer);
-
-  return {
-    request: {
-      referer: referer,
-      path: request.nextUrl.pathname,
-    },
-  };
-};
-
 export default async function RootLayout({
   children,
 }: {

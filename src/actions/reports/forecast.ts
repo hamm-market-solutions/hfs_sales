@@ -66,7 +66,7 @@ export async function saveForecast(
   countryCode: string,
   value: any,
 ): Promise<HfsResponse<{}>> {
-  const user = await await getAccessTokenPayload();
+  const user = await getAccessTokenPayload();
 
   if (user.err) {
     return user.val;
