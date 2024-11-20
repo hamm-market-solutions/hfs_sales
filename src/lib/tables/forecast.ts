@@ -10,7 +10,7 @@ import {
   TableResponse,
 } from "@/types/table";
 
-export const getForecastData = async ({
+export const getForecastTableDataMapper = async ({
   start,
   size,
   sorting,

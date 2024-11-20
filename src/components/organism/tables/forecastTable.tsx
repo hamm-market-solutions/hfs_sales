@@ -16,16 +16,20 @@ import {
 import BaseTable from "./table";
 
 import { ForecastTableData } from "@/types/table";
-import { getForecastTableData, saveForecast } from "@/actions/reports/forecast";
+import { getForecastTableDataAction, saveForecast } from "@/actions/reports/forecast";
 import { phaseToDrop } from "@/utils/conversions";
 import EditableCell from "@/components/molecules/editableCell";
 
 export default function ForecastTable() {
+  console.log("ForecastTable");
+
   const params = useParams<{
     countryId: string;
     brandId: string;
     seasonCode: string;
   }>();
+  console.log("params", params);
+
   const columns = React.useMemo<ColumnDef<ForecastTableData>[]>(
     () => [
       {
@@ -190,7 +194,7 @@ export default function ForecastTable() {
       <BaseTable
         columns={columns}
         fetchFn={async (start: number, size: number, sorting: SortingState) => {
-          return await getForecastTableData({
+          return await getForecastTableDataAction({
             start: start,
             size: size,
             sorting: sorting,
