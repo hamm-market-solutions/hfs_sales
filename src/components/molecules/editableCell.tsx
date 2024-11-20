@@ -4,9 +4,6 @@ import { Input, InputProps } from "@nextui-org/input";
 import { useState } from "react";
 import clsx from "clsx";
 
-import { HfsErrResponse, HfsResponse } from "@/types/responses";
-import Icon from "../atoms/icons/icon";
-
 export default function EditableCell<T extends object>({
   tableRow,
   submitFn,
@@ -23,7 +20,7 @@ export default function EditableCell<T extends object>({
   >(initValue);
   const handleAction = async (row: T, value: any) => {
     await submitFn(tableRow, value);
-  }
+  };
 
   const [error, setError] = useState<string | undefined>(undefined);
 
@@ -49,7 +46,7 @@ export default function EditableCell<T extends object>({
           ) {
             return;
           }
-          const response =await handleAction(tableRow, value);
+          const response = await handleAction(tableRow, value);
 
           console.log(response);
 

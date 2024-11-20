@@ -13,7 +13,7 @@ export const createForecast = async (
   colorCode: string,
   countryCode: string,
   amount: number,
-) => {
+): Promise<HfsResult<typeof forecast.$inferInsert>> => {
   try {
     const latestForecast = (await getLatestForecast(itemNo, colorCode))
       .unwrapOr(null)
@@ -28,15 +28,19 @@ export const createForecast = async (
       return user;
     }
     const userId = user.val.sub!;
-    const newForecast = await db.insert(forecast).values({
-      itemNo: itemNo.toString(),
-      colorCode: colorCode,
-      amount: amount,
-      countryCode: countryCode.toUpperCase(),
-      createdBy: Number(userId),
-    });
+    const prepared = db
+      .insert(forecast)
+      .values({
+        itemNo: itemNo.toString(),
+        colorCode: colorCode,
+        amount: amount,
+        countryCode: countryCode.toUpperCase(),
+        createdBy: Number(userId),
+      })
+      .prepare();
+    const result = await prepared.execute();
 
-    return Ok(newForecast);
+    return Ok(result as any as typeof forecast.$inferInsert);
   } catch (error) {
     return Err(
       HfsError.fromThrow(

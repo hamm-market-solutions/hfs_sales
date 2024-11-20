@@ -9,11 +9,8 @@ import {
   updateAccessToken,
   verifyPassword,
 } from "@/lib/models/user";
-import HfsError from "@/lib/errors/HfsError";
 
-export async function handleLogin(
-  form: FormData,
-): Promise<void> {
+export async function handleLogin(form: FormData): Promise<void> {
   const formValidationRes = validateLoginForm(form);
 
   if (formValidationRes.err) {

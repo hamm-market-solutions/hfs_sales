@@ -6,12 +6,7 @@ import { getUserCountries, userHasCountry } from "@/lib/models/userHasCountry";
 import { GetUserCountriesOkResponse, HfsResponse } from "@/types/responses";
 import { HfsResult } from "@/lib/errors/HfsError";
 import { getOrUpdateAccessToken } from "@/lib/models/user";
-import { getForecastTableDataMapper } from "@/lib/tables/forecast";
-import {
-  ForecastTableData,
-  ForecastTableRequest,
-  TableResponse,
-} from "@/types/table";
+import { ForecastTableData } from "@/types/table";
 import { createForecast } from "@/lib/models/forecast";
 import { getAccessTokenPayload } from "@/lib/auth/jwt";
 
@@ -39,28 +34,6 @@ export async function getUserCountriesAction(): Promise<
       })),
     },
   });
-}
-
-export async function getForecastTableDataAction({
-  start,
-  size,
-  sorting,
-  country,
-  brand,
-  season_code,
-}: ForecastTableRequest): Promise<TableResponse<ForecastTableData>> {
-  console.log("getting forecast table data", start, size, sorting, country, brand, season_code);
-
-  const data = await getForecastTableDataMapper({
-    start,
-    size,
-    sorting,
-    country,
-    brand,
-    season_code,
-  });
-
-  return data;
 }
 
 export async function saveForecast(

@@ -1,8 +1,8 @@
 "use client";
 
-import { ColumnDef, SortingState } from "@tanstack/react-table";
+import { ColumnDef } from "@tanstack/react-table";
 import { useParams } from "next/navigation";
-import React, { useEffect } from "react";
+import React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Image } from "@nextui-org/image";
 import {
@@ -16,10 +16,8 @@ import {
 import BaseTable from "./table";
 
 import { ForecastTableData } from "@/types/table";
-import { getForecastTableDataAction, saveForecast } from "@/actions/reports/forecast";
 import { phaseToDrop } from "@/utils/conversions";
 import EditableCell from "@/components/molecules/editableCell";
-import { appConfig } from "@/config/app";
 
 export default function ForecastTable() {
   console.log("ForecastTable");
@@ -29,6 +27,7 @@ export default function ForecastTable() {
     brandId: string;
     seasonCode: string;
   }>();
+
   console.log("params", params);
 
   const columns = React.useMemo<ColumnDef<ForecastTableData>[]>(
@@ -168,11 +167,21 @@ export default function ForecastTable() {
               initValue={Number(cell.getValue()).toString()}
               min={0}
               step={1}
-              submitFn={async (row, value) =>
-                useEffect(() => {
-                  saveForecast(row, params.countryId, value);
-                }, [row, value])
-              }
+              submitFn={async (row, value) => {
+                const res = await fetch("/api/sales/reports/forecasts", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    itemNo: row.item_no,
+                    colorCode: row.color_code,
+                    countryCode: params.countryId,
+                    amount: value,
+                  }),
+                });
+                const resJson = await res.json();
+              }}
               tableRow={row}
               type="number"
               variant="bordered"
@@ -184,6 +193,7 @@ export default function ForecastTable() {
     ],
     [],
   );
+
   console.log("columns defined");
 
   const queryClient = new QueryClient({
@@ -193,6 +203,7 @@ export default function ForecastTable() {
       },
     },
   });
+
   console.log("queryClient defined");
 
   return (
@@ -211,7 +222,10 @@ export default function ForecastTable() {
         //     season_code: Number(params.seasonCode),
         //   });
         // }}
-        url={["/api/sales/reports/forecasts", `country=${params.countryId}&brand=${params.brandId}&season_code=${params.seasonCode}`]}
+        url={[
+          "/api/sales/reports/forecasts/table",
+          `country=${params.countryId}&brand=${params.brandId}&season_code=${params.seasonCode}`,
+        ]}
       />
     </QueryClientProvider>
   );

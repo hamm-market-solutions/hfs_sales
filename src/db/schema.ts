@@ -148,8 +148,7 @@ export const sItem = mysqlTable(
 export const sItemColor = mysqlTable(
   "s_item_color",
   {
-    itemNo: varchar("item_no", { length: 20 })
-      .notNull(),
+    itemNo: varchar("item_no", { length: 20 }).notNull(),
     colorCode: varchar("color_code", { length: 10 }).notNull(),
     customColor: varchar("custom_color", { length: 30 }),
     purchasePrice: int("purchase_price"),

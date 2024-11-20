@@ -12,9 +12,9 @@ import {
   SortingState,
   useReactTable,
 } from "@tanstack/react-table";
-import { keepPreviousData, useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useInfiniteQuery } from "@tanstack/react-query";
 import { useVirtualizer } from "@tanstack/react-virtual";
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import { Spinner } from "@nextui-org/spinner";
 
 import Icon from "../../atoms/icons/icon";
@@ -40,8 +40,10 @@ export default function BaseTable<T extends object>({
 
   //we need a reference to the scrolling element for logic down below
   const tableContainerRef = React.useRef<HTMLDivElement>(null);
+
   console.log("tableContainerRef");
   const [sorting, setSorting] = React.useState<SortingState>([]);
+
   console.log("sorting state defined");
   //react-query has a useInfiniteQuery hook that is perfect for this use case
   const { data, fetchNextPage, isFetching } = useInfiniteQuery<
@@ -57,12 +59,16 @@ export default function BaseTable<T extends object>({
       const start = (pageParam as number) * fetchSize;
       const base = url[0];
       const query = url[1];
-      const fetchedData = await fetch(`${base}?${query}&start=${start}&size=${fetchSize}&sorting=${JSON.stringify(sorting)}`);
+      const fetchedData = await fetch(
+        `${base}?${query}&start=${start}&size=${fetchSize}&sorting=${JSON.stringify(sorting)}`,
+      );
+
       console.log("fetching data...");
       // const fetchedData = await fetchFn(start, fetchSize, sorting); //pretend api call
       console.log("fetchedData", fetchedData);
 
       const fetchedDataJson = await fetchedData.json();
+
       console.log("fetchedDataJson", fetchedDataJson);
 
       return fetchedDataJson["data"];
