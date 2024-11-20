@@ -2,7 +2,7 @@
 
 import { ColumnDef, SortingState } from "@tanstack/react-table";
 import { useParams } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Image } from "@nextui-org/image";
 import {
@@ -168,8 +168,10 @@ export default function ForecastTable() {
               initValue={Number(cell.getValue()).toString()}
               min={0}
               step={1}
-              submitFn={(row, value) =>
-                saveForecast(row, params.countryId, value)
+              submitFn={async (row, value) =>
+                useEffect(() => {
+                  saveForecast(row, params.countryId, value);
+                }, [row, value])
               }
               tableRow={row}
               type="number"

@@ -14,7 +14,7 @@ export default function EditableCell<T extends object>({
   ...props
 }: {
   tableRow: T;
-  submitFn: (row: T, value: any) => Promise<HfsResponse>;
+  submitFn: (row: T, value: any) => Promise<void>;
   initValue?: string;
 } & InputProps) {
   const [isEditing, setIsEditing] = useState(false);
@@ -49,9 +49,9 @@ export default function EditableCell<T extends object>({
 
           console.log(response);
 
-          if (response.status !== 200) {
-            setError((response as HfsErrResponse).error);
-          }
+          // if (response.status !== 200) {
+          //   setError((response as HfsErrResponse).error);
+          // }
         }}
         onChange={(e) => setValue(e.target.value)}
         {...props}
