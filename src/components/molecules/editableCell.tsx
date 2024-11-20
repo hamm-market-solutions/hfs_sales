@@ -21,6 +21,10 @@ export default function EditableCell<T extends object>({
   const [value, setValue] = useState<
     string | (readonly string[] & string) | undefined
   >(initValue);
+  const handleAction = async (row: T, value: any) => {
+    await submitFn(tableRow, value);
+  }
+
   const [error, setError] = useState<string | undefined>(undefined);
 
   // Toggle between edit and view mode
@@ -45,7 +49,7 @@ export default function EditableCell<T extends object>({
           ) {
             return;
           }
-          const response = await submitFn(tableRow, value);
+          const response =await handleAction(tableRow, value);
 
           console.log(response);
 
