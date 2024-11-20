@@ -28,12 +28,12 @@ export async function POST(
   const validatedFields = schemaToResult(
     LoginFormSchema.safeParse({
       email: loginEmail,
-      // password: loginPassword,
+      password: loginPassword,
     }),
   );
 
   if (validatedFields.err) {
-    return resultToResponse(validatedFields) as NextResponse<LoginErrResponse>;
+    return resultToResponse(validatedFields);
   }
   // Get the user by email. If the user is not found, return a 404
   const user = optionToNotFound(
@@ -41,7 +41,7 @@ export async function POST(
   );
 
   if (user.err) {
-    return resultToResponse(user) as NextResponse<LoginErrResponse>;
+    return resultToResponse(user);
   }
   // Verify the password. If the password is incorrect, return a 401
   const passwordVerifyRes = await verifyPassword(user.val.id, loginPassword);
@@ -49,12 +49,12 @@ export async function POST(
   if (passwordVerifyRes.err) {
     return resultToResponse(
       passwordVerifyRes,
-    ) as NextResponse<LoginErrResponse>;
+    );
   }
   const updateRes = await updateAccessToken(user.val.id);
 
   if (updateRes.err) {
-    return resultToResponse(updateRes) as NextResponse<LoginErrResponse>;
+    return resultToResponse(updateRes);
   }
 
   return NextResponse.json({

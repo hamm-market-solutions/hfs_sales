@@ -5,12 +5,18 @@ import { Button } from "@nextui-org/button";
 import React from "react";
 import Form from "next/form";
 
-import { handleLogin } from "@/actions/auth/login";
 import Title from "@/components/molecules/title";
+import { routes } from "@/config/routes";
 
 export default function Login() {
-  const handleSubmit = async (form: FormData) => {
-    const result = await handleLogin(form);
+  const handleSubmit = async (data: FormData) => {
+    const res = await fetch(routes.api.auth.login, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: data.get("email"), password: data.get("password") }),
+    })
   };
 
   return (
