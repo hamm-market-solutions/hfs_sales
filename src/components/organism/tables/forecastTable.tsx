@@ -181,6 +181,8 @@ export default function ForecastTable() {
     ],
     [],
   );
+  console.log("columns defined");
+
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
