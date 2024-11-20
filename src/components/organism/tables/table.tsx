@@ -53,8 +53,9 @@ export default function BaseTable<T extends object>({
       console.log("fetching page", pageParam);
 
       const start = (pageParam as number) * fetchSize;
+      console.log("fetching data...");
       const fetchedData = await fetchFn(start, fetchSize, sorting); //pretend api call
-
+      console.log("fetchedData", fetchedData);
       return fetchedData;
     },
     initialPageParam: 0,

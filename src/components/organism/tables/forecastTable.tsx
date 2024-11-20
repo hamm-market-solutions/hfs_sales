@@ -194,6 +194,8 @@ export default function ForecastTable() {
       <BaseTable
         columns={columns}
         fetchFn={async (start: number, size: number, sorting: SortingState) => {
+          console.log("fetchFn", start, size, sorting);
+
           return await getForecastTableDataAction({
             start: start,
             size: size,
