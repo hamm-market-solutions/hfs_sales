@@ -15,13 +15,18 @@ export async function handleLogin(
   _prevState: HfsError | null,
   form: FormData,
 ): Promise<HfsError | null> {
+  console.log("handling login");
+  console.log("validating form");
   const formValidationRes = validateLoginForm(form);
 
   if (formValidationRes.err) {
+    console.log("form validation error", formValidationRes.val);
+
     return formValidationRes.val;
   }
   const email = formValidationRes.val.email;
   const password = formValidationRes.val.password;
+  console.log("form validation success", email, password);
   const userRes = await getUserByEmail(email);
 
   if (userRes.err) {
