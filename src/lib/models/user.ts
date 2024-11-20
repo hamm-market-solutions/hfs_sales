@@ -43,8 +43,6 @@ export const getUserByEmail = async (
 ): Promise<HfsResult<typeof userTable.$inferSelect>> => {
   const user = await getOptUserByEmail(email);
 
-  console.log("user", user);
-
   return optionToNotFound(user, "user not found");
 };
 
