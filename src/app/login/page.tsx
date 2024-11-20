@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
