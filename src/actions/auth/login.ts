@@ -12,17 +12,18 @@ import {
 import HfsError from "@/lib/errors/HfsError";
 
 export async function handleLogin(
-  _prevState: HfsError | null,
+  // _prevState: HfsError | null,
   form: FormData,
-): Promise<HfsError | null> {
+): Promise<void> {
   console.log("handling login");
   console.log("validating form");
   const formValidationRes = validateLoginForm(form);
 
   if (formValidationRes.err) {
     console.log("form validation error", formValidationRes.val);
+    return;
 
-    return formValidationRes.val;
+    // return formValidationRes.val;
   }
   const email = formValidationRes.val.email;
   const password = formValidationRes.val.password;
@@ -30,17 +31,20 @@ export async function handleLogin(
   const userRes = await getUserByEmail(email);
 
   if (userRes.err) {
-    return userRes.val;
+    return;
+    // return userRes.val;
   }
   const passwordVerifyRes = await verifyPassword(userRes.val.id, password);
 
   if (passwordVerifyRes.err) {
-    return passwordVerifyRes.val;
+    return;
+    // return passwordVerifyRes.val;
   }
   const accessTokenRes = await updateAccessToken(userRes.val.id);
 
   if (accessTokenRes.err) {
-    return accessTokenRes.val;
+    return;
+    // return accessTokenRes.val;
   }
   (await cookies()).set("refreshToken", accessTokenRes.val.refreshToken[0], {
     httpOnly: true,
