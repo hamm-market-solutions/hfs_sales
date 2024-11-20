@@ -9,12 +9,14 @@ import { handleLogin } from "@/actions/auth/login";
 import Title from "@/components/molecules/title";
 
 export default function Login() {
-  // const [error, formAction, isPending] = useActionState(handleLogin, null);
+  const handleSubmit = async (form: FormData) => {
+    const result = await handleLogin(form);
+  };
 
   return (
     <div className="login-page">
       <Title title="Login" />
-      <Form action={handleLogin} className="flex flex-col gap-2">
+      <Form action={handleSubmit} className="flex flex-col gap-2">
         <Input
           isRequired
           // errorMessage={

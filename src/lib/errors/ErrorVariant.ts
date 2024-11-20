@@ -6,4 +6,8 @@ export default class ErrorVariant {
   public static unexpected(): string {
     return "unexpected error";
   }
+
+  public static unauthorized(): string {
+    return "unauthorized";
+  }
 }
