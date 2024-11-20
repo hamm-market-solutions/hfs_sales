@@ -190,6 +190,7 @@ export default function ForecastTable() {
       },
     },
   });
+  console.log("queryClient defined");
 
   return (
     <QueryClientProvider client={queryClient}>
