@@ -19,6 +19,7 @@ import { ForecastTableData } from "@/types/table";
 import { getForecastTableDataAction, saveForecast } from "@/actions/reports/forecast";
 import { phaseToDrop } from "@/utils/conversions";
 import EditableCell from "@/components/molecules/editableCell";
+import { appConfig } from "@/config/app";
 
 export default function ForecastTable() {
   console.log("ForecastTable");
@@ -196,18 +197,19 @@ export default function ForecastTable() {
     <QueryClientProvider client={queryClient}>
       <BaseTable
         columns={columns}
-        fetchFn={async (start: number, size: number, sorting: SortingState) => {
-          console.log("fetchFn", start, size, sorting);
+        // fetchFn={async (start: number, size: number, sorting: SortingState) => {
+        //   console.log("fetchFn", start, size, sorting);
 
-          return await getForecastTableDataAction({
-            start: start,
-            size: size,
-            sorting: sorting,
-            country: params.countryId,
-            brand: Number(params.brandId),
-            season_code: Number(params.seasonCode),
-          });
-        }}
+        //   return await getForecastTableDataAction({
+        //     start: start,
+        //     size: size,
+        //     sorting: sorting,
+        //     country: params.countryId,
+        //     brand: Number(params.brandId),
+        //     season_code: Number(params.seasonCode),
+        //   });
+        // }}
+        url={["/api/sales/reports/forecasts", `country=${params.countryId}&brand=${params.brandId}&season_code=${params.seasonCode}`]}
       />
     </QueryClientProvider>
   );

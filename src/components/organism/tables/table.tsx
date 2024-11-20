@@ -12,9 +12,9 @@ import {
   SortingState,
   useReactTable,
 } from "@tanstack/react-table";
-import { keepPreviousData, useInfiniteQuery } from "@tanstack/react-query";
+import { keepPreviousData, useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { useVirtualizer } from "@tanstack/react-virtual";
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Spinner } from "@nextui-org/spinner";
 
 import Icon from "../../atoms/icons/icon";
@@ -25,14 +25,16 @@ const fetchSize = 50;
 
 export default function BaseTable<T extends object>({
   columns,
-  fetchFn,
+  // fetchFn,
+  url,
 }: {
   columns: ColumnDef<T>[];
-  fetchFn: (
-    start: number,
-    size: number,
-    sorting: SortingState,
-  ) => Promise<TableResponse<T>>;
+  // fetchFn: (
+  //   start: number,
+  //   size: number,
+  //   sorting: SortingState,
+  // ) => Promise<TableResponse<T>>;
+  url: [string, string];
 }) {
   console.log("BaseTable");
 
@@ -53,10 +55,17 @@ export default function BaseTable<T extends object>({
       console.log("fetching page", pageParam);
 
       const start = (pageParam as number) * fetchSize;
+      const base = url[0];
+      const query = url[1];
+      const fetchedData = await fetch(`${base}?${query}&start=${start}&size=${fetchSize}&sorting=${JSON.stringify(sorting)}`);
       console.log("fetching data...");
-      const fetchedData = await fetchFn(start, fetchSize, sorting); //pretend api call
+      // const fetchedData = await fetchFn(start, fetchSize, sorting); //pretend api call
       console.log("fetchedData", fetchedData);
-      return fetchedData;
+
+      const fetchedDataJson = await fetchedData.json();
+      console.log("fetchedDataJson", fetchedDataJson);
+
+      return fetchedDataJson["data"];
     },
     initialPageParam: 0,
     getNextPageParam: (_lastGroup, groups) => groups.length,
