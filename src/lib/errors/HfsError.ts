@@ -34,3 +34,5 @@ export default class HfsError extends Error {
     return this.error == type;
   }
 }
+
+export const EmptyHfsError = new HfsError(0, "Empty Error. This should not happen.");

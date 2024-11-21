@@ -8,22 +8,16 @@ import Form from "next/form";
 import Title from "@/components/molecules/title";
 import { LoginResponse } from "@/types/responses";
 import { handleLogin } from "@/actions/auth/login";
-import HfsError from "@/lib/errors/HfsError";
+import HfsError, { EmptyHfsError } from "@/lib/errors/HfsError";
+import { useFormState } from "react-dom";
 
 export default function Login() {
-  const [loginError, setLoginError] = React.useState<HfsError | null>(null);
-
-  const handleSubmit = async (form: FormData) => {
-    const result = await handleLogin(form);
-    console.log(result.message);
-
-    setLoginError(result);
-  }
+  const [state, setState] = useFormState(handleLogin, EmptyHfsError);
 
   return (
     <div className="login-page">
       <Title title="Login" />
-      <Form action={handleSubmit} className="flex flex-col gap-2">
+      <Form action={setState} className="flex flex-col gap-2">
         <Input
           isRequired
           // errorMessage={

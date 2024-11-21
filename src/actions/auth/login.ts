@@ -11,7 +11,7 @@ import {
 } from "@/lib/models/user";
 import HfsError, { HfsResult } from "@/lib/errors/HfsError";
 
-export async function handleLogin(form: FormData): Promise<HfsError> {
+export async function handleLogin(prevState: any, form: FormData): Promise<HfsError | true> {
   const formValidationRes = validateLoginForm(form);
 
   if (formValidationRes.err) {
