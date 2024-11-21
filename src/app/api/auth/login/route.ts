@@ -21,7 +21,7 @@ import { NextApiResponse } from "next";
 
 export async function POST(
   request: NextRequest,
-  response: NextApiResponse<LoginResponse>,
+  // response: NextApiResponse<LoginResponse>,
 ) {
   // Validate the login request
   const json: LoginRequest = await request.json();
