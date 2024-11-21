@@ -34,7 +34,7 @@ export const getForecastTableDataMapper = async ({
 
   return {
     data: itemColorData.unwrap().map((data) => ({
-      img_src: `https://hfs.hamm-footwear.com/purchase/item/picture?item_no=${data.itemNo}&color=${data.colorCode}`,
+      imgSrc: `https://hfs.hamm-footwear.com/purchase/item/picture?item_no=${data.itemNo}&color=${data.colorCode}`,
       brand_no: data.brandNo,
       brand_name: data.brandName,
       season_code: data.seasonCode,

@@ -6,18 +6,19 @@ import React from "react";
 import Form from "next/form";
 
 import Title from "@/components/molecules/title";
-import { routes } from "@/config/routes";
+import { LoginResponse } from "@/types/responses";
+import { handleLogin } from "@/actions/auth/login";
+import HfsError from "@/lib/errors/HfsError";
 
 export default function Login() {
-  const handleSubmit = async (data: FormData) => {
-    const res = await fetch(routes.api.auth.login, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email: data.get("email"), password: data.get("password") }),
-    })
-  };
+  const [loginError, setLoginError] = React.useState<HfsError | null>(null);
+
+  const handleSubmit = async (form: FormData) => {
+    const result = await handleLogin(form);
+    console.log(result.message);
+
+    setLoginError(result);
+  }
 
   return (
     <div className="login-page">

@@ -9,34 +9,35 @@ import {
   updateAccessToken,
   verifyPassword,
 } from "@/lib/models/user";
+import HfsError, { HfsResult } from "@/lib/errors/HfsError";
 
-export async function handleLogin(form: FormData): Promise<void> {
+export async function handleLogin(form: FormData): Promise<HfsError> {
   const formValidationRes = validateLoginForm(form);
 
   if (formValidationRes.err) {
-    return;
+    // return;
 
-    // return formValidationRes.val;
+    return formValidationRes.val;
   }
   const email = formValidationRes.val.email;
   const password = formValidationRes.val.password;
   const userRes = await getUserByEmail(email);
 
   if (userRes.err) {
-    return;
-    // return userRes.val;
+    // return;
+    return userRes.val;
   }
   const passwordVerifyRes = await verifyPassword(userRes.val.id, password);
 
   if (passwordVerifyRes.err) {
-    return;
-    // return passwordVerifyRes.val;
+    // return;
+    return passwordVerifyRes.val;
   }
   const accessTokenRes = await updateAccessToken(userRes.val.id);
 
   if (accessTokenRes.err) {
-    return;
-    // return accessTokenRes.val;
+    // return;
+    return accessTokenRes.val;
   }
   (await cookies()).set("refreshToken", accessTokenRes.val.refreshToken[0], {
     httpOnly: true,

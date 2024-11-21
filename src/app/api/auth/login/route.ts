@@ -17,10 +17,12 @@ import {
   LoginResponse,
 } from "@/types/responses";
 import { LoginFormSchema } from "@/lib/schemas/login";
+import { NextApiResponse } from "next";
 
 export async function POST(
   request: NextRequest,
-): Promise<NextResponse<LoginResponse>> {
+  response: NextApiResponse<LoginResponse>,
+) {
   // Validate the login request
   const json: LoginRequest = await request.json();
   const loginEmail = json["email"];
@@ -63,5 +65,5 @@ export async function POST(
       accessToken: updateRes.val.accessToken[0],
       refreshToken: updateRes.val.refreshToken[0],
     },
-  }) as NextResponse<LoginOkResponse>;
+  }, );
 }

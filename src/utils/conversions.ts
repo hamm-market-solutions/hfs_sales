@@ -7,10 +7,16 @@ import { asc, desc, SQL } from "drizzle-orm";
 
 import HfsError, { HfsResult } from "../lib/errors/HfsError";
 import { HfsResponse } from "../types/responses";
+import { NextApiResponse } from "next";
+import { ForecastTableData, ForecastTableRequest, TableResponse } from "@/types/table";
 
 export function resultToResponse<T extends object, R = HfsResponse>(
   result: HfsResult<T>,
+  response?: NextApiResponse<R>,
 ): NextResponse<R> {
+  if (response) {
+    response.status(result.ok ? 200 : result.val.status);
+  }
   if (result.ok) {
     return NextResponse.json({
       status: 200,
@@ -23,6 +29,27 @@ export function resultToResponse<T extends object, R = HfsResponse>(
     ) as NextResponse<R>;
   }
 }
+
+export async function getForecastTableData({
+  start,
+  size,
+  sorting,
+  country,
+  brand,
+  season_code,
+}: ForecastTableRequest): Promise<TableResponse<ForecastTableData>> {
+  const data = await getForecastTableData({
+    start,
+    size,
+    sorting,
+    country,
+    brand,
+    season_code,
+  });
+
+  return data;
+}
+
 
 export function schemaToResult<Output, Input = Output>(
   schema: SafeParseReturnType<Input, Output>,

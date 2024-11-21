@@ -18,7 +18,7 @@ export type ForecastTableRequest = {
 } & TableRequest;
 
 export type ForecastTableData = {
-  img_src: string;
+  imgSrc: string;
   brand_no: string | null;
   brand_name: string | null;
   season_code: number | null;
