@@ -26,10 +26,10 @@ export default function NavBarItems({
   const pathname = usePathname();
   const navBarItems = [];
 
-  for (const [route, name] of Object.entries(navRoutes)) {
-    if (typeof name === "string") {
+  for (const route of navRoutes) {
+    if (route.items === undefined) {
       navBarItems.push(
-        <NavbarItem key={route} isActive={matchPath(name, pathname)}>
+        <NavbarItem key={route.key} isActive={matchPath(route.url, pathname)}>
           <Link className="text-primary" color="foreground" href={name}>
             {route}
           </Link>

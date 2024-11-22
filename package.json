@@ -6,7 +6,8 @@
     "dev": "next dev --turbo",
     "build": "NODE_ENV=production next build",
     "start": "NODE_ENV=production node server.mjs",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --fix",
+    "db:seed": "node drizzle/seed.mjs"
   },
   "dependencies": {
     "@nextui-org/button": "2.0.38",

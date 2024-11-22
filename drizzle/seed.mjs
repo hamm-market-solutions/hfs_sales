@@ -1615,7 +1615,7 @@ async function seedSeasonTable() {
 
 main()
   .then(async () => {
-    return;
+    process.exit(0);
   })
   .catch(async (e) => {
     console.error(e);
