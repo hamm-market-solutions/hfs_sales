@@ -29,33 +29,33 @@ export default function NavBarItems({
   for (const route of navRoutes) {
     if (route.items === undefined) {
       navBarItems.push(
-        <NavbarItem key={route.key} isActive={matchPath(route.url, pathname)}>
-          <Link className="text-primary" color="foreground" href={name}>
-            {route}
+        <NavbarItem key={route.key} isActive={matchPath(route.url ?? "", pathname)}>
+          <Link className="text-primary" color="foreground" href={route.url ?? ""}>
+            {route.title}
           </Link>
         </NavbarItem>,
       );
     } else {
       let nestedNavBarItems = [];
 
-      for (const [subRoute, subName] of Object.entries(name)) {
+      for (const subRoute of route.items) {
         nestedNavBarItems.push(
           <DropdownItem
-            key={subRoute}
-            className={matchPath(subName.url, pathname) ? "bg-primary-50" : ""}
-            description={subName.description}
-            startContent={<Icon alt="dropdown-item-icon" src={subName.icon} />}
+            key={subRoute.key}
+            className={matchPath(subRoute.url ?? "", pathname) ? "bg-primary-50" : ""}
+            description={subRoute.description}
+            startContent={<Icon alt="dropdown-item-icon" src={subRoute.icon} />}
             onPress={() => {
-              router.push(subName.url);
+              router.push(subRoute.url!);
             }}
           >
-            {subName.title}
+            {subRoute.title}
           </DropdownItem>,
         );
       }
 
       navBarItems.push(
-        <Dropdown key={route}>
+        <Dropdown key={route.key}>
           <NavbarItem>
             <DropdownTrigger>
               <Button
@@ -75,12 +75,12 @@ export default function NavBarItems({
                 }
                 radius="sm"
               >
-                {route}
+                {route.title}
               </Button>
             </DropdownTrigger>
           </NavbarItem>
           <DropdownMenu
-            aria-label={route}
+            aria-label={route.title}
             className="w-[340px]"
             itemClasses={{
               base: "gap-4",
