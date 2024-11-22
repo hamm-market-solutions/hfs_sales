@@ -4,11 +4,16 @@ import { Err, Ok, Option } from "ts-results";
 import { SortingState } from "@tanstack/react-table";
 import { MySqlColumn } from "drizzle-orm/mysql-core";
 import { asc, desc, SQL } from "drizzle-orm";
+import { NextApiResponse } from "next";
 
 import HfsError, { HfsResult } from "../lib/errors/HfsError";
 import { HfsResponse } from "../types/responses";
-import { NextApiResponse } from "next";
-import { ForecastTableData, ForecastTableRequest, TableResponse } from "@/types/table";
+
+import {
+  ForecastTableData,
+  ForecastTableRequest,
+  TableResponse,
+} from "@/types/table";
 
 export function resultToResponse<T extends object, R = HfsResponse>(
   result: HfsResult<T>,
@@ -49,7 +54,6 @@ export async function getForecastTableData({
 
   return data;
 }
-
 
 export function schemaToResult<Output, Input = Output>(
   schema: SafeParseReturnType<Input, Output>,

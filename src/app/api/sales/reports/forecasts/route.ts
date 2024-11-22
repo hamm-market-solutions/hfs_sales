@@ -4,7 +4,6 @@ import { forecast } from "@/db/schema";
 import { createForecast } from "@/lib/models/forecast";
 import { resultToResponse } from "@/utils/conversions";
 import { validateUser } from "@/actions/validate";
-import { routes } from "@/config/routes";
 
 export const POST = async (
   request: NextRequest,

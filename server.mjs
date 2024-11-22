@@ -11,7 +11,7 @@ app.prepare().then(() => {
     const parsedUrl = parse(req.url, true);
 
     // Check if the request is not secure (http) and redirect to https
-    if (!dev && req.headers["x-forwarded-proto"] !== "https") {
+    if (!dev && process.env.APP_HOST !== "localhost" && req.headers["x-forwarded-proto"] !== "https") {
       res.writeHead(301, { Location: `https://${req.headers.host}${req.url}` });
       res.end();
       return;

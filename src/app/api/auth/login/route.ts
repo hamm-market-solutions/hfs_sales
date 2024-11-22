@@ -11,13 +11,7 @@ import {
   resultToResponse,
   schemaToResult,
 } from "@/utils/conversions";
-import {
-  LoginErrResponse,
-  LoginOkResponse,
-  LoginResponse,
-} from "@/types/responses";
 import { LoginFormSchema } from "@/lib/schemas/login";
-import { NextApiResponse } from "next";
 
 export async function POST(
   request: NextRequest,
@@ -49,9 +43,7 @@ export async function POST(
   const passwordVerifyRes = await verifyPassword(user.val.id, loginPassword);
 
   if (passwordVerifyRes.err) {
-    return resultToResponse(
-      passwordVerifyRes,
-    );
+    return resultToResponse(passwordVerifyRes);
   }
   const updateRes = await updateAccessToken(user.val.id);
 
@@ -65,5 +57,5 @@ export async function POST(
       accessToken: updateRes.val.accessToken[0],
       refreshToken: updateRes.val.refreshToken[0],
     },
-  }, );
+  });
 }
