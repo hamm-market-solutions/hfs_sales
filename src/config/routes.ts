@@ -17,7 +17,11 @@ export const routes = {
         base: "/sales/reports/forecasts",
         "[countryId]": {
           base: "/sales/report/forecast/[countryId]",
-          "[brandId]": "/sales/report/forecast/[countryId]/[brandId]",
+          "[brandId]": {
+            base: "/sales/report/forecast/[countryId]/[brandId]",
+            "[seasonCode]":
+              "/sales/report/forecast/[countryId]/[brandId]/[seasonCode]",
+          },
         },
       },
     },
@@ -28,9 +32,17 @@ export const routePermissions = {
   [routes.login]: ["guest"],
   [routes.dashboard]: ["user"],
   [routes.sales.reports.forecasts.base]: ["forecast.view"],
+  [routes.sales.reports.forecasts["[countryId]"]["[brandId]"]["[seasonCode]"]]:
+    ["forecast.view"],
 };
 
 export const apiRoutePermissions = {
-  [routes.api.auth.login]: ["guest"],
-  [routes.api.auth.refresh]: ["guest"],
+  [routes.api.auth.login]: {
+    roles: ["guest"],
+    method: "POST",
+  },
+  [routes.api.auth.refresh]: {
+    roles: ["guest"],
+    method: "POST",
+  },
 };
