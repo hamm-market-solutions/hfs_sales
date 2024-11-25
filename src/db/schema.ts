@@ -19,8 +19,8 @@ export const approvalReport = mysqlTable("approval_report", {
 	report: text().notNull(),
 	status: tinyint().default(0).notNull(),
 	creatorUserId: int("creator_user_id", { unsigned: true }).notNull().references(() => user.id),
-	createdAt: timestamp("created_at", { mode: 'string' }).defaultNow().notNull(),
-	updatedAt: datetime("updated_at", { mode: 'string'}).default(sql`(CURRENT_TIMESTAMP)`).notNull(),
+	createdAt: timestamp("created_at", { mode: 'string' }).default(sql`(now())`).notNull(),
+	updatedAt: datetime("updated_at", { mode: 'string'}).default(sql`(now())`).notNull(),
 },
 (table) => {
 	return {
@@ -44,7 +44,7 @@ export const brand = mysqlTable("brand", {
 	name: varchar({ length: 30 }).notNull(),
 	code: varchar({ length: 10 }).notNull(),
 	gln: varchar({ length: 50 }).default("").notNull(),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).onUpdateNow().notNull(),
 },
 (table) => {
 	return {
@@ -62,7 +62,7 @@ export const carton = mysqlTable("carton", {
 	weight: double({ precision: 10, scale: 2 }),
 	creatorUserId: int("creator_user_id").notNull(),
 	vendorNo: varchar("vendor_no", { length: 20 }).notNull(),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).onUpdateNow().notNull(),
 },
 (table) => {
 	return {
@@ -85,7 +85,7 @@ export const documentCategory = mysqlTable("document_category", {
 	id: int({ unsigned: true }).autoincrement().notNull(),
 	description: varchar({ length: 50 }).notNull(),
 	documentType: int("document_type").notNull().references(() => documentTypes.id),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).notNull(),
 },
 (table) => {
 	return {
@@ -107,12 +107,30 @@ export const documentTypes = mysqlTable("document_types", {
 export const downloaded = mysqlTable("downloaded", {
 	uploadId: int("upload_id").notNull(),
 	downloadedBy: int("downloaded_by").notNull(),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().onUpdateNow(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).onUpdateNow(),
 },
 (table) => {
 	return {
 		uploadId: index("upload_id").on(table.uploadId),
 		by: index("downloaded_by").on(table.downloadedBy),
+	}
+});
+
+export const forecast = mysqlTable("forecast", {
+	id: int().autoincrement().notNull(),
+	itemNo: varchar("item_no", { length: 20 }).notNull().references(() => sItem.no),
+	colorCode: varchar("color_code", { length: 10 }).notNull(),
+	amount: int().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).notNull(),
+	countryCode: varchar("country_code", { length: 10 }).notNull().references(() => sCountry.code),
+	createdBy: int("created_by", { unsigned: true }).notNull().references(() => user.id),
+},
+(table) => {
+	return {
+		itemNo: index("item_no").on(table.itemNo),
+		createdBy: index("created_by").on(table.createdBy),
+		countryCode: index("country_code").on(table.countryCode),
+		forecastId: primaryKey({ columns: [table.id], name: "forecast_id"}),
 	}
 });
 
@@ -122,7 +140,7 @@ export const itemComment = mysqlTable("item_comment", {
 	comment: mediumtext().notNull(),
 	commentBy: int("comment_by", { unsigned: true }).notNull().references(() => user.id),
 	purchasingRole: int("purchasing_role", { unsigned: true }).references(() => role.id),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).notNull(),
 },
 (table) => {
 	return {
@@ -148,7 +166,7 @@ export const loadingList = mysqlTable("loading_list", {
 	weight: int(),
 	noCarton: int("no_carton"),
 	qtyPairs: int("qty_pairs"),
-	dateCreated: timestamp("date_created", { mode: 'string' }).defaultNow().notNull(),
+	dateCreated: timestamp("date_created", { mode: 'string' }).default(sql`(now())`).notNull(),
 	// you can use { mode: 'date' }, if you want to have Date as type for this column
 	plannedDeliveryDate: date("planned_delivery_date", { mode: 'string' }),
 	plannedDeliveryTime: time("planned_delivery_time"),
@@ -159,7 +177,7 @@ export const loadingList = mysqlTable("loading_list", {
 	noFaultCarton: int("no_fault_carton"),
 	realDeliveryComment: mediumtext("real_delivery_comment"),
 	purchaseRealDeliveryComment: text("purchase_real_delivery_comment"),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).onUpdateNow().notNull(),
 	commercialInvoiceNo: varchar("commercial_invoice_no", { length: 50 }),
 	waybill: varchar({ length: 255 }),
 },
@@ -180,7 +198,7 @@ export const loadingListComments = mysqlTable("loading_list_comments", {
 	loadingListId: int("loading_list_id"),
 	userRole: text("user_role"),
 	comment: text(),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().onUpdateNow(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).onUpdateNow(),
 },
 (table) => {
 	return {
@@ -197,7 +215,7 @@ export const loadingListDocument = mysqlTable("loading_list_document", {
 	containerCode: varchar("container_code", { length: 20 }),
 	file: varchar({ length: 80 }),
 	documentLink: tinytext("document_link"),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).onUpdateNow().notNull(),
 },
 (table) => {
 	return {
@@ -252,7 +270,7 @@ export const loadingListSsccFile = mysqlTable("loading_list_sscc_file", {
 	vendorNo: int("vendor_no").notNull(),
 	folder: varchar({ length: 60 }).notNull(),
 	file: varchar({ length: 60 }),
-	timestamp: timestamp({ mode: 'string' }).defaultNow(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`),
 },
 (table) => {
 	return {
@@ -301,7 +319,7 @@ export const menuHasRole = mysqlTable("menu_has_role", {
 export const migrations = mysqlTable("migrations", {
 	id: int({ unsigned: true }).autoincrement().notNull(),
 	file: varchar({ length: 100 }),
-	imported: timestamp({ mode: 'string' }).defaultNow().notNull(),
+	imported: timestamp({ mode: 'string' }).default(sql`(now())`).notNull(),
 },
 (table) => {
 	return {
@@ -372,7 +390,7 @@ export const sAssortment = mysqlTable("s_assortment", {
 	code: varchar({ length: 30 }).notNull(),
 	sizeCode: varchar("size_code", { length: 10 }).notNull(),
 	qtyPair: int("qty_pair").notNull(),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).onUpdateNow().notNull(),
 },
 (table) => {
 	return {
@@ -384,7 +402,7 @@ export const sColor = mysqlTable("s_color", {
 	code: varchar({ length: 10 }).notNull(),
 	name: varchar({ length: 30 }),
 	seasonCode: smallint("season_code").notNull(),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).onUpdateNow().notNull(),
 },
 (table) => {
 	return {
@@ -395,7 +413,7 @@ export const sColor = mysqlTable("s_color", {
 export const sCountry = mysqlTable("s_country", {
 	code: varchar({ length: 10 }).notNull(),
 	name: varchar({ length: 30 }).notNull(),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).onUpdateNow().notNull(),
 },
 (table) => {
 	return {
@@ -424,7 +442,7 @@ export const sDeliveryAddress = mysqlTable("s_delivery_address", {
 	city: varchar({ length: 50 }),
 	countryCode: varchar("country_code", { length: 10 }),
 	yourReference: varchar("your_reference", { length: 50 }),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).onUpdateNow().notNull(),
 },
 (table) => {
 	return {
@@ -442,7 +460,7 @@ export const sDownloadCenter = mysqlTable("s_download_center", {
 	downloadTime: timestamp("download_time", { mode: 'string' }),
 	uploadTime: timestamp("upload_time", { mode: 'string' }),
 	released: smallint(),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).onUpdateNow().notNull(),
 });
 
 export const sItem = mysqlTable("s_item", {
@@ -450,7 +468,7 @@ export const sItem = mysqlTable("s_item", {
 	description: varchar({ length: 50 }),
 	last: varchar({ length: 30 }),
 	material: varchar({ length: 30 }),
-	brandNo: varchar("brand_no", { length: 10 }),
+	brandNo: varchar("brand_no", { length: 10 }).references(() => brand.no),
 	catName: varchar("cat_name", { length: 10 }),
 	orderQty: int("order_qty"),
 	minQtyStyle: int("min_qty_style"),
@@ -461,10 +479,11 @@ export const sItem = mysqlTable("s_item", {
 	vendorItemNo: varchar("vendor_item_no", { length: 20 }),
 	styleCode: smallint("style_code"),
 	tariffNo: bigint("tariff_no", { mode: "number" }),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).onUpdateNow().notNull(),
 },
 (table) => {
 	return {
+		brandNo: index("brand_no").on(table.brandNo),
 		sItemNo: primaryKey({ columns: [table.no], name: "s_item_no"}),
 	}
 });
@@ -486,7 +505,7 @@ export const sItemColor = mysqlTable("s_item_color", {
 	// you can use { mode: 'date' }, if you want to have Date as type for this column
 	confirmedExFactoryDate: date("confirmed_ex_factory_date", { mode: 'string' }),
 	confirmationSampleSent: smallint("confirmation_sample_sent"),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).onUpdateNow().notNull(),
 },
 (table) => {
 	return {
@@ -512,7 +531,7 @@ export const sPurchaseHead = mysqlTable("s_purchase_head", {
 	releaseDate: date("release_date", { mode: 'string' }),
 	transportTypeId: smallint("transport_type_id"),
 	directionId: smallint("direction_id"),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).onUpdateNow().notNull(),
 },
 (table) => {
 	return {
@@ -541,7 +560,7 @@ export const sPurchaseLine = mysqlTable("s_purchase_line", {
 	customerOrderNo: varchar("customer_order_no", { length: 30 }),
 	customerColor: varchar("customer_color", { length: 20 }),
 	directUnitCost: int("direct_unit_cost"),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).onUpdateNow().notNull(),
 },
 (table) => {
 	return {
@@ -554,7 +573,7 @@ export const sPurchaseLine = mysqlTable("s_purchase_line", {
 export const sSeason = mysqlTable("s_season", {
 	code: smallint().notNull(),
 	name: varchar({ length: 50 }),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).onUpdateNow().notNull(),
 },
 (table) => {
 	return {
@@ -570,7 +589,7 @@ export const sSeasonBrandPhase = mysqlTable("s_season_brand_phase", {
 	startDate: date("start_date", { mode: 'string' }),
 	// you can use { mode: 'date' }, if you want to have Date as type for this column
 	endDate: date("end_date", { mode: 'string' }),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).onUpdateNow().notNull(),
 },
 (table) => {
 	return {
@@ -582,13 +601,13 @@ export const sSize = mysqlTable("s_size", {
 	code: varchar({ length: 10 }).notNull(),
 	name: varchar({ length: 30 }),
 	qtyPair: int("qty_pair").notNull(),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).onUpdateNow().notNull(),
 });
 
 export const sStyle = mysqlTable("s_style", {
 	code: smallint().notNull(),
 	description: varchar({ length: 50 }).notNull(),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).onUpdateNow().notNull(),
 },
 (table) => {
 	return {
@@ -607,7 +626,7 @@ export const sVariant = mysqlTable("s_variant", {
 	repRetailPrice: int("rep_retail_price"),
 	purchasePrice: int("purchase_price"),
 	inactive: smallint({ unsigned: true }).notNull(),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).onUpdateNow().notNull(),
 },
 (table) => {
 	return {
@@ -622,7 +641,7 @@ export const sVendor = mysqlTable("s_vendor", {
 	countryCode: varchar("country_code", { length: 5 }),
 	originHarbor: varchar("origin_harbor", { length: 20 }),
 	originHarborCountry: varchar("origin_harbor_country", { length: 20 }),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).onUpdateNow().notNull(),
 },
 (table) => {
 	return {
@@ -639,7 +658,7 @@ export const shoeBox = mysqlTable("shoe_box", {
 	weight: double({ precision: 10, scale: 2 }),
 	vendorNo: varchar("vendor_no", { length: 20 }).notNull(),
 	creatorId: int("creator_id", { unsigned: true }).notNull(),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).onUpdateNow().notNull(),
 },
 (table) => {
 	return {
@@ -664,7 +683,7 @@ export const sscc = mysqlTable("sscc", {
 	updatedBy: int("updated_by"),
 	updatedOn: timestamp("updated_on", { mode: 'string' }).onUpdateNow(),
 	cartonId: int("carton_id").notNull(),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).notNull(),
 },
 (table) => {
 	return {
@@ -683,7 +702,7 @@ export const ssccLine = mysqlTable("sscc_line", {
 	updatedBy: int("updated_by"),
 	canceled: smallint(),
 	shoeBoxCode: smallint("shoe_box_code").notNull(),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).onUpdateNow().notNull(),
 },
 (table) => {
 	return {
@@ -708,7 +727,7 @@ export const technicalReport = mysqlTable("technical_report", {
 	itemNo: varchar("item_no", { length: 20 }).notNull(),
 	report: mediumtext().notNull(),
 	creatorUserId: int("creator_user_id", { unsigned: true }).notNull().references(() => user.id),
-	createdAt: timestamp("created_at", { mode: 'string' }).defaultNow().notNull(),
+	createdAt: timestamp("created_at", { mode: 'string' }).default(sql`(now())`).notNull(),
 },
 (table) => {
 	return {
@@ -753,7 +772,7 @@ export const upload = mysqlTable("upload", {
 	reference3: varchar("reference_3", { length: 50 }),
 	reference4: varchar("reference_4", { length: 50 }),
 	comment: varchar({ length: 255 }),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).notNull(),
 	customerNo: varchar("customer_no", { length: 20 }),
 },
 (table) => {
@@ -775,6 +794,17 @@ export const user = mysqlTable("user", {
 	return {
 		userId: primaryKey({ columns: [table.id], name: "user_id"}),
 		userEmailUindex: unique("user_email_uindex").on(table.email),
+	}
+});
+
+export const userHasCountry = mysqlTable("user_has_country", {
+	userId: int("user_id", { unsigned: true }).notNull(),
+	countryCode: varchar("country_code", { length: 10 }).notNull(),
+},
+(table) => {
+	return {
+		userHasCountryUserIdCountryCode: primaryKey({ columns: [table.userId, table.countryCode], name: "user_has_country_user_id_country_code"}),
+		userHasCountryUserIdCountryCodeUindex: unique("user_has_country_user_id_country_code_uindex").on(table.userId, table.countryCode),
 	}
 });
 
@@ -824,7 +854,7 @@ export const variantWeight = mysqlTable("variant_weight", {
 	sizeCode: varchar("size_code", { length: 10 }),
 	weight: smallint({ unsigned: true }).notNull(),
 	creatorUserId: smallint("creator_user_id", { unsigned: true }).notNull(),
-	timestamp: timestamp({ mode: 'string' }).defaultNow().onUpdateNow().notNull(),
+	timestamp: timestamp({ mode: 'string' }).default(sql`(now())`).onUpdateNow().notNull(),
 },
 (table) => {
 	return {

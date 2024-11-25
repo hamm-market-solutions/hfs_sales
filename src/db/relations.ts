@@ -1,5 +1,5 @@
 import { relations } from "drizzle-orm/relations";
-import { user, approvalReport, approvalReportHasImage, documentTypes, documentCategory, itemComment, role, sVendor, loadingList, brand, sSeason, direction, transportType, loadingListReservedCalendarTime, sCountry, permission, menuHasPermission, menu, menuHasRole, qualities, returns, technicalReport, technicalReportHasImage, userHasPermission, userHasRole, userHasVendor } from "./schema";
+import { user, approvalReport, approvalReportHasImage, documentTypes, documentCategory, sCountry, forecast, sItem, itemComment, role, sVendor, loadingList, brand, sSeason, direction, transportType, loadingListReservedCalendarTime, permission, menuHasPermission, menu, menuHasRole, qualities, returns, technicalReport, technicalReportHasImage, userHasPermission, userHasRole, userHasVendor } from "./schema";
 
 export const approvalReportRelations = relations(approvalReport, ({one, many}) => ({
 	user: one(user, {
@@ -11,6 +11,7 @@ export const approvalReportRelations = relations(approvalReport, ({one, many}) =
 
 export const userRelations = relations(user, ({many}) => ({
 	approvalReports: many(approvalReport),
+	forecasts: many(forecast),
 	itemComments: many(itemComment),
 	loadingLists: many(loadingList),
 	technicalReports: many(technicalReport),
@@ -34,6 +35,34 @@ export const documentCategoryRelations = relations(documentCategory, ({one}) => 
 
 export const documentTypesRelations = relations(documentTypes, ({many}) => ({
 	documentCategories: many(documentCategory),
+}));
+
+export const forecastRelations = relations(forecast, ({one}) => ({
+	sCountry: one(sCountry, {
+		fields: [forecast.countryCode],
+		references: [sCountry.code]
+	}),
+	user: one(user, {
+		fields: [forecast.createdBy],
+		references: [user.id]
+	}),
+	sItem: one(sItem, {
+		fields: [forecast.itemNo],
+		references: [sItem.no]
+	}),
+}));
+
+export const sCountryRelations = relations(sCountry, ({many}) => ({
+	forecasts: many(forecast),
+	loadingListReservedCalendarTimes: many(loadingListReservedCalendarTime),
+}));
+
+export const sItemRelations = relations(sItem, ({one, many}) => ({
+	forecasts: many(forecast),
+	brand: one(brand, {
+		fields: [sItem.brandNo],
+		references: [brand.no]
+	}),
 }));
 
 export const itemCommentRelations = relations(itemComment, ({one}) => ({
@@ -85,6 +114,7 @@ export const sVendorRelations = relations(sVendor, ({many}) => ({
 
 export const brandRelations = relations(brand, ({many}) => ({
 	loadingLists: many(loadingList),
+	sItems: many(sItem),
 }));
 
 export const sSeasonRelations = relations(sSeason, ({many}) => ({
@@ -108,10 +138,6 @@ export const loadingListReservedCalendarTimeRelations = relations(loadingListRes
 		fields: [loadingListReservedCalendarTime.countryCode],
 		references: [sCountry.code]
 	}),
-}));
-
-export const sCountryRelations = relations(sCountry, ({many}) => ({
-	loadingListReservedCalendarTimes: many(loadingListReservedCalendarTime),
 }));
 
 export const menuHasPermissionRelations = relations(menuHasPermission, ({one}) => ({

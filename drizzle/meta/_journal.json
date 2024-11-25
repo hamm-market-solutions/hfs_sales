@@ -6,35 +6,35 @@
       "idx": 0,
       "version": "5",
       "when": 1731493297583,
-      "tag": "0000_needy_beast",
+      "tag": "0000_dev",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1732523261505,
+      "tag": "0002_add_user_has_country_table",
       "breakpoints": true
     },
     {
       "idx": 3,
       "version": "5",
-      "when": 1731494146663,
-      "tag": "0003_third_pestilence",
+      "when": 1732523679504,
+      "tag": "0003_add_fk_on_item_no_in_s_item_color",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1732523869604,
+      "tag": "0004_add_forecast_table",
       "breakpoints": true
     },
     {
       "idx": 5,
       "version": "5",
-      "when": 1731494438168,
-      "tag": "0005_natural_purifiers",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "5",
-      "when": 1731494483586,
-      "tag": "0006_windy_texas_twister",
-      "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "5",
-      "when": 1731494717406,
-      "tag": "0007_chilly_madelyne_pryor",
+      "when": 1732524040845,
+      "tag": "0005_add_created_by_and_country_code_to_forecast_table",
       "breakpoints": true
     }
   ]

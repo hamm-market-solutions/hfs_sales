@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "ab6b49b5-a549-4303-b514-6b0347b227bb",
-  "prevId": "45691eef-50cc-4773-ba27-52b6ae393125",
+  "id": "4b7651d4-3a7c-4bc3-927c-b8d9560decc4",
+  "prevId": "ab6b49b5-a549-4303-b514-6b0347b227bb",
   "tables": {
     "admin_settings": {
       "name": "admin_settings",
@@ -517,6 +517,81 @@
       },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "forecast": {
+      "name": "forecast",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "item_no": {
+          "name": "item_no",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "color_code": {
+          "name": "color_code",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "amount": {
+          "name": "amount",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "timestamp": {
+          "name": "timestamp",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        }
+      },
+      "indexes": {
+        "item_no": {
+          "name": "item_no",
+          "columns": [
+            "item_no"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "forecast_item_no_s_item_no_fk": {
+          "name": "forecast_item_no_s_item_no_fk",
+          "tableFrom": "forecast",
+          "tableTo": "s_item",
+          "columnsFrom": [
+            "item_no"
+          ],
+          "columnsTo": [
+            "no"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "forecast_id": {
+          "name": "forecast_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
       "uniqueConstraints": {},
       "checkConstraint": {}
     },

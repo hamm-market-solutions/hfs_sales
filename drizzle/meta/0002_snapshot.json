@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "ab6b49b5-a549-4303-b514-6b0347b227bb",
-  "prevId": "45691eef-50cc-4773-ba27-52b6ae393125",
+  "id": "45691eef-50cc-4773-ba27-52b6ae393125",
+  "prevId": "17ac5596-182a-48bf-b214-a4b54055c6dc",
   "tables": {
     "admin_settings": {
       "name": "admin_settings",
@@ -2288,30 +2288,8 @@
           "default": "(now())"
         }
       },
-      "indexes": {
-        "brand_no": {
-          "name": "brand_no",
-          "columns": [
-            "brand_no"
-          ],
-          "isUnique": false
-        }
-      },
-      "foreignKeys": {
-        "s_item_brand_no_brand_no_fk": {
-          "name": "s_item_brand_no_brand_no_fk",
-          "tableFrom": "s_item",
-          "tableTo": "brand",
-          "columnsFrom": [
-            "brand_no"
-          ],
-          "columnsTo": [
-            "no"
-          ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
-        }
-      },
+      "indexes": {},
+      "foreignKeys": {},
       "compositePrimaryKeys": {
         "s_item_no": {
           "name": "s_item_no",
