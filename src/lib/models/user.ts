@@ -49,14 +49,11 @@ export const getUserByEmail = async (
 export const getOptUserByEmail = async (
   email: string,
 ): Promise<Option<typeof userTable.$inferSelect>> => {
-  console.log("getting user by email", email);
   const user = await db
     .select()
     .from(userTable)
     .where(eq(userTable.email, email))
     .limit(1);
-
-  console.log("found user", user);
 
   if (user) {
     return Some(user[0]);

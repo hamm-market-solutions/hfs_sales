@@ -5,6 +5,7 @@ import { Ok } from "ts-results";
 import { getForecastTableDataMapper } from "@/lib/tables/forecast";
 import { ForecastTableData } from "@/types/table";
 import { resultToResponse } from "@/utils/conversions";
+import { isSeasonActive } from "@/lib/models/seasonBrandPhase";
 
 export const GET = async (
   request: NextRequest,

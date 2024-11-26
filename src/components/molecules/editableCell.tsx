@@ -21,9 +21,6 @@ export default function EditableCell<T extends object>({
     string | (readonly string[] & string) | undefined
   >(initValue);
   const [error, setError] = useState<HfsError | null>(null);
-
-  console.log(error);
-
   // Toggle between edit and view mode
   const toggleEdit = () => {
     setIsEditing((prev) => !prev);

@@ -90,8 +90,6 @@ export const getForecastTableData = async ({
         .offset(start),
     );
   } catch (error) {
-    console.log(error);
-
     return Err(
       HfsError.fromThrow(
         500,

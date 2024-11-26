@@ -61,8 +61,8 @@ export async function validateUserAuthorized(
   } else {
     permissionsNeeded = neededPermissions!;
   }
-  console.log("permissionsNeeded", permissionsNeeded);
-  console.log("userPermissions", userPermissions.val.permissions);
+  // console.log("permissionsNeeded", permissionsNeeded);
+  // console.log("userPermissions", userPermissions.val.permissions);
 
   const hasAllPermissions = matchPermissions(
     permissionsNeeded,
