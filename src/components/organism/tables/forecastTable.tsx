@@ -157,6 +157,7 @@ export default function ForecastTable({
         accessorKey: "forecast_amount",
         cell: (cell) => {
           const row = cell.row.original;
+
           if (!isSeasonActive) {
             return Number(cell.getValue());
           }

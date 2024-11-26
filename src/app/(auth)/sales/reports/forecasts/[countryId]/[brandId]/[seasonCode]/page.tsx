@@ -22,7 +22,14 @@ export default async function Forecast({
 
   return (
     <div className="forecast-page">
-      <Title subtitle={seasonIsActive ? subtitle : `${subtitle} - The season you are viewing is inactive`} title="Forecast" />
+      <Title
+        subtitle={
+          seasonIsActive
+            ? subtitle
+            : `${subtitle} - The season you are viewing is inactive`
+        }
+        title="Forecast"
+      />
       <ForecastTable isSeasonActive={seasonIsActive} />
     </div>
   );
