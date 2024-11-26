@@ -22,7 +22,7 @@ export function PicCards({
       <Card
         key={data.key}
         isPressable
-        className="max-w-48 max-h-52"
+        className="max-w-48 max-h-56"
         onPress={() => {
           dataSetter?.(data.key);
         }}
@@ -31,7 +31,7 @@ export function PicCards({
           {data.pic ? (
             <Image
               alt={data.key}
-              className={`${data.bgColor ?? ""}`}
+              className={`max-w-48 max-h-36 ${data.bgColor ?? ""}`}
               src={data.pic}
             />
           ) : (
