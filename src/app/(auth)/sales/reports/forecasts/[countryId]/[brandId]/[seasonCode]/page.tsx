@@ -18,10 +18,11 @@ export default async function Forecast({
   );
   const seasonCode = Number((await params).seasonCode);
   const seasonIsActive = (await isSeasonActive(seasonCode)).unwrapOr(false);
+  const subtitle = "Estimate the sales for the upcoming season";
 
   return (
     <div className="forecast-page">
-      <Title subtitle="" title="Forecast" />
+      <Title subtitle={seasonIsActive ? subtitle : `${subtitle} - The season you are viewing is inactive`} title="Forecast" />
       <ForecastTable isSeasonActive={seasonIsActive} />
     </div>
   );
