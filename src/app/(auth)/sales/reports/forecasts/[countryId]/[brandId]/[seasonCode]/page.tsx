@@ -8,7 +8,11 @@ import { validateUserAuthorizedOrRedirect } from "@/lib/auth/validations";
 import { routes } from "@/config/routes";
 import { isSeasonActive } from "@/lib/models/seasonBrandPhase";
 
-export default async function Forecast({params}: { params: Promise<{ seasonCode: string }> }) {
+export default async function Forecast({
+  params,
+}: {
+  params: Promise<{ seasonCode: string }>;
+}) {
   await validateUserAuthorizedOrRedirect(
     routes.sales.reports.forecasts["[countryId]"]["[brandId]"]["[seasonCode]"],
   );

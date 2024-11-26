@@ -19,7 +19,11 @@ import { ForecastTableData } from "@/types/table";
 import { phaseToDrop } from "@/utils/conversions";
 import EditableCell from "@/components/molecules/editableCell";
 
-export default function ForecastTable({ isSeasonActive }: { isSeasonActive?: boolean }) {
+export default function ForecastTable({
+  isSeasonActive,
+}: {
+  isSeasonActive?: boolean;
+}) {
   const params = useParams<{
     countryId: string;
     brandId: string;
@@ -159,12 +163,9 @@ export default function ForecastTable({ isSeasonActive }: { isSeasonActive?: boo
           if (!isSeasonActive) {
             console.log("inactive season");
 
-            return (
-              Number(cell.getValue())
-            );
+            return Number(cell.getValue());
           }
           console.log("active season");
-
 
           return (
             <EditableCell<ForecastTableData>

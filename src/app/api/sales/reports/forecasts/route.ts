@@ -18,7 +18,8 @@ export const POST = async (
   if (userValidRes.err) {
     return resultToResponse(Err(userValidRes.val));
   }
-  const { itemNo, colorCode, countryCode, seasonCode, amount } = await request.json();
+  const { itemNo, colorCode, countryCode, seasonCode, amount } =
+    await request.json();
   const seasonActiveRes = await assertSeasonActive(Number(seasonCode));
 
   if (seasonActiveRes.err) {
