@@ -157,15 +157,9 @@ export default function ForecastTable({
         accessorKey: "forecast_amount",
         cell: (cell) => {
           const row = cell.row.original;
-
-          console.log("isSeasonActive", isSeasonActive);
-
           if (!isSeasonActive) {
-            console.log("inactive season");
-
             return Number(cell.getValue());
           }
-          console.log("active season");
 
           return (
             <EditableCell<ForecastTableData>
