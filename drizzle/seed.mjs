@@ -91,7 +91,9 @@ async function seedMenuTable() {
 async function seedUserHasCountryTable() {
   const result = await db.execute(sql`
     INSERT INTO user_has_country (user_id,country_code) VALUES
-      (1,'DE');
+      (1,'DE'),
+      (2,'DE'),
+      (3,'DE');
   `);
 
   console.log({ result });

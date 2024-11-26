@@ -9,6 +9,15 @@ export function CountryNavigation({
   countries: { code: string; name?: string }[];
   countrySetter?: (country: string) => void;
 }) {
+  if (countries.length === 0) {
+    return (
+      <p>
+        No countries assigned to the user. Please get in touch with your contact
+        person.
+      </p>
+    );
+  }
+
   const dataSets = countries.map((country) => ({
     key: country.code,
     pic: `/assets/flags/${country.code.toLowerCase()}.svg`,

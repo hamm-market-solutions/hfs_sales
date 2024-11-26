@@ -9,7 +9,6 @@ import { getOrUpdateAccessToken } from "@/lib/models/user";
 import { ForecastTableData } from "@/types/table";
 import { createForecast } from "@/lib/models/forecast";
 import { getAccessTokenPayload } from "@/lib/auth/jwt";
-import { validateUserAuthorizedOrRedirect } from "@/lib/auth/validations";
 
 export async function getUserCountriesAction(): Promise<
   HfsResult<GetUserCountriesOkResponse>
@@ -42,8 +41,6 @@ export async function saveForecast(
   countryCode: string,
   value: number,
 ): Promise<HfsResponse<{}>> {
-  await validateUserAuthorizedOrRedirect(undefined, ["forecast.add"]);
-
   const user = await getAccessTokenPayload();
 
   if (user.err) {
@@ -59,10 +56,6 @@ export async function saveForecast(
   const itemNo = Number(row.item_no);
   const colorCode = row.color_code;
   const amount = value;
-
-  // if (amount <= 0) {
-  //   return new HfsError(400, "Amount must be greater than 0");
-  // }
 
   (await createForecast(itemNo, colorCode, countryCode, amount)).unwrap(); // we want to throw if there is an error, returning a 500
 

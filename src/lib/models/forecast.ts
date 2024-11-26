@@ -28,17 +28,13 @@ export const createForecast = async (
       return user;
     }
     const userId = user.val.sub!;
-    const prepared = db
-      .insert(forecast)
-      .values({
-        itemNo: itemNo.toString(),
-        colorCode: colorCode,
-        amount: amount,
-        countryCode: countryCode.toUpperCase(),
-        createdBy: Number(userId),
-      })
-      .prepare();
-    const result = await prepared.execute();
+    const result = await db.insert(forecast).values({
+      itemNo: itemNo.toString(),
+      colorCode: colorCode,
+      amount: amount,
+      countryCode: countryCode.toUpperCase(),
+      createdBy: Number(userId),
+    });
 
     return Ok(result as any as typeof forecast.$inferInsert);
   } catch (error) {

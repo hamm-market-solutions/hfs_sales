@@ -2,6 +2,7 @@
 
 import { Err, Ok } from "ts-results";
 import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 
 import HfsError, { HfsResult } from "../errors/HfsError";
 import { getCurrentUser, getOrUpdateAccessToken } from "../models/user";
@@ -11,7 +12,6 @@ import { isUserAdmin } from "../models/userHasRole";
 import FieldError from "../errors/FieldError";
 
 import { routePermissions, routes } from "@/config/routes";
-import { cookies } from "next/headers";
 
 export async function isUserAuthenticated(): Promise<boolean> {
   try {
@@ -35,7 +35,7 @@ export async function validateUserAuthorized(
       ),
     );
   }
-  await cookies(); // somehow this is needed so nextjs gets that the user is authenticated, at least if you are coming from /login
+  await cookies(); // TODO: somehow this is needed so nextjs gets that the user is authenticated, at least if you are coming from /login. investigate why and find a better solution
   const isAuthenticated = await isUserAuthenticated();
 
   if (!isAuthenticated) {
@@ -61,7 +61,13 @@ export async function validateUserAuthorized(
   } else {
     permissionsNeeded = neededPermissions!;
   }
-  const hasAllPermissions = matchPermissions(permissionsNeeded, userPermissions.val.permissions.map((p) => p.permissionName ?? ""));
+  console.log("permissionsNeeded", permissionsNeeded);
+  console.log("userPermissions", userPermissions.val.permissions);
+
+  const hasAllPermissions = matchPermissions(
+    permissionsNeeded,
+    userPermissions.val.permissions.map((p) => p.permissionName ?? ""),
+  );
 
   if (!hasAllPermissions) {
     return Err(new HfsError(401, AuthError.unauthorized()));
@@ -70,7 +76,10 @@ export async function validateUserAuthorized(
   return Ok(true);
 }
 
-function matchPermissions(neededPermissions: string[], userPermissions: string[]) {
+function matchPermissions(
+  neededPermissions: string[],
+  userPermissions: string[],
+) {
   return neededPermissions.every((perm) => userPermissions.includes(perm));
 }
 

@@ -174,6 +174,10 @@ export default function ForecastTable() {
                   }),
                 });
                 const resJson = await res.json();
+
+                if (resJson.status !== 200) {
+                  return resJson;
+                }
               }}
               tableRow={row}
               type="number"
