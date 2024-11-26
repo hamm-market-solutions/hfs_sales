@@ -31,3 +31,13 @@ export async function getUserRoles(userId: number): Promise<
     );
   }
 }
+
+export async function isUserAdmin(userId: number): Promise<HfsResult<boolean>> {
+  const userRoles = await getUserRoles(userId);
+
+  if (userRoles.err) {
+    return Err(userRoles.val);
+  }
+
+  return Ok(userRoles.val.roles.some((r) => r.roleName === "admin"));
+}

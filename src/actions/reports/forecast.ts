@@ -9,6 +9,7 @@ import { getOrUpdateAccessToken } from "@/lib/models/user";
 import { ForecastTableData } from "@/types/table";
 import { createForecast } from "@/lib/models/forecast";
 import { getAccessTokenPayload } from "@/lib/auth/jwt";
+import { validateUserAuthorizedOrRedirect } from "@/lib/auth/validations";
 
 export async function getUserCountriesAction(): Promise<
   HfsResult<GetUserCountriesOkResponse>
@@ -41,6 +42,8 @@ export async function saveForecast(
   countryCode: string,
   value: number,
 ): Promise<HfsResponse<{}>> {
+  await validateUserAuthorizedOrRedirect(undefined, ["forecast.add"]);
+
   const user = await getAccessTokenPayload();
 
   if (user.err) {

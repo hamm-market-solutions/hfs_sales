@@ -16,6 +16,18 @@ async function main() {
   await seedUserHasCountryTable();
   await seedItemTable();
   await seedItemColorTable();
+  await seedUserHasRoleTable();
+}
+
+async function seedUserHasRoleTable() {
+  const result = await db.execute(sql`
+    INSERT INTO user_has_role (user_id,role_id) VALUES
+      (1,2),
+      (2,12),
+      (3,16);
+  `);
+
+  console.log({ result });
 }
 
 async function seedMenuTable() {

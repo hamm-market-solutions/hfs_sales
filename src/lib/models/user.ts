@@ -217,13 +217,17 @@ export async function verifyPassword(
   return Ok(true);
 }
 
-export async function getCurrentUser(): Promise<HfsResult<typeof userTable.$inferSelect>> {
+export async function getCurrentUser(): Promise<
+  HfsResult<typeof userTable.$inferSelect>
+> {
   const accessTokenRes = await getOrUpdateAccessToken();
 
   if (accessTokenRes.err) {
     return accessTokenRes;
   }
-  const user = await getOptUserById(parseInt(accessTokenRes.val.accessToken[1].sub!));
+  const user = await getOptUserById(
+    parseInt(accessTokenRes.val.accessToken[1].sub!),
+  );
 
   return optionToNotFound(user, "user not found");
 }

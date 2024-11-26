@@ -17,16 +17,6 @@ export const GET = async (
   const brand = Number(searchParams.get("brand")!);
   const seasonCode = Number(searchParams.get("season_code")!);
 
-  console.log(
-    "getting forecast table data",
-    start,
-    size,
-    sorting,
-    country,
-    brand,
-    seasonCode,
-  );
-
   return resultToResponse(
     Ok(
       await getForecastTableDataMapper({

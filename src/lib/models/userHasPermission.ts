@@ -68,6 +68,7 @@ export async function getUserPermissions(userId: number): Promise<
     const permissions = userPermissions.val.permissions.concat(
       ...rolePermissions.map((role) => role.permissions),
     );
+
     permissions.push({ permissionId: 0, permissionName: "user" });
 
     return Ok({ userId: userId, permissions: permissions });

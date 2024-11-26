@@ -36,15 +36,9 @@ export default function BaseTable<T extends object>({
   // ) => Promise<TableResponse<T>>;
   url: [string, string];
 }) {
-  console.log("BaseTable");
-
   //we need a reference to the scrolling element for logic down below
   const tableContainerRef = React.useRef<HTMLDivElement>(null);
-
-  console.log("tableContainerRef");
   const [sorting, setSorting] = React.useState<SortingState>([]);
-
-  console.log("sorting state defined");
   //react-query has a useInfiniteQuery hook that is perfect for this use case
   const { data, fetchNextPage, isFetching } = useInfiniteQuery<
     TableResponse<T>
@@ -54,22 +48,14 @@ export default function BaseTable<T extends object>({
       sorting, //refetch when sorting changes
     ],
     queryFn: async ({ pageParam = 0 }) => {
-      console.log("fetching page", pageParam);
-
       const start = (pageParam as number) * fetchSize;
       const base = url[0];
       const query = url[1];
       const fetchedData = await fetch(
         `${base}?${query}&start=${start}&size=${fetchSize}&sorting=${JSON.stringify(sorting)}`,
       );
-
-      console.log("fetching data...");
       // const fetchedData = await fetchFn(start, fetchSize, sorting); //pretend api call
-      console.log("fetchedData", fetchedData);
-
       const fetchedDataJson = await fetchedData.json();
-
-      console.log("fetchedDataJson", fetchedDataJson);
 
       return fetchedDataJson["data"];
     },

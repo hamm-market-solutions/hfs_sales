@@ -20,16 +20,11 @@ import { phaseToDrop } from "@/utils/conversions";
 import EditableCell from "@/components/molecules/editableCell";
 
 export default function ForecastTable() {
-  console.log("ForecastTable");
-
   const params = useParams<{
     countryId: string;
     brandId: string;
     seasonCode: string;
   }>();
-
-  console.log("params", params);
-
   const columns = React.useMemo<ColumnDef<ForecastTableData>[]>(
     () => [
       {
@@ -159,8 +154,6 @@ export default function ForecastTable() {
         cell: (cell) => {
           const row = cell.row.original;
 
-          console.log();
-
           return (
             <EditableCell<ForecastTableData>
               className="h-10"
@@ -193,9 +186,6 @@ export default function ForecastTable() {
     ],
     [],
   );
-
-  console.log("columns defined");
-
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
@@ -203,8 +193,6 @@ export default function ForecastTable() {
       },
     },
   });
-
-  console.log("queryClient defined");
 
   return (
     <QueryClientProvider client={queryClient}>

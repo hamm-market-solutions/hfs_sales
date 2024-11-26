@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { forecast } from "@/db/schema";
 import { createForecast } from "@/lib/models/forecast";
 import { resultToResponse } from "@/utils/conversions";
-import { validateUserAuthorized } from "@/lib/auth/validations";
 
 export const POST = async (
   request: NextRequest,

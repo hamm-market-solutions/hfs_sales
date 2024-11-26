@@ -6,8 +6,12 @@ import { getAllBrands } from "@/lib/models/brand";
 import { GetUserCountriesOkResponse } from "@/types/responses";
 import ForecastNavigation from "@/components/organism/forecastNavigation";
 import { getAllSeasons } from "@/lib/models/season";
+import { validateUserAuthorizedOrRedirect } from "@/lib/auth/validations";
+import { routes } from "@/config/routes";
 
 export default async function ForecastNavigationPage() {
+  await validateUserAuthorizedOrRedirect(routes.sales.reports.forecasts.base);
+
   const userCountries = (
     (await getUserCountriesAction()).unwrap() as GetUserCountriesOkResponse
   ).data;
