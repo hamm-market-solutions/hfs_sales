@@ -6,6 +6,7 @@ import { createForecast } from "@/lib/models/forecast";
 import { resultToResponse } from "@/utils/conversions";
 import { validateUserAuthorized } from "@/lib/auth/validations";
 import { HfsResult } from "@/lib/errors/HfsError";
+import { assertSeasonActive } from "@/lib/models/seasonBrandPhase";
 
 export const POST = async (
   request: NextRequest,
@@ -17,7 +18,12 @@ export const POST = async (
   if (userValidRes.err) {
     return resultToResponse(Err(userValidRes.val));
   }
-  const { itemNo, colorCode, countryCode, amount } = await request.json();
+  const { itemNo, colorCode, countryCode, seasonCode, amount } = await request.json();
+  const seasonActiveRes = await assertSeasonActive(Number(seasonCode));
+
+  if (seasonActiveRes.err) {
+    return resultToResponse(Err(seasonActiveRes.val));
+  }
 
   const result = await createForecast(itemNo, colorCode, countryCode, amount);
 

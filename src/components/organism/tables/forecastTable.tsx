@@ -170,6 +170,7 @@ export default function ForecastTable() {
                     itemNo: row.item_no,
                     colorCode: row.color_code,
                     countryCode: params.countryId,
+                    seasonCode: Number(params.seasonCode),
                     amount: value,
                   }),
                 });
