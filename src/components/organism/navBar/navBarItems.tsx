@@ -22,6 +22,10 @@ export default function NavBarItems({
 }: {
   navRoutes: typeof navigatonTree;
 }) {
+  if (Object.keys(navRoutes).length === 0) {
+    return;
+  }
+
   const router = useRouter();
   const pathname = usePathname();
   const navBarItems = [];
@@ -29,8 +33,15 @@ export default function NavBarItems({
   for (const route of navRoutes) {
     if (route.items === undefined) {
       navBarItems.push(
-        <NavbarItem key={route.key} isActive={matchPath(route.url ?? "", pathname)}>
-          <Link className="text-primary" color="foreground" href={route.url ?? ""}>
+        <NavbarItem
+          key={route.key}
+          isActive={matchPath(route.url ?? "", pathname)}
+        >
+          <Link
+            className="text-primary"
+            color="foreground"
+            href={route.url ?? ""}
+          >
             {route.title}
           </Link>
         </NavbarItem>,
@@ -42,7 +53,9 @@ export default function NavBarItems({
         nestedNavBarItems.push(
           <DropdownItem
             key={subRoute.key}
-            className={matchPath(subRoute.url ?? "", pathname) ? "bg-primary-50" : ""}
+            className={
+              matchPath(subRoute.url ?? "", pathname) ? "bg-primary-50" : ""
+            }
             description={subRoute.description}
             startContent={<Icon alt="dropdown-item-icon" src={subRoute.icon} />}
             onPress={() => {

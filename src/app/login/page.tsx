@@ -1,3 +1,5 @@
+"use server";
+
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
 import React from "react";
@@ -6,7 +8,7 @@ import Form from "next/form";
 import Title from "@/components/molecules/title";
 import { handleLogin } from "@/actions/auth/login";
 
-export default function Login() {
+export default async function Login() {
   return (
     <div className="login-page">
       <Title title="Login" />

@@ -5,6 +5,7 @@ const db = drizzle(process.env.DATABASE_URL);
 
 async function main() {
   await seedUserTable();
+  await seedMenuTable();
   await seedRoleTable();
   await seedPermissionTable();
   await seedRoleHasPermissionTable();
@@ -15,12 +16,84 @@ async function main() {
   await seedUserHasCountryTable();
   await seedItemTable();
   await seedItemColorTable();
+  await seedUserHasRoleTable();
+}
+
+async function seedUserHasRoleTable() {
+  const result = await db.execute(sql`
+    INSERT INTO user_has_role (user_id,role_id) VALUES
+      (1,2),
+      (2,12),
+      (3,16);
+  `);
+
+  console.log({ result });
+}
+
+async function seedMenuTable() {
+  const result = await db.execute(sql`
+    INSERT INTO menu (id, title, link, parent_id, priority, help, sales) VALUES
+      (2, 'Add menu', 'backend/admin/menu/add', 55, 0, 0, NULL),
+      (23, 'Packaging', '', 146, 0, 0, NULL),
+      (24, 'Carton', 'purchase/supplier/packaging/carton', 23, 0, 0, NULL),
+      (25, 'Add carton', 'purchase/supplier/packaging/carton/add', 24, 0, 0, NULL),
+      (27, 'Item Size', 'purchase/variant/details', 157, 0, 0, NULL),
+      (28, 'Regular orders', 'purchase/order/regular', 128, 0, 0, NULL),
+      (29, 'Sample orders', 'purchase/order/sample', 128, 0, 0, NULL),
+      (30, 'Loading list documents', 'logistics/loading-list/documents', 31, 0, 0, NULL),
+      (31, 'Loading list', 'logistics/loading-list', 188, 0, 0, NULL),
+      (32, 'EDV', '', 0, 100, 0, NULL),
+      (33, 'Item color', 'purchase/color', 62, 0, 0, NULL),
+      (55, 'Menu', 'backend/admin/menu', 32, 0, 0, NULL),
+      (62, 'Purchase', '', 0, 200, 0, NULL),
+      (89, 'User', 'backend/admin/user', 32, 0, 0, NULL),
+      (91, 'Add User', 'backend/admin/user/add', 89, 0, 0, NULL),
+      (92, 'Reset Pass', 'backend/admin/user/reset-pass', 89, 0, 0, NULL),
+      (128, 'Order', '', 62, 0, 0, NULL),
+      (146, 'Supplier', 'purchase/supplier', 62, 0, 0, NULL),
+      (152, 'Import source table', 'backend/admin/import/nav', 32, 0, 0, NULL),
+      (156, 'Item', 'purchase/item', 62, 0, 0, NULL),
+      (157, 'Variant', 'purchase/variant', 62, 0, 0, NULL),
+      (188, 'Logistics', '', 0, 300, 0, NULL),
+      (190, 'Add loading list', 'logistics/loading-list/add', 31, 0, 0, NULL),
+      (202, 'ACL', '', 32, 0, 0, NULL),
+      (204, 'User role', 'backend/admin/acl/user-role', 202, 0, 0, NULL),
+      (205, 'Menu role', 'backend/admin/acl/menu-role', 202, 0, 0, NULL),
+      (206, 'Role permission', 'backend/admin/acl/role', 202, 0, 0, NULL),
+      (207, 'Upload', '', 62, 0, 0, NULL),
+      (208, 'Vendor file', 'purchase/upload/vendor', 207, 0, 0, NULL),
+      (209, 'Download center', 'download-center', 0, 500, 0, NULL),
+      (210, 'Log in', 'help/login', 0, 0, 1, NULL),
+      (211, 'Password assistant', 'help/forgot-pass-frm', 210, 0, 1, NULL),
+      (212, 'Home', 'help/home', 0, 0, 1, NULL),
+      (213, 'Order lines', 'help/purchase/order/line', 128, 0, 1, NULL),
+      (214, 'Mix carton', 'help/purchase/order/line/mix-carton', 213, 0, 1, NULL),
+      (215, 'General usage', 'help/general', 0, 0, 1, NULL),
+      (216, 'SSCC', 'help/purchase/sscc', 62, 0, 1, NULL),
+      (217, 'SSCC lines', 'help/purchase/sscc/line', 216, 0, 1, NULL),
+      (218, 'Profile', 'help/account/profile', 0, 400, 1, NULL),
+      (219, 'Change password', 'help/account/change-password', 218, 0, 1, NULL),
+      (220, 'Shoebox', 'purchase/supplier/packaging/shoebox', 23, 0, 0, NULL),
+      (221, 'Add shoebox', 'purchase/supplier/packaging/shoebox/add', 220, 0, 0, NULL),
+      (222, 'QC', '', 0, 400, 0, NULL),
+      (223, 'Reports', '', 222, 0, 0, NULL),
+      (224, 'Technical', 'qc/report/technical', 223, 0, 0, NULL),
+      (225, 'Approval', 'qc/report/approval', 223, 0, 0, NULL),
+      (226, 'SSCC Scan', 'logistics/carton-label', 188, 0, 0, NULL),
+      (227, 'Upload Center', 'supplier/upload-center', 146, 0, 0, NULL),
+      (228, 'Returns Scan', 'logistics/return/scan', 188, 0, 0, NULL),
+      (229, 'SSCC Overview', 'purchase/sscc?order_no=', 62, 0, 0, NULL);
+  `);
+
+  console.log({ result });
 }
 
 async function seedUserHasCountryTable() {
   const result = await db.execute(sql`
     INSERT INTO user_has_country (user_id,country_code) VALUES
-      (1,'DE');
+      (1,'DE'),
+      (2,'DE'),
+      (3,'DE');
   `);
 
   console.log({ result });

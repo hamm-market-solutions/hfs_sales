@@ -201,16 +201,6 @@ export const getOrUpdateAccessToken = async (): Promise<
   });
 };
 
-export async function isUserAuthenticated(): Promise<boolean> {
-  try {
-    (await getOrUpdateAccessToken()).unwrap();
-
-    return true;
-  } catch (_error) {
-    return false;
-  }
-}
-
 export async function verifyPassword(
   loginUserId: number,
   loginPassword: string,
@@ -225,4 +215,19 @@ export async function verifyPassword(
   }
 
   return Ok(true);
+}
+
+export async function getCurrentUser(): Promise<
+  HfsResult<typeof userTable.$inferSelect>
+> {
+  const accessTokenRes = await getOrUpdateAccessToken();
+
+  if (accessTokenRes.err) {
+    return accessTokenRes;
+  }
+  const user = await getOptUserById(
+    parseInt(accessTokenRes.val.accessToken[1].sub!),
+  );
+
+  return optionToNotFound(user, "user not found");
 }

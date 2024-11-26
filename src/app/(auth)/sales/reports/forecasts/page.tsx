@@ -6,8 +6,12 @@ import { getAllBrands } from "@/lib/models/brand";
 import { GetUserCountriesOkResponse } from "@/types/responses";
 import ForecastNavigation from "@/components/organism/forecastNavigation";
 import { getAllSeasons } from "@/lib/models/season";
+import { validateUserAuthorizedOrRedirect } from "@/lib/auth/validations";
+import { routes } from "@/config/routes";
 
 export default async function ForecastNavigationPage() {
+  await validateUserAuthorizedOrRedirect(routes.sales.reports.forecasts.base);
+
   const userCountries = (
     (await getUserCountriesAction()).unwrap() as GetUserCountriesOkResponse
   ).data;
@@ -17,7 +21,7 @@ export default async function ForecastNavigationPage() {
   return (
     <div className="forecast-navigation-page">
       <Title
-        subtitle="Select the country and brand you would like to view the forecast for:"
+        subtitle="Select the country, brand and season you would like to view the forecast for:"
         title="Forecast - Navigation"
       />
       <ForecastNavigation

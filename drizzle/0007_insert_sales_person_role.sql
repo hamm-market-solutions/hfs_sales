@@ -1,0 +1,1 @@
+INSERT INTO `role` (`id`, `name`) VALUES (16, 'sales_person');

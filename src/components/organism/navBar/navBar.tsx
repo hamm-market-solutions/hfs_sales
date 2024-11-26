@@ -5,7 +5,7 @@ import { Link } from "@nextui-org/link";
 import NavBarItems from "./navBarItems";
 
 import { navigatonTree } from "@/config/navigation";
-import { isUserAuthenticated } from "@/lib/models/user";
+import { isUserAuthenticated } from "@/lib/auth/validations";
 
 export default async function NavBar() {
   const isUserAuth = await isUserAuthenticated();
