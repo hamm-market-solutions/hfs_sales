@@ -1,5 +1,5 @@
 import { Err, None, Ok, Option, Some } from "ts-results";
-import { and, desc, eq, sum } from "drizzle-orm";
+import { and, desc, eq, inArray, isNull, sql, sum } from "drizzle-orm";
 
 import HfsError, { HfsResult } from "../errors/HfsError";
 import ForecastModelError from "../errors/ForecastModelError";
@@ -125,6 +125,30 @@ export async function getSumForecastForLastFiveSeasons() {
       HfsError.fromThrow(
         500,
         ForecastModelError.getError("all forecasts"),
+        error as Error,
+      ),
+    );
+  }
+}
+
+export async function exportLatestForecasts() {
+  try {
+    const forecasts = await db
+      .select()
+      .from(forecast)
+      .orderBy(desc(forecast.timestamp))
+      .where(isNull(forecast.exportedOn));
+
+    await db.update(forecast).set({
+      exportedOn: sql`NOW()`,
+    }).where(inArray(forecast.id, forecasts.map((f) => f.id)));
+
+    return Ok(forecasts);
+  } catch (error) {
+    return Err(
+      HfsError.fromThrow(
+        500,
+        ForecastModelError.getError("latest forecasts for export"),
         error as Error,
       ),
     );
