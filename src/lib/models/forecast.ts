@@ -1,5 +1,5 @@
 import { Err, None, Ok, Option, Some } from "ts-results";
-import { and, desc, eq } from "drizzle-orm";
+import { and, desc, eq, sum } from "drizzle-orm";
 
 import HfsError, { HfsResult } from "../errors/HfsError";
 import ForecastModelError from "../errors/ForecastModelError";
@@ -7,6 +7,7 @@ import { getAccessTokenPayload } from "../auth/jwt";
 
 import { db } from "@/db";
 import { forecast } from "@/db/schema";
+import { getAllSeasons } from "./season";
 
 export const createForecast = async (
   seasonCode: number,
@@ -85,21 +86,47 @@ export async function getLatestForecast(
   }
 }
 
-// export async function getAllForecastsForSeason(seasonCode: number) {
-//   try {
-//     const forecasts = await db
-//       .select()
-//       .from(forecast)
-//       .where(eq(forecast.seasonCode, seasonCode.toString()));
+export async function getSumForecastForSeason(seasonCode: number) {
+  try {
+    const forecasts = await db
+      .select({ sumQty: sum(forecast.amount) })
+      .from(forecast)
+      .where(eq(forecast.seasonCode, seasonCode));
 
-//     return Ok(forecasts);
-//   } catch (error) {
-//     return Err(
-//       HfsError.fromThrow(
-//         500,
-//         ForecastModelError.getError("all forecasts"),
-//         error as Error,
-//       ),
-//     );
-//   }
-// }
+    return Ok(forecasts[0]);
+  } catch (error) {
+    return Err(
+      HfsError.fromThrow(
+        500,
+        ForecastModelError.getError("all forecasts"),
+        error as Error,
+      ),
+    );
+  }
+}
+
+export async function getSumForecastForLastFiveSeasons() {
+  try {
+    const seasons = (await getAllSeasons()).unwrapOr([]);
+    const lastFiveSeasons = seasons.slice(0, 5);
+    const seasonCodes = lastFiveSeasons.map((season) => season.code);
+    const forecastSums = seasonCodes.map(async (seasonCode) => {
+      let res: { seasonCode: number; sumQty: number };
+      const qty = (await getSumForecastForSeason(seasonCode)).unwrap();
+      res = { seasonCode: seasonCode, sumQty: Number(qty.sumQty) };
+
+      return res;
+    });
+    const forecasts = await Promise.all(forecastSums);
+
+    return Ok(forecasts);
+  } catch (error) {
+    return Err(
+      HfsError.fromThrow(
+        500,
+        ForecastModelError.getError("all forecasts"),
+        error as Error,
+      ),
+    );
+  }
+}
