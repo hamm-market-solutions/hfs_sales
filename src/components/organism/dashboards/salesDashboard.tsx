@@ -16,9 +16,6 @@ export default async function SalesDashboard() {
   });
   const actual = await Promise.all(orderQty);
 
-  console.log({ expected, actual });
-
-
   return (
     <section className="sales-dashboard grid grid-cols-2 gap-4 place-items-center">
       <ForecastVsSalesChart
