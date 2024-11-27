@@ -1,0 +1,1 @@
+ALTER TABLE `forecast` ADD `exported_on` timestamp;

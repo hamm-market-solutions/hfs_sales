@@ -64,6 +64,13 @@
       "when": 1732697050801,
       "tag": "0009_add_season_code_to_forecast_table",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "5",
+      "when": 1732725392560,
+      "tag": "0010_add_exported_on_to_forecast",
+      "breakpoints": true
     }
   ]
 }
