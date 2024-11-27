@@ -45,11 +45,11 @@ export default function ExpectedVsActualChart({
       name: "Actual",
       data: expected.map((exp, i) => ({
         x: exp.name,
-        y: exp.value,
+        y: actual[i],
         goals: [
           {
             name: "Expected",
-            value: actual[i],
+            value: exp.value,
             strokeWidth: 5,
             strokeHeight: 10,
             strokeColor: DEFAULT_LEGEND.markers?.fillColors
