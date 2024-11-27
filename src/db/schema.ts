@@ -125,7 +125,7 @@ export const forecast = mysqlTable("forecast", {
 	countryCode: varchar("country_code", { length: 10 }).notNull().references(() => sCountry.code),
 	createdBy: int("created_by", { unsigned: true }).notNull().references(() => user.id),
 	seasonCode: smallint("season_code").notNull(),
-	exportedOn: timestamp({ mode: 'string' }),
+	exportedOn: timestamp("exported_on", { mode: 'string' }),
 },
 (table) => {
 	return {
