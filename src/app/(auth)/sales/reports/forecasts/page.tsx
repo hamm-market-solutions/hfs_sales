@@ -18,6 +18,8 @@ export default async function ForecastNavigationPage() {
   const brands = (await getAllBrands()).unwrap();
   const seasons = (await getAllSeasons()).unwrap();
 
+  console.log(seasons);
+
   return (
     <div className="forecast-navigation-page">
       <Title

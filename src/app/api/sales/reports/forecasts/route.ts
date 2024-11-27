@@ -26,7 +26,13 @@ export const POST = async (
     return resultToResponse(Err(seasonActiveRes.val));
   }
 
-  const result = await createForecast(itemNo, colorCode, countryCode, amount);
+  const result = await createForecast(
+    seasonCode,
+    itemNo,
+    colorCode,
+    countryCode,
+    amount,
+  );
 
   return resultToResponse(Ok(result.val));
 };

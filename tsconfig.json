@@ -40,7 +40,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "drizzle/seed.mjs"
+    "drizzle/old_seed.mjs",
+    "drizzle/seed/seed.ts"
   ],
   "exclude": [
     "node_modules"

@@ -9,6 +9,7 @@ import { db } from "@/db";
 import { forecast } from "@/db/schema";
 
 export const createForecast = async (
+  seasonCode: number,
   itemNo: number,
   colorCode: string,
   countryCode: string,
@@ -29,6 +30,7 @@ export const createForecast = async (
     }
     const userId = user.val.sub!;
     const result = await db.insert(forecast).values({
+      seasonCode: seasonCode,
       itemNo: itemNo.toString(),
       colorCode: colorCode,
       amount: amount,
@@ -82,3 +84,22 @@ export async function getLatestForecast(
     );
   }
 }
+
+// export async function getAllForecastsForSeason(seasonCode: number) {
+//   try {
+//     const forecasts = await db
+//       .select()
+//       .from(forecast)
+//       .where(eq(forecast.seasonCode, seasonCode.toString()));
+
+//     return Ok(forecasts);
+//   } catch (error) {
+//     return Err(
+//       HfsError.fromThrow(
+//         500,
+//         ForecastModelError.getError("all forecasts"),
+//         error as Error,
+//       ),
+//     );
+//   }
+// }

@@ -1,6 +1,5 @@
 "use client";
 
-import { Card, CardBody } from "@nextui-org/card";
 import { ApexOptions } from "apexcharts";
 import Chart from "react-apexcharts";
 
@@ -32,7 +31,11 @@ const DEFAULT_PLOT_OPTIONS: ApexPlotOptions = {
   },
 };
 
-export default function ExpectedVsActualChart({expected, actual, options = {}}: {
+export default function ExpectedVsActualChart({
+  expected,
+  actual,
+  options,
+}: {
   expected: { name: string; value: number }[];
   actual: number[];
   options: ApexOptions;
@@ -49,13 +52,16 @@ export default function ExpectedVsActualChart({expected, actual, options = {}}: 
             value: actual[i],
             strokeWidth: 5,
             strokeHeight: 10,
-            strokeColor: DEFAULT_LEGEND.markers?.fillColors ? [1] : "#775DD0",
+            strokeColor: DEFAULT_LEGEND.markers?.fillColors
+              ? DEFAULT_LEGEND.markers?.fillColors[1]
+              : "#775DD0",
           },
         ],
       })),
     },
   ];
 
+  console.log(series);
   if (!options.dataLabels) {
     options.dataLabels = DEFAULT_DATA_LABELS;
   }
@@ -69,9 +75,13 @@ export default function ExpectedVsActualChart({expected, actual, options = {}}: 
     options.colors = ["#00E396"];
   }
 
-  return <Card className="h-[350px] w-[450px]" shadow="sm">
-    <CardBody>
-    <Chart height={300} width={400} options={options} series={series} type="bar" />
-    </CardBody>
-  </Card>;
+  return (
+    <Chart
+      height={300}
+      options={options}
+      series={series}
+      type="bar"
+      width={400}
+    />
+  );
 }

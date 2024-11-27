@@ -7,7 +7,7 @@
     "build": "NODE_ENV=production next build",
     "start": "NODE_ENV=production node server.mjs",
     "lint": "eslint . --fix",
-    "db:seed": "node drizzle/seed.mjs"
+    "seed": "npx tsx drizzle/seed/seed.ts"
   },
   "dependencies": {
     "@nextui-org/button": "2.0.38",
@@ -35,7 +35,7 @@
     "@tanstack/react-table": "^8.20.5",
     "@tanstack/react-virtual": "^3.10.8",
     "@types/lodash": "^4.17.13",
-    "apexcharts": "^3.54.1",
+    "apexcharts": "^4.1.0",
     "bcrypt-ts": "^5.0.2",
     "clsx": "2.1.1",
     "drizzle-orm": "^0.36.1",
@@ -47,7 +47,7 @@
     "next": "^15.0.0",
     "next-themes": "^0.3.0",
     "react": "18.3.1",
-    "react-apexcharts": "^1.4.1",
+    "react-apexcharts": "^1.6.0",
     "react-dom": "18.3.1",
     "ts-results": "^3.3.0",
     "zod": "^3.23.8"

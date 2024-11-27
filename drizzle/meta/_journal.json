@@ -57,6 +57,13 @@
       "when": 1732613010562,
       "tag": "0008_insert_sales_person_permissions",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "5",
+      "when": 1732697050801,
+      "tag": "0009_add_season_code_to_forecast_table",
+      "breakpoints": true
     }
   ]
 }

@@ -200,6 +200,7 @@ export const forecast = mysqlTable(
   "forecast",
   {
     id: int().autoincrement().notNull(),
+    seasonCode: smallint("season_code").notNull().default(0),
     itemNo: varchar("item_no", { length: 20 })
       .notNull()
       .references(() => sItem.no),

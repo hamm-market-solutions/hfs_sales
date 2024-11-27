@@ -1,0 +1,1 @@
+ALTER TABLE `forecast` ADD `season_code` smallint DEFAULT 0 NOT NULL;

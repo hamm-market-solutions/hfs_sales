@@ -11,7 +11,9 @@ export default async function Dashboard() {
   const userRoles = (await getUserRoles(user.id)).unwrap();
   let dashboardComponent = null;
 
-  if (userRoles.roles.some((r) => r.roleName === "sale")) {
+  if (
+    userRoles.roles.some((r) => r.roleName === "sale" || r.roleName === "admin")
+  ) {
     dashboardComponent = <SalesDashboard />;
   }
 

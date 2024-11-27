@@ -150,6 +150,10 @@ export const snakeCaseToCamelCase = (str: string) => {
   return str.replace(/([-_]\w)/g, (g) => g[1].toUpperCase());
 };
 
+export const camelCaseToSnakeCase = (str: string) => {
+  return str.replace(/_([a-z])/g, (g) => g[1].toUpperCase());
+};
+
 export const seasonToShort = (season: string) => {
   const [firstSeason, secondSeasonAndYear] = season?.split("/") ?? [];
   const [secondSeason, year] = secondSeasonAndYear.split(" ") ?? [];

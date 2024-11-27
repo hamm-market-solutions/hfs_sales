@@ -50,6 +50,8 @@ export async function getUserPermissions(userId: number): Promise<
     if (userRoles.err) {
       return userRoles;
     }
+    // console.log("userRoles", userRoles.val);
+
     const userPermissions = await getUserCustomPermissions(userId);
 
     if (userPermissions.err) {
