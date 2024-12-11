@@ -2,71 +2,35 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { useParams } from "next/navigation";
-import React from "react";
+import React, { useMemo, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Image } from "@nextui-org/image";
-import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  useDisclosure,
-} from "@nextui-org/modal";
 
 import BaseTable from "./table";
 
 import { ForecastTableData } from "@/types/table";
 import { phaseToDrop } from "@/utils/conversions";
 import EditableCell from "@/components/molecules/editableCell";
+import ProductImage from "@/components/molecules/productImage";
 
 export default function ForecastTable({
   isSeasonActive,
 }: {
   isSeasonActive?: boolean;
 }) {
+  const [editableIndex, setEditableIndex] = useState<number>(-1);
   const params = useParams<{
     countryId: string;
     brandId: string;
     seasonCode: string;
   }>();
-  const columns = React.useMemo<ColumnDef<ForecastTableData>[]>(
+  const columns = useMemo<ColumnDef<ForecastTableData>[]>(
     () => [
       {
         header: "Image",
         accessorKey: "img_src",
         cell: (cell) => {
-          const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
           return (
-            <>
-              <Image
-                alt="img"
-                className="h-10 w-10 self-start"
-                fallbackSrc="/assets/img-placeholder.svg"
-                radius="sm"
-                src={cell.getValue() as string}
-                onClick={onOpen}
-              />
-              <Modal
-                backdrop="blur"
-                isOpen={isOpen}
-                onOpenChange={onOpenChange}
-              >
-                <ModalContent>
-                  <ModalHeader className="flex flex-col gap-1">
-                    Product Image
-                  </ModalHeader>
-                  <ModalBody className="flex flex-row justify-center">
-                    <Image
-                      alt="img"
-                      className="h-36 w-36"
-                      fallbackSrc="/assets/img-placeholder.svg"
-                      src={cell.getValue() as string}
-                    />
-                  </ModalBody>
-                </ModalContent>
-              </Modal>
-            </>
+            <ProductImage itemNo={cell.row.original.item_no?.toString()} colorCode={cell.row.original.color_code} />
           );
         },
         enableSorting: false,
@@ -164,8 +128,12 @@ export default function ForecastTable({
 
           return (
             <EditableCell<ForecastTableData>
+              index={cell.row.index}
+              editableIndex={editableIndex}
+              setEditableIndex={setEditableIndex}
               className="h-10"
               initValue={Number(cell.getValue()).toString()}
+              onBlurFocusNext={true}
               min={0}
               step={1}
               submitFn={async (row, value) => {
@@ -197,7 +165,7 @@ export default function ForecastTable({
         size: 90,
       },
     ],
-    [],
+    [editableIndex],
   );
   const queryClient = new QueryClient({
     defaultOptions: {

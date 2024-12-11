@@ -9,6 +9,7 @@ export type TableRequest = {
   start: number;
   size: number;
   sorting: SortingState;
+  search?: string;
 };
 
 export type ForecastTableRequest = {
@@ -18,7 +19,7 @@ export type ForecastTableRequest = {
 } & TableRequest;
 
 export type ForecastTableData = {
-  imgSrc: string;
+  imgSrc: [string?, string?, string?];
   brand_no: string | null;
   brand_name: string | null;
   season_code: number | null;

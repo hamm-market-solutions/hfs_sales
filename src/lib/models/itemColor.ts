@@ -1,5 +1,5 @@
 import { Err, Ok } from "ts-results";
-import { and, count, eq, sql } from "drizzle-orm";
+import { and, count, eq, like, sql } from "drizzle-orm";
 import _ from "lodash";
 
 import HfsError from "../errors/HfsError";
@@ -48,6 +48,7 @@ export const getForecastTableData = async ({
   country,
   brand: brandNo,
   season_code,
+  search,
 }: ForecastTableRequest) => {
   try {
     const select = {
@@ -61,6 +62,7 @@ export const getForecastTableData = async ({
       mainCollection: sItemColor.mainCollection,
       lateCollection: sItemColor.lateCollection,
       specialCollection: sItemColor.specialCollection,
+      last: sItem.last,
       itemNo: sItemColor.itemNo,
       colorCode: sItemColor.colorCode,
       purchasePrice: sItemColor.purchasePrice,
@@ -71,6 +73,7 @@ export const getForecastTableData = async ({
     };
     const selectClone = _.cloneDeep(select);
     const orderBy = sortingStateToDrizzle(selectClone, sorting);
+    console.log("search:", search);
 
     return Ok(
       await db
@@ -83,6 +86,7 @@ export const getForecastTableData = async ({
           and(
             eq(sItem.brandNo, brandNo.toString()),
             eq(sItem.seasonCode, season_code),
+            like(sItem.description, `%${search}%`),
           ),
         )
         .orderBy(...orderBy)

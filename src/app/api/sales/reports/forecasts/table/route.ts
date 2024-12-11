@@ -12,7 +12,10 @@ export const GET = async (
   const searchParams = request.nextUrl.searchParams;
   const start = Number(searchParams.get("start"));
   const size = Number(searchParams.get("size"));
+  console.log(searchParams.get("sorting"));
+
   const sorting: SortingState = JSON.parse(searchParams.get("sorting")!);
+  const search = searchParams.get("search")!;
   const country = searchParams.get("country")!;
   const brand = Number(searchParams.get("brand")!);
   const seasonCode = Number(searchParams.get("season_code")!);
@@ -26,6 +29,7 @@ export const GET = async (
         country,
         brand,
         season_code: seasonCode,
+        search,
       }),
     ),
   );

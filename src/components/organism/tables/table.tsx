@@ -39,6 +39,7 @@ export default function BaseTable<T extends object>({
   //we need a reference to the scrolling element for logic down below
   const tableContainerRef = React.useRef<HTMLDivElement>(null);
   const [sorting, setSorting] = React.useState<SortingState>([]);
+  const [search, setSearch] = React.useState<string>("");
   //react-query has a useInfiniteQuery hook that is perfect for this use case
   const { data, fetchNextPage, isFetching } = useInfiniteQuery<
     TableResponse<T>
@@ -52,7 +53,7 @@ export default function BaseTable<T extends object>({
       const base = url[0];
       const query = url[1];
       const fetchedData = await fetch(
-        `${base}?${query}&start=${start}&size=${fetchSize}&sorting=${JSON.stringify(sorting)}`,
+        `${base}?${query}&start=${start}&size=${fetchSize}&sorting=${JSON.stringify(sorting)}&search=${search}`,
       );
       // const fetchedData = await fetchFn(start, fetchSize, sorting); //pretend api call
       const fetchedDataJson = await fetchedData.json();
@@ -138,7 +139,11 @@ export default function BaseTable<T extends object>({
         <Button isIconOnly aria-label="Filters" color="primary" size="lg">
           <Icon alt="Filters" src="/assets/icons/filter.svg" />
         </Button>
-        <Input label="Search..." size="sm" type="text" />
+        <Input label="Search..." size="sm" type="text" value={search} onChange={(e) => {
+          setSearch(e.target.value);
+          //reset the table to the first page when searching
+          fetchNextPage();
+        }} />
       </div>
       <div
         ref={tableContainerRef}
