@@ -3,7 +3,6 @@ import clsx from "clsx";
 import { seasonToShort } from "@/utils/conversions";
 
 export default function SeasonImage({
-  code: _code,
   name,
   className,
 }: {

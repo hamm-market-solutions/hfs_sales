@@ -30,6 +30,5 @@ export type ForecastTableData = {
   item_no: string | null;
   description: string | null;
   color_code: string;
-  min_qty_style: number | null;
-  purchase_price: number | null;
+  sale_price: number | null;
 };

@@ -82,7 +82,7 @@ export const sortingStateToDrizzle = (
   drizzleSelect: { [key: string]: MySqlColumn | SQL },
   sorting: SortingState,
 ) => {
-  let sortings = [];
+  const sortings = [];
 
   for (const sort of sorting) {
     if (sort.desc) {

@@ -10,6 +10,7 @@ export default function Icon({
     <Image
       className={clsx("rounded-none w-10", className)}
       src={src}
+      alt="icon"
       {...props}
     />
   );

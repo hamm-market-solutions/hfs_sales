@@ -1,4 +1,4 @@
-export type HfsResponse<T extends object = {}> =
+export type HfsResponse<T extends object> =
   | HfsOkResponse<T>
   | HfsErrResponse;
 

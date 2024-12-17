@@ -11,9 +11,7 @@ import {
 } from "@/types/responses";
 import { resultToResponse } from "@/utils/conversions";
 
-export async function GET(
-  _request: NextRequest,
-): Promise<NextResponse<RefreshResponse>> {
+export async function GET(): Promise<NextResponse<RefreshResponse>> {
   const refreshTokenRes = await getRefreshTokenAndVerify();
 
   if (refreshTokenRes.err) {

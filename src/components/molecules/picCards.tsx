@@ -15,7 +15,7 @@ export function PicCards({
   }[];
   dataSetter?: (data: string) => void;
 }) {
-  let countryCards = [];
+  const countryCards = [];
 
   for (const data of dataSets) {
     countryCards.push(

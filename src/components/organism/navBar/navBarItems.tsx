@@ -22,13 +22,13 @@ export default function NavBarItems({
 }: {
   navRoutes: typeof navigatonTree;
 }) {
-  if (Object.keys(navRoutes).length === 0) {
-    return;
-  }
-
   const router = useRouter();
   const pathname = usePathname();
   const navBarItems = [];
+
+  if (Object.keys(navRoutes).length === 0) {
+    return;
+  }
 
   for (const route of navRoutes) {
     if (route.items === undefined) {
@@ -47,7 +47,7 @@ export default function NavBarItems({
         </NavbarItem>,
       );
     } else {
-      let nestedNavBarItems = [];
+      const nestedNavBarItems = [];
 
       for (const subRoute of route.items) {
         nestedNavBarItems.push(

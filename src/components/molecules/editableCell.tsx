@@ -9,20 +9,19 @@ import HfsError from "@/lib/errors/HfsError";
 export default function EditableCell<T extends object>({
   index,
   editableIndex,
-  setEditableIndex,
   tableRow,
-  submitFn,
   initValue,
-  onBlurFocusNext,
+  setEditableIndex,
+  submitFn,
   ...props
 }: {
   index: number;
   editableIndex: number;
-  setEditableIndex: (index: number) => void;
   tableRow: T;
-  submitFn: (row: T, value: any) => Promise<HfsError | void>;
   initValue?: string;
   onBlurFocusNext?: boolean;
+  setEditableIndex: (index: number) => void;
+  submitFn: (row: T, value: unknown) => Promise<HfsError | void>;
 } & InputProps) {
   const [value, setValue] = useState<
     string | (readonly string[] & string) | undefined
@@ -52,10 +51,17 @@ export default function EditableCell<T extends object>({
           if (error) {
             setError(error);
           } else {
+            console.log("new value", value);
+
             setValue(value);
           }
         }}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => {
+          const val = e.target.value;
+          console.log("changed value", val);
+
+          setValue(val);
+        }}
         onKeyDown={async(e) => {
           if (["Enter", "Tab"].includes(e.key)) {
             e.preventDefault();
@@ -75,6 +81,7 @@ export default function EditableCell<T extends object>({
               setError(error);
             } else {
               setValue(value);
+              console.log("value", value);
             }
           }
         }}

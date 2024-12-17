@@ -39,7 +39,7 @@ export const createForecast = async (
       createdBy: Number(userId),
     });
 
-    return Ok(result as any as typeof forecast.$inferInsert);
+    return Ok(result);
   } catch (error) {
     return Err(
       HfsError.fromThrow(
@@ -111,11 +111,9 @@ export async function getSumForecastForLastFiveSeasons() {
     const lastFiveSeasons = seasons.slice(0, 5);
     const seasonCodes = lastFiveSeasons.map((season) => season.code);
     const forecastSums = seasonCodes.map(async (seasonCode) => {
-      let res: { seasonCode: number; sumQty: number };
       const qty = (await getSumForecastForSeason(seasonCode)).unwrap();
-      res = { seasonCode: seasonCode, sumQty: Number(qty.sumQty) };
 
-      return res;
+      return { seasonCode: seasonCode, sumQty: Number(qty.sumQty) };
     });
     const forecasts = await Promise.all(forecastSums);
 

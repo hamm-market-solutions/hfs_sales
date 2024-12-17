@@ -1,7 +1,7 @@
 "use server";
 
 import ForecastVsSalesChart from "@/components/molecules/charts/forecastVsSalesChart";
-import { getSumForecastForLastFiveSeasons, getSumForecastForSeason } from "@/lib/models/forecast";
+import { getSumForecastForLastFiveSeasons } from "@/lib/models/forecast";
 import { getQtyPairSumPerSeason } from "@/lib/models/purchaseLine";
 
 export default async function SalesDashboard() {

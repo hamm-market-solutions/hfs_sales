@@ -1,4 +1,4 @@
-import { mysqlTable, mysqlSchema, AnyMySqlColumn, primaryKey, int, varchar, index, foreignKey, text, tinyint, timestamp, datetime, longtext, unique, tinytext, double, smallint, mediumtext, date, time, bigint } from "drizzle-orm/mysql-core"
+import { mysqlTable, primaryKey, int, varchar, index, text, tinyint, timestamp, datetime, longtext, unique, tinytext, double, smallint, mediumtext, date, time, bigint } from "drizzle-orm/mysql-core"
 import { sql } from "drizzle-orm"
 
 export const adminSettings = mysqlTable("admin_settings", {

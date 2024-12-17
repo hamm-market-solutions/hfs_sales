@@ -4,7 +4,6 @@ import { Card, CardBody, CardHeader } from "@nextui-org/card";
 import { ApexOptions } from "apexcharts";
 
 import ExpectedVsActualChart from "./expectedVsActualChart";
-import { getSumForecastForSeason } from "@/lib/models/forecast";
 
 export default async function ForecastVsSalesChart({
   expected,

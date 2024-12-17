@@ -7,7 +7,7 @@ import ItemColorModelError from "../errors/ItemColorModelError";
 
 import { ForecastTableRequest } from "@/types/table";
 import { db } from "@/db";
-import { brand, sItem, sItemColor, sSeason } from "@/db/schema";
+import { brand, sItem, sItemColor, sSeason, } from "@/db/schema";
 import { sortingStateToDrizzle } from "@/utils/conversions";
 
 export const getForecastTableCount = async ({
@@ -57,7 +57,6 @@ export const getForecastTableData = async ({
       seasonCode: sItem.seasonCode,
       seasonName: sSeason.name,
       description: sItem.description,
-      minQtyStyle: sItem.minQtyStyle,
       preCollection: sItemColor.preCollection,
       mainCollection: sItemColor.mainCollection,
       lateCollection: sItemColor.lateCollection,
@@ -65,7 +64,9 @@ export const getForecastTableData = async ({
       last: sItem.last,
       itemNo: sItemColor.itemNo,
       colorCode: sItemColor.colorCode,
-      purchasePrice: sItemColor.purchasePrice,
+      salePrice: sql<number>`(SELECT unit_sale_price FROM s_variant WHERE item_no = ${sItemColor.itemNo} AND color_code = ${sItemColor.colorCode} LIMIT 1)`.mapWith(
+        Number,
+      ),
       forecastAmount:
         sql<number>`(SELECT amount FROM forecast WHERE item_no = ${sItemColor.itemNo} AND color_code = ${sItemColor.colorCode} AND country_code = ${country} ORDER BY timestamp DESC LIMIT 1)`.mapWith(
           Number,
@@ -74,24 +75,28 @@ export const getForecastTableData = async ({
     const selectClone = _.cloneDeep(select);
     const orderBy = sortingStateToDrizzle(selectClone, sorting);
     console.log("search:", search);
+    const data =await db
+      .select(select)
+      .from(sItemColor)
+      .leftJoin(sItem, and(eq(sItemColor.itemNo, sItem.no)))
+      .leftJoin(brand, eq(sItem.brandNo, brand.no))
+      .leftJoin(sSeason, eq(sItem.seasonCode, sSeason.code))
+      .where(
+        and(
+          eq(sItem.brandNo, brandNo.toString()),
+          eq(sItem.seasonCode, season_code),
+          like(sItem.description, `%${search}%`),
+        ),
+      )
+      .groupBy(sItemColor.itemNo, sItemColor.colorCode)
+      .orderBy(...orderBy)
+      .limit(size)
+      .offset(start);
+
+    console.log("data:", data);
 
     return Ok(
-      await db
-        .select(select)
-        .from(sItemColor)
-        .leftJoin(sItem, and(eq(sItemColor.itemNo, sItem.no)))
-        .leftJoin(brand, eq(sItem.brandNo, brand.no))
-        .leftJoin(sSeason, eq(sItem.seasonCode, sSeason.code))
-        .where(
-          and(
-            eq(sItem.brandNo, brandNo.toString()),
-            eq(sItem.seasonCode, season_code),
-            like(sItem.description, `%${search}%`),
-          ),
-        )
-        .orderBy(...orderBy)
-        .limit(size)
-        .offset(start),
+      data
     );
   } catch (error) {
     return Err(

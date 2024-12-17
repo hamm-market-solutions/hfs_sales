@@ -18,7 +18,7 @@ export async function isUserAuthenticated(): Promise<boolean> {
     (await getOrUpdateAccessToken()).unwrap();
 
     return true;
-  } catch (_error) {
+  } catch (_) {
     return false;
   }
 }

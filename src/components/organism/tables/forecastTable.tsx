@@ -97,18 +97,8 @@ export default function ForecastTable({
         size: 100,
       },
       {
-        header: "Min. Qty.",
-        accessorKey: "min_qty_style",
-        cell: (cell) => {
-          const minQty = cell.getValue() as number;
-
-          return minQty / 1000;
-        },
-        size: 90,
-      },
-      {
         header: "Price",
-        accessorKey: "purchase_price",
+        accessorKey: "sale_price",
         cell: (cell) => {
           const price = cell.getValue() as number;
 
@@ -165,7 +155,7 @@ export default function ForecastTable({
         size: 90,
       },
     ],
-    [editableIndex],
+    [editableIndex, isSeasonActive, params.countryId, params.seasonCode],
   );
   const queryClient = new QueryClient({
     defaultOptions: {

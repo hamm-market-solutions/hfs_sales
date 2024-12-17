@@ -2,13 +2,10 @@
 
 import { Ok } from "ts-results";
 
-import { getUserCountries, userHasCountry } from "@/lib/models/userHasCountry";
-import { GetUserCountriesOkResponse, HfsResponse } from "@/types/responses";
+import { getUserCountries} from "@/lib/models/userHasCountry";
+import { GetUserCountriesOkResponse } from "@/types/responses";
 import { HfsResult } from "@/lib/errors/HfsError";
 import { getOrUpdateAccessToken } from "@/lib/models/user";
-import { ForecastTableData } from "@/types/table";
-import { createForecast } from "@/lib/models/forecast";
-import { getAccessTokenPayload } from "@/lib/auth/jwt";
 
 export async function getUserCountriesAction(): Promise<
   HfsResult<GetUserCountriesOkResponse>
