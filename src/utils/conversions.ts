@@ -154,6 +154,30 @@ export const camelCaseToSnakeCase = (str: string) => {
   return str.replace(/_([a-z])/g, (g) => g[1].toUpperCase());
 };
 
+/**
+ * Converts any case string to camel case, including:
+ * - snake_case
+ * - kebab-case
+ * - PascalCase
+ * - camelCase
+ * - Title Case
+ */
+export const toCamelCase = (input: string) => {
+  // Normalize input to lowercase and split by non-alphanumeric characters or boundaries.
+  const words = input
+    .trim()
+    .replace(/[-_\s]+/g, ' ') // Replace separators (hyphen, underscore, space) with a single space.
+    .split(/\s+/); // Split by spaces (words are separated by spaces).
+
+  // Convert the first word to lowercase and subsequent words to title case.
+  return words
+    .map((word, index) => {
+        if (index === 0) return word.toLowerCase();
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    })
+    .join('');
+};
+
 export const seasonToShort = (season: string) => {
   const [firstSeason, secondSeasonAndYear] = season?.split("/") ?? [];
   const [secondSeason, year] = secondSeasonAndYear.split(" ") ?? [];

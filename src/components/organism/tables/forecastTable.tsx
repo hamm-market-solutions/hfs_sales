@@ -39,7 +39,7 @@ export default function ForecastTable({
       {
         header: "Brand",
         accessorKey: "brand_name",
-        size: 60,
+        size: 100,
       },
       {
         header: "Season",
@@ -79,17 +79,18 @@ export default function ForecastTable({
         size: 60,
       },
       {
-        header: "Item No",
+        header: "Item No.",
         accessorKey: "item_no",
         size: 80,
       },
       {
         header: "Description",
         accessorKey: "description",
-        size: 170,
+        size: 200,
         cell: (cell) => {
           return <span className="cut-text">{cell.getValue<string>()}</span>;
         },
+        enableColumnFilter: true,
       },
       {
         header: "Item Color",
@@ -97,17 +98,17 @@ export default function ForecastTable({
         size: 100,
       },
       {
-        header: "Price",
-        accessorKey: "sale_price",
+        header: "Retail Price",
+        accessorKey: "rrp",
         cell: (cell) => {
           const price = cell.getValue() as number;
 
           return (price / 1000).toFixed(2);
         },
-        size: 90,
+        size: 110,
       },
       {
-        header: "Amount",
+        header: "Estimated Qty.",
         accessorKey: "forecast_amount",
         cell: (cell) => {
           const row = cell.row.original;

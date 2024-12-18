@@ -11,6 +11,10 @@ import {
   up as sVariantUp,
   down as sVariantDown,
 } from "./seed_s_variant";
+import {
+  up as sAssortmentUp,
+  down as sAssortmentDown,
+} from "./seed_s_assortment";
 import minimist from "minimist";
 import { writeFile, writeFileSync } from "fs";
 
@@ -61,12 +65,14 @@ const ups = {
   s_purchase_head: sPurchaseheadUp,
   s_purchase_line: sPurchaseLineUp,
   s_variant: sVariantUp,
+  s_assortment: sAssortmentUp,
 };
 
 const downs = {
   s_purchase_head: sPurchaseheadDown,
   s_purchase_line: sPurchaseLineDown,
   s_variant: sVariantDown,
+  s_assortment: sAssortmentDown,
 };
 
 async function up(seeder?: CommandArgs["up"]) {

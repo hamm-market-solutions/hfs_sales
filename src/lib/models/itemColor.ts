@@ -1,5 +1,5 @@
 import { Err, Ok } from "ts-results";
-import { and, count, eq, like, sql } from "drizzle-orm";
+import { and, count, eq, sql } from "drizzle-orm";
 import _ from "lodash";
 
 import HfsError from "../errors/HfsError";
@@ -64,7 +64,32 @@ export const getForecastTableData = async ({
       last: sItem.last,
       itemNo: sItemColor.itemNo,
       colorCode: sItemColor.colorCode,
-      salePrice: sql<number>`(SELECT unit_sale_price FROM s_variant WHERE item_no = ${sItemColor.itemNo} AND color_code = ${sItemColor.colorCode} LIMIT 1)`.mapWith(
+      rrp: sql<number>`(
+        SELECT
+          rep_retail_price
+        FROM s_variant
+        LEFT JOIN s_assortment ON s_variant.size_code = s_assortment.code
+        WHERE s_variant.item_no = ${sItemColor.itemNo}
+          AND s_variant.color_code = ${sItemColor.colorCode}
+          AND s_assortment.code IS NULL
+          AND s_variant.size_code NOT LIKE 'L%'
+          AND s_variant.size_code NOT LIKE 'R%'
+        LIMIT 1
+      )`.mapWith(
+        Number,
+      ),
+      wsp: sql<number>`(
+        SELECT
+          unit_sale_price
+        FROM s_variant
+        LEFT JOIN s_assortment ON s_variant.size_code = s_assortment.code
+        WHERE s_variant.item_no = ${sItemColor.itemNo}
+          AND s_variant.color_code = ${sItemColor.colorCode}
+          AND s_assortment.code IS NULL
+          AND s_variant.size_code NOT LIKE 'L%'
+          AND s_variant.size_code NOT LIKE 'R%'
+        LIMIT 1
+      )`.mapWith(
         Number,
       ),
       forecastAmount:
@@ -72,8 +97,8 @@ export const getForecastTableData = async ({
           Number,
         ),
     };
-    const selectClone = _.cloneDeep(select);
-    const orderBy = sortingStateToDrizzle(selectClone, sorting);
+    const orderBySelectClone = _.cloneDeep(select);
+    const orderBy = sortingStateToDrizzle(orderBySelectClone, sorting);
     console.log("search:", search);
     const data =await db
       .select(select)
@@ -85,7 +110,6 @@ export const getForecastTableData = async ({
         and(
           eq(sItem.brandNo, brandNo.toString()),
           eq(sItem.seasonCode, season_code),
-          like(sItem.description, `%${search}%`),
         ),
       )
       .groupBy(sItemColor.itemNo, sItemColor.colorCode)
@@ -93,7 +117,7 @@ export const getForecastTableData = async ({
       .limit(size)
       .offset(start);
 
-    console.log("data:", data);
+
 
     return Ok(
       data

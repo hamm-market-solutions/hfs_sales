@@ -1,0 +1,14823 @@
+export const TABLE_DATA = {
+    s_assortment: [
+        {
+            "code" : "1061",
+            "size_code" : "4.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "1061",
+            "size_code" : "5.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "1061",
+            "size_code" : "5.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "1061",
+            "size_code" : "6.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "1061",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "1061",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "1081",
+            "size_code" : "3.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "1081",
+            "size_code" : "4.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "1081",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "1081",
+            "size_code" : "5.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "1081",
+            "size_code" : "5.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "1081",
+            "size_code" : "6.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "1081",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "1081",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "1082",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "1082",
+            "size_code" : "5.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "1082",
+            "size_code" : "5.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "1082",
+            "size_code" : "6.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "1082",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "1082",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "1082",
+            "size_code" : "7.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "1082",
+            "size_code" : "8.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "2081",
+            "size_code" : "10.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "2081",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "2081",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "2081",
+            "size_code" : "7.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "2081",
+            "size_code" : "8.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "2081",
+            "size_code" : "8.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "2081",
+            "size_code" : "9.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "2081",
+            "size_code" : "9.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "2082",
+            "size_code" : "10.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "2082",
+            "size_code" : "10.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "2082",
+            "size_code" : "11.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "2082",
+            "size_code" : "7.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "2082",
+            "size_code" : "8.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "2082",
+            "size_code" : "8.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "2082",
+            "size_code" : "9.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "2082",
+            "size_code" : "9.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3040",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3040",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3040",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3040",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3041",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3041",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3041",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3041",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3042",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3042",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3050",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3050",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3050",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3050",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3050",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3057",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3057",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3057",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3057",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3057",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3058",
+            "size_code" : "D390",
+            "qty_pair" : 4000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3058",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3058",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3059",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3059",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3059",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3059",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3059",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3059",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3060",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3060",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3060",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3060",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3060",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3061",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3061",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3061",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3061",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3061",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3062",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3062",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3062",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3062",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3062",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3063",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3063",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3063",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3063",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3064",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3064",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3064",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3064",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3065",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3065",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3065",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3065",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3066",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3066",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3066",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3066",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3067",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3067",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3067",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3068",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3068",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3068",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3068",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3068",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3069",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3069",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3069",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3069",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3069",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3069",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3070",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3070",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3070",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3070",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3070",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3071",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3071",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3071",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3071",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3072",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3072",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3072",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3072",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3072",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3073",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3073",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3073",
+            "size_code" : "D380",
+            "qty_pair" : 4000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3074",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3074",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3074",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3074",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3074",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3074",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3075",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3075",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3075",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3075",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3076",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3076",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3076",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3076",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3076",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3076",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3077",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3077",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3077",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3077",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3077",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3077",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3078",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3078",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3078",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3078",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3079",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3079",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3079",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3079",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3079",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3079",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3080",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3080",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3080",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3080",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3080",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3080",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3081",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3081",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3081",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3081",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3081",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3081",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3082",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3082",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3082",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3082",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3082",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3083",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3083",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3083",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3083",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3084",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3084",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3084",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3084",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3084",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3084",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3084",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3085",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3085",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3085",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3085",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3085",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3086",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3086",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3086",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3086",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3086",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3086",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3087",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3087",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3087",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3087",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3087",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3088",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3088",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3088",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3088",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3088",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3089",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3089",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3089",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3089",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3089",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3089",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3089",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3090",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3090",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3090",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3090",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3090",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3090",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3090",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3091",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3091",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3091",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3091",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3091",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3091",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3092",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3092",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3092",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3092",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3092",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3092",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3092",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3093",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3093",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3093",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3093",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3093",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3094",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3094",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3094",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3094",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3094",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3094",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3094",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3095",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3095",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3095",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3095",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3095",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3095",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3095",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3096",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3096",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3096",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3096",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3096",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3096",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3097",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3097",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3097",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3097",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3097",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3098",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3098",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3098",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3098",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3098",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3098",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3099",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3099",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3099",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3099",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3100",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3100",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3100",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3100",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3100",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3100",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3101",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3101",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3101",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3101",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3101",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3101",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3101",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3102",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3102",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3102",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3102",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3102",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3102",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3102",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3103",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3103",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3103",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3103",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3103",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3104",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3104",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3104",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3104",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3104",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3105",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3105",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3105",
+            "size_code" : "D390",
+            "qty_pair" : 4000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3105",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3106",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3106",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3106",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3106",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3106",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3106",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3106",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3107",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3107",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3107",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3107",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3107",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3107",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3108",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3108",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3108",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3108",
+            "size_code" : "D400",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3108",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3109",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3109",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3109",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3109",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3109",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3109",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3110",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3110",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3110",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3110",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3110",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3111",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3111",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3111",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3111",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3111",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3111",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3111",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3112",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3112",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3112",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3112",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3112",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3112",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3112",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3113",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3113",
+            "size_code" : "D370",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3113",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3113",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3113",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3114",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3114",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3114",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3114",
+            "size_code" : "D400",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3114",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3115",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3115",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3115",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3115",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3115",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3115",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3116",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3116",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3116",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3116",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3116",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3116",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3117",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3117",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3117",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3117",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3117",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3118",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3118",
+            "size_code" : "D390",
+            "qty_pair" : 4000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3118",
+            "size_code" : "D400",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3118",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3118",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3119",
+            "size_code" : "D360",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3119",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3119",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3119",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3119",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3119",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3120",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3120",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3120",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3120",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3120",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3120",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3120",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3121",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3121",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3121",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3121",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3121",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3121",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3122",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3122",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3122",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3122",
+            "size_code" : "D400",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3122",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3122",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3123",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3123",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3123",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3123",
+            "size_code" : "D400",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3123",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3124",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3124",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3124",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3124",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3124",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3124",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3124",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3125",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3125",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3125",
+            "size_code" : "D390",
+            "qty_pair" : 4000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3125",
+            "size_code" : "D400",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3125",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3126",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3126",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3126",
+            "size_code" : "D390",
+            "qty_pair" : 4000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3126",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3126",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3127",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3127",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3127",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3127",
+            "size_code" : "D400",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3127",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3128",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3128",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3128",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3128",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3128",
+            "size_code" : "D400",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3128",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3128",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3129",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3129",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3129",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3129",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3129",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3129",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3129",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3130",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3130",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3130",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3130",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3130",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3130",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3130",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3131",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3131",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3131",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3131",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3131",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3131",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3131",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3132",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3132",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3132",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3132",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3132",
+            "size_code" : "D400",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3132",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3132",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3133",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3133",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3133",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3133",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3133",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3133",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3133",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3134",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3134",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3134",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3134",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3134",
+            "size_code" : "D400",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3134",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3134",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3135",
+            "size_code" : "D360",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3135",
+            "size_code" : "D370",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3135",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3135",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3135",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3136",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3136",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3136",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3136",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3136",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3136",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3137",
+            "size_code" : "D360",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3137",
+            "size_code" : "D370",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3137",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3137",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3138",
+            "size_code" : "D360",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3138",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3138",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3138",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3140",
+            "size_code" : "D35D",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3140",
+            "size_code" : "D37D",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3140",
+            "size_code" : "D39D",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3140",
+            "size_code" : "D41D",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3141",
+            "size_code" : "D35D",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3141",
+            "size_code" : "D37D",
+            "qty_pair" : 6000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3141",
+            "size_code" : "D39D",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3142",
+            "size_code" : "D37D",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3142",
+            "size_code" : "D39D",
+            "qty_pair" : 6000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "3142",
+            "size_code" : "D41D",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4040",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4040",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4040",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4040",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4041",
+            "size_code" : "D470",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4041",
+            "size_code" : "D480",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4042",
+            "size_code" : "D470",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4042",
+            "size_code" : "D480",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4042",
+            "size_code" : "D490",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4043",
+            "size_code" : "D480",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4043",
+            "size_code" : "D490",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4043",
+            "size_code" : "D500",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4045",
+            "size_code" : "D480",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4045",
+            "size_code" : "D490",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4045",
+            "size_code" : "D500",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4049",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4049",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4049",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4049",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4049",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4049",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4050",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4050",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4050",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4050",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4050",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4051",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4051",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4051",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4051",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4051",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4052",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4052",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4052",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4052",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4052",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4053",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4053",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4053",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4053",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4053",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4053",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4054",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4054",
+            "size_code" : "D420",
+            "qty_pair" : 4000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4054",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4054",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4054",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4054",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4055",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4055",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4055",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4055",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4055",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4055",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4055",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4056",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4056",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4056",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4056",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4057",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4057",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4057",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4057",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4057",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4058",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4058",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4058",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4058",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4058",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4058",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4059",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4059",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4059",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4059",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4059",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4059",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4060",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4060",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4060",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4060",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4060",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4061",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4061",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4061",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4061",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4061",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4062",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4062",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4062",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4062",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4062",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4063",
+            "size_code" : "D460",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4063",
+            "size_code" : "D470",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4063",
+            "size_code" : "D480",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4064",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4064",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4064",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4064",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4065",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4065",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4065",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4065",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4066",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4066",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4066",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4066",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4067",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4067",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4067",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4067",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4067",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4068",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4068",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4068",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4069",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4069",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4069",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4070",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4070",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4070",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4070",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4070",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4071",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4071",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4071",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4071",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4071",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4071",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4072",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4072",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4072",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4072",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4072",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4072",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4073",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4073",
+            "size_code" : "D440",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4073",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4073",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4074",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4074",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4074",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4074",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4075",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4076",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4076",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4076",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4076",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4076",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4076",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4077",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4077",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4077",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4077",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4077",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4078",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4078",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4078",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4078",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4078",
+            "size_code" : "D470",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4079",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4079",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4079",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4079",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4079",
+            "size_code" : "D470",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4080",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4080",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4080",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4080",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4080",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4080",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4081",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4081",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4081",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4081",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4081",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4081",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4082",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4082",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4082",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4082",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4082",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4083",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4083",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4083",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4083",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4083",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4084",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4084",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4084",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4084",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4084",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4084",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4085",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4085",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4085",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4085",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4085",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4085",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4086",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4086",
+            "size_code" : "D420",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4086",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4086",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4086",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4087",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4087",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4087",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4087",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4087",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4087",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4088",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4088",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4088",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4088",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4088",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4089",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4089",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4089",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4089",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4089",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4089",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4089",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4090",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4090",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4090",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4090",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4090",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4091",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4091",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4091",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4091",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4091",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4091",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4092",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4092",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4092",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4092",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4092",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4092",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4093",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4093",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4093",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4093",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4093",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4093",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4094",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4094",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4094",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4094",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4094",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4094",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4095",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4095",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4095",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4095",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4095",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4095",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4095",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4096",
+            "size_code" : "D410",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4096",
+            "size_code" : "D420",
+            "qty_pair" : 6000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4097",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4097",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4097",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4097",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4097",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4097",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4097",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4098",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4098",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4098",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4098",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4098",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4098",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4099",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4099",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4099",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4099",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4099",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4100",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4100",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4100",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4100",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4100",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4100",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4100",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4101",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4101",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4101",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4101",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4101",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4101",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4102",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4102",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4102",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4102",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4102",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4102",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4103",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4103",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4103",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4103",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4103",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4103",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4103",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4104",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4104",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4104",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4104",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4104",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4105",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4105",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4105",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4105",
+            "size_code" : "D440",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4105",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4106",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4106",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4106",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4106",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4106",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4106",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4107",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4107",
+            "size_code" : "D420",
+            "qty_pair" : 4000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4107",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4107",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4107",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4108",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4108",
+            "size_code" : "D420",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4108",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4108",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4108",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4109",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4109",
+            "size_code" : "D420",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4109",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4109",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4109",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4110",
+            "size_code" : "D430",
+            "qty_pair" : 5000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4110",
+            "size_code" : "D440",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4110",
+            "size_code" : "D450",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4111",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4111",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4111",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4111",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4111",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4111",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4111",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4112",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4112",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4112",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4112",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4112",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4112",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4112",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4112",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4113",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4113",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4113",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4113",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4113",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4113",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4113",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4114",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4114",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4114",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4114",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4114",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4114",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4114",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4115",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4115",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4115",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4115",
+            "size_code" : "D440",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4115",
+            "size_code" : "D450",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4115",
+            "size_code" : "D460",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4115",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4116",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4116",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4116",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4116",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4116",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4116",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4117",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4117",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4117",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4117",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4117",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4117",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4117",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4117",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4118",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4118",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4118",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4118",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4118",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4118",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4118",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4119",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4119",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4119",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4119",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4119",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4119",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4119",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4120",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4120",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4120",
+            "size_code" : "D420",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4120",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4120",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4120",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4120",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4121",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4121",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4121",
+            "size_code" : "D420",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4121",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4121",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4121",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4122",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4122",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4122",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4122",
+            "size_code" : "D440",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4122",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4122",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4123",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4123",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4123",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4123",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4123",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4123",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4123",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4124",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4124",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4124",
+            "size_code" : "D420",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4124",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4124",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4124",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4124",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4125",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4125",
+            "size_code" : "D420",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4125",
+            "size_code" : "D430",
+            "qty_pair" : 4000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4125",
+            "size_code" : "D440",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4125",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4126",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4126",
+            "size_code" : "D420",
+            "qty_pair" : 4000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4126",
+            "size_code" : "D430",
+            "qty_pair" : 4000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4126",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4126",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4127",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4127",
+            "size_code" : "D420",
+            "qty_pair" : 4000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4127",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4127",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4127",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4128",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4128",
+            "size_code" : "D420",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4128",
+            "size_code" : "D430",
+            "qty_pair" : 4000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4128",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4128",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4129",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4129",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4129",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4129",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4129",
+            "size_code" : "D440",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4129",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4129",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4130",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4130",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4130",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4130",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4130",
+            "size_code" : "D440",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4130",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4130",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4131",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4131",
+            "size_code" : "D420",
+            "qty_pair" : 4000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4131",
+            "size_code" : "D430",
+            "qty_pair" : 4000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4131",
+            "size_code" : "D440",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4131",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4132",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4132",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4132",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4132",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4132",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4132",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4132",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4132",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4133",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4133",
+            "size_code" : "D420",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4133",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4133",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4133",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4133",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4133",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4134",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4134",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4134",
+            "size_code" : "D420",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4134",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4134",
+            "size_code" : "D440",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4134",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4135",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4135",
+            "size_code" : "D420",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4135",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4135",
+            "size_code" : "D440",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4135",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4135",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4136",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4136",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4136",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4136",
+            "size_code" : "D440",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4136",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4136",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4137",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4137",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4137",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4137",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4137",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4137",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4138",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4138",
+            "size_code" : "D430",
+            "qty_pair" : 4000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4138",
+            "size_code" : "D440",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4138",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4138",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4139",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4139",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4139",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4139",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4139",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4140",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4140",
+            "size_code" : "D420",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4140",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4140",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4140",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4141",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4141",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4141",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4141",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4141",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4141",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4142",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4142",
+            "size_code" : "D410",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4142",
+            "size_code" : "D420",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4142",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4143",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4143",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4143",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4143",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4144",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4144",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4144",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4144",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4151",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4151",
+            "size_code" : "D420",
+            "qty_pair" : 4000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4151",
+            "size_code" : "D430",
+            "qty_pair" : 4000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4151",
+            "size_code" : "D440",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4151",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4152",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4152",
+            "size_code" : "D420",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4152",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4152",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4152",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4153",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4153",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4153",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "4153",
+            "size_code" : "D460",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5050",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5050",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5050",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5050",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5050",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5063",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5063",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5063",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5063",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5064",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5064",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5064",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5064",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5064",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5065",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5065",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5065",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5065",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5066",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5066",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5066",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5066",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5070",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5070",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5070",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5070",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5070",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5071",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5071",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5071",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5071",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5071",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5071",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5080",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5080",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5080",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5080",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5080",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5080",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5081",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5081",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5081",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5081",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5081",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5082",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5082",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5082",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5082",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5082",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5082",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5083",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5083",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5083",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5083",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5083",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5084",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5084",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5084",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5084",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5084",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5085",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5085",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5085",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5085",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5085",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5086",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5086",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5086",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5086",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5086",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5087",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5087",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5087",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5087",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5087",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5087",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5088",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5088",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5088",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5088",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5088",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5090",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5090",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5090",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5090",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5090",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5090",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5091",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5091",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5091",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5091",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5091",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5091",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5092",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5092",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5092",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5092",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5092",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5093",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5093",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5093",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5093",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5093",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5093",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5094",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5094",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5094",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5094",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5094",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5095",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5095",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5095",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5095",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5095",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5095",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5095-1",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5095-1",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5095-1",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5095-1",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5095-1",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5095-1",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5096",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5096",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5096",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5096",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5096",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5097",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5097",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5097",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5097",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5097",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5097",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5098",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5098",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5098",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5098",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5098",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5098",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5101",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5101",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5101",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5101",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5101",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5101",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5102",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5102",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5102",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5102",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5102",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5102",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5103",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5103",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5103",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5103",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5103",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5104",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5104",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5104",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5104",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5104",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5107",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5107",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5107",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5107",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5107",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5107",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5108",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5108",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5108",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5108",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5108",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5108",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5120",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5120",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5120",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5120",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5120",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5120",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5120",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5121",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5121",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5121",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5121",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5121",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5121",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5122",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5122",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5122",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5122",
+            "size_code" : "D400",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5122",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5122",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5123",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5123",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5123",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5123",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5123",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5123",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5124",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5124",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5124",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5124",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5124",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5124",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5125",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5125",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5125",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5125",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5125",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5125",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5140",
+            "size_code" : "D370",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5140",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5140",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5140",
+            "size_code" : "D400",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5140",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5150",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5150",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5150",
+            "size_code" : "D380",
+            "qty_pair" : 4000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5150",
+            "size_code" : "D390",
+            "qty_pair" : 4000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5150",
+            "size_code" : "D400",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "5150",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6081",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6081",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6081",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6081",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6081",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6101",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6101",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6101",
+            "size_code" : "D420",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6101",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6101",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6101",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6102",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6102",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6102",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6102",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6102",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6102",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6120",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6120",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6120",
+            "size_code" : "D420",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6120",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6120",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6120",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6120",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6121",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6121",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6121",
+            "size_code" : "D420",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6121",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6121",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6121",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6122",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6122",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6122",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6122",
+            "size_code" : "D440",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6122",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6122",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6123",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6123",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6123",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6123",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "6123",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "704-1",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "704-1",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "704-1",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "704-1",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7041",
+            "size_code" : "D340",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7041",
+            "size_code" : "D350",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7041",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7041",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7061",
+            "size_code" : "D280",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7061",
+            "size_code" : "D290",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7061",
+            "size_code" : "D300",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7061",
+            "size_code" : "D310",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7061",
+            "size_code" : "D320",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7061",
+            "size_code" : "D330",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7062",
+            "size_code" : "D300",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7062",
+            "size_code" : "D310",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7062",
+            "size_code" : "D320",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7062",
+            "size_code" : "D330",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7063",
+            "size_code" : "D340",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7063",
+            "size_code" : "D350",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7063",
+            "size_code" : "D360",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7063",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7065",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7065",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7065",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7066",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7066",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7066",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "708-1",
+            "size_code" : "D280",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "708-1",
+            "size_code" : "D290",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "708-1",
+            "size_code" : "D300",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "708-1",
+            "size_code" : "D310",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "708-1",
+            "size_code" : "D320",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "708-1",
+            "size_code" : "D330",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "708-1",
+            "size_code" : "D340",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "708-1",
+            "size_code" : "D350",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7101",
+            "size_code" : "D280",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7101",
+            "size_code" : "D290",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7101",
+            "size_code" : "D300",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7101",
+            "size_code" : "D310",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7101",
+            "size_code" : "D320",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "7101",
+            "size_code" : "D330",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "D40",
+            "size_code" : "M002",
+            "qty_pair" : 0,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E01",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E01",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E01",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E01",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E01",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E01",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E01",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E02",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E02",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E02",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E02",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E02",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E02",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E02",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E03",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E03",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E03",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E03",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E03",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E03",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E03",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E04",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E04",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E04",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E04",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E04",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E04",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E04",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E50",
+            "size_code" : "4.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E50",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E50",
+            "size_code" : "5.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E50",
+            "size_code" : "5.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E50",
+            "size_code" : "6.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E50",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E50",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E50",
+            "size_code" : "7.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E50",
+            "size_code" : "8.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E51",
+            "size_code" : "3.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E51",
+            "size_code" : "4.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E51",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E51",
+            "size_code" : "5.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E51",
+            "size_code" : "5.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E51",
+            "size_code" : "6.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E51",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E51",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E51",
+            "size_code" : "7.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E52",
+            "size_code" : "3.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E52",
+            "size_code" : "4.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E52",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E52",
+            "size_code" : "5.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E52",
+            "size_code" : "5.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E52",
+            "size_code" : "6.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E52",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E52",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E52",
+            "size_code" : "7.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E52",
+            "size_code" : "8.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E53",
+            "size_code" : "3.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E53",
+            "size_code" : "4.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E53",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E53",
+            "size_code" : "5.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E53",
+            "size_code" : "6.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E53",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E53",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E53",
+            "size_code" : "7.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E53",
+            "size_code" : "8.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E54",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E54",
+            "size_code" : "5.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E54",
+            "size_code" : "5.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E54",
+            "size_code" : "6.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E54",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E54",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E54",
+            "size_code" : "8.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E55",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E55",
+            "size_code" : "5.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E55",
+            "size_code" : "5.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E55",
+            "size_code" : "6.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E55",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E83",
+            "size_code" : "4.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E83",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E83",
+            "size_code" : "5.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E83",
+            "size_code" : "5.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E83",
+            "size_code" : "6.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E83",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E83",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E84",
+            "size_code" : "4.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E84",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E84",
+            "size_code" : "5.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E84",
+            "size_code" : "5.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E84",
+            "size_code" : "6.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E84",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E85",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E85",
+            "size_code" : "5.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E85",
+            "size_code" : "5.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E85",
+            "size_code" : "6.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E85",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E85",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E85",
+            "size_code" : "7.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E86",
+            "size_code" : "3.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E86",
+            "size_code" : "4.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E86",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E86",
+            "size_code" : "5.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E86",
+            "size_code" : "5.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E86",
+            "size_code" : "6.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E86",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E86",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E86",
+            "size_code" : "7.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E86A",
+            "size_code" : "3.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E86A",
+            "size_code" : "4.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E86A",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E86A",
+            "size_code" : "5.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E86A",
+            "size_code" : "7.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E86B",
+            "size_code" : "5.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E86B",
+            "size_code" : "6.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E86B",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E86B",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E87",
+            "size_code" : "4.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E87",
+            "size_code" : "4.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E87",
+            "size_code" : "5.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E87",
+            "size_code" : "5.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E87",
+            "size_code" : "6.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E87",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E87",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E87",
+            "size_code" : "7.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E87",
+            "size_code" : "8.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E87A",
+            "size_code" : "4.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E87A",
+            "size_code" : "4.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E87A",
+            "size_code" : "5.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E87A",
+            "size_code" : "8.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E87B",
+            "size_code" : "5.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E87B",
+            "size_code" : "6.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E87B",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E87B",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E87B",
+            "size_code" : "7.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E90",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E90",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E90",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E90",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E90",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E90",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E91",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E91",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E91",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E91",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E91",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E91",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E95",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E95",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E95",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E95",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E95",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E96",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E96",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E96",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E96",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E96",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E96",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E97",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E97",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E97",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E97",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E97",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E97",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E98",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E98",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E98",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E98",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E98",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E98",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E98",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E98A",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E98A",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E98A",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E98B",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E98B",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E98B",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E98B",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E99",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E99",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E99",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E99",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E99",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E99",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E99",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E99A",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E99A",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E99A",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E99B",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E99B",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E99B",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "E99B",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M001",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M001",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M001",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M001",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M001",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M002",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M002",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M002",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M002",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M002",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M002",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M003",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M003",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M003",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M003",
+            "size_code" : "D400",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M003",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M01",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M01",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M01",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M01",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M01",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M01",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M012",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M012",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M012",
+            "size_code" : "D420",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M012",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M012",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M012",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M012",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M016",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M016",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M016",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M016",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M016",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M016",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M02",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M02",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M02",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M02",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M02",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M02",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M022",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M022",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M022",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M022",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M022",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M022",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M022",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M022",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M026",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M026",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M026",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M026",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M026",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M026",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M03",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M03",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M03",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M03",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M03",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M03",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M032",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M032",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M032",
+            "size_code" : "D420",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M032",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M032",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M032",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M032",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M036",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M036",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M036",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M036",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M036",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M036",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M04",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M04",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M04",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M04",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M04",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M046",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M046",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M046",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M046",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M046",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M046",
+            "size_code" : "D480",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M05",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M05",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M05",
+            "size_code" : "D420",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M05",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M05",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M05",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M056",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M056",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M056",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M056",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M056",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M06",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M06",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M06",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M06",
+            "size_code" : "D440",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M06",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M06",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M066",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M066",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M066",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M066",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M066",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M07",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M07",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M07",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M07",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M078",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M078",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M078",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M078",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M078",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M078",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M08",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M08",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M08",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M08",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M08",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M088",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M088",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M088",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M088",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M088",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M088",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M097",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M097",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M097",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M097",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M097",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M098",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M098",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M098",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M098",
+            "size_code" : "D460",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M098",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M098",
+            "size_code" : "D480",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M10",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M10",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M10",
+            "size_code" : "D440",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M10",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M10",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M109",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M109",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M109",
+            "size_code" : "D440",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M109",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M109",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M119",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M119",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M119",
+            "size_code" : "D450",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M119",
+            "size_code" : "D460",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M119",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M122",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M122",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M122",
+            "size_code" : "D420",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M122",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M122",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M122",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M129",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M129",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M129",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M129",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M129",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M129",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M129",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M132",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M132",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M132",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M132",
+            "size_code" : "D440",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M132",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M132",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M138",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M138",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M138",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M138",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M138",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M139",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M139",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M139",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M139",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M139",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M139",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M142",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M142",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M142",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M142",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M142",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M142",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M142",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M144",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M144",
+            "size_code" : "D480",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M144",
+            "size_code" : "D490",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M144",
+            "size_code" : "D500",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M146",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M146",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M146",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M146",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M146",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M148",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M148",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M148",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M148",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M148",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M149",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M149",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M149",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M149",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M149",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M149",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M152",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M152",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M152",
+            "size_code" : "D420",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M152",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M152",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M152",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M152",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M152",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M155",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M155",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M155",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M155",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M155",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M156",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M156",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M156",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M156",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M158",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M158",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M158",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M158",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M158",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M158",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M158",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M159",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M159",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M159",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M159",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M159",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M159",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M159",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M160",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M160",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M160",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M160",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M160",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M160",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M160",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M162",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M162",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M162",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M162",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M162",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M162",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M162",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M166",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M166",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M166",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M166",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M168",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M168",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M168",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M168",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M168",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M168",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M169",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M169",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M169",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M169",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M169",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M170",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M170",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M170",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M170",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M170",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M170",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M170",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M170",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M172",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M172",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M172",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M172",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M172",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M172",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M172",
+            "size_code" : "D460",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M172",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M176",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M176",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M176",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M176",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M176",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M176",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M178",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M178",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M178",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M178",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M178",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M179",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M179",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M179",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M179",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M179",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M179",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M179",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M180",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M180",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M180",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M180",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M180",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M180",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M180",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M182",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M182",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M182",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M182",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M182",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M182",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M182",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M182",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M188",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M188",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M188",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M188",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M188",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M188",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M189",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M189",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M189",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M189",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M189",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M189",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M190",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M190",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M190",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M190",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M190",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M190",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M190",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M190",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M192",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M192",
+            "size_code" : "D420",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M192",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M192",
+            "size_code" : "D440",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M192",
+            "size_code" : "D450",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M198",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M198",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M198",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M198",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M198",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M198",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M198",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M20",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M20",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M20",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M20",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M20",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M20",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M208",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M208",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M208",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M208",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M208",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M208",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M209",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M209",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M209",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M209",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M209",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M209",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M209",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M21",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M21",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M21",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M21",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M21",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M21",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M210",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M210",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M210",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M210",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M210",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M210",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M210",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M212",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M212",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M212",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M212",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M212",
+            "size_code" : "D440",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M212",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M212",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M216",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M216",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M216",
+            "size_code" : "D460",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M218",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M218",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M218",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M218",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M218",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M221",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M221",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M221",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M221",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M221",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M221",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M222",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M222",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M222",
+            "size_code" : "D420",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M222",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M222",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M222",
+            "size_code" : "D450",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M222",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M226",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M226",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M226",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M226",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M229",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M229",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M229",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M229",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M229",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M229",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M238",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M238",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M238",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M238",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M238",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M248",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M248",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M248",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M248",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M248",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M248",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M257",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M257",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M257",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M257",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M257",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M262",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M262",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M262",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M262",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M262",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M262",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M262",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M262",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M262",
+            "size_code" : "D480",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M272",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M272",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M272",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M272",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M272",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M272",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M272",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M272",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M278",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M278",
+            "size_code" : "D430",
+            "qty_pair" : 0,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M278",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M278",
+            "size_code" : "D450",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M278",
+            "size_code" : "D460",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M282",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M282",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M282",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M282",
+            "size_code" : "D440",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M282",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M282",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M282",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M289",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M289",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M289",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M289",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M289",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M292",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M292",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M292",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M292",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M292",
+            "size_code" : "D440",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M292",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M292",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M299",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M299",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M299",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M299",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M299",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M302",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M302",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M302",
+            "size_code" : "D440",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M302",
+            "size_code" : "D450",
+            "qty_pair" : 4000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M302",
+            "size_code" : "D460",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M304",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M304",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M304",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M304",
+            "size_code" : "D480",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M316",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M316",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M316",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M316",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M316",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M329",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M329",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M329",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M329",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M329",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M338",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M338",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M338",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M338",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M338",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M338",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M341",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M341",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M341",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M341",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M341",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M341",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M355",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M355",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M355",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M355",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M355",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M402",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M402",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M402",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M402",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M402",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M402",
+            "size_code" : "D460",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M402",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M508",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M508",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M508",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M508",
+            "size_code" : "D430",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M508",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M508",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M508",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M602",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M602",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M602",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M602",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M602",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M602",
+            "size_code" : "D460",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M602",
+            "size_code" : "D470",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M702",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M702",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M702",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M702",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M702",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M702",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M702",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M810",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M810",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M810",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M810",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M810",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M810",
+            "size_code" : "D460",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M888",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M888",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M888",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M888",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M888",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M888",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M888",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M889",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M889",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M889",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M889",
+            "size_code" : "D440",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M889",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M889",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M989",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M989",
+            "size_code" : "D420",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M989",
+            "size_code" : "D430",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M989",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M989",
+            "size_code" : "D450",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M989",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M999",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M999",
+            "size_code" : "D430",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M999",
+            "size_code" : "D440",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M999",
+            "size_code" : "D450",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "M999",
+            "size_code" : "D460",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "S4060",
+            "size_code" : "D480",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "S4060",
+            "size_code" : "D490",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "S4060",
+            "size_code" : "D500",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W01",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W01",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W01",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W01",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W01",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W012",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W012",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W012",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W012",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W012",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W012",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W012",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W016",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W016",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W016",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W016",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W016",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W016",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W02",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W02",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W02",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W02",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W02",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W02",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W026",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W026",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W026",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W026",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W026",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W026",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W03",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W03",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W03",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W03",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W03",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W03",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W036",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W036",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W036",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W036",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W036",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W03A",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W03A",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W03A",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W03B",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W03B",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W03B",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W04",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W04",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W04",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W04",
+            "size_code" : "D400",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W04",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W04",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W046",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W046",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W046",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W046",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W046",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W04A",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W04A",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W04A",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W04B",
+            "size_code" : "D400",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W04B",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W04B",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W05",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W05",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W05",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W05",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W056",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W056",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W056",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W056",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W056",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W06",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W06",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W06",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W06",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W06",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W06",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W06",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W068",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W068",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W068",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W068",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W068",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W068",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W06A",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W06A",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W06A",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W06A",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W06B",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W06B",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W06B",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W06B",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W07",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W07",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W07",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W07",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W07",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W07",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W079",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W079",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W079",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W079",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W079",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W08",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W08",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W08",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W08",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W08",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W08",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W089",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W089",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W089",
+            "size_code" : "D400",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W089",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W089",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W09",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W09",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W09",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W09",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W09",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W09",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W092",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W092",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W092",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W092",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W092",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W092",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W10",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W10",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W10",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W10",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W10",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W102",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W102",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W102",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W102",
+            "size_code" : "D400",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W102",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W102",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W108",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W108",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W108",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W108",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W108",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W116",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W116",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W116",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W116",
+            "size_code" : "D390",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W139",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W139",
+            "size_code" : "D370",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W139",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W139",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W139",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W139",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W149",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W149",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W149",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W149",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W149",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W149",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W180",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W180",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W180",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W180",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W180",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W180",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W188",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W188",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W188",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W188",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W188",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W188",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W198",
+            "size_code" : "D360",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W198",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W198",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W198",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W198",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W198",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W209",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W209",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W209",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W209",
+            "size_code" : "D400",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W209",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W209",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W212",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W212",
+            "size_code" : "D380",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W212",
+            "size_code" : "D390",
+            "qty_pair" : 3000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W212",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W212",
+            "size_code" : "D410",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W212",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W228",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W228",
+            "size_code" : "D380",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W228",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W228",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W228",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W238",
+            "size_code" : "D370",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W238",
+            "size_code" : "D380",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W238",
+            "size_code" : "D390",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W238",
+            "size_code" : "D400",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W238",
+            "size_code" : "D410",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W238",
+            "size_code" : "D420",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W50",
+            "size_code" : "3.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W50",
+            "size_code" : "4.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W50",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W50",
+            "size_code" : "5.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W50",
+            "size_code" : "5.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W50",
+            "size_code" : "6.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W50",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W50",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W50A",
+            "size_code" : "3.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W50A",
+            "size_code" : "4.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W50A",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W50A",
+            "size_code" : "5.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W50B",
+            "size_code" : "5.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W50B",
+            "size_code" : "6.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W50B",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W50B",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W51",
+            "size_code" : "4.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W51",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W51",
+            "size_code" : "5.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W51",
+            "size_code" : "5.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W51",
+            "size_code" : "6.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W51",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W51",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W51",
+            "size_code" : "7.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W51A",
+            "size_code" : "4.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W51A",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W51A",
+            "size_code" : "5.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W51A",
+            "size_code" : "5.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W51B",
+            "size_code" : "6.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W51B",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W51B",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W51B",
+            "size_code" : "7.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W52",
+            "size_code" : "3.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W52",
+            "size_code" : "4.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W52",
+            "size_code" : "4.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W52",
+            "size_code" : "5.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W52",
+            "size_code" : "5.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W52",
+            "size_code" : "6.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W52",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W52",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W52",
+            "size_code" : "7.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W52A",
+            "size_code" : "3.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W52A",
+            "size_code" : "4.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W52A",
+            "size_code" : "4.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W52A",
+            "size_code" : "5.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W52B",
+            "size_code" : "5.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W52B",
+            "size_code" : "6.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W52B",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W52B",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W52B",
+            "size_code" : "7.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W53",
+            "size_code" : "4.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W53",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W53",
+            "size_code" : "5.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W53",
+            "size_code" : "5.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W53",
+            "size_code" : "6.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W53",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W53",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W53",
+            "size_code" : "7.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W53",
+            "size_code" : "8.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W53A",
+            "size_code" : "4.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W53A",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W53A",
+            "size_code" : "5.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W53A",
+            "size_code" : "5.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W53B",
+            "size_code" : "6.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W53B",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W53B",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W53B",
+            "size_code" : "7.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W53B",
+            "size_code" : "8.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W54",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W54",
+            "size_code" : "5.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W54",
+            "size_code" : "5.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W54",
+            "size_code" : "6.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W54",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W55",
+            "size_code" : "4.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W55",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W55",
+            "size_code" : "5.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W55",
+            "size_code" : "5.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W55",
+            "size_code" : "6.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W55",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W55",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W56",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W56",
+            "size_code" : "5.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W56",
+            "size_code" : "5.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W56",
+            "size_code" : "6.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W56",
+            "size_code" : "6.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W56",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W56",
+            "size_code" : "7.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W56A",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W56A",
+            "size_code" : "5.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W56A",
+            "size_code" : "5.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W56A",
+            "size_code" : "6.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W56B",
+            "size_code" : "6.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W56B",
+            "size_code" : "6.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W56B",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W56B",
+            "size_code" : "7.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W57",
+            "size_code" : "4.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W57",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W57",
+            "size_code" : "5.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W57",
+            "size_code" : "5.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W57",
+            "size_code" : "6.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W57",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W57",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W58",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W58",
+            "size_code" : "5.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W58",
+            "size_code" : "5.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W58",
+            "size_code" : "6.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W58",
+            "size_code" : "6.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W58",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W58A",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W58A",
+            "size_code" : "5.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W58A",
+            "size_code" : "5.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W58B",
+            "size_code" : "6.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W58B",
+            "size_code" : "6.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W58B",
+            "size_code" : "7.0",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W59",
+            "size_code" : "4.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W59",
+            "size_code" : "5.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W59",
+            "size_code" : "5.5",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W59",
+            "size_code" : "6.0",
+            "qty_pair" : 2000,
+            "timestamp" : "2024-12-18 10:00:03"
+        },
+        {
+            "code" : "W59",
+            "size_code" : "6.5",
+            "qty_pair" : 1000,
+            "timestamp" : "2024-12-18 10:00:03"
+        }
+    ]}

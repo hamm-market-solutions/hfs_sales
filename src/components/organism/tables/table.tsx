@@ -1,9 +1,9 @@
 "use client";
 
-import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import {
   ColumnDef,
+  ColumnFiltersState,
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
@@ -17,9 +17,9 @@ import { useVirtualizer } from "@tanstack/react-virtual";
 import React from "react";
 import { Spinner } from "@nextui-org/spinner";
 
-import Icon from "../../atoms/icons/icon";
-
 import { TableResponse } from "@/types/table";
+import TableFilters from "./tableFilters";
+import { toCamelCase } from "@/utils/conversions";
 
 const fetchSize = 50;
 
@@ -40,12 +40,15 @@ export default function BaseTable<T extends object>({
   const tableContainerRef = React.useRef<HTMLDivElement>(null);
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [search, setSearch] = React.useState<string>("");
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   //react-query has a useInfiniteQuery hook that is perfect for this use case
   const { data, fetchNextPage, isFetching } = useInfiniteQuery<
     TableResponse<T>
   >({
     queryKey: [
       "table-data",
+      columnFilters, //refetch when filters change
+      search, //refetch when search changes
       sorting, //refetch when sorting changes
     ],
     queryFn: async ({ pageParam = 0 }) => {
@@ -53,7 +56,7 @@ export default function BaseTable<T extends object>({
       const base = url[0];
       const query = url[1];
       const fetchedData = await fetch(
-        `${base}?${query}&start=${start}&size=${fetchSize}&sorting=${JSON.stringify(sorting)}&search=${search}`,
+        `${base}?${query}&start=${start}&size=${fetchSize}&sorting=${JSON.stringify(sorting)}&search=${search}&filters=${JSON.stringify(columnFilters)}`,
       );
       // const fetchedData = await fetchFn(start, fetchSize, sorting); //pretend api call
       const fetchedDataJson = await fetchedData.json();
@@ -94,7 +97,7 @@ export default function BaseTable<T extends object>({
   //a check on mount and after a fetch to see if the table is already scrolled to the bottom and immediately needs to fetch more data
   React.useEffect(() => {
     fetchMoreOnBottomReached(tableContainerRef.current);
-  }, [fetchMoreOnBottomReached]);
+  }, [fetchMoreOnBottomReached, sorting, search, columnFilters]);
   const table = useReactTable({
     data: flatData,
     columns,
@@ -136,9 +139,7 @@ export default function BaseTable<T extends object>({
   return (
     <section className="hfs-table flex flex-col p-4 text-sm rounded-2xl bg-white shadow-2xl">
       <div className="table-filters flex flex-row gap-2 mb-4">
-        <Button isIconOnly aria-label="Filters" color="primary" size="lg">
-          <Icon alt="Filters" src="/assets/icons/filter.svg" />
-        </Button>
+        <TableFilters columns={table.getAllColumns().map((col) => toCamelCase(col.id))} filterState={[columnFilters, setColumnFilters]} />
         <Input label="Search..." size="sm" type="text" value={search} onChange={(e) => {
           setSearch(e.target.value);
           //reset the table to the first page when searching
