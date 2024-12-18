@@ -13,31 +13,31 @@ export async function getUserRoles(userId: number): Promise<
     roles: { roleId: number; roleName: string | null }[];
   }>
 > {
-  try {
-    const userRoles = await db
-      .select({ roleId: userHasRole.roleId, roleName: role.name })
-      .from(userHasRole)
-      .where(eq(userHasRole.userId, userId))
-      .leftJoin(role, eq(userHasRole.roleId, role.id));
+    try {
+        const userRoles = await db
+            .select({ roleId: userHasRole.roleId, roleName: role.name })
+            .from(userHasRole)
+            .where(eq(userHasRole.userId, userId))
+            .leftJoin(role, eq(userHasRole.roleId, role.id));
 
-    return Ok({ userId: userId, roles: userRoles });
-  } catch (error) {
-    return Err(
-      HfsError.fromThrow(
-        500,
-        ModelError.drizzleError("user_has_roles"),
+        return Ok({ userId: userId, roles: userRoles });
+    } catch (error) {
+        return Err(
+            HfsError.fromThrow(
+                500,
+                ModelError.drizzleError("user_has_roles"),
         error as Error,
-      ),
-    );
-  }
+            ),
+        );
+    }
 }
 
 export async function isUserAdmin(userId: number): Promise<HfsResult<boolean>> {
-  const userRoles = await getUserRoles(userId);
+    const userRoles = await getUserRoles(userId);
 
-  if (userRoles.err) {
-    return Err(userRoles.val);
-  }
+    if (userRoles.err) {
+        return Err(userRoles.val);
+    }
 
-  return Ok(userRoles.val.roles.some((r) => r.roleName === "admin"));
+    return Ok(userRoles.val.roles.some((r) => r.roleName === "admin"));
 }

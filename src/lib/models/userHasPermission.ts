@@ -16,26 +16,26 @@ export async function getUserCustomPermissions(userId: number): Promise<
     permissions: { permissionId: number; permissionName: string | null }[];
   }>
 > {
-  try {
-    const userRoles = await db
-      .select({
-        permissionId: userHasPermission.permissionId,
-        permissionName: permission.name,
-      })
-      .from(userHasPermission)
-      .where(eq(userHasPermission.userId, userId))
-      .leftJoin(permission, eq(userHasPermission.permissionId, permission.id));
+    try {
+        const userRoles = await db
+            .select({
+                permissionId: userHasPermission.permissionId,
+                permissionName: permission.name,
+            })
+            .from(userHasPermission)
+            .where(eq(userHasPermission.userId, userId))
+            .leftJoin(permission, eq(userHasPermission.permissionId, permission.id));
 
-    return Ok({ userId: userId, permissions: userRoles });
-  } catch (error) {
-    return Err(
-      HfsError.fromThrow(
-        500,
-        ModelError.drizzleError("user_has_permissions"),
+        return Ok({ userId: userId, permissions: userRoles });
+    } catch (error) {
+        return Err(
+            HfsError.fromThrow(
+                500,
+                ModelError.drizzleError("user_has_permissions"),
         error as Error,
-      ),
-    );
-  }
+            ),
+        );
+    }
 }
 
 export async function getUserPermissions(userId: number): Promise<
@@ -44,43 +44,43 @@ export async function getUserPermissions(userId: number): Promise<
     permissions: { permissionId: number; permissionName: string | null }[];
   }>
 > {
-  try {
-    const userRoles = await getUserRoles(userId);
+    try {
+        const userRoles = await getUserRoles(userId);
 
-    if (userRoles.err) {
-      return userRoles;
-    }
-    // console.log("userRoles", userRoles.val);
+        if (userRoles.err) {
+            return userRoles;
+        }
+        // console.log("userRoles", userRoles.val);
 
-    const userPermissions = await getUserCustomPermissions(userId);
+        const userPermissions = await getUserCustomPermissions(userId);
 
-    if (userPermissions.err) {
-      return userPermissions;
-    }
-    const rolePermissions = [];
+        if (userPermissions.err) {
+            return userPermissions;
+        }
+        const rolePermissions = [];
 
-    for (const userRole of userRoles.val.roles) {
-      const rolePermissionsResult = await getRolePermissions(userRole.roleId);
+        for (const userRole of userRoles.val.roles) {
+            const rolePermissionsResult = await getRolePermissions(userRole.roleId);
 
-      if (rolePermissionsResult.err) {
-        return rolePermissionsResult;
-      }
-      rolePermissions.push(rolePermissionsResult.unwrap());
-    }
-    const permissions = userPermissions.val.permissions.concat(
-      ...rolePermissions.map((role) => role.permissions),
-    );
+            if (rolePermissionsResult.err) {
+                return rolePermissionsResult;
+            }
+            rolePermissions.push(rolePermissionsResult.unwrap());
+        }
+        const permissions = userPermissions.val.permissions.concat(
+            ...rolePermissions.map((role) => role.permissions),
+        );
 
-    permissions.push({ permissionId: 0, permissionName: "user" });
+        permissions.push({ permissionId: 0, permissionName: "user" });
 
-    return Ok({ userId: userId, permissions: permissions });
-  } catch (error) {
-    return Err(
-      HfsError.fromThrow(
-        500,
-        ModelError.drizzleError("user_has_permissions"),
+        return Ok({ userId: userId, permissions: permissions });
+    } catch (error) {
+        return Err(
+            HfsError.fromThrow(
+                500,
+                ModelError.drizzleError("user_has_permissions"),
         error as Error,
-      ),
-    );
-  }
+            ),
+        );
+    }
 }

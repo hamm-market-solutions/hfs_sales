@@ -10,16 +10,16 @@ import { db } from "@/db";
 import { sSeason } from "@/db/schema";
 
 export const getAllSeasons = async () => {
-  try {
-    return Ok(
-      await db
-        .select({ code: sSeason.code, name: sSeason.name })
-        .from(sSeason)
-        .orderBy(desc(sSeason.code)),
-    );
-  } catch (error) {
-    return Err(
-      HfsError.fromThrow(500, SeasonModelError.getError(), error as Error),
-    );
-  }
+    try {
+        return Ok(
+            await db
+                .select({ code: sSeason.code, name: sSeason.name })
+                .from(sSeason)
+                .orderBy(desc(sSeason.code)),
+        );
+    } catch (error) {
+        return Err(
+            HfsError.fromThrow(500, SeasonModelError.getError(), error as Error),
+        );
+    }
 };

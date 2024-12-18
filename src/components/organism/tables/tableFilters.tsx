@@ -29,13 +29,13 @@ export default function TableFilters(
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalHeader>Filters</ModalHeader>
-                            <ModalBody>
-                                <div className="flex flex-col gap-2">
-                                    {filters}
-                                    <Button color="primary" onPress={onClose}>Apply</Button>
-                                </div>
-                            </ModalBody>
+                        	<ModalHeader>Filters</ModalHeader>
+                        	<ModalBody>
+                        		<div className="flex flex-col gap-2">
+                        			{filters}
+                        			<Button color="primary" onPress={onClose}>Apply</Button>
+                        		</div>
+                        	</ModalBody>
                         </> as React.ReactNode
                     )}
                 </ModalContent>

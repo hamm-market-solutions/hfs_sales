@@ -10,11 +10,11 @@ import { db } from "@/db";
 import { brand } from "@/db/schema";
 
 export const getAllBrands = async () => {
-  try {
-    return Ok(await db.select().from(brand).orderBy(asc(brand.name)));
-  } catch (error) {
-    return Err(
-      HfsError.fromThrow(500, BrandModelError.getError(), error as Error),
-    );
-  }
+    try {
+        return Ok(await db.select().from(brand).orderBy(asc(brand.name)));
+    } catch (error) {
+        return Err(
+            HfsError.fromThrow(500, BrandModelError.getError(), error as Error),
+        );
+    }
 };

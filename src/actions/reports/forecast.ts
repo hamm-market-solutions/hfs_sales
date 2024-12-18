@@ -9,28 +9,28 @@ import { getOrUpdateAccessToken } from "@/lib/models/user";
 
 export async function getUserCountriesAction(): Promise<
   HfsResult<GetUserCountriesOkResponse>
-> {
-  const payloadRes = await getOrUpdateAccessToken();
+  > {
+    const payloadRes = await getOrUpdateAccessToken();
 
-  if (payloadRes.err) {
-    return payloadRes;
-  }
-  const userId = Number(payloadRes.val.accessToken[1].sub!);
-  const userCountriesRes = await getUserCountries(userId);
+    if (payloadRes.err) {
+        return payloadRes;
+    }
+    const userId = Number(payloadRes.val.accessToken[1].sub!);
+    const userCountriesRes = await getUserCountries(userId);
 
-  if (userCountriesRes.err) {
-    return userCountriesRes;
-  }
+    if (userCountriesRes.err) {
+        return userCountriesRes;
+    }
 
-  return Ok({
-    status: 200,
-    data: {
-      countries: userCountriesRes.val.map((userCountry) => ({
-        code: userCountry.user_has_country.countryCode,
-        name: userCountry.s_country?.name,
-      })),
-    },
-  });
+    return Ok({
+        status: 200,
+        data: {
+            countries: userCountriesRes.val.map((userCountry) => ({
+                code: userCountry.user_has_country.countryCode,
+                name: userCountry.s_country?.name,
+            })),
+        },
+    });
 }
 
 // export async function saveForecast(

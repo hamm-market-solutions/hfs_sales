@@ -4,34 +4,34 @@ import { sql } from 'drizzle-orm'
 const db = drizzle(process.env.DATABASE_URL);
 
 async function main() {
-  await seedUserTable();
-  await seedMenuTable();
-  await seedRoleTable();
-  await seedPermissionTable();
-  await seedRoleHasPermissionTable();
-  await seedSeasonTable();
-  await seedCountryTable();
-  await seedBrandTable();
-  await seedSeasonBrandPhaseTable();
-  await seedUserHasCountryTable();
-  await seedItemTable();
-  await seedItemColorTable();
-  await seedUserHasRoleTable();
+    await seedUserTable();
+    await seedMenuTable();
+    await seedRoleTable();
+    await seedPermissionTable();
+    await seedRoleHasPermissionTable();
+    await seedSeasonTable();
+    await seedCountryTable();
+    await seedBrandTable();
+    await seedSeasonBrandPhaseTable();
+    await seedUserHasCountryTable();
+    await seedItemTable();
+    await seedItemColorTable();
+    await seedUserHasRoleTable();
 }
 
 async function seedUserHasRoleTable() {
-  const result = await db.execute(sql`
+    const result = await db.execute(sql`
     INSERT INTO user_has_role (user_id,role_id) VALUES
       (1,2),
       (2,12),
       (3,16);
   `);
 
-  console.log({ result });
+    console.log({ result });
 }
 
 async function seedMenuTable() {
-  const result = await db.execute(sql`
+    const result = await db.execute(sql`
     INSERT INTO menu (id, title, link, parent_id, priority, help, sales) VALUES
       (2, 'Add menu', 'backend/admin/menu/add', 55, 0, 0, NULL),
       (23, 'Packaging', '', 146, 0, 0, NULL),
@@ -85,22 +85,22 @@ async function seedMenuTable() {
       (229, 'SSCC Overview', 'purchase/sscc?order_no=', 62, 0, 0, NULL);
   `);
 
-  console.log({ result });
+    console.log({ result });
 }
 
 async function seedUserHasCountryTable() {
-  const result = await db.execute(sql`
+    const result = await db.execute(sql`
     INSERT INTO user_has_country (user_id,country_code) VALUES
       (1,'DE'),
       (2,'DE'),
       (3,'DE');
   `);
 
-  console.log({ result });
+    console.log({ result });
 }
 
 async function seedSeasonBrandPhaseTable() {
-  const result = await db.execute(sql`
+    const result = await db.execute(sql`
     INSERT INTO s_season_brand_phase (season_code,brand_no,phase,start_date,end_date) VALUES
       (31,'3',9,'2024-11-04','2025-03-18'),
       (31,'3',6,'2025-02-13','2025-03-18'),
@@ -112,31 +112,31 @@ async function seedSeasonBrandPhaseTable() {
       (30,'3',4,'2024-06-17','2024-08-18');
   `);
 
-  console.log({ result });
+    console.log({ result });
 }
 
 async function seedBrandTable() {
-  const result = await db.execute(sql`
+    const result = await db.execute(sql`
     INSERT INTO brand (no,name,code,gln) VALUES
 	    ('3','Gant','HF','4056734');
   `);
 
-  console.log({ result });
+    console.log({ result });
 }
 
 async function seedUserTable() {
-  const result = await db.execute(sql`
+    const result = await db.execute(sql`
     INSERT INTO user (email,fname,name,password) VALUES
       ('admin@hfs.com','HFS','Admin','$2a$10$ScRf6ODeuuIJW/F0XN3GlejAZN17U6Fd4XmFLxRtTd3CdZtjbZHbu'),
       ('sales@hfs.com','HFS','Sales','$2a$10$ScRf6ODeuuIJW/F0XN3GlejAZN17U6Fd4XmFLxRtTd3CdZtjbZHbu'),
       ('salesperson@hfs.com','HFS','SalesPerson','$2a$10$ScRf6ODeuuIJW/F0XN3GlejAZN17U6Fd4XmFLxRtTd3CdZtjbZHbu');
   `);
 
-  console.log({ result });
+    console.log({ result });
 }
 
 async function seedRoleTable() {
-  const result = await db.execute(sql`
+    const result = await db.execute(sql`
     INSERT INTO role (id,name,description) VALUES
       (1,'super_admin',NULL),
       (2,'admin','admin'),
@@ -155,11 +155,11 @@ async function seedRoleTable() {
       (15,'marketing','Distribution');
   `);
 
-  console.log({ result });
+    console.log({ result });
 }
 
 async function seedCountryTable() {
-  const result = await db.execute(sql`
+    const result = await db.execute(sql`
     INSERT INTO s_country (code,name) VALUES
       ('AD','Andorra'),
       ('AE','United Arab Emirates'),
@@ -264,11 +264,11 @@ async function seedCountryTable() {
       ('ZA','Südafrika');
   `);
 
-  console.log({ result });
+    console.log({ result });
 }
 
 async function seedPermissionTable() {
-  const result = await db.execute(sql`
+    const result = await db.execute(sql`
     INSERT INTO permission (id,name) VALUES
       (56,'approval.add'),
       (57,'approval.delete'),
@@ -338,11 +338,11 @@ async function seedPermissionTable() {
       (34,'user.view');
   `);
 
-  console.log({ result });
+    console.log({ result });
 }
 
 async function seedRoleHasPermissionTable() {
-  const result = await db.execute(sql`
+    const result = await db.execute(sql`
     INSERT INTO role_has_permission (role_id,permission_id) VALUES
       (5,1),
       (5,2),
@@ -474,11 +474,11 @@ async function seedRoleHasPermissionTable() {
       (14,33);
   `);
 
-  console.log({ result });
+    console.log({ result });
 }
 
 async function seedItemColorTable() {
-  const result = await db.execute(sql`
+    const result = await db.execute(sql`
     INSERT INTO s_item_color (item_no,color_code,custom_color,purchase_price,requested_ex_factory_date,first_customer_shipment_date,price_confirmed,pre_collection,main_collection,late_collection,Special_collection,confirmed_ex_factory_date,confirmation_sample_sent,timestamp)
     VALUES
       ('30501935','G00','BLACK',16200,'2024-12-30','2025-03-15',NULL,0,1000,0,0,NULL,NULL,'2024-10-17 08:00:04'),
@@ -1323,11 +1323,11 @@ async function seedItemColorTable() {
       ('31673115','G46','DK BROWN 19-0712TCX',0,NULL,NULL,NULL,0,0,0,0,NULL,NULL,'2024-10-16 08:00:03');
   `);
 
-  console.log({ result });
+    console.log({ result });
 }
 
 async function seedItemTable() {
-  const result = await db.execute(sql`
+    const result = await db.execute(sql`
     INSERT INTO s_item (no,description,last,material,brand_no,cat_name,order_qty,min_qty_style,min_qty_last,season_code,nos,vendor_no,vendor_item_no,style_code,tariff_no,timestamp) VALUES
       ('30501935','Mardale Sport Sandal','Mardale','Cow Leather','3','Damen',2344000,3600000,3600000,30,0,'308873','MARDALE 12A',29,64039938000000,'2024-10-11 08:00:03'),
       ('30501940','Mardale Sport Sandal','Mardale','Cow Leather','3','Damen',1233500,3600000,3600000,30,0,'308873','MARDALE 20A',29,64039938000000,'2024-08-20 08:00:10'),
@@ -1673,24 +1673,24 @@ async function seedItemTable() {
       ('31673115','Lozham Loafer','Lozham','Cow Suede','3','Herren',44000,0,800000,31,0,'308819','LOZHAM 1A',32,NULL,'2024-10-18 08:00:03');
   `);
 
-  console.log({ result });
+    console.log({ result });
 }
 
 async function seedSeasonTable() {
-  const result = await db.execute(sql`
+    const result = await db.execute(sql`
     INSERT INTO s_season (code,name) VALUES
       (30,'Spring/Summer 2025'),
 	    (31,'Autumn/Winter 2025');
   `);
 
-  console.log({ result });
+    console.log({ result });
 }
 
 main()
-  .then(async () => {
-    process.exit(0);
-  })
-  .catch(async (e) => {
-    console.error(e);
-    process.exit(1);
-  });
+    .then(async () => {
+        process.exit(0);
+    })
+    .catch(async (e) => {
+        console.error(e);
+        process.exit(1);
+    });
