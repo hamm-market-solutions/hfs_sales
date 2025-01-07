@@ -23,6 +23,50 @@ import {
     up as menuUp,
     down as menuDown,
 } from "./seed_menu";
+import {
+    up as sSeasonUp,
+    down as sSeasonDown,
+} from "./seed_s_season";
+import {
+    up as roleUp,
+    down as roleDown,
+} from "./seed_role";
+import {
+    up as userHasRoleUp,
+    down as userHasRoleDown,
+} from "./seed_user_has_role";
+import {
+    up as permissionUp,
+    down as permissionDown,
+} from "./seed_permission";
+import {
+    up as roleHasPermissionUp,
+    down as roleHasPermissionDown,
+} from "./seed_role_has_permission";
+import {
+    up as sCountryUp,
+    down as sCountryDown,
+} from "./seed_s_country";
+import {
+    up as brandUp,
+    down as brandDown,
+} from "./seed_brand";
+import {
+    up as sSeasonBrandPhaseUp,
+    down as sSeasonBrandPhaseDown,
+} from "./seed_s_season_brand_phase";
+import {
+    up as userHasCountryUp,
+    down as userHasCountryDown,
+} from "./seed_user_has_country";
+import {
+    up as sItemUp,
+    down as sItemDown,
+} from "./seed_s_item";
+import {
+    up as sItemColorUp,
+    down as sItemColorDown,
+} from "./seed_s_item_color";
 
 import * as schemas from "@/db/schema";
 
@@ -78,6 +122,17 @@ type CommandArgs = {
 const ups = {
     user: userUp,
     menu: menuUp,
+    role: roleUp,
+    permission: permissionUp,
+    role_has_permission: roleHasPermissionUp,
+    s_season: sSeasonUp,
+    s_country: sCountryUp,
+    brand: brandUp,
+    s_season_brand_phase: sSeasonBrandPhaseUp,
+    user_has_country: userHasCountryUp,
+    s_item: sItemUp,
+    s_item_color: sItemColorUp,
+    user_has_role: userHasRoleUp,
     s_purchase_head: sPurchaseheadUp,
     s_purchase_line: sPurchaseLineUp,
     s_variant: sVariantUp,
@@ -85,12 +140,23 @@ const ups = {
 };
 
 const downs = {
-    user: userDown,
-    menu: menuDown,
-    s_purchase_head: sPurchaseheadDown,
-    s_purchase_line: sPurchaseLineDown,
-    s_variant: sVariantDown,
     s_assortment: sAssortmentDown,
+    s_variant: sVariantDown,
+    s_purchase_line: sPurchaseLineDown,
+    s_purchase_head: sPurchaseheadDown,
+    user_has_role: userHasRoleDown,
+    s_item_color: sItemColorDown,
+    s_item: sItemDown,
+    user_has_country: userHasCountryDown,
+    s_season_brand_phase: sSeasonBrandPhaseDown,
+    brand: brandDown,
+    s_country: sCountryDown,
+    s_season: sSeasonDown,
+    role_has_permission: roleHasPermissionDown,
+    permission: permissionDown,
+    role: roleDown,
+    menu: menuDown,
+    user: userDown,
 };
 
 async function up(seeder?: CommandArgs["up"]) {

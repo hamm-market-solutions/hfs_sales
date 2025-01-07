@@ -1,0 +1,60 @@
+export const TABLE_DATA = {
+    s_season_brand_phase: [
+        {
+            "season_code": 31,
+            "brand_no": "3",
+            "phase": 9,
+            "start_date": "2024-11-04",
+            "end_date": "2025-03-18"
+        },
+        {
+            "season_code": 31,
+            "brand_no": "3",
+            "phase": 6,
+            "start_date": "2025-02-13",
+            "end_date": "2025-03-18"
+        },
+        {
+            "season_code": 31,
+            "brand_no": "3",
+            "phase": 5,
+            "start_date": "2025-01-03",
+            "end_date": "2025-02-12"
+        },
+        {
+            "season_code": 31,
+            "brand_no": "3",
+            "phase": 4,
+            "start_date": "2024-11-04",
+            "end_date": "2024-12-12"
+        },
+        {
+            "season_code": 30,
+            "brand_no": "3",
+            "phase": 9,
+            "start_date": "2024-06-17",
+            "end_date": "2024-09-23"
+        },
+        {
+            "season_code": 30,
+            "brand_no": "3",
+            "phase": 6,
+            "start_date": "2024-08-19",
+            "end_date": "2024-09-23"
+        },
+        {
+            "season_code": 30,
+            "brand_no": "3",
+            "phase": 5,
+            "start_date": "2024-06-17",
+            "end_date": "2024-08-18"
+        },
+        {
+            "season_code": 30,
+            "brand_no": "3",
+            "phase": 4,
+            "start_date": "2024-06-17",
+            "end_date": "2024-08-18"
+        }
+    ]
+}
