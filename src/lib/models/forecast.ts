@@ -37,7 +37,7 @@ export const createForecast = async (
             amount: amount,
             countryCode: countryCode.toUpperCase(),
             createdBy: Number(userId),
-        });
+        }) as any as typeof forecast.$inferInsert;
 
         return Ok(result);
     } catch (error) {

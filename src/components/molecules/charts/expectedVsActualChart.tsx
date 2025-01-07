@@ -4,7 +4,7 @@ import { ApexOptions } from "apexcharts";
 import Chart from "react-apexcharts";
 
 const DEFAULT_DATA_LABELS: ApexDataLabels = {
-    formatter: function (val: string | number, opts: unknown) {
+    formatter: function (val: string | number, opts?: any) {
         const goals =
       opts.w.config.series[opts.seriesIndex].data[opts.dataPointIndex].goals;
 

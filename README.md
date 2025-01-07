@@ -9,7 +9,7 @@
 - [TypeScript](https://www.typescriptlang.org/)
 - [Framer Motion](https://www.framer.com/motion/)
 - [next-themes](https://github.com/pacocoursey/next-themes)
-- [Prisma](https://www.prisma.io/nextjs)
+- [drizzle](https://orm.drizzle.team/)
 
 ## How to Use
 

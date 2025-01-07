@@ -7,7 +7,7 @@ import { asc, desc, SQL } from "drizzle-orm";
 import { NextApiResponse } from "next";
 
 import HfsError, { HfsResult } from "../lib/errors/HfsError";
-import { HfsResponse, HfsErrResponse } from "../types/responses";
+import { HfsResponse } from "../types/responses";
 
 import {
     ForecastTableData,
@@ -15,7 +15,7 @@ import {
     TableResponse,
 } from "@/types/table";
 
-export function resultToResponse<T extends object, R = HfsResponse>(
+export function resultToResponse<T extends object, R = HfsResponse<T>>(
     result: HfsResult<T>,
     response?: NextApiResponse<R>,
 ): NextResponse<R> {

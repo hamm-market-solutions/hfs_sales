@@ -12,9 +12,9 @@ export default function TableFilters(
 ) {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-    const filters = columns.map((column) => {
+    const filters = columns.map((column, i) => {
         return (
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1" key = {i}>
                 {column}
             </div>
         )

@@ -35,7 +35,7 @@ export async function GET(): Promise<NextResponse<RefreshResponse>> {
 
 export async function POST(
     request: NextRequest,
-): Promise<NextResponse<HfsResponse>> {
+): Promise<NextResponse<HfsResponse<{ accessToken: string }>>> {
     const post = await request.json();
     const optRefreshToken: string | undefined = post.refreshToken;
     const refreshTokenRes = await getRefreshTokenAndVerify(optRefreshToken);
