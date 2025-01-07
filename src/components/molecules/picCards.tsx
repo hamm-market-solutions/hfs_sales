@@ -3,8 +3,8 @@ import { Image } from "@nextui-org/image";
 import React from "react";
 
 export function PicCards({
-  dataSets,
-  dataSetter,
+    dataSets,
+    dataSetter,
 }: {
   dataSets: {
     key: string;
@@ -15,37 +15,37 @@ export function PicCards({
   }[];
   dataSetter?: (data: string) => void;
 }) {
-  const countryCards = [];
+    const countryCards = [];
 
-  for (const data of dataSets) {
-    countryCards.push(
-      <Card
-        key={data.key}
-        isPressable
-        className="max-w-48 max-h-56"
-        onPress={() => {
-          dataSetter?.(data.key);
-        }}
-      >
-        <CardBody className="flex items-center place-content-start p-0">
-          {data.pic ? (
-            <Image
-              alt={data.key}
-              className={`max-w-48 max-h-36 ${data.bgColor ?? ""}`}
-              src={data.pic}
-            />
-          ) : (
-            data.picComponent
-          )}
-        </CardBody>
-        {data.footer}
-      </Card>,
+    for (const data of dataSets) {
+        countryCards.push(
+            <Card
+                key={data.key}
+                isPressable
+                className="max-w-48 max-h-56"
+                onPress={() => {
+                    dataSetter?.(data.key);
+                }}
+            >
+                <CardBody className="flex items-center place-content-start p-0">
+                    {data.pic ? (
+                        <Image
+                            alt={data.key}
+                            className={`max-w-48 max-h-36 ${data.bgColor ?? ""}`}
+                            src={data.pic}
+                        />
+                    ) : (
+                        data.picComponent
+                    )}
+                </CardBody>
+                {data.footer}
+            </Card>,
+        );
+    }
+
+    return (
+        <section className="forecast-overview flex flex-wrap justify-between gap-4">
+            {countryCards}
+        </section>
     );
-  }
-
-  return (
-    <section className="forecast-overview flex flex-wrap justify-between gap-4">
-      {countryCards}
-    </section>
-  );
 }

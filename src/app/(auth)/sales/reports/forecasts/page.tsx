@@ -10,27 +10,27 @@ import { validateUserAuthorizedOrRedirect } from "@/lib/auth/validations";
 import { routes } from "@/config/routes";
 
 export default async function ForecastNavigationPage() {
-  await validateUserAuthorizedOrRedirect(routes.sales.reports.forecasts.base);
+    await validateUserAuthorizedOrRedirect(routes.sales.reports.forecasts.base);
 
-  const userCountries = (
+    const userCountries = (
     (await getUserCountriesAction()).unwrap() as GetUserCountriesOkResponse
-  ).data;
-  const brands = (await getAllBrands()).unwrap();
-  const seasons = (await getAllSeasons()).unwrap();
+    ).data;
+    const brands = (await getAllBrands()).unwrap();
+    const seasons = (await getAllSeasons()).unwrap();
 
-  console.log(seasons);
+    console.log(seasons);
 
-  return (
-    <div className="forecast-navigation-page">
-      <Title
-        subtitle="Select the country, brand and season you would like to view the forecast for:"
-        title="Forecast - Navigation"
-      />
-      <ForecastNavigation
-        brands={brands}
-        seasons={seasons as { code: number; name: string | undefined }[]}
-        userCountries={userCountries}
-      />
-    </div>
-  );
+    return (
+        <div className="forecast-navigation-page">
+            <Title
+                subtitle="Select the country, brand and season you would like to view the forecast for:"
+                title="Forecast - Navigation"
+            />
+            <ForecastNavigation
+                brands={brands}
+                seasons={seasons as { code: number; name: string | undefined }[]}
+                userCountries={userCountries}
+            />
+        </div>
+    );
 }

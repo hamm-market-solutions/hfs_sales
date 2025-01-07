@@ -11,10 +11,10 @@ import JwtError, { ACCESS_TOKEN, REFRESH_TOKEN } from "../errors/JwtError";
 
 import HfsError, { HfsResult } from "@/lib/errors/HfsError";
 import {
-  getRefreshTokenAndVerify,
-  signJWT,
-  getAccessTokenAndVerify,
-  decodeJWT,
+    getRefreshTokenAndVerify,
+    signJWT,
+    getAccessTokenAndVerify,
+    decodeJWT,
 } from "@/lib/auth/jwt";
 import { authConfig } from "@/config/auth";
 import { ACCESS_TOKEN_LIFETIME, REFRESH_TOKEN_LIFETIME } from "@/config/auth";
@@ -23,135 +23,135 @@ import { user as userTable } from "@/db/schema";
 import { db } from "@/db";
 
 export const getOptUserById = async (
-  id: number,
+    id: number,
 ): Promise<Option<typeof userTable.$inferSelect>> => {
-  const user = await db
-    .select()
-    .from(userTable)
-    .where(eq(userTable.id, id))
-    .limit(1);
+    const user = await db
+        .select()
+        .from(userTable)
+        .where(eq(userTable.id, id))
+        .limit(1);
 
-  if (user) {
-    return Some(user[0]);
-  } else {
-    return None;
-  }
+    if (user) {
+        return Some(user[0]);
+    } else {
+        return None;
+    }
 };
 
 export const getUserByEmail = async (
-  email: string,
+    email: string,
 ): Promise<HfsResult<typeof userTable.$inferSelect>> => {
-  const user = await getOptUserByEmail(email);
+    const user = await getOptUserByEmail(email);
 
-  return optionToNotFound(user, "user not found");
+    return optionToNotFound(user, "user not found");
 };
 
 export const getOptUserByEmail = async (
-  email: string,
+    email: string,
 ): Promise<Option<typeof userTable.$inferSelect>> => {
-  const user = await db
-    .select()
-    .from(userTable)
-    .where(eq(userTable.email, email))
-    .limit(1);
+    const user = await db
+        .select()
+        .from(userTable)
+        .where(eq(userTable.email, email))
+        .limit(1);
 
-  if (user) {
-    return Some(user[0]);
-  } else {
-    return None;
-  }
+    if (user) {
+        return Some(user[0]);
+    } else {
+        return None;
+    }
 };
 
 export const updateRefreshToken = async (
-  userId: number,
+    userId: number,
 ): Promise<HfsResult<[string, JWTPayload]>> => {
-  const user = await getOptUserById(userId);
+    const user = await getOptUserById(userId);
 
-  if (user.none) {
-    return Err(new HfsError(404, UserModelError.notFound("user")));
-  }
-  const refreshTokenExp = Date.now() / 1000 + REFRESH_TOKEN_LIFETIME;
-  const refreshTokenRes = await signJWT(
-    authConfig.refresh_token_secret,
-    { sub: user.val.id.toString() },
-    { exp: refreshTokenExp },
-  );
-
-  if (refreshTokenRes.err) {
-    return refreshTokenRes;
-  }
-  try {
-    // await prisma.update({
-    //   where: { id: userId },
-    //   data: { refresh_token: refreshTokenRes.val },
-    // });
-  } catch (error) {
-    return Err(
-      new HfsError(
-        500,
-        UserModelError.updateError("refresh token"),
-        error as Error,
-      ),
+    if (user.none) {
+        return Err(new HfsError(404, UserModelError.notFound("user")));
+    }
+    const refreshTokenExp = Date.now() / 1000 + REFRESH_TOKEN_LIFETIME;
+    const refreshTokenRes = await signJWT(
+        authConfig.refresh_token_secret,
+        { sub: user.val.id.toString() },
+        { exp: refreshTokenExp },
     );
-  }
-  const decoded = decodeJWT(refreshTokenRes.val).unwrap();
 
-  return Ok([refreshTokenRes.val, decoded]);
+    if (refreshTokenRes.err) {
+        return refreshTokenRes;
+    }
+    try {
+        // await prisma.update({
+        //   where: { id: userId },
+        //   data: { refresh_token: refreshTokenRes.val },
+        // });
+    } catch (error) {
+        return Err(
+            new HfsError(
+                500,
+                UserModelError.updateError("refresh token"),
+        error as Error,
+            ),
+        );
+    }
+    const decoded = decodeJWT(refreshTokenRes.val).unwrap();
+
+    return Ok([refreshTokenRes.val, decoded]);
 };
 
 export const getOrUpdateRefreshToken = async (
-  userId: number,
+    userId: number,
 ): Promise<HfsResult<[string, JWTPayload]>> => {
-  const verifyRes = await getRefreshTokenAndVerify();
+    const verifyRes = await getRefreshTokenAndVerify();
 
-  if (verifyRes.err) {
-    // If the refresh token is expired, update the refresh token. If the refresh token is invalid, return the error.
-    if (
-      verifyRes.val.is(JwtError.expired()) ||
+    if (verifyRes.err) {
+        // If the refresh token is expired, update the refresh token. If the refresh token is invalid, return the error.
+        if (
+            verifyRes.val.is(JwtError.expired()) ||
       verifyRes.val.is(JwtError.notFound(REFRESH_TOKEN))
-    ) {
-      return await updateRefreshToken(userId);
+        ) {
+            return await updateRefreshToken(userId);
+        }
+
+        return verifyRes;
     }
 
-    return verifyRes;
-  }
-
-  return Ok(verifyRes.val);
+    return Ok(verifyRes.val);
 };
 
 /**
  * Update the access token for a user. Also updates the refresh token if necessary.
  */
 export const updateAccessToken = async (
-  userId: number,
+    userId: number,
 ): Promise<
   HfsResult<{
     accessToken: [string, JWTPayload];
     refreshToken: [string, JWTPayload];
   }>
 > => {
-  const refreshTokenRes = await getOrUpdateRefreshToken(userId);
+    const refreshTokenRes = await getOrUpdateRefreshToken(userId);
 
-  if (refreshTokenRes.err) {
-    return refreshTokenRes;
-  }
-  const accessTokenExp = Date.now() / 1000 + ACCESS_TOKEN_LIFETIME;
-  const newAccessTokenRes = await signJWT(
-    authConfig.access_token_secret,
-    { sub: userId.toString() },
-    { exp: accessTokenExp },
-  );
+    if (refreshTokenRes.err) {
+        return refreshTokenRes;
+    }
+    const accessTokenExp = Date.now() / 1000 + ACCESS_TOKEN_LIFETIME;
+    const newAccessTokenRes = await signJWT(
+        authConfig.access_token_secret,
+        { sub: userId.toString() },
+        { exp: accessTokenExp },
+    );
 
-  if (newAccessTokenRes.err) {
-    return newAccessTokenRes;
-  }
+    if (newAccessTokenRes.err) {
+        return newAccessTokenRes;
+    }
 
-  const accessTokenPayload = decodeJWT(newAccessTokenRes.val).unwrap();
+    const accessTokenPayload = decodeJWT(newAccessTokenRes.val).unwrap();
 
-  return Ok({
-    accessToken: [newAccessTokenRes.val, accessTokenPayload],
-    refreshToken: refreshTokenRes.val,
-  });
+    return Ok({
+        accessToken: [newAccessTokenRes.val, accessTokenPayload],
+        refreshToken: refreshTokenRes.val,
+    });
 };
 
 /**
@@ -163,68 +163,68 @@ export const getOrUpdateAccessToken = async (): Promise<
     refreshToken: [string, JWTPayload];
   }>
 > => {
-  const accessTokenRes = await getAccessTokenAndVerify();
+    const accessTokenRes = await getAccessTokenAndVerify();
 
-  if (accessTokenRes.err) {
-    if (accessTokenRes.val.is(JwtError.expired(ACCESS_TOKEN))) {
-      const accessToken = (await cookies()).get("accessToken")!;
-      const decodeRes = decodeJwt(accessToken.value);
+    if (accessTokenRes.err) {
+        if (accessTokenRes.val.is(JwtError.expired(ACCESS_TOKEN))) {
+            const accessToken = (await cookies()).get("accessToken")!;
+            const decodeRes = decodeJwt(accessToken.value);
 
-      return await updateAccessToken(parseInt(decodeRes.sub!));
+            return await updateAccessToken(parseInt(decodeRes.sub!));
+        }
+        if (accessTokenRes.val.is(JwtError.notFound(ACCESS_TOKEN))) {
+            const refreshTokenRes = await getRefreshTokenAndVerify();
+
+            if (refreshTokenRes.err) {
+                return refreshTokenRes;
+            }
+
+            return await updateAccessToken(parseInt(refreshTokenRes.val[1].sub!));
+        }
+
+        return accessTokenRes;
     }
-    if (accessTokenRes.val.is(JwtError.notFound(ACCESS_TOKEN))) {
-      const refreshTokenRes = await getRefreshTokenAndVerify();
+    const refreshTokenRes = await getOrUpdateRefreshToken(
+        parseInt(accessTokenRes.val[1].sub!),
+    );
 
-      if (refreshTokenRes.err) {
+    if (refreshTokenRes.err) {
         return refreshTokenRes;
-      }
-
-      return await updateAccessToken(parseInt(refreshTokenRes.val[1].sub!));
     }
 
-    return accessTokenRes;
-  }
-  const refreshTokenRes = await getOrUpdateRefreshToken(
-    parseInt(accessTokenRes.val[1].sub!),
-  );
-
-  if (refreshTokenRes.err) {
-    return refreshTokenRes;
-  }
-
-  return Ok({
-    accessToken: accessTokenRes.val,
-    refreshToken: refreshTokenRes.val,
-  });
+    return Ok({
+        accessToken: accessTokenRes.val,
+        refreshToken: refreshTokenRes.val,
+    });
 };
 
 export async function verifyPassword(
-  loginUserId: number,
-  loginPassword: string,
+    loginUserId: number,
+    loginPassword: string,
 ): Promise<HfsResult<true>> {
-  const userOpt = await getOptUserById(loginUserId);
-  const doPasswordsMatch = userOpt.map((u) =>
-    compareSync(loginPassword, u.password),
-  );
+    const userOpt = await getOptUserById(loginUserId);
+    const doPasswordsMatch = userOpt.map((u) =>
+        compareSync(loginPassword, u.password),
+    );
 
-  if (doPasswordsMatch.none || !doPasswordsMatch.val) {
-    return Err(new HfsError(401, UserModelError.passwordMismatch()));
-  }
+    if (doPasswordsMatch.none || !doPasswordsMatch.val) {
+        return Err(new HfsError(401, UserModelError.passwordMismatch()));
+    }
 
-  return Ok(true);
+    return Ok(true);
 }
 
 export async function getCurrentUser(): Promise<
   HfsResult<typeof userTable.$inferSelect>
-> {
-  const accessTokenRes = await getOrUpdateAccessToken();
+  > {
+    const accessTokenRes = await getOrUpdateAccessToken();
 
-  if (accessTokenRes.err) {
-    return accessTokenRes;
-  }
-  const user = await getOptUserById(
-    parseInt(accessTokenRes.val.accessToken[1].sub!),
-  );
+    if (accessTokenRes.err) {
+        return accessTokenRes;
+    }
+    const user = await getOptUserById(
+        parseInt(accessTokenRes.val.accessToken[1].sub!),
+    );
 
-  return optionToNotFound(user, "user not found");
+    return optionToNotFound(user, "user not found");
 }

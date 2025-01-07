@@ -1,36 +1,12 @@
-import { drizzle } from "drizzle-orm/mysql2";
-
 import { TABLE_DATA } from "./data/s_purchase_head";
 
 import { sPurchaseHead } from "@/db/schema";
-import { snakeCaseToCamelCase } from "@/utils/conversions";
+import { defaultDown, defaultUp } from "./default";
 
 export async function up() {
-  const db = drizzle(process.env.DATABASE_URL!);
-  const data = TABLE_DATA["s_purchase_head"];
-  // the same as `data` but the data keys are camelCased
-  const formattedData = data.map((row) => {
-    const formattedRow: any = {};
-
-    for (const key in row) {
-      // @ts-ignore
-      formattedRow[snakeCaseToCamelCase(key)] = row[
-        key
-      ];
-    }
-
-    return formattedRow;
-  });
-
-  await db.transaction(async (tx) => {
-    await tx.insert(sPurchaseHead).values(formattedData);
-  });
+    await defaultUp(sPurchaseHead, TABLE_DATA.s_purchase_head);
 }
 
 export async function down() {
-  const db = drizzle(process.env.DATABASE_URL!);
-
-  await db.transaction(async (tx) => {
-    await tx.delete(sPurchaseHead);
-  });
+    await defaultDown(sPurchaseHead);
 }

@@ -9,30 +9,30 @@ import { HfsResult } from "@/lib/errors/HfsError";
 import { assertSeasonActive } from "@/lib/models/seasonBrandPhase";
 
 export const POST = async (
-  request: NextRequest,
+    request: NextRequest,
 ): Promise<NextResponse<HfsResult<typeof forecast.$inferInsert>>> => {
-  const userValidRes = await validateUserAuthorized(undefined, [
-    "forecast.add",
-  ]);
+    const userValidRes = await validateUserAuthorized(undefined, [
+        "forecast.add",
+    ]);
 
-  if (userValidRes.err) {
-    return resultToResponse(Err(userValidRes.val));
-  }
-  const { itemNo, colorCode, countryCode, seasonCode, amount } =
+    if (userValidRes.err) {
+        return resultToResponse(Err(userValidRes.val));
+    }
+    const { itemNo, colorCode, countryCode, seasonCode, amount } =
     await request.json();
-  const seasonActiveRes = await assertSeasonActive(Number(seasonCode));
+    const seasonActiveRes = await assertSeasonActive(Number(seasonCode));
 
-  if (seasonActiveRes.err) {
-    return resultToResponse(Err(seasonActiveRes.val));
-  }
+    if (seasonActiveRes.err) {
+        return resultToResponse(Err(seasonActiveRes.val));
+    }
 
-  const result = await createForecast(
-    seasonCode,
-    itemNo,
-    colorCode,
-    countryCode,
-    amount,
-  );
+    const result = await createForecast(
+        seasonCode,
+        itemNo,
+        colorCode,
+        countryCode,
+        amount,
+    );
 
-  return resultToResponse(Ok(result.val));
+    return resultToResponse(Ok(result.val));
 };
