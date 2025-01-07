@@ -21,20 +21,25 @@ You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
 npm install
 ```
 
-### Migrate the database
+### Run migrations
 
 ```bash
-npm run prisma migrate dev
+npx drizzle-kit migrate
 ```
 
-### Seed the database
+### Seed database
 
 ```bash
-npm run prisma db seed
+npm run seed -- up
 ```
 
-### Run the development server
+## Update production build
 
 ```bash
-npm run dev
+git pull
+npm i
+npm run build
+npx drizzle-kit migrate
+DATABASE_URL=mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}:${MYSQL_TCP_PORT}/${MYSQL_DATABASE} npx drizzle-kit migrate
+mwservicectl restart
 ```
