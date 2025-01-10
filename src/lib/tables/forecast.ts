@@ -5,30 +5,25 @@ import {
 
 import { seasonToShort } from "@/utils/conversions";
 import {
-    ForecastTableData,
+    ForecastTableColumns,
     ForecastTableRequest,
     TableResponse,
 } from "@/types/table";
 
 export const getForecastTableDataMapper = async ({
-    start,
-    size,
     sorting,
     country,
     brand,
     season_code,
     search,
-}: ForecastTableRequest): Promise<TableResponse<ForecastTableData>> => {
+}: ForecastTableRequest): Promise<TableResponse<ForecastTableColumns>> => {
     const itemColorData = await getForecastTableData({
-        start,
-        size,
         sorting,
         country,
         brand,
         season_code,
         search,
     });
-
     const itemColorDataCount = await getForecastTableCount({
         brand,
         season_code,

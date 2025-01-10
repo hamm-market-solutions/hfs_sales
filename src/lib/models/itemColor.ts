@@ -42,8 +42,6 @@ export const getForecastTableCount = async ({
 };
 
 export const getForecastTableData = async ({
-    start,
-    size,
     sorting,
     country,
     brand: brandNo,

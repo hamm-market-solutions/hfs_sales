@@ -10,7 +10,7 @@ import { HfsResult } from "../lib/errors/HfsError";
 import { HfsResponse } from "../types/responses";
 
 import {
-    ForecastTableData,
+    ForecastTableColumns,
     ForecastTableRequest,
     TableResponse,
 } from "@/types/table";
@@ -42,7 +42,7 @@ export async function getForecastTableData({
     country,
     brand,
     season_code,
-}: ForecastTableRequest): Promise<TableResponse<ForecastTableData>> {
+}: ForecastTableRequest): Promise<TableResponse<ForecastTableColumns>> {
     const data = await getForecastTableData({
         start,
         size,

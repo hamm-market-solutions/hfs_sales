@@ -9,7 +9,6 @@ export const defaultUp = async (table: any, data: {[key: string]: unknown}[]) =>
         const formattedRow: any = {};
 
         for (const key in row) {
-            // @ts-ignore
             formattedRow[toCamelCase(key)] = row[
                 key
             ];
