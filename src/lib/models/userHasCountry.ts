@@ -3,7 +3,6 @@
 import { Err, Ok } from "ts-results";
 import { eq } from "drizzle-orm";
 
-import HfsError from "../errors/HfsError";
 import UserHasCountryModelError from "../errors/UserHasCountryModelError";
 
 import { db } from "@/db";
@@ -20,9 +19,7 @@ export const userHasCountry = async (userId: number, countryCode: string) => {
     );
 
     if (!countryCodes.includes(countryCode.toUpperCase())) {
-        return Err(
-            new HfsError(403, UserHasCountryModelError.hasCountryError(countryCode)),
-        );
+        return Err({ status: 403, message: UserHasCountryModelError.hasCountryError(countryCode) });
     }
 
     return Ok(true);
@@ -46,12 +43,6 @@ export const getUserCountries = async (userId: number) => {
                 .where(eq(userHasCountryTable.userId, userId)),
         );
     } catch (error) {
-        return Err(
-            HfsError.fromThrow(
-                500,
-                UserHasCountryModelError.getError(),
-        error as Error,
-            ),
-        );
+        return Err({ status: 500, message: UserHasCountryModelError.getError(), error: error as Error });
     }
 };

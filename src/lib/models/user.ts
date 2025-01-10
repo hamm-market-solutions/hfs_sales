@@ -9,7 +9,7 @@ import { eq } from "drizzle-orm";
 import UserModelError from "../errors/UserModelError";
 import JwtError, { ACCESS_TOKEN, REFRESH_TOKEN } from "../errors/JwtError";
 
-import HfsError, { HfsResult } from "@/lib/errors/HfsError";
+import { HfsResult } from "@/lib/errors/HfsError";
 import {
     getRefreshTokenAndVerify,
     signJWT,
@@ -68,7 +68,7 @@ export const updateRefreshToken = async (
     const user = await getOptUserById(userId);
 
     if (user.none) {
-        return Err(new HfsError(404, UserModelError.notFound("user")));
+        return Err({ status: 404, message: UserModelError.notFound("user") });
     }
     const refreshTokenExp = Date.now() / 1000 + REFRESH_TOKEN_LIFETIME;
     const refreshTokenRes = await signJWT(
@@ -86,13 +86,7 @@ export const updateRefreshToken = async (
         //   data: { refresh_token: refreshTokenRes.val },
         // });
     } catch (error) {
-        return Err(
-            new HfsError(
-                500,
-                UserModelError.updateError("refresh token"),
-        error as Error,
-            ),
-        );
+        return Err({ status: 500, message: UserModelError.updateError("refresh token"), error: error });
     }
     const decoded = decodeJWT(refreshTokenRes.val).unwrap();
 
@@ -107,8 +101,8 @@ export const getOrUpdateRefreshToken = async (
     if (verifyRes.err) {
         // If the refresh token is expired, update the refresh token. If the refresh token is invalid, return the error.
         if (
-            verifyRes.val.is(JwtError.expired()) ||
-      verifyRes.val.is(JwtError.notFound(REFRESH_TOKEN))
+            verifyRes.val.message == JwtError.expired() ||
+            verifyRes.val.message == JwtError.notFound(REFRESH_TOKEN)
         ) {
             return await updateRefreshToken(userId);
         }
@@ -166,13 +160,13 @@ export const getOrUpdateAccessToken = async (): Promise<
     const accessTokenRes = await getAccessTokenAndVerify();
 
     if (accessTokenRes.err) {
-        if (accessTokenRes.val.is(JwtError.expired(ACCESS_TOKEN))) {
+        if (accessTokenRes.val.message == JwtError.expired(ACCESS_TOKEN)) {
             const accessToken = (await cookies()).get("accessToken")!;
             const decodeRes = decodeJwt(accessToken.value);
 
             return await updateAccessToken(parseInt(decodeRes.sub!));
         }
-        if (accessTokenRes.val.is(JwtError.notFound(ACCESS_TOKEN))) {
+        if (accessTokenRes.val.message == JwtError.notFound(ACCESS_TOKEN)) {
             const refreshTokenRes = await getRefreshTokenAndVerify();
 
             if (refreshTokenRes.err) {
@@ -208,7 +202,7 @@ export async function verifyPassword(
     );
 
     if (doPasswordsMatch.none || !doPasswordsMatch.val) {
-        return Err(new HfsError(401, UserModelError.passwordMismatch()));
+        return Err({ status: 401, message: UserModelError.passwordMismatch() });
     }
 
     return Ok(true);

@@ -1,7 +1,7 @@
 import { Err, Ok } from "ts-results";
 import { eq } from "drizzle-orm";
 
-import HfsError, { HfsResult } from "../errors/HfsError";
+import { HfsResult, throwToHfsError } from "../errors/HfsError";
 import ModelError from "../errors/ModelError";
 
 import { getUserRoles } from "./userHasRole";
@@ -29,7 +29,7 @@ export async function getUserCustomPermissions(userId: number): Promise<
         return Ok({ userId: userId, permissions: userRoles });
     } catch (error) {
         return Err(
-            HfsError.fromThrow(
+            throwToHfsError(
                 500,
                 ModelError.drizzleError("user_has_permissions"),
         error as Error,
@@ -76,7 +76,7 @@ export async function getUserPermissions(userId: number): Promise<
         return Ok({ userId: userId, permissions: permissions });
     } catch (error) {
         return Err(
-            HfsError.fromThrow(
+            throwToHfsError(
                 500,
                 ModelError.drizzleError("user_has_permissions"),
         error as Error,

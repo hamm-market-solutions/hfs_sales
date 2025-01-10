@@ -1,7 +1,7 @@
 import { Err, Ok } from "ts-results";
 import { eq, max, min } from "drizzle-orm";
 
-import HfsError from "../errors/HfsError";
+import { throwToHfsError } from "../errors/HfsError";
 import ModelError from "../errors/ModelError";
 import SeasonBrandPhaseError from "../errors/SeasonbrandPhaseError";
 
@@ -24,7 +24,7 @@ export const getSeasonTime = async (seasonCode: number) => {
         );
     } catch (error) {
         return Err(
-            HfsError.fromThrow(
+            throwToHfsError(
                 500,
                 ModelError.notFound("season_brand_phase"),
         error as Error,
@@ -47,7 +47,7 @@ export const isSeasonActive = async (seasonCode: number) => {
         return Ok(seasonStart <= now && now <= seasonEnd);
     } catch (error) {
         return Err(
-            HfsError.fromThrow(
+            throwToHfsError(
                 500,
                 ModelError.notFound("season_brand_phase"),
         error as Error,
@@ -64,7 +64,7 @@ export const assertSeasonActive = async (seasonCode: number) => {
     }
     if (!seasonActive.val) {
         return Err(
-            HfsError.fromThrow(400, SeasonBrandPhaseError.seasonInactive(seasonCode)),
+            throwToHfsError(400, SeasonBrandPhaseError.seasonInactive(seasonCode)),
         );
     }
 

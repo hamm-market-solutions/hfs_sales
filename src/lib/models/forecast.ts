@@ -1,7 +1,7 @@
 import { Err, None, Ok, Option, Some } from "ts-results";
 import { and, desc, eq, inArray, isNull, sql, sum } from "drizzle-orm";
 
-import HfsError, { HfsResult } from "../errors/HfsError";
+import { HfsResult, throwToHfsError } from "../errors/HfsError";
 import ForecastModelError from "../errors/ForecastModelError";
 import { getAccessTokenPayload } from "../auth/jwt";
 
@@ -42,7 +42,7 @@ export const createForecast = async (
         return Ok(result);
     } catch (error) {
         return Err(
-            HfsError.fromThrow(
+            throwToHfsError(
                 500,
                 ForecastModelError.saveForecastError(),
         error as Error,
@@ -77,7 +77,7 @@ export async function getLatestForecast(
         console.error(error);
 
         return Err(
-            HfsError.fromThrow(
+            throwToHfsError(
                 500,
                 ForecastModelError.getError("latest forecast"),
         error as Error,
@@ -96,7 +96,7 @@ export async function getSumForecastForSeason(seasonCode: number) {
         return Ok(forecasts[0]);
     } catch (error) {
         return Err(
-            HfsError.fromThrow(
+            throwToHfsError(
                 500,
                 ForecastModelError.getError("all forecasts"),
         error as Error,
@@ -120,7 +120,7 @@ export async function getSumForecastForLastFiveSeasons() {
         return Ok(forecasts);
     } catch (error) {
         return Err(
-            HfsError.fromThrow(
+            throwToHfsError(
                 500,
                 ForecastModelError.getError("all forecasts"),
         error as Error,
@@ -144,7 +144,7 @@ export async function exportLatestForecasts() {
         return Ok(forecasts);
     } catch (error) {
         return Err(
-            HfsError.fromThrow(
+            throwToHfsError(
                 500,
                 ForecastModelError.getError("latest forecasts for export"),
         error as Error,

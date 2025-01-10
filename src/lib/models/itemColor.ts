@@ -2,7 +2,7 @@ import { Err, Ok } from "ts-results";
 import { and, count, eq, sql } from "drizzle-orm";
 import _ from "lodash";
 
-import HfsError from "../errors/HfsError";
+import { throwToHfsError } from "../errors/HfsError";
 import ItemColorModelError from "../errors/ItemColorModelError";
 
 import { ForecastTableRequest } from "@/types/table";
@@ -32,7 +32,7 @@ export const getForecastTableCount = async ({
         return Ok(dataCount[0].count);
     } catch (error) {
         return Err(
-            HfsError.fromThrow(
+            throwToHfsError(
                 500,
                 ItemColorModelError.getForecastDataCountError(),
         error as Error,
@@ -124,7 +124,7 @@ export const getForecastTableData = async ({
         );
     } catch (error) {
         return Err(
-            HfsError.fromThrow(
+            throwToHfsError(
                 500,
                 ItemColorModelError.getForecastDataError(),
         error as Error,

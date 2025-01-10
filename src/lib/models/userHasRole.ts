@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import { Err, Ok } from "ts-results";
 
-import HfsError, { HfsResult } from "../errors/HfsError";
+import { HfsResult, throwToHfsError } from "../errors/HfsError";
 import ModelError from "../errors/ModelError";
 
 import { db } from "@/db";
@@ -23,7 +23,7 @@ export async function getUserRoles(userId: number): Promise<
         return Ok({ userId: userId, roles: userRoles });
     } catch (error) {
         return Err(
-            HfsError.fromThrow(
+            throwToHfsError(
                 500,
                 ModelError.drizzleError("user_has_roles"),
         error as Error,

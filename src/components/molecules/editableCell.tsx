@@ -3,8 +3,7 @@
 import { Input, InputProps } from "@nextui-org/input";
 import { useState } from "react";
 import clsx from "clsx";
-
-import HfsError from "@/lib/errors/HfsError";
+import { HfsError } from "@/lib/errors/HfsError";
 
 export default function EditableCell<T extends object>({
     index,
@@ -100,7 +99,7 @@ export default function EditableCell<T extends object>({
                 }}
             >
                 {error ? (
-                    <span className="editable-cell editable-cell_inactive text-[10px] text-red-500">{error.error}</span>
+                    <span className="editable-cell editable-cell_inactive text-[10px] text-red-500">{error.message}</span>
                 ) : (
                     <span className="editable-cell editable-cell_inactive text-tertiary underline">{value ?? initValue}</span>
                 )}

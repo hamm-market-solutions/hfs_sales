@@ -4,7 +4,7 @@ import { Err, Ok } from "ts-results";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
-import HfsError, { HfsResult } from "../errors/HfsError";
+import  { HfsResult, HfsError } from "../errors/HfsError";
 import { getCurrentUser, getOrUpdateAccessToken } from "../models/user";
 import AuthError from "../errors/AuthError";
 import { getUserPermissions } from "../models/userHasPermission";
@@ -28,18 +28,23 @@ export async function validateUserAuthorized(
     neededPermissions?: string[],
 ): Promise<HfsResult<true>> {
     if ((!route && !neededPermissions) || (route && neededPermissions)) {
+        const err: HfsError = {
+            status: 500,
+            message: FieldError.exactlyOneOfFieldsRequired(["route", "neededPermissions"]),
+        }
         return Err(
-            new HfsError(
-                500,
-                FieldError.exactlyOneOfFieldsRequired(["route", "neededPermissions"]),
-            ),
+            err,
         );
     }
     await cookies(); // TODO: somehow this is needed so nextjs gets that the user is authenticated, at least if you are coming from /login. investigate why and find a better solution
     const isAuthenticated = await isUserAuthenticated();
 
     if (!isAuthenticated) {
-        return Err(new HfsError(403, AuthError.notAuthenticated()));
+        const err: HfsError = {
+            status: 403,
+            message: AuthError.notAuthenticated(),
+        }
+        return Err(err);
     }
     const user = await getCurrentUser();
 
@@ -70,7 +75,7 @@ export async function validateUserAuthorized(
     );
 
     if (!hasAllPermissions) {
-        return Err(new HfsError(401, AuthError.unauthorized()));
+        return Err({ status: 401, message: AuthError.unauthorized() });
     }
 
     return Ok(true);
@@ -93,9 +98,9 @@ export async function validateUserAuthorizedOrRedirect(
     const result = await validateUserAuthorized(route, neededPermissions);
 
     if (result.err) {
-        if (result.val.is(AuthError.notAuthenticated())) {
+        if (result.val.message == AuthError.notAuthenticated()) {
             redirect(routes.login);
-        } else if (result.val.is(AuthError.unauthorized())) {
+        } else if (result.val.message == AuthError.unauthorized()) {
             redirect("/401");
         } else {
             // redirect to 500 page

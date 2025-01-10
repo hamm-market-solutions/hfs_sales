@@ -76,3 +76,4 @@ According to the Error we get, `t.createPool`, my first guess is that Next.js th
 
 ## Solution
 
+I was returning classes from a server action, which is not allowed by Next.js. Instead I now return interfaces.

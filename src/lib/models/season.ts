@@ -3,7 +3,7 @@
 import { Err, Ok } from "ts-results";
 import { desc } from "drizzle-orm";
 
-import HfsError from "../errors/HfsError";
+import  { throwToHfsError } from "../errors/HfsError";
 import SeasonModelError from "../errors/SeasonModelError";
 
 import { db } from "@/db";
@@ -19,7 +19,7 @@ export const getAllSeasons = async () => {
         );
     } catch (error) {
         return Err(
-            HfsError.fromThrow(500, SeasonModelError.getError(), error as Error),
+            throwToHfsError(500, SeasonModelError.getError(), error as Error),
         );
     }
 };
