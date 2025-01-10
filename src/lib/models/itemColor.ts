@@ -111,9 +111,9 @@ export const getForecastTableData = async ({
                 ),
             )
             .groupBy(sItemColor.itemNo, sItemColor.colorCode)
-            .orderBy(...orderBy)
-            .limit(size)
-            .offset(start);
+            .orderBy(...orderBy);
+            // .limit(size)
+            // .offset(start);
 
 
 

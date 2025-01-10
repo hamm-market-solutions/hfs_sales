@@ -31,7 +31,7 @@ export const getForecastTableDataMapper = async ({
 
     return {
         data: itemColorData.unwrap().map((data) => ({
-            imgSrc: [data.last ?? undefined, data.itemNo.toString(), data.colorCode],
+            img_src: [data.last ?? undefined, data.itemNo.toString(), data.colorCode],
             brand_no: data.brandNo,
             brand_name: data.brandName,
             season_code: data.seasonCode,

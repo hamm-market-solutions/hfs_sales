@@ -1,12 +1,10 @@
-"use client";
-
 import React from "react";
 import { Spinner } from "@nextui-org/spinner";
 import { Table, TableBody, TableHeader, TableRow, TableColumn, TableCell, getKeyValue } from "@nextui-org/table";
 import {useInfiniteScroll} from "@nextui-org/use-infinite-scroll";
 import {useAsyncList} from "@react-stately/data";
 
-import { TableColumns, TableResponse } from "@/types/table";
+import { TableColumns, TableResponse, TableSorting } from "@/types/table";
 import { HfsResult } from "@/lib/errors/HfsError";
 
 export default function BaseTable<T extends object>({
@@ -15,17 +13,17 @@ export default function BaseTable<T extends object>({
 }: {
     columns: TableColumns<T>;
     fetchFn: (
-        sorting: { id: keyof T; desc: boolean }[],
+        sorting: TableSorting<T>,
         search: string
     ) => Promise<HfsResult<TableResponse<T>>>;
 }) {
     const [isLoading, setIsLoading] = React.useState<boolean>(true);
     const [hasMore, setHasMore] = React.useState<boolean>(false);
-    const [sorting, setSorting] = React.useState<{ id: keyof T; desc: boolean }[]>([]);
+    const [sorting, setSorting] = React.useState<TableSorting<T>>([]);
     const [search, setSearch] = React.useState<string>("");
 
     let list = useAsyncList<T>({
-        async load({signal, cursor}) {
+        async load({signal: _signal, cursor}) {
             if (cursor) {
                 setIsLoading(false);
             }
@@ -33,6 +31,8 @@ export default function BaseTable<T extends object>({
             // If no cursor is available, then we're loading the first page.
             // Otherwise, the cursor is the next URL to load, as returned from the previous page.
             const res = await fetchFn(sorting, search);
+            console.log(res);
+
 
             if (res.err) {
                 throw new Error(res.val.message);
@@ -51,16 +51,18 @@ export default function BaseTable<T extends object>({
         hasMore,
         onLoadMore: list.loadMore,
     });
+    console.log(list.items);
+
 
     return (
         <Table
             isHeaderSticky
-            aria-label="Example table with infinite pagination"
+            aria-label="Table"
             baseRef={scrollerRef}
             bottomContent={
                 hasMore ? (
                     <div className="flex w-full justify-center">
-                        <Spinner ref={loaderRef} color="white" />
+                        <Spinner ref={loaderRef} color="primary" />
                     </div>
                 ) : null
             }
