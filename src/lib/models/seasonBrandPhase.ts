@@ -1,39 +1,50 @@
-import { Err, Ok } from "ts-results";
+import { Err, None, Ok, Option, Some } from "ts-results";
 import { eq, max, min } from "drizzle-orm";
 
-import { throwToHfsError } from "../errors/HfsError";
+import { HfsResult, throwToHfsError } from "../errors/HfsError";
 import ModelError from "../errors/ModelError";
 import SeasonBrandPhaseError from "../errors/SeasonbrandPhaseError";
 
 import { db } from "@/db";
 import { sSeasonBrandPhase } from "@/db/schema";
 
-export const getSeasonTime = async (seasonCode: number) => {
+export const getSeasonTime = async (seasonCode: number): Promise<HfsResult<{
+    code: number;
+    start: Option<string>;
+    end: Option<string>;
+}>> => {
     try {
+        const data = await db
+            .select({
+                code: sSeasonBrandPhase.seasonCode,
+                start: min(sSeasonBrandPhase.startDate),
+                end: max(sSeasonBrandPhase.endDate),
+            })
+            .from(sSeasonBrandPhase)
+            .where(eq(sSeasonBrandPhase.seasonCode, seasonCode));
+        const seasonTime = data[0];
+
+
+
         return Ok(
-            (
-                await db
-                    .select({
-                        code: sSeasonBrandPhase.seasonCode,
-                        start: min(sSeasonBrandPhase.startDate),
-                        end: max(sSeasonBrandPhase.endDate),
-                    })
-                    .from(sSeasonBrandPhase)
-                    .where(eq(sSeasonBrandPhase.seasonCode, seasonCode))
-            )[0],
+            {
+                code: seasonTime.code,
+                start: seasonTime.start ? Some(seasonTime.start) : None,
+                end: seasonTime.end ? Some(seasonTime.end) : None,
+            }
         );
     } catch (error) {
         return Err(
             throwToHfsError(
                 500,
                 ModelError.notFound("season_brand_phase"),
-        error as Error,
+                Some(error as Error),
             ),
         );
     }
 };
 
-export const isSeasonActive = async (seasonCode: number) => {
+export const isSeasonActive = async (seasonCode: number): Promise<HfsResult<boolean>> => {
     try {
         const now = new Date();
         const seasonTime = await getSeasonTime(seasonCode);
@@ -41,8 +52,8 @@ export const isSeasonActive = async (seasonCode: number) => {
         if (seasonTime.err) {
             return seasonTime;
         }
-        const seasonStart = new Date(seasonTime.val.start ?? "2100-01-01");
-        const seasonEnd = new Date(seasonTime.val.end ?? "2000-01-01");
+        const seasonStart = new Date(seasonTime.val.start.unwrapOr("2100-01-01"));
+        const seasonEnd = new Date(seasonTime.val.end.unwrapOr("2000-01-01"));
 
         return Ok(seasonStart <= now && now <= seasonEnd);
     } catch (error) {
@@ -50,7 +61,7 @@ export const isSeasonActive = async (seasonCode: number) => {
             throwToHfsError(
                 500,
                 ModelError.notFound("season_brand_phase"),
-        error as Error,
+                Some(error as Error),
             ),
         );
     }

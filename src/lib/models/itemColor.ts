@@ -1,14 +1,15 @@
-import { Err, Ok } from "ts-results";
+import { Err, Ok, Some } from "ts-results";
 import { and, count, eq, sql } from "drizzle-orm";
 import _ from "lodash";
 
-import { throwToHfsError } from "../errors/HfsError";
+import { HfsResult, throwToHfsError } from "../errors/HfsError";
 import ItemColorModelError from "../errors/ItemColorModelError";
 
 import { ForecastTableRequest } from "@/types/table";
 import { db } from "@/db";
 import { brand, sItem, sItemColor, sSeason, } from "@/db/schema";
 import { sortingStateToDrizzle } from "@/utils/conversions";
+import { TABLE_FETCH_SIZE } from "../tables/constants";
 
 export const getForecastTableCount = async ({
     brand,
@@ -16,7 +17,7 @@ export const getForecastTableCount = async ({
 }: {
   brand: number;
   season_code: number;
-}) => {
+}): Promise<HfsResult<number>> => {
     try {
         const dataCount = await db
             .select({ count: count() })
@@ -35,13 +36,19 @@ export const getForecastTableCount = async ({
             throwToHfsError(
                 500,
                 ItemColorModelError.getForecastDataCountError(),
-        error as Error,
+                Some(error as Error),
             ),
         );
     }
 };
 
+/**
+ *
+ * @param param0
+ * @returns [ForecastTableColumns]
+ */
 export const getForecastTableData = async ({
+    page,
     sorting,
     country,
     brand: brandNo,
@@ -96,7 +103,12 @@ export const getForecastTableData = async ({
         ),
         };
         const orderBySelectClone = _.cloneDeep(select);
-        const orderBy = sortingStateToDrizzle(orderBySelectClone, sorting);
+        const orderBy = () => {if (sorting.none) {
+            return []
+        } else {
+            return  sortingStateToDrizzle(orderBySelectClone, sorting.val);
+        }};
+
         console.log("search:", search);
         const data =await db
             .select(select)
@@ -111,21 +123,21 @@ export const getForecastTableData = async ({
                 ),
             )
             .groupBy(sItemColor.itemNo, sItemColor.colorCode)
-            .orderBy(...orderBy);
-            // .limit(size)
-            // .offset(start);
-
-
+            .orderBy(...orderBy())
+            .limit(TABLE_FETCH_SIZE)
+            .offset((page - 1) * TABLE_FETCH_SIZE);
 
         return Ok(
             data
         );
     } catch (error) {
+        console.log("error", error);
+
         return Err(
             throwToHfsError(
                 500,
                 ItemColorModelError.getForecastDataError(),
-        error as Error,
+                Some(error as Error),
             ),
         );
     }

@@ -8,9 +8,10 @@ import ForecastNavigation from "@/components/organism/forecastNavigation";
 import { getAllSeasons } from "@/lib/models/season";
 import { validateUserAuthorizedOrRedirect } from "@/lib/auth/validations";
 import { routes } from "@/config/routes";
+import { Option, Some } from "ts-results";
 
 export default async function ForecastNavigationPage() {
-    await validateUserAuthorizedOrRedirect(routes.sales.reports.forecasts.base);
+    await validateUserAuthorizedOrRedirect(Some(routes.sales.reports.forecasts.base));
 
     const userCountries = (
     (await getUserCountriesAction()).unwrap() as GetUserCountriesOkResponse
@@ -23,12 +24,12 @@ export default async function ForecastNavigationPage() {
     return (
         <div className="forecast-navigation-page">
             <Title
-                subtitle="Select the country, brand and season you would like to view the forecast for:"
+                subtitle={Some("Select the country, brand and season you would like to view the forecast for:")}
                 title="Forecast - Navigation"
             />
             <ForecastNavigation
                 brands={brands}
-                seasons={seasons as { code: number; name: string | undefined }[]}
+                seasons={seasons as { code: number; name: Option<string> }[]}
                 userCountries={userCountries}
             />
         </div>

@@ -35,12 +35,12 @@ export default function NavBarItems({
             navBarItems.push(
                 <NavbarItem
                     key={route.key}
-                    isActive={matchPath(route.url ?? "", pathname)}
+                    isActive={matchPath(route.url.unwrapOr(""), pathname)}
                 >
                     <Link
                         className="text-primary"
                         color="foreground"
-                        href={route.url ?? ""}
+                        href={route.url.unwrapOr("")}
                     >
                         {route.title}
                     </Link>
@@ -50,16 +50,18 @@ export default function NavBarItems({
             const nestedNavBarItems = [];
 
             for (const subRoute of route.items) {
+                console.log(subRoute.url);
+
                 nestedNavBarItems.push(
                     <DropdownItem
                         key={subRoute.key}
                         className={
-                            matchPath(subRoute.url ?? "", pathname) ? "bg-primary-50" : ""
+                            matchPath(subRoute.url.unwrapOr(""), pathname) ? "bg-primary-50" : ""
                         }
                         description={subRoute.description}
-                        startContent={<Icon alt="dropdown-item-icon" src={subRoute.icon} />}
+                        startContent={<Icon alt="dropdown-item-icon" src={subRoute.icon.unwrapOr(undefined)} />}
                         onPress={() => {
-                            router.push(subRoute.url!);
+                            router.push(subRoute.url.unwrap());
                         }}
                     >
                         {subRoute.title}

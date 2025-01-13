@@ -1,30 +1,45 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Ok } from "ts-results";
+import { Err, None, Ok, Option, Some } from "ts-results";
 
 import { getForecastTableDataMapper } from "@/lib/tables/forecast";
-import { ForecastTableColumns, TableSorting } from "@/types/table";
+import { ForecastTableColumns, TableSort } from "@/types/table";
 import { resultToResponse } from "@/utils/conversions";
 
 export const GET = async (
     request: NextRequest,
 ): Promise<NextResponse<ForecastTableColumns>> => {
-    const searchParams = request.nextUrl.searchParams;
-    console.log(searchParams.get("sorting"));
+    let sortingJson: Option<TableSort<ForecastTableColumns>> = None;
+    let page: number;
+    let search: string;
+    let country: string;
+    let brand: number;
+    let seasonCode: number;
+    try {
+        const searchParams = request.nextUrl.searchParams;
 
-    const sorting: TableSorting<ForecastTableColumns> = JSON.parse(searchParams.get("sorting")!);
-    const search = searchParams.get("search")!;
-    const country = searchParams.get("country")!;
-    const brand = Number(searchParams.get("brand")!);
-    const seasonCode = Number(searchParams.get("season_code")!);
+        const sorting = searchParams.get("sorting");
+        if (sorting) {
+            sortingJson = Some(JSON.parse(sorting));
+        }
+
+        page = Number(searchParams.get("page") ?? 1);
+        search = searchParams.get("search")!;
+        country = searchParams.get("country")!;
+        brand = Number(searchParams.get("brand")!);
+        seasonCode = Number(searchParams.get("season_code")!);
+    } catch (error) {
+        return resultToResponse(Err({ status: 400, message: (error as Error).message, cause: None }));
+    }
 
     return resultToResponse(
         Ok(
             await getForecastTableDataMapper({
-                sorting,
+                page,
+                sorting: sortingJson,
                 country,
                 brand,
                 season_code: seasonCode,
-                search,
+                search: Some(search),
             }),
         ),
     );

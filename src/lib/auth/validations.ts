@@ -1,6 +1,6 @@
 "use server";
 
-import { Err, Ok } from "ts-results";
+import { Err, None, Ok, Option } from "ts-results";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
@@ -24,13 +24,14 @@ export async function isUserAuthenticated(): Promise<boolean> {
 }
 
 export async function validateUserAuthorized(
-    route?: string,
-    neededPermissions?: string[],
+    route: Option<string> = None,
+    neededPermissions: Option<string[]> = None,
 ): Promise<HfsResult<true>> {
     if ((!route && !neededPermissions) || (route && neededPermissions)) {
         const err: HfsError = {
             status: 500,
             message: FieldError.exactlyOneOfFieldsRequired(["route", "neededPermissions"]),
+            cause: None
         }
         return Err(
             err,
@@ -43,6 +44,7 @@ export async function validateUserAuthorized(
         const err: HfsError = {
             status: 403,
             message: AuthError.notAuthenticated(),
+            cause: None
         }
         return Err(err);
     }
@@ -61,21 +63,21 @@ export async function validateUserAuthorized(
     }
     let permissionsNeeded: string[] = [];
 
-    if (route) {
-        permissionsNeeded = routePermissions[route];
+    if (route.some) {
+        permissionsNeeded = routePermissions[route.val];
     } else {
-        permissionsNeeded = neededPermissions!;
+        permissionsNeeded = neededPermissions.unwrapOr([]);
     }
     // console.log("permissionsNeeded", permissionsNeeded);
     // console.log("userPermissions", userPermissions.val.permissions);
 
     const hasAllPermissions = matchPermissions(
         permissionsNeeded,
-        userPermissions.val.permissions.map((p) => p.permissionName ?? ""),
+        userPermissions.val.permissions.map((p) => p.permissionName.unwrapOr("")),
     );
 
     if (!hasAllPermissions) {
-        return Err({ status: 401, message: AuthError.unauthorized() });
+        return Err({ status: 401, message: AuthError.unauthorized(), cause: None });
     }
 
     return Ok(true);
@@ -92,8 +94,8 @@ function matchPermissions(
  * Validates if the user is authenticated and has the needed permissions, otherwise redirects to the login page or 401 page
  */
 export async function validateUserAuthorizedOrRedirect(
-    route?: string,
-    neededPermissions?: string[],
+    route: Option<string> = None,
+    neededPermissions: Option<string[]> = None,
 ): Promise<void> {
     const result = await validateUserAuthorized(route, neededPermissions);
 

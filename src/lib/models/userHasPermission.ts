@@ -1,4 +1,4 @@
-import { Err, Ok } from "ts-results";
+import { Err, None, Ok, Option, Some } from "ts-results";
 import { eq } from "drizzle-orm";
 
 import { HfsResult, throwToHfsError } from "../errors/HfsError";
@@ -13,7 +13,7 @@ import { permission, userHasPermission } from "@/db/schema";
 export async function getUserCustomPermissions(userId: number): Promise<
   HfsResult<{
     userId: number;
-    permissions: { permissionId: number; permissionName: string | null }[];
+    permissions: { permissionId: number; permissionName: Option<string> }[];
   }>
 > {
     try {
@@ -26,13 +26,19 @@ export async function getUserCustomPermissions(userId: number): Promise<
             .where(eq(userHasPermission.userId, userId))
             .leftJoin(permission, eq(userHasPermission.permissionId, permission.id));
 
-        return Ok({ userId: userId, permissions: userRoles });
+        return Ok({
+            userId: userId,
+            permissions: userRoles.map((ur) => ({
+                permissionId: ur.permissionId,
+                permissionName: ur.permissionName ? Some(ur.permissionName) : None,
+            }))
+        });
     } catch (error) {
         return Err(
             throwToHfsError(
                 500,
                 ModelError.drizzleError("user_has_permissions"),
-        error as Error,
+                Some(error as Error),
             ),
         );
     }
@@ -41,7 +47,7 @@ export async function getUserCustomPermissions(userId: number): Promise<
 export async function getUserPermissions(userId: number): Promise<
   HfsResult<{
     userId: number;
-    permissions: { permissionId: number; permissionName: string | null }[];
+    permissions: { permissionId: number; permissionName: Option<string> }[];
   }>
 > {
     try {
@@ -71,7 +77,7 @@ export async function getUserPermissions(userId: number): Promise<
             ...rolePermissions.map((role) => role.permissions),
         );
 
-        permissions.push({ permissionId: 0, permissionName: "user" });
+        permissions.push({ permissionId: 0, permissionName: Some("user") });
 
         return Ok({ userId: userId, permissions: permissions });
     } catch (error) {
@@ -79,7 +85,7 @@ export async function getUserPermissions(userId: number): Promise<
             throwToHfsError(
                 500,
                 ModelError.drizzleError("user_has_permissions"),
-        error as Error,
+                Some(error as Error),
             ),
         );
     }

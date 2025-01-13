@@ -1,13 +1,14 @@
 import { CardFooter } from "@nextui-org/card";
 
 import { PicCards } from "./picCards";
+import { None, Option, Some } from "ts-results";
 
 export function CountryNavigation({
     countries,
     countrySetter,
 }: {
-  countries: { code: string; name?: string }[];
-  countrySetter?: (country: string) => void;
+  countries: { code: string; name: Option<string> }[];
+  countrySetter: (country: string) => void;
 }) {
     if (countries.length === 0) {
         return (
@@ -20,13 +21,15 @@ export function CountryNavigation({
 
     const dataSets = countries.map((country) => ({
         key: country.code,
-        pic: `/assets/flags/${country.code.toLowerCase()}.svg`,
-        footer: (
+        src: `/assets/flags/${country.code.toLowerCase()}.svg`,
+        footer: Some((
             <CardFooter className="flex flex-col items-start">
                 <p className="text-tiny uppercase font-bold">{country.name}</p>
                 <small className="text-primary">{country.code}</small>
             </CardFooter>
-        ),
+        )),
+        picComponent: None,
+        bgColor: None,
     }));
 
     return (

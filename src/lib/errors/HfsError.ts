@@ -1,4 +1,4 @@
-import { Result } from "ts-results";
+import { None, Option, Result } from "ts-results";
 
 export type HfsResult<T> = Result<T, HfsError>;
 
@@ -35,10 +35,10 @@ export type HfsResult<T> = Result<T, HfsError>;
 export interface HfsError {
     status: number;
     message: string;
-    cause?: Error;
+    cause: Option<Error>;
 }
 
-export function throwToHfsError(status: number, message: string, cause?: Error): HfsError {
+export function throwToHfsError(status: number, message: string, cause: Option<Error> = None): HfsError {
     return {
         status,
         message,

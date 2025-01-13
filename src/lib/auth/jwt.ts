@@ -15,7 +15,7 @@ export const decodeJWT = (token: string): HfsResult<JWTPayload> => {
         const err: HfsError = {
             status: 401,
             message: JwtError.decodingError(),
-            cause: error as Error,
+            cause: Some(error as Error),
         }
         return Err(err);
     }
@@ -42,7 +42,7 @@ export const signJWT = async (
         const err: HfsError = {
             status: 500,
             message: JwtError.signingError(),
-            cause: error as Error,
+            cause: Some(error as Error),
         }
         return Err(err);
     }
@@ -64,6 +64,7 @@ export const verifyJWT = async (
             const err: HfsError = {
                 status: 401,
                 message: JwtError.expired(),
+                cause: None,
             }
             return Err(err);
         }
@@ -77,7 +78,7 @@ export const verifyJWT = async (
         const err: HfsError = {
             status: 401,
             message: JwtError.invalid(),
-            cause: error as Error,
+            cause: Some(error as Error),
         }
         return Err(err);
     }
@@ -121,6 +122,7 @@ export const getAccessToken = async (): Promise<HfsResult<string>> => {
     const err: HfsError = {
         status: 401,
         message: JwtError.notFound(ACCESS_TOKEN),
+        cause: None,
     }
 
     return Err(err);
@@ -162,6 +164,7 @@ export const getAccessTokenAndVerify = async (): Promise<
             const err: HfsError = {
                 status: 401,
                 message: JwtError.expired(ACCESS_TOKEN),
+                cause: None,
             }
 
             return Err(
@@ -172,6 +175,7 @@ export const getAccessTokenAndVerify = async (): Promise<
             const err: HfsError = {
                 status: 401,
                 message: JwtError.invalid(ACCESS_TOKEN),
+                cause: None,
             }
             return Err(
                 err,
@@ -200,23 +204,24 @@ const getRefreshTokenFromCookie = async (): Promise<Option<string>> => {
  * Get the refresh token from the cookie. If the refresh token is malformed or expired, return 401.
  */
 export const getRefreshTokenAndVerify = async (
-    refreshToken?: string,
+    refreshToken: Option<string> = None,
 ): Promise<HfsResult<[string, JWTPayload]>> => {
-    let workingRefreshToken;
+    let workingRefreshToken: string;
 
-    if (!refreshToken) {
+    if (refreshToken.none) {
         const fromCookieOpt = await getRefreshTokenFromCookie();
 
         if (fromCookieOpt.none) {
             const err: HfsError = {
                 status: 401,
                 message: JwtError.notFound(REFRESH_TOKEN),
+                cause: None,
             }
             return Err(err);
         }
         workingRefreshToken = fromCookieOpt.val;
     } else {
-        workingRefreshToken = refreshToken;
+        workingRefreshToken = refreshToken.val;
     }
     const payloadRes = await verifyJWT(
         authConfig.refresh_token_secret,
@@ -228,6 +233,7 @@ export const getRefreshTokenAndVerify = async (
             const err: HfsError = {
                 status: 401,
                 message: JwtError.expired(REFRESH_TOKEN),
+                cause: None,
             };
             return Err(
                 err,
@@ -237,6 +243,7 @@ export const getRefreshTokenAndVerify = async (
             const err: HfsError = {
                 status: 401,
                 message: JwtError.invalid(REFRESH_TOKEN),
+                cause: None,
             };
             return Err(
                 err,

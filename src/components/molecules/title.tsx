@@ -1,9 +1,11 @@
+import { Option } from "ts-results";
+
 export default function Title({
     title,
     subtitle,
 }: {
   title: string;
-  subtitle?: string;
+  subtitle: Option<string>;
 }) {
     return (
         <>

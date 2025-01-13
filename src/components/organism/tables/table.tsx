@@ -1,48 +1,51 @@
+"use client";
+
 import React from "react";
 import { Spinner } from "@nextui-org/spinner";
-import { Table, TableBody, TableHeader, TableRow, TableColumn, TableCell, getKeyValue } from "@nextui-org/table";
+import { Table, TableBody, TableHeader, TableRow, TableColumn, TableCell, getKeyValue, SortDescriptor } from "@nextui-org/table";
 import {useInfiniteScroll} from "@nextui-org/use-infinite-scroll";
 import {useAsyncList} from "@react-stately/data";
 
-import { TableColumns, TableResponse, TableSorting } from "@/types/table";
-import { HfsResult } from "@/lib/errors/HfsError";
+import { TableColumns, TableResponse, TableSort } from "@/types/table";
 
 export default function BaseTable<T extends object>({
     columns,
-    fetchFn,
+    fetchUrl
 }: {
     columns: TableColumns<T>;
-    fetchFn: (
-        sorting: TableSorting<T>,
-        search: string
-    ) => Promise<HfsResult<TableResponse<T>>>;
+    fetchUrl: URL;
 }) {
     const [isLoading, setIsLoading] = React.useState<boolean>(true);
     const [hasMore, setHasMore] = React.useState<boolean>(false);
-    const [sorting, setSorting] = React.useState<TableSorting<T>>([]);
-    const [search, setSearch] = React.useState<string>("");
+    const [sorting, setSorting] = React.useState<TableSort<T>|"">("");
+    const [search, _setSearch] = React.useState<string>("");
+    // const [nextPageUrl, setNextPageUrl] = React.useState<string>("");
 
-    let list = useAsyncList<T>({
-        async load({signal: _signal, cursor}) {
+    const list = useAsyncList<T>({
+        async load({signal, cursor}) {
             if (cursor) {
                 setIsLoading(false);
             }
 
             // If no cursor is available, then we're loading the first page.
             // Otherwise, the cursor is the next URL to load, as returned from the previous page.
-            const res = await fetchFn(sorting, search);
-            console.log(res);
-
-
-            if (res.err) {
-                throw new Error(res.val.message);
+            if (sorting) {
+                fetchUrl.searchParams.set("sorting", JSON.stringify(sorting));
             }
+            fetchUrl.searchParams.set("search", search);
 
-            setHasMore(res.val.meta.next !== null);
+            console.log("fetchUrl", fetchUrl.toString());
+            console.log("cursor", cursor);
+
+            const res = await fetch(cursor || fetchUrl.toString(), {signal});
+            const data: TableResponse<T> = (await res.json()).data;
+
+            setHasMore(data.meta.next.some);
+            // setNextPageUrl(data.meta.next);
 
             return {
-                items: res.val.data,
-                cursor: res.val.meta.next,
+                items: data.data,
+                cursor: data.meta.next.unwrapOr(""),
             };
         },
     });
@@ -51,8 +54,6 @@ export default function BaseTable<T extends object>({
         hasMore,
         onLoadMore: list.loadMore,
     });
-    console.log(list.items);
-
 
     return (
         <Table
@@ -67,15 +68,23 @@ export default function BaseTable<T extends object>({
                 ) : null
             }
             classNames={{
-                base: "max-h-[520px] overflow-scroll",
-                table: "min-h-[400px]",
+                base: "max-h-[620px]",
+                table: "min-h-[500px]",
+            }}
+            sortDescriptor={sorting as SortDescriptor}
+            onSortChange={(sorting) => {
+                console.log("sort", sorting as TableSort<T>);
+
+                setSorting(sorting as TableSort<T>);
+                list.reload();
             }}
         >
             <TableHeader>
                 {columns.map((column) => (
                     <TableColumn
-                        key={column.key?.toString()}
+                        key={column.key.toString()}
                         id={column.key?.toString()}
+                        allowsSorting={column.enableSorting}
                     >
                         {column.header}
                     </TableColumn>
@@ -86,11 +95,30 @@ export default function BaseTable<T extends object>({
                 items={list.items}
                 loadingContent={<Spinner color="white" />}
             >
-                {(item: T) => (
-                    <TableRow key={item.key}>
-                        {(columnKey) => <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
-                    </TableRow>
-                )}
+                {(item: T) => {
+                    const index = list.items.indexOf(item);
+
+                    return (
+                        <TableRow key={index}>
+                            {(columnKey) => {
+                                const column = columns.find((c) => c.key === columnKey);
+                                if (column?.cell) {
+                                    return (
+                                        <TableCell>
+                                            {column.cell({value: getKeyValue(item, columnKey), row: item, index})}
+                                        </TableCell>
+                                    );
+                                }
+
+                                return (
+                                    <TableCell>
+                                        {getKeyValue(item, columnKey)}
+                                    </TableCell>
+                                )
+                            }}
+                        </TableRow>
+                    )
+                }}
             </TableBody>
         </Table>
     );

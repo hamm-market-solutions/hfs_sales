@@ -1,5 +1,7 @@
+import { Option } from "ts-results";
+
 export type HfsRequest = {
-  id?: number;
+  id: Option<number>;
 };
 
 export type LoginRequest = {

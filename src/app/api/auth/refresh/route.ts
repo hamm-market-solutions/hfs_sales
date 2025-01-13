@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Ok } from "ts-results";
+import { Ok, Option } from "ts-results";
 
 import { updateAccessToken } from "@/lib/models/user";
 import { getRefreshTokenAndVerify } from "@/lib/auth/jwt";
@@ -37,7 +37,7 @@ export async function POST(
     request: NextRequest,
 ): Promise<NextResponse<HfsResponse<{ accessToken: string }>>> {
     const post = await request.json();
-    const optRefreshToken: string | undefined = post.refreshToken;
+    const optRefreshToken: Option<string> = post.refreshToken;
     const refreshTokenRes = await getRefreshTokenAndVerify(optRefreshToken);
 
     if (refreshTokenRes.err) {

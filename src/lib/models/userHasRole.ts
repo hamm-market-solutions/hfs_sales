@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import { Err, Ok } from "ts-results";
+import { Err, None, Ok, Option, Some } from "ts-results";
 
 import { HfsResult, throwToHfsError } from "../errors/HfsError";
 import ModelError from "../errors/ModelError";
@@ -10,7 +10,7 @@ import { role, userHasRole } from "@/db/schema";
 export async function getUserRoles(userId: number): Promise<
   HfsResult<{
     userId: number;
-    roles: { roleId: number; roleName: string | null }[];
+    roles: { roleId: number; roleName: Option<string> }[];
   }>
 > {
     try {
@@ -20,13 +20,19 @@ export async function getUserRoles(userId: number): Promise<
             .where(eq(userHasRole.userId, userId))
             .leftJoin(role, eq(userHasRole.roleId, role.id));
 
-        return Ok({ userId: userId, roles: userRoles });
+        return Ok({
+            userId: userId,
+            roles: userRoles.map((ur) => ({
+                roleId: ur.roleId,
+                roleName: ur.roleName ? Some(ur.roleName) : None,
+            }))
+        });
     } catch (error) {
         return Err(
             throwToHfsError(
                 500,
                 ModelError.drizzleError("user_has_roles"),
-        error as Error,
+                Some(error as Error),
             ),
         );
     }
@@ -39,5 +45,5 @@ export async function isUserAdmin(userId: number): Promise<HfsResult<boolean>> {
         return Err(userRoles.val);
     }
 
-    return Ok(userRoles.val.roles.some((r) => r.roleName === "admin"));
+    return Ok(userRoles.val.roles.some((r) => r.roleName === Some("admin")));
 }

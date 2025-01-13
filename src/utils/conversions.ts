@@ -1,26 +1,20 @@
 import { NextResponse } from "next/server";
 import { SafeParseReturnType } from "zod";
-import { Err, Ok, Option } from "ts-results";
-import { SortingState } from "@tanstack/react-table";
+import { Err, None, Ok, Option, Some } from "ts-results";
 import { MySqlColumn } from "drizzle-orm/mysql-core";
 import { asc, desc, SQL } from "drizzle-orm";
 import { NextApiResponse } from "next";
 
 import { HfsResult } from "../lib/errors/HfsError";
 import { HfsResponse } from "../types/responses";
-
-import {
-    ForecastTableColumns,
-    ForecastTableRequest,
-    TableResponse,
-} from "@/types/table";
+import { TableSort } from "@/types/table";
 
 export function resultToResponse<T extends object, R = HfsResponse<T>>(
     result: HfsResult<T>,
-    response?: NextApiResponse<R>,
+    response: Option<NextApiResponse<R>> = None,
 ): NextResponse<R> {
-    if (response) {
-        response.status(result.ok ? 200 : result.val.status);
+    if (response.some) {
+        response.val.status(result.ok ? 200 : result.val.status);
     }
     if (result.ok) {
         return NextResponse.json({
@@ -35,31 +29,11 @@ export function resultToResponse<T extends object, R = HfsResponse<T>>(
     }
 }
 
-export async function getForecastTableData({
-    start,
-    size,
-    sorting,
-    country,
-    brand,
-    season_code,
-}: ForecastTableRequest): Promise<TableResponse<ForecastTableColumns>> {
-    const data = await getForecastTableData({
-        start,
-        size,
-        sorting,
-        country,
-        brand,
-        season_code,
-    });
-
-    return data;
-}
-
 export function schemaToResult<Output, Input = Output>(
     schema: SafeParseReturnType<Input, Output>,
 ): HfsResult<Output> {
     if (!schema.success) {
-        return Err({ status: 400, message: schema.error?.errors[0].message });
+        return Err({ status: 400, message: schema.error?.errors[0].message, cause: None });
     }
 
     return Ok(schema.data!);
@@ -70,24 +44,24 @@ export function optionToNotFound<T>(
     errorMessage = "resource not found",
 ): HfsResult<T> {
     if (option.none || option.val === null || option.val === undefined) {
-        return Err({ status: 404, message: errorMessage });
+        return Err({ status: 404, message: errorMessage, cause: None });
     }
 
     return Ok(option.val);
 }
 
-export const sortingStateToDrizzle = (
+export const sortingStateToDrizzle = <T extends object>(
     drizzleSelect: { [key: string]: MySqlColumn | SQL },
-    sorting: SortingState,
+    sort: TableSort<T>,
 ) => {
     const sortings = [];
 
-    for (const sort of sorting) {
-        if (sort.desc) {
-            sortings.push(desc(drizzleSelect[snakeCaseToCamelCase(sort.id)]));
-        } else {
-            sortings.push(asc(drizzleSelect[snakeCaseToCamelCase(sort.id)]));
-        }
+    console.log("ERVER", sort);
+
+    if (sort.direction == "descending") {
+        sortings.push(desc(drizzleSelect[snakeCaseToCamelCase(sort.column as string)]));
+    } else {
+        sortings.push(asc(drizzleSelect[snakeCaseToCamelCase(sort.column as string)]));
     }
 
     return sortings;
@@ -176,11 +150,15 @@ export const toCamelCase = (input: string) => {
         .join('');
 };
 
-export const seasonToShort = (season: string) => {
+export const seasonToShort = (season: string): Option<string> => {
+    if (!season) {
+        return None;
+    }
+
     const [firstSeason, secondSeasonAndYear] = season?.split("/") ?? [];
     const [secondSeason, year] = secondSeasonAndYear.split(" ") ?? [];
     const firstLetterFirstSeason = firstSeason?.charAt(0).toUpperCase();
     const firstLetterSecondSeason = secondSeason?.charAt(0).toUpperCase();
 
-    return `${firstLetterFirstSeason}/${firstLetterSecondSeason} ${year}`;
+    return Some(`${firstLetterFirstSeason}/${firstLetterSecondSeason} ${year}`);
 };

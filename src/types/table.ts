@@ -1,43 +1,52 @@
-export type TableResponse<T extends object> = {
+import React from "react";
+import { Option } from "ts-results";
+
+export interface TableResponse<T extends object> {
   data: T[];
-  meta: { totalRowCount: number, next?: string, previous?: string };
+  meta: { totalRowCount: number, next: Option<string>, previous: Option<string> };
 };
 
-export type TableSorting<T> = { id: keyof T; desc: boolean }[];
+export type TableSortDirection = "ascending" | "descending";
 
-export type TableRequest<T> = {
-  sorting: TableSorting<T>;
-  search?: string;
+export type TableSort<T> = { column: keyof T, direction: TableSortDirection };
+
+export interface TableRequest<T> {
+  page: number;
+  sorting: Option<TableSort<T>>;
+  search: Option<string>;
 };
 
 export type TableColumns<T> = {
   header: string;
-  key?: keyof T;
-  cell?: (cell: any) => React.ReactNode;
-  enableSorting?: boolean;
+  key: keyof T;
+  enableSorting: boolean;
+  cell?: (props: {value: unknown; row: T; index: number}) => React.ReactNode;
   sortingFn?: (a: { original: T }, b: { original: T }) => number;
-  size?: number;
+  size: Option<number>;
+  index: Option<number>;
 }[];
 
-export type ForecastTableRequest = {
+export interface ForecastTableRequest extends TableRequest<ForecastTableColumns> {
   country: string;
   brand: number;
   season_code: number;
-} & TableRequest<ForecastTableColumns>;
+};
 
 export interface ForecastTableColumns {
-  img_src: [string?, string?, string?];
-  brand_no: string | null;
-  brand_name: string | null;
-  season_code: number | null;
+  img_src: [Option<string>, Option<string>, Option<string>];
   pre_collection: number;
   main_collection: number;
   late_collection: number;
-  Special_collection: number;
-  item_no: string | null;
-  description: string | null;
+  special_collection: number;
+  drop: number;
   color_code: string;
-  rrp: number | null;
-  wsp: number | null;
-  forecast_amount: number | null;
+  brand_no: Option<string>;
+  brand_name: Option<string>;
+  season_code: Option<number>;
+  season_name: Option<string>;
+  item_no: Option<string>;
+  description: Option<string>;
+  rrp: Option<number>;
+  wsp: Option<number>;
+  forecast_amount: Option<number>;
 };

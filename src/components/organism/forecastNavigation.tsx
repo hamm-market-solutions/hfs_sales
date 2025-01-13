@@ -9,15 +9,16 @@ import TabNavigation from "../molecules/tabNavigation";
 import SeasonNavigation from "../molecules/seasonNavigation";
 
 import { routes } from "@/config/routes";
+import { Option } from "ts-results";
 
 export default function ForecastNavigation({
     userCountries,
     brands,
     seasons,
 }: {
-  userCountries: { countries: { code: string; name?: string }[] };
+  userCountries: { countries: { code: string; name: Option<string> }[] };
   brands: { no: string; code: string; name: string }[];
-  seasons: { code: number; name?: string }[];
+  seasons: { code: number; name: Option<string> }[];
 }) {
     const router = useRouter();
     const [country, setCountry] = useState("");
