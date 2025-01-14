@@ -11,7 +11,7 @@ export default function TableFilters<T extends object>({ columns, appliedFilters
 
     return (
         <>
-            <Button onClick={onOpen}>Filter</Button>
+            <Button onClick={onOpen} className="bg-tertiary text-white font-bold">Filters</Button>
             <Modal
                 backdrop="blur"
                 isOpen={isOpen}

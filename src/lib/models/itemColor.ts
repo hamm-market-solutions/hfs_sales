@@ -75,10 +75,7 @@ export const getForecastTableData = async ({
         const orderBySelectClone = _.cloneDeep(select);
         const whereSelectClone = _.cloneDeep(select);
         const orderBy = tableSortingToDrizzle(orderBySelectClone, sorting);
-        console.log("filters", filters);
         const filtersWhere = tableFiltersToDrizzle(whereSelectClone, filters);
-        console.log("filterWhere", filtersWhere);
-
         const data = await db
             .select(select)
             .from(sItemColor)

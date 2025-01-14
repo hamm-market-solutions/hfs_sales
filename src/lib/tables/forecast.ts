@@ -28,8 +28,6 @@ export const getForecastTableDataMapper = async ({
         season_code,
         filters,
     }));
-    console.log(forecastData);
-
     const forecastDataCount = forecastData[0].totalRowCount ?? 0;
 
     const [nextUrl, previousUrl] = buildTableUrl<ForecastTableColumns, ForecastTableRequest>(forecastDataCount, "/api/sales/reports/forecasts/table", {

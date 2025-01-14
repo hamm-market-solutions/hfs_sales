@@ -60,7 +60,7 @@ export default function BaseTable<T extends object>({
     });
 
     return (
-        <>
+        <div className="table-container flex flex-col gap-2">
             <TableFilters columns={columns} appliedFilters={filters} setFilters={(filters: TableFilter<T>[]) => {
                 setFilters(filters);
                 setUseStartFetchUrl(true);
@@ -135,6 +135,6 @@ export default function BaseTable<T extends object>({
                     }}
                 </TableBody>
             </Table>
-        </>
+        </div>
     );
 }
