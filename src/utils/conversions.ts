@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { SafeParseReturnType } from "zod";
 import { MySqlColumn } from "drizzle-orm/mysql-core";
-import { asc, desc, eq, like, SQL } from "drizzle-orm";
+import { asc, desc, like, SQL } from "drizzle-orm";
 import { NextApiResponse } from "next";
 import { Option } from "fp-ts/Option";
 

@@ -8,7 +8,7 @@ import { getOrUpdateAccessToken } from "@/lib/models/user";
 // import { getForecastTableDataMapper } from "@/lib/tables/forecast";
 import { Err, isErr, Ok, Some } from "@/utils/fp-ts";
 import { fromNullable } from "fp-ts/lib/Option";
-import { ForecastTableColumns, TableResponse, TableSort } from "@/types/table";
+import { ForecastTableColumns, TableFilter, TableResponse, TableSort } from "@/types/table";
 import { getForecastTableDataMapper } from "@/lib/tables/forecast";
 
 export async function getUserCountriesAction(): Promise<HfsResult<GetUserCountriesOkResponse>> {
@@ -44,7 +44,7 @@ export async function getUserCountriesAction(): Promise<HfsResult<GetUserCountri
 
 export const getForecastTableData = async (
     sorting: TableSort<ForecastTableColumns>,
-    search: string,
+    filters: TableFilter<ForecastTableColumns>[],
     page: number,
     country: string,
     brand: number,
@@ -66,7 +66,7 @@ export const getForecastTableData = async (
         country,
         brand,
         season_code: seasonCode,
-        filters: Some(search),
+        filters: Some(filters),
         page,
     });
     console.log(data);
