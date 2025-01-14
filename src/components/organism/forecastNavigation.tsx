@@ -9,7 +9,7 @@ import TabNavigation from "../molecules/tabNavigation";
 import SeasonNavigation from "../molecules/seasonNavigation";
 
 import { routes } from "@/config/routes";
-import { Option } from "ts-results";
+import { Option } from "fp-ts/Option";
 
 export default function ForecastNavigation({
     userCountries,

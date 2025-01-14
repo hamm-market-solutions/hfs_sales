@@ -3,7 +3,8 @@ import { CardFooter } from "@nextui-org/card";
 import SeasonImage from "../atoms/seasonImage";
 
 import { PicCards } from "./picCards";
-import { None, Option, Some } from "ts-results";
+import { Option } from "fp-ts/Option";
+import { None, Some, unwrapOr } from "@/utils/fp-ts";
 
 export default function SeasonNavigation({
     seasons,
@@ -18,7 +19,7 @@ export default function SeasonNavigation({
         picComponent: Some(SeasonImage({ code: season.code, name: season.name, className: None })),
         footer: Some((
             <CardFooter className="flex flex-col items-start">
-                <p className="text-tiny uppercase font-bold">{season.name}</p>
+                <p className="text-tiny uppercase font-bold">{unwrapOr(season.name, "")}</p>
                 <small className="text-primary">{season.code}</small>
             </CardFooter>
         )),

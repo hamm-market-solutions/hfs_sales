@@ -1,26 +1,30 @@
 import React from "react";
-import { Option } from "ts-results";
+import { Option } from "fp-ts/Option";
 
 export interface TableResponse<T extends object> {
   data: T[];
-  meta: { totalRowCount: number, next: Option<string>, previous: Option<string> };
+  meta: { totalRowCount: number, next?: string, previous?: string };
 };
 
 export type TableSortDirection = "ascending" | "descending";
 
-export type TableSort<T> = { column: keyof T, direction: TableSortDirection };
+export type TableSort<T extends object> = { column: keyof T, direction: TableSortDirection };
 
-export interface TableRequest<T> {
+export interface TableRequest<T extends object> {
   page: number;
   sorting: Option<TableSort<T>>;
   search: Option<string>;
 };
 
-export type TableColumns<T> = {
+export type TableColumns<T extends object> = {
   header: string;
   key: keyof T;
   enableSorting: boolean;
-  cell?: (props: {value: unknown; row: T; index: number}) => React.ReactNode;
+  cell?: (props: {
+    value: any;
+    row: T;
+    index: number
+  }) => React.ReactNode;
   sortingFn?: (a: { original: T }, b: { original: T }) => number;
   size: Option<number>;
   index: Option<number>;

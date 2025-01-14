@@ -1,6 +1,7 @@
+import { unwrapOr } from "@/utils/fp-ts";
 import { Image } from "@nextui-org/image";
 import { Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from "@nextui-org/modal";
-import { Option } from "ts-results";
+import { Option } from "fp-ts/Option";
 
 export default function ProductImage({
     itemNo,
@@ -11,7 +12,7 @@ export default function ProductImage({
     colorCode: Option<string>;
 }) {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
-    const url = `https://hfs.hamm-footwear.com/purchase/item/image?item_no=${itemNo.unwrapOr("")}&color=${colorCode.unwrapOr("")}`;
+    const url = `https://hfs.hamm-footwear.com/purchase/item/image?item_no=${unwrapOr(itemNo, "")}&color=${unwrapOr(colorCode, "")}`;
 
     return (
         <>

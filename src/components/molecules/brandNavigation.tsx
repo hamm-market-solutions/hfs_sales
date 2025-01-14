@@ -4,7 +4,7 @@ import { PicCards, PicCardsData } from "./picCards";
 
 import { brandLogos } from "@/lib/brands";
 import { Brand } from "@/types/brands";
-import { None, Some } from "ts-results";
+import { None, Some } from "@/utils/fp-ts";
 
 export function BrandNavigation({
     brands,

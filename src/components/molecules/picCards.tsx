@@ -1,7 +1,8 @@
+import { unwrapOr } from "@/utils/fp-ts";
 import { Card, CardBody } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import React from "react";
-import { Option } from "ts-results";
+import { Option } from "fp-ts/Option";
 
 export type PicCardsData = {
     key: string;
@@ -34,14 +35,14 @@ export function PicCards({
                     {data.src ? (
                         <Image
                             alt={data.key}
-                            className={`max-w-48 max-h-36 ${data.bgColor.unwrapOr("")}`}
+                            className={`max-w-48 max-h-36 ${unwrapOr(data.bgColor, "")}`}
                             src={data.src}
                         />
                     ) : (
-                        data.picComponent
+                        unwrapOr(data.picComponent, null)
                     )}
                 </CardBody>
-                {data.footer}
+                {unwrapOr(data.footer, null)}
             </Card>,
         );
     }

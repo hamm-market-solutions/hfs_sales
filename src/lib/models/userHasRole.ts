@@ -1,11 +1,11 @@
 import { eq } from "drizzle-orm";
-import { Err, None, Ok, Option, Some } from "ts-results";
-
+import { Option} from "fp-ts/Option";
 import { HfsResult, throwToHfsError } from "../errors/HfsError";
 import ModelError from "../errors/ModelError";
 
 import { db } from "@/db";
 import { role, userHasRole } from "@/db/schema";
+import { Err, isErr, None, Ok, Some, unwrapOr } from "@/utils/fp-ts";
 
 export async function getUserRoles(userId: number): Promise<
   HfsResult<{
@@ -41,9 +41,9 @@ export async function getUserRoles(userId: number): Promise<
 export async function isUserAdmin(userId: number): Promise<HfsResult<boolean>> {
     const userRoles = await getUserRoles(userId);
 
-    if (userRoles.err) {
-        return Err(userRoles.val);
+    if (isErr(userRoles)) {
+        return Err(userRoles.right);
     }
 
-    return Ok(userRoles.val.roles.some((r) => r.roleName === Some("admin")));
+    return Ok(userRoles.left.roles.some((r) => unwrapOr(r.roleName, "") === "admin"));
 }

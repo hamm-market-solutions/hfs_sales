@@ -1,10 +1,10 @@
 "use server";
 
 import { compareSync } from "bcrypt-ts";
-import { Err, None, Ok, Option, Some } from "ts-results";
 import { decodeJwt, JWTPayload } from "jose";
 import { cookies } from "next/headers";
 import { eq } from "drizzle-orm";
+import { map, Option } from "fp-ts/Option";
 
 import UserModelError from "../errors/UserModelError";
 import JwtError, { ACCESS_TOKEN, REFRESH_TOKEN } from "../errors/JwtError";
@@ -21,6 +21,8 @@ import { ACCESS_TOKEN_LIFETIME, REFRESH_TOKEN_LIFETIME } from "@/config/auth";
 import { optionToNotFound } from "@/utils/conversions";
 import { user as userTable } from "@/db/schema";
 import { db } from "@/db";
+import { Err, isErr, isNone, None, Ok, Some, unwrap } from "@/utils/fp-ts";
+import { pipe } from "fp-ts/lib/function";
 
 export const getOptUserById = async (
     id: number,
@@ -67,17 +69,17 @@ export const updateRefreshToken = async (
 ): Promise<HfsResult<[string, JWTPayload]>> => {
     const user = await getOptUserById(userId);
 
-    if (user.none) {
-        return Err({ status: 404, message: UserModelError.notFound("user") });
+    if (isNone(user)) {
+        return Err({ status: 404, message: UserModelError.notFound("user"), cause: None });
     }
     const refreshTokenExp = Date.now() / 1000 + REFRESH_TOKEN_LIFETIME;
     const refreshTokenRes = await signJWT(
         authConfig.refresh_token_secret,
-        { sub: user.val.id.toString() },
+        { sub: user.value.id.toString() },
         { exp: refreshTokenExp },
     );
 
-    if (refreshTokenRes.err) {
+    if (isErr(refreshTokenRes)) {
         return refreshTokenRes;
     }
     try {
@@ -86,11 +88,11 @@ export const updateRefreshToken = async (
         //   data: { refresh_token: refreshTokenRes.val },
         // });
     } catch (error) {
-        return Err({ status: 500, message: UserModelError.updateError("refresh token"), error: error });
+        return Err({ status: 500, message: UserModelError.updateError("refresh token"), cause: Some(error as Error) });
     }
-    const decoded = decodeJWT(refreshTokenRes.val).unwrap();
+    const decoded = unwrap(decodeJWT(refreshTokenRes.left));
 
-    return Ok([refreshTokenRes.val, decoded]);
+    return Ok([refreshTokenRes.left, decoded]);
 };
 
 export const getOrUpdateRefreshToken = async (
@@ -98,11 +100,11 @@ export const getOrUpdateRefreshToken = async (
 ): Promise<HfsResult<[string, JWTPayload]>> => {
     const verifyRes = await getRefreshTokenAndVerify();
 
-    if (verifyRes.err) {
+    if (isErr(verifyRes)) {
         // If the refresh token is expired, update the refresh token. If the refresh token is invalid, return the error.
         if (
-            verifyRes.val.message == JwtError.expired() ||
-            verifyRes.val.message == JwtError.notFound(REFRESH_TOKEN)
+            verifyRes.right.message == JwtError.expired() ||
+            verifyRes.right.message == JwtError.notFound(REFRESH_TOKEN)
         ) {
             return await updateRefreshToken(userId);
         }
@@ -110,7 +112,7 @@ export const getOrUpdateRefreshToken = async (
         return verifyRes;
     }
 
-    return Ok(verifyRes.val);
+    return Ok(verifyRes.left);
 };
 
 /**
@@ -126,7 +128,7 @@ export const updateAccessToken = async (
 > => {
     const refreshTokenRes = await getOrUpdateRefreshToken(userId);
 
-    if (refreshTokenRes.err) {
+    if (isErr(refreshTokenRes)) {
         return refreshTokenRes;
     }
     const accessTokenExp = Date.now() / 1000 + ACCESS_TOKEN_LIFETIME;
@@ -136,15 +138,15 @@ export const updateAccessToken = async (
         { exp: accessTokenExp },
     );
 
-    if (newAccessTokenRes.err) {
+    if (isErr(newAccessTokenRes)) {
         return newAccessTokenRes;
     }
 
-    const accessTokenPayload = decodeJWT(newAccessTokenRes.val).unwrap();
+    const accessTokenPayload = unwrap(decodeJWT(newAccessTokenRes.left));
 
     return Ok({
-        accessToken: [newAccessTokenRes.val, accessTokenPayload],
-        refreshToken: refreshTokenRes.val,
+        accessToken: [newAccessTokenRes.left, accessTokenPayload],
+        refreshToken: refreshTokenRes.left,
     });
 };
 
@@ -159,36 +161,36 @@ export const getOrUpdateAccessToken = async (): Promise<
 > => {
     const accessTokenRes = await getAccessTokenAndVerify();
 
-    if (accessTokenRes.err) {
-        if (accessTokenRes.val.message == JwtError.expired(ACCESS_TOKEN)) {
+    if (isErr(accessTokenRes)) {
+        if (accessTokenRes.right.message == JwtError.expired(ACCESS_TOKEN)) {
             const accessToken = (await cookies()).get("accessToken")!;
             const decodeRes = decodeJwt(accessToken.value);
 
             return await updateAccessToken(parseInt(decodeRes.sub!));
         }
-        if (accessTokenRes.val.message == JwtError.notFound(ACCESS_TOKEN)) {
+        if (accessTokenRes.right.message == JwtError.notFound(ACCESS_TOKEN)) {
             const refreshTokenRes = await getRefreshTokenAndVerify();
 
-            if (refreshTokenRes.err) {
+            if (isErr(refreshTokenRes)) {
                 return refreshTokenRes;
             }
 
-            return await updateAccessToken(parseInt(refreshTokenRes.val[1].sub!));
+            return await updateAccessToken(parseInt(refreshTokenRes.left[1].sub!));
         }
 
         return accessTokenRes;
     }
     const refreshTokenRes = await getOrUpdateRefreshToken(
-        parseInt(accessTokenRes.val[1].sub!),
+        parseInt(accessTokenRes.left[1].sub!),
     );
 
-    if (refreshTokenRes.err) {
+    if (isErr(refreshTokenRes)) {
         return refreshTokenRes;
     }
 
     return Ok({
-        accessToken: accessTokenRes.val,
-        refreshToken: refreshTokenRes.val,
+        accessToken: accessTokenRes.left,
+        refreshToken: refreshTokenRes.left,
     });
 };
 
@@ -197,12 +199,16 @@ export async function verifyPassword(
     loginPassword: string,
 ): Promise<HfsResult<true>> {
     const userOpt = await getOptUserById(loginUserId);
-    const doPasswordsMatch = userOpt.map((u) =>
-        compareSync(loginPassword, u.password),
-    );
+    // const doPasswordsMatch = userOpt.map((u) =>
+    //     compareSync(loginPassword, u.password),
+    // );
+    const doPasswordsMatch = pipe(
+        userOpt,
+        map((u) => compareSync(loginPassword, u.password)),
+    )
 
-    if (doPasswordsMatch.none || !doPasswordsMatch.val) {
-        return Err({ status: 401, message: UserModelError.passwordMismatch() });
+    if (isNone(doPasswordsMatch) || !doPasswordsMatch.value) {
+        return Err({ status: 401, message: UserModelError.passwordMismatch(), cause: None });
     }
 
     return Ok(true);
@@ -213,11 +219,11 @@ export async function getCurrentUser(): Promise<
   > {
     const accessTokenRes = await getOrUpdateAccessToken();
 
-    if (accessTokenRes.err) {
+    if (isErr(accessTokenRes)) {
         return accessTokenRes;
     }
     const user = await getOptUserById(
-        parseInt(accessTokenRes.val.accessToken[1].sub!),
+        parseInt(accessTokenRes.left.accessToken[1].sub!),
     );
 
     return optionToNotFound(user, "user not found");

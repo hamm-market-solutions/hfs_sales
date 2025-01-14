@@ -1,4 +1,5 @@
-import { Option } from "ts-results";
+import { unwrapOr } from "@/utils/fp-ts";
+import { Option } from "fp-ts/Option";
 
 export default function Title({
     title,
@@ -10,7 +11,7 @@ export default function Title({
     return (
         <>
             <h2 className="title text-2xl text-secondary font-bold">{title}</h2>
-            <p className="subtitle text-sm text-primary mb-4">{subtitle}</p>
+            <p className="subtitle text-sm text-primary mb-4">{unwrapOr(subtitle, "")}</p>
         </>
     );
 }

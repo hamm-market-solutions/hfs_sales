@@ -7,13 +7,14 @@ import Form from "next/form";
 
 import Title from "@/components/molecules/title";
 import { handleLogin } from "@/actions/auth/login";
+import { None, unwrapOr } from "@/utils/fp-ts";
 
 export default function Login() {
-    const [error, setError, isPending] = useActionState(handleLogin, null);
+    const [error, setError, isPending] = useActionState(handleLogin, None);
 
     return (
         <div className="login-page">
-            <Title title="Login" />
+            <Title subtitle={None} title="Login" />
             <Form action={setError} className="flex flex-col gap-2">
                 <Input
                     isRequired
@@ -34,7 +35,7 @@ export default function Login() {
                 </Button>
                 {isPending && <p>Loading...</p>}
                 {error && !isPending && (
-                    <p className="text-red">{error.message}</p>
+                    <p className="text-red">{unwrapOr(error, { status: 500, message: "", cause: None }).message}</p>
                 )}
             </Form>
         </div>

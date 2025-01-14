@@ -1,4 +1,4 @@
-import { Option } from "ts-results";
+import { Option } from "fp-ts/Option";
 
 export type HfsRequest = {
   id: Option<number>;

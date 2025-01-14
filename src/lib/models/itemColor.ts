@@ -1,4 +1,3 @@
-import { Err, Ok, Some } from "ts-results";
 import { and, count, eq, sql } from "drizzle-orm";
 import _ from "lodash";
 
@@ -10,6 +9,7 @@ import { db } from "@/db";
 import { brand, sItem, sItemColor, sSeason, } from "@/db/schema";
 import { sortingStateToDrizzle } from "@/utils/conversions";
 import { TABLE_FETCH_SIZE } from "../tables/constants";
+import { Err, Ok, Some } from "@/utils/fp-ts";
 
 export const getForecastTableCount = async ({
     brand,
@@ -53,7 +53,7 @@ export const getForecastTableData = async ({
     country,
     brand: brandNo,
     season_code,
-    search,
+    search: _search,
 }: ForecastTableRequest) => {
     try {
         const select = {
@@ -103,13 +103,7 @@ export const getForecastTableData = async ({
         ),
         };
         const orderBySelectClone = _.cloneDeep(select);
-        const orderBy = () => {if (sorting.none) {
-            return []
-        } else {
-            return  sortingStateToDrizzle(orderBySelectClone, sorting.val);
-        }};
-
-        console.log("search:", search);
+        const orderBy = sortingStateToDrizzle(orderBySelectClone, sorting);
         const data =await db
             .select(select)
             .from(sItemColor)
@@ -123,7 +117,7 @@ export const getForecastTableData = async ({
                 ),
             )
             .groupBy(sItemColor.itemNo, sItemColor.colorCode)
-            .orderBy(...orderBy())
+            .orderBy(...orderBy)
             .limit(TABLE_FETCH_SIZE)
             .offset((page - 1) * TABLE_FETCH_SIZE);
 

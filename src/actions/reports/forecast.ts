@@ -1,36 +1,41 @@
 "use server";
 
-import { Ok } from "ts-results";
-
 import { getUserCountries} from "@/lib/models/userHasCountry";
 import { GetUserCountriesOkResponse } from "@/types/responses";
 import { HfsResult } from "@/lib/errors/HfsError";
 import { getOrUpdateAccessToken } from "@/lib/models/user";
 // import { ForecastTableColumns, TableResponse, TableSorting } from "@/types/table";
 // import { getForecastTableDataMapper } from "@/lib/tables/forecast";
+import { Err, isErr, Ok } from "@/utils/fp-ts";
+import { fromNullable } from "fp-ts/lib/Option";
 
-export async function getUserCountriesAction(): Promise<
-    HfsResult<GetUserCountriesOkResponse>
-    > {
+export async function getUserCountriesAction(): Promise<HfsResult<GetUserCountriesOkResponse>> {
     const payloadRes = await getOrUpdateAccessToken();
 
-    if (payloadRes.err) {
+    if (isErr(payloadRes)) {
         return payloadRes;
     }
-    const userId = Number(payloadRes.val.accessToken[1].sub!);
+    const userId = Number(payloadRes.left.accessToken[1].sub!);
     const userCountriesRes = await getUserCountries(userId);
 
-    if (userCountriesRes.err) {
-        return userCountriesRes;
+    if (isErr(userCountriesRes)) {
+        return Err(userCountriesRes.right);
     }
 
     return Ok({
         status: 200,
         data: {
-            countries: userCountriesRes.val.map((userCountry) => ({
+            // countries: pipe(
+            //     userCountriesRes.left.map,
+            //     map((userCountry) => ({
+            //         code: userCountry.user_has_country.countryCode,
+            //         name: userCountry.s_country?.name,
+            //     })),
+            // ),
+            countries: userCountriesRes.left.map((userCountry) => ({
                 code: userCountry.user_has_country.countryCode,
-                name: userCountry.s_country?.name,
-            })),
+                name: fromNullable(userCountry.s_country?.name),
+            }))
         },
     });
 }

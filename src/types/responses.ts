@@ -1,4 +1,4 @@
-import { Option } from "ts-results";
+import { Option } from "fp-ts/Option";
 
 export type HfsResponse<T extends object> =
   | HfsOkResponse<T>

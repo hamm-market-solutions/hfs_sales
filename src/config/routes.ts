@@ -32,8 +32,7 @@ export const routePermissions = {
     [routes.login]: ["guest"],
     [routes.dashboard]: ["user"],
     [routes.sales.reports.forecasts.base]: ["forecast.view"],
-    [routes.sales.reports.forecasts["[countryId]"]["[brandId]"]["[seasonCode]"]]:
-    ["forecast.view"],
+    [routes.sales.reports.forecasts["[countryId]"]["[brandId]"]["[seasonCode]"]]: ["forecast.view"],
 };
 
 export const apiRoutePermissions = {

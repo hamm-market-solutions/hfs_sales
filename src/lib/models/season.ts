@@ -1,6 +1,6 @@
 "use server";
 
-import { Err, None, Ok, Option, Some } from "ts-results";
+import { Option } from "fp-ts/Option";
 import { desc } from "drizzle-orm";
 
 import  { HfsResult, throwToHfsError } from "../errors/HfsError";
@@ -8,6 +8,7 @@ import SeasonModelError from "../errors/SeasonModelError";
 
 import { db } from "@/db";
 import { sSeason } from "@/db/schema";
+import { Err, None, Ok, Some } from "@/utils/fp-ts";
 
 export const getAllSeasons = async (): Promise<HfsResult<{ code: number; name: Option<string> }[]>> => {
     try {

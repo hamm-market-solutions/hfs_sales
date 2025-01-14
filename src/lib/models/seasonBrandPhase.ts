@@ -1,5 +1,5 @@
-import { Err, None, Ok, Option, Some } from "ts-results";
 import { eq, max, min } from "drizzle-orm";
+import * as O from "fp-ts/lib/Option";
 
 import { HfsResult, throwToHfsError } from "../errors/HfsError";
 import ModelError from "../errors/ModelError";
@@ -7,11 +7,12 @@ import SeasonBrandPhaseError from "../errors/SeasonbrandPhaseError";
 
 import { db } from "@/db";
 import { sSeasonBrandPhase } from "@/db/schema";
+import { Err, isErr, None, Ok, Some, unwrapOr } from "@/utils/fp-ts";
 
 export const getSeasonTime = async (seasonCode: number): Promise<HfsResult<{
     code: number;
-    start: Option<string>;
-    end: Option<string>;
+    start: O.Option<string>;
+    end: O.Option<string>;
 }>> => {
     try {
         const data = await db
@@ -49,11 +50,11 @@ export const isSeasonActive = async (seasonCode: number): Promise<HfsResult<bool
         const now = new Date();
         const seasonTime = await getSeasonTime(seasonCode);
 
-        if (seasonTime.err) {
+        if (isErr(seasonTime)) {
             return seasonTime;
         }
-        const seasonStart = new Date(seasonTime.val.start.unwrapOr("2100-01-01"));
-        const seasonEnd = new Date(seasonTime.val.end.unwrapOr("2000-01-01"));
+        const seasonStart = new Date(unwrapOr(seasonTime.left.start, "2100-01-01"));
+        const seasonEnd = new Date(unwrapOr(seasonTime.left.end, "2000-01-01"));
 
         return Ok(seasonStart <= now && now <= seasonEnd);
     } catch (error) {
@@ -67,13 +68,13 @@ export const isSeasonActive = async (seasonCode: number): Promise<HfsResult<bool
     }
 };
 
-export const assertSeasonActive = async (seasonCode: number) => {
+export const assertSeasonActive = async (seasonCode: number): Promise<HfsResult<true>> => {
     const seasonActive = await isSeasonActive(seasonCode);
 
-    if (seasonActive.err) {
+    if (isErr(seasonActive)) {
         return seasonActive;
     }
-    if (!seasonActive.val) {
+    if (!seasonActive.left) {
         return Err(
             throwToHfsError(400, SeasonBrandPhaseError.seasonInactive(seasonCode)),
         );

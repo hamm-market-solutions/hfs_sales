@@ -7,6 +7,7 @@ import {useInfiniteScroll} from "@nextui-org/use-infinite-scroll";
 import {useAsyncList} from "@react-stately/data";
 
 import { TableColumns, TableResponse, TableSort } from "@/types/table";
+import { instanceOfOption, instanceOfResult, unwrapOr } from "@/utils/fp-ts";
 
 export default function BaseTable<T extends object>({
     columns,
@@ -17,7 +18,7 @@ export default function BaseTable<T extends object>({
 }) {
     const [isLoading, setIsLoading] = React.useState<boolean>(true);
     const [hasMore, setHasMore] = React.useState<boolean>(false);
-    const [sorting, setSorting] = React.useState<TableSort<T>|"">("");
+    const [sorting, setSorting] = React.useState<TableSort<T>|undefined>(undefined);
     const [search, _setSearch] = React.useState<string>("");
     // const [nextPageUrl, setNextPageUrl] = React.useState<string>("");
 
@@ -40,12 +41,12 @@ export default function BaseTable<T extends object>({
             const res = await fetch(cursor || fetchUrl.toString(), {signal});
             const data: TableResponse<T> = (await res.json()).data;
 
-            setHasMore(data.meta.next.some);
+            setHasMore(data.meta.next !== undefined);
             // setNextPageUrl(data.meta.next);
 
             return {
                 items: data.data,
-                cursor: data.meta.next.unwrapOr(""),
+                cursor: data.meta.next,
             };
         },
     });
@@ -73,7 +74,7 @@ export default function BaseTable<T extends object>({
             }}
             sortDescriptor={sorting as SortDescriptor}
             onSortChange={(sorting) => {
-                console.log("sort", sorting as TableSort<T>);
+                console.log("onSortChange", sorting);
 
                 setSorting(sorting as TableSort<T>);
                 list.reload();
@@ -112,7 +113,12 @@ export default function BaseTable<T extends object>({
 
                                 return (
                                     <TableCell>
-                                        {getKeyValue(item, columnKey)}
+                                        {
+                                            instanceOfResult(getKeyValue(item, columnKey)) ||
+                                            instanceOfOption(getKeyValue(item, columnKey)) ?
+                                                unwrapOr(getKeyValue(item, columnKey), "") :
+                                                getKeyValue(item, columnKey)
+                                        }
                                     </TableCell>
                                 )
                             }}

@@ -10,7 +10,8 @@ import {
     TableResponse,
 } from "@/types/table";
 import { buildTableUrl } from "@/utils/tables";
-import { None, Option, Some } from "ts-results";
+import { Option } from "fp-ts/Option";
+import { None, Some, unwrap, unwrapOr } from "@/utils/fp-ts";
 
 export const getForecastTableDataMapper = async ({
     page,
@@ -28,10 +29,11 @@ export const getForecastTableDataMapper = async ({
         season_code,
         search,
     });
-    const itemColorDataCount = (await getForecastTableCount({
+    const itemColorDataCount = unwrap((await getForecastTableCount({
         brand,
         season_code,
-    })).unwrap();
+    })));
+
     const [nextUrl, previousUrl] = buildTableUrl<ForecastTableColumns, ForecastTableRequest>(itemColorDataCount, "/api/sales/reports/forecasts/table", {
         page,
         sorting,
@@ -43,7 +45,7 @@ export const getForecastTableDataMapper = async ({
 
 
     return {
-        data: itemColorData.unwrap().map((data) => {
+        data: unwrap(itemColorData).map((data) => {
             const last = data.last ? Some(data.last) : None;
             const itemNo = data.itemNo;
             const colorCode = data.colorCode;
@@ -65,7 +67,7 @@ export const getForecastTableDataMapper = async ({
                 brand_no: brandNo,
                 brand_name: brandName,
                 season_code: seasonCode,
-                season_name: seasonToShort(seasonName.unwrapOr("")),
+                season_name: seasonToShort(unwrapOr(seasonName, "")),
                 pre_collection: preCollection,
                 main_collection: mainCollection,
                 late_collection: lateCollection,
@@ -86,8 +88,8 @@ export const getForecastTableDataMapper = async ({
         }),
         meta: {
             totalRowCount: itemColorDataCount,
-            next: nextUrl,
-            previous: previousUrl,
+            next: unwrapOr(nextUrl, undefined),
+            previous: unwrapOr(previousUrl, undefined),
         },
     };
 };

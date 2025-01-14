@@ -1,14 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Err, None, Ok, Option, Some } from "ts-results";
+import * as O from "fp-ts/Option";
 
 import { getForecastTableDataMapper } from "@/lib/tables/forecast";
 import { ForecastTableColumns, TableSort } from "@/types/table";
 import { resultToResponse } from "@/utils/conversions";
+import { Err, None, Ok, Some } from "@/utils/fp-ts";
+import { pipe } from "fp-ts/lib/function";
 
 export const GET = async (
     request: NextRequest,
 ): Promise<NextResponse<ForecastTableColumns>> => {
-    let sortingJson: Option<TableSort<ForecastTableColumns>> = None;
+    let sorting: O.Option<TableSort<ForecastTableColumns>>;
     let page: number;
     let search: string;
     let country: string;
@@ -16,12 +18,14 @@ export const GET = async (
     let seasonCode: number;
     try {
         const searchParams = request.nextUrl.searchParams;
+        sorting = pipe(
+            O.fromNullable(searchParams.get("sorting") != "" ? searchParams.get("sorting") : null),
+            O.map((sort) => {
+                console.log("CEOWIOCE", sort, typeof sort);
 
-        const sorting = searchParams.get("sorting");
-        if (sorting) {
-            sortingJson = Some(JSON.parse(sorting));
-        }
-
+                return JSON.parse(sort) as TableSort<ForecastTableColumns>
+            }),
+        );
         page = Number(searchParams.get("page") ?? 1);
         search = searchParams.get("search")!;
         country = searchParams.get("country")!;
@@ -35,7 +39,7 @@ export const GET = async (
         Ok(
             await getForecastTableDataMapper({
                 page,
-                sorting: sortingJson,
+                sorting,
                 country,
                 brand,
                 season_code: seasonCode,

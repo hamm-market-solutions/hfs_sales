@@ -1,7 +1,8 @@
 import { CardFooter } from "@nextui-org/card";
 
 import { PicCards } from "./picCards";
-import { None, Option, Some } from "ts-results";
+import { Option } from "fp-ts/Option";
+import { None, Some, unwrapOr } from "@/utils/fp-ts";
 
 export function CountryNavigation({
     countries,
@@ -24,7 +25,7 @@ export function CountryNavigation({
         src: `/assets/flags/${country.code.toLowerCase()}.svg`,
         footer: Some((
             <CardFooter className="flex flex-col items-start">
-                <p className="text-tiny uppercase font-bold">{country.name}</p>
+                <p className="text-tiny uppercase font-bold">{unwrapOr(country.name, "")}</p>
                 <small className="text-primary">{country.code}</small>
             </CardFooter>
         )),

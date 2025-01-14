@@ -1,30 +1,31 @@
 import { NextResponse } from "next/server";
 import { SafeParseReturnType } from "zod";
-import { Err, None, Ok, Option, Some } from "ts-results";
 import { MySqlColumn } from "drizzle-orm/mysql-core";
 import { asc, desc, SQL } from "drizzle-orm";
 import { NextApiResponse } from "next";
+import { Option } from "fp-ts/Option";
 
 import { HfsResult } from "../lib/errors/HfsError";
 import { HfsResponse } from "../types/responses";
 import { TableSort } from "@/types/table";
+import { Err, isNone, isOk, isSome, None, Ok, Some } from "./fp-ts";
 
 export function resultToResponse<T extends object, R = HfsResponse<T>>(
     result: HfsResult<T>,
     response: Option<NextApiResponse<R>> = None,
 ): NextResponse<R> {
-    if (response.some) {
-        response.val.status(result.ok ? 200 : result.val.status);
+    if (isSome(response)) {
+        response.value.status(isOk(result) ? 200 : result.right.status);
     }
-    if (result.ok) {
+    if (isOk(result)) {
         return NextResponse.json({
             status: 200,
-            data: result.val,
+            data: result.left,
         }) as NextResponse<R>;
     } else {
         return NextResponse.json(
-            { ...result.val },
-            { status: result.val.status },
+            { ...result.right },
+            { status: result.right.status },
         ) as NextResponse<R>;
     }
 }
@@ -43,25 +44,25 @@ export function optionToNotFound<T>(
     option: Option<T>,
     errorMessage = "resource not found",
 ): HfsResult<T> {
-    if (option.none || option.val === null || option.val === undefined) {
+    if (isNone(option) || option.value === null || option.value === undefined) {
         return Err({ status: 404, message: errorMessage, cause: None });
     }
 
-    return Ok(option.val);
+    return Ok(option.value);
 }
 
 export const sortingStateToDrizzle = <T extends object>(
     drizzleSelect: { [key: string]: MySqlColumn | SQL },
-    sort: TableSort<T>,
-) => {
-    const sortings = [];
-
-    console.log("ERVER", sort);
-
-    if (sort.direction == "descending") {
-        sortings.push(desc(drizzleSelect[snakeCaseToCamelCase(sort.column as string)]));
+    sort: Option<TableSort<T>>,
+): SQL<unknown>[] => {
+    const sortings: SQL<unknown>[] = [];
+    if (isNone(sort) || sort.value.column === "") {
+        return sortings;
+    }
+    if (sort.value.direction == "descending") {
+        sortings.push(desc(drizzleSelect[snakeCaseToCamelCase(sort.value.column as string)]));
     } else {
-        sortings.push(asc(drizzleSelect[snakeCaseToCamelCase(sort.column as string)]));
+        sortings.push(asc(drizzleSelect[snakeCaseToCamelCase(sort.value.column as string)]));
     }
 
     return sortings;
@@ -119,6 +120,8 @@ export const phaseToDrop = ({
 };
 
 export const snakeCaseToCamelCase = (str: string) => {
+    console.log("str", str);
+
     return str.replace(/([-_]\w)/g, (g) => g[1].toUpperCase());
 };
 

@@ -1,6 +1,6 @@
 "use server";
 
-import { Err, None, Ok, Option } from "ts-results";
+import { Option } from "fp-ts/Option";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
@@ -12,10 +12,11 @@ import { isUserAdmin } from "../models/userHasRole";
 import FieldError from "../errors/FieldError";
 
 import { routePermissions, routes } from "@/config/routes";
+import { Err, isErr, isNone, isSome, None, Ok, unwrap, unwrapOr } from "@/utils/fp-ts";
 
 export async function isUserAuthenticated(): Promise<boolean> {
     try {
-        (await getOrUpdateAccessToken()).unwrap();
+        unwrap((await getOrUpdateAccessToken()));
 
         return true;
     } catch (_) {
@@ -27,7 +28,7 @@ export async function validateUserAuthorized(
     route: Option<string> = None,
     neededPermissions: Option<string[]> = None,
 ): Promise<HfsResult<true>> {
-    if ((!route && !neededPermissions) || (route && neededPermissions)) {
+    if ((isNone(route) && isNone(neededPermissions)) || (isSome(route) && isSome(neededPermissions))) {
         const err: HfsError = {
             status: 500,
             message: FieldError.exactlyOneOfFieldsRequired(["route", "neededPermissions"]),
@@ -50,30 +51,28 @@ export async function validateUserAuthorized(
     }
     const user = await getCurrentUser();
 
-    if (user.err) {
-        return Err(user.val);
+    if (isErr(user)) {
+        return Err(user.right);
     }
-    if ((await isUserAdmin(user.val.id)).unwrapOr(false)) {
+    if (unwrapOr((await isUserAdmin(user.left.id)), false)) {
         return Ok(true);
     }
-    const userPermissions = await getUserPermissions(user.val.id);
+    const userPermissions = await getUserPermissions(user.left.id);
 
-    if (userPermissions.err) {
-        return Err(userPermissions.val);
+    if (isErr(userPermissions)) {
+        return Err(userPermissions.right);
     }
     let permissionsNeeded: string[] = [];
 
-    if (route.some) {
-        permissionsNeeded = routePermissions[route.val];
+    if (isSome(route)) {
+        permissionsNeeded = routePermissions[route.value];
     } else {
-        permissionsNeeded = neededPermissions.unwrapOr([]);
+        permissionsNeeded = unwrapOr(neededPermissions, []);
     }
-    // console.log("permissionsNeeded", permissionsNeeded);
-    // console.log("userPermissions", userPermissions.val.permissions);
 
     const hasAllPermissions = matchPermissions(
         permissionsNeeded,
-        userPermissions.val.permissions.map((p) => p.permissionName.unwrapOr("")),
+        userPermissions.left.permissions.map((p) => unwrapOr(p.permissionName, "")),
     );
 
     if (!hasAllPermissions) {
@@ -97,12 +96,13 @@ export async function validateUserAuthorizedOrRedirect(
     route: Option<string> = None,
     neededPermissions: Option<string[]> = None,
 ): Promise<void> {
+
     const result = await validateUserAuthorized(route, neededPermissions);
 
-    if (result.err) {
-        if (result.val.message == AuthError.notAuthenticated()) {
+    if (isErr(result)) {
+        if (result.right.message == AuthError.notAuthenticated()) {
             redirect(routes.login);
-        } else if (result.val.message == AuthError.unauthorized()) {
+        } else if (result.right.message == AuthError.unauthorized()) {
             redirect("/401");
         } else {
             // redirect to 500 page

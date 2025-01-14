@@ -1,5 +1,5 @@
-import { Err, None, Ok, Option, Some } from "ts-results";
 import { and, desc, eq, inArray, isNull, sql, sum } from "drizzle-orm";
+import { Option } from "fp-ts/Option";
 
 import { HfsResult, throwToHfsError } from "../errors/HfsError";
 import ForecastModelError from "../errors/ForecastModelError";
@@ -8,6 +8,7 @@ import { getAccessTokenPayload } from "../auth/jwt";
 import { db } from "@/db";
 import { forecast } from "@/db/schema";
 import { getAllSeasons } from "./season";
+import { Err, isErr, None, Ok, Some, unwrap, unwrapOr } from "@/utils/fp-ts";
 
 export const createForecast = async (
     seasonCode: number,
@@ -17,19 +18,19 @@ export const createForecast = async (
     amount: number,
 ): Promise<HfsResult<typeof forecast.$inferInsert>> => {
     try {
-        const latestForecast = (await getLatestForecast(itemNo, colorCode))
-            .unwrapOr(null)
-            ?.unwrapOr(null);
+        const res: HfsResult<Option<typeof forecast.$inferSelect>> = await getLatestForecast(itemNo, colorCode);
+        const latestForecastOpt: Option<typeof forecast.$inferSelect> = unwrapOr(res, None);
+        const latestForecast: typeof forecast.$inferSelect = unwrap(latestForecastOpt); // TODO: Handle unwrap
 
         if (latestForecast && latestForecast.amount === amount) {
             return Ok(latestForecast);
         }
         const user = await getAccessTokenPayload();
 
-        if (user.err) {
+        if (isErr(user)) {
             return user;
         }
-        const userId = user.val.sub!;
+        const userId = user.left.sub!;
         const result = await db.insert(forecast).values({
             seasonCode: seasonCode,
             itemNo: itemNo.toString(),
@@ -45,7 +46,7 @@ export const createForecast = async (
             throwToHfsError(
                 500,
                 ForecastModelError.saveForecastError(),
-        error as Error,
+                Some(error as Error),
             ),
         );
     }
@@ -80,7 +81,7 @@ export async function getLatestForecast(
             throwToHfsError(
                 500,
                 ForecastModelError.getError("latest forecast"),
-        error as Error,
+                Some(error as Error),
             ),
         );
     }
@@ -99,7 +100,7 @@ export async function getSumForecastForSeason(seasonCode: number) {
             throwToHfsError(
                 500,
                 ForecastModelError.getError("all forecasts"),
-        error as Error,
+                Some(error as Error),
             ),
         );
     }
@@ -107,11 +108,11 @@ export async function getSumForecastForSeason(seasonCode: number) {
 
 export async function getSumForecastForLastFiveSeasons() {
     try {
-        const seasons = (await getAllSeasons()).unwrapOr([]);
+        const seasons = unwrapOr((await getAllSeasons()), []);
         const lastFiveSeasons = seasons.slice(0, 5);
         const seasonCodes = lastFiveSeasons.map((season) => season.code);
         const forecastSums = seasonCodes.map(async (seasonCode) => {
-            const qty = (await getSumForecastForSeason(seasonCode)).unwrap();
+            const qty = unwrap((await getSumForecastForSeason(seasonCode)));
 
             return { seasonCode: seasonCode, sumQty: Number(qty.sumQty) };
         });
@@ -123,7 +124,7 @@ export async function getSumForecastForLastFiveSeasons() {
             throwToHfsError(
                 500,
                 ForecastModelError.getError("all forecasts"),
-        error as Error,
+                Some(error as Error),
             ),
         );
     }
@@ -147,7 +148,7 @@ export async function exportLatestForecasts() {
             throwToHfsError(
                 500,
                 ForecastModelError.getError("latest forecasts for export"),
-        error as Error,
+                Some(error as Error),
             ),
         );
     }

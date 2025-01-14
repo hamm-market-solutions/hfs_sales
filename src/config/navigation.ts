@@ -1,7 +1,8 @@
-import { None, Option, Some } from "ts-results";
+import * as O from "fp-ts/Option";
 import { routePermissions, routes } from "./routes";
+import { None, Some } from "@/utils/fp-ts";
 
-export const navigatonTree: NavigationTree = [
+export const navigationTree: NavigationTree = [
     {
         key: "dashboard",
         title: "Dashboard",
@@ -37,9 +38,9 @@ export type NavigationTree = NavigationTreeItem[];
 export type NavigationTreeItem = {
   key: string;
   title: string;
-  description: Option<string>;
-  icon: Option<string>;
-  items: Option<NavigationTree>;
-  permissions: Option<string[]>;
-  url: Option<string>;
+  description: O.Option<string>;
+  icon: O.Option<string>;
+  items: O.Option<NavigationTree>;
+  permissions: O.Option<string[]>;
+  url: O.Option<string>;
 };
