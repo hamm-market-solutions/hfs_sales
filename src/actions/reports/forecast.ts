@@ -66,7 +66,7 @@ export const getForecastTableData = async (
         country,
         brand,
         season_code: seasonCode,
-        search: Some(search),
+        filters: Some(search),
         page,
     });
     console.log(data);

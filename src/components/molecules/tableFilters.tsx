@@ -3,9 +3,11 @@ import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import { Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from "@nextui-org/modal";
 import {Form} from "@nextui-org/form";
+import { useState } from "react";
 
-export default function TableFilters<T extends object>({ columns, setFilters }: {columns: TableColumns<T>; setFilters: (filters: TableFilter<T>[]) => void}) {
+export default function TableFilters<T extends object>({ columns, appliedFilters, setFilters }: {columns: TableColumns<T>; appliedFilters: TableFilter<T>[], setFilters: (filters: TableFilter<T>[]) => void}) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const [currentFilters, setCurrentFilters] = useState<TableFilter<T>[]>(appliedFilters);
 
     return (
         <>
@@ -18,7 +20,7 @@ export default function TableFilters<T extends object>({ columns, setFilters }: 
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalHeader>Apply Table Filters</ModalHeader>
+                            <ModalHeader>Apply Filters</ModalHeader>
                             <ModalBody>
                                 <Form
                                     className=""
@@ -26,13 +28,7 @@ export default function TableFilters<T extends object>({ columns, setFilters }: 
                                     onSubmit={(e) => {
                                         e.preventDefault();
 
-                                        const data = Object.fromEntries(new FormData(e.currentTarget));
-                                        const filters: TableFilter<T>[] = columns.map((column) => {
-                                            const value = data[column.key as string];
-                                            return { column: column.key, value: value.toString() };
-                                        });
-
-                                        setFilters(filters);
+                                        setFilters(currentFilters);
                                         onClose();
                                     }}
                                 >
@@ -43,6 +39,17 @@ export default function TableFilters<T extends object>({ columns, setFilters }: 
                                             label={column.header}
                                             placeholder={`Filter by ${column.header}`}
                                             type="text"
+                                            value={currentFilters.find((filter) => filter.column === column.key)?.value}
+                                            onChange={(e) => {
+                                                const value = e.target.value;
+                                                setCurrentFilters((prev) => {
+                                                    const newFilters = prev.filter((filter) => filter.column !== column.key);
+                                                    if (value !== "") {
+                                                        newFilters.push({ column: column.key, value });
+                                                    }
+                                                    return newFilters;
+                                                });
+                                            }}
                                         />
                                     ))}
                                     <Button type="submit" variant="bordered">Apply Filters</Button>

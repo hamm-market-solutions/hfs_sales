@@ -40,7 +40,7 @@ export default function BaseTable<T extends object>({
             if (sorting) {
                 workingFetchUrl.searchParams.set("sorting", JSON.stringify(sorting));
             }
-            workingFetchUrl.searchParams.set("search", filters.toString());
+            workingFetchUrl.searchParams.set("filters", JSON.stringify(filters));
             const res = await fetch(workingFetchUrl, {signal});
             const data: TableResponse<T> = (await res.json()).data;
 
@@ -61,7 +61,11 @@ export default function BaseTable<T extends object>({
 
     return (
         <>
-            <TableFilters columns={columns} setFilters={setFilters} />
+            <TableFilters columns={columns} appliedFilters={filters} setFilters={(filters: TableFilter<T>[]) => {
+                setFilters(filters);
+                setUseStartFetchUrl(true);
+                list.reload();
+            }} />
             <Table
                 isHeaderSticky
                 aria-label="Table"

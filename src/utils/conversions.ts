@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 import { SafeParseReturnType } from "zod";
 import { MySqlColumn } from "drizzle-orm/mysql-core";
-import { asc, desc, SQL } from "drizzle-orm";
+import { asc, desc, eq, like, SQL } from "drizzle-orm";
 import { NextApiResponse } from "next";
 import { Option } from "fp-ts/Option";
 
 import { HfsResult } from "../lib/errors/HfsError";
 import { HfsResponse } from "../types/responses";
-import { TableSort } from "@/types/table";
+import { TableFilter, TableSort } from "@/types/table";
 import { Err, isNone, isOk, isSome, None, Ok, Some } from "./fp-ts";
 
 export function resultToResponse<T extends object, R = HfsResponse<T>>(
@@ -51,7 +51,7 @@ export function optionToNotFound<T>(
     return Ok(option.value);
 }
 
-export const sortingStateToDrizzle = <T extends object>(
+export const tableSortingToDrizzle = <T extends object>(
     drizzleSelect: { [key: string]: MySqlColumn | SQL },
     sort: Option<TableSort<T>>,
 ): SQL<unknown>[] => {
@@ -67,6 +67,24 @@ export const sortingStateToDrizzle = <T extends object>(
 
     return sortings;
 };
+
+export const tableFiltersToDrizzle = <T extends object>(
+    drizzleSelect: { [key: string]: MySqlColumn | SQL },
+    filters: Option<TableFilter<T>[]>,
+): SQL<unknown>[] => {
+    const filterings: SQL<unknown>[] = [];
+    if (isNone(filters)) {
+        return filterings;
+    }
+
+    filters.value.forEach((filter) => {
+        const columnName = snakeCaseToCamelCase(filter.column as string);
+        const column = drizzleSelect[columnName];
+        filterings.push(like(column, `%${filter.value}%`));
+    });
+
+    return filterings;
+}
 
 export const phaseToDrop = ({
     pre_collection,

@@ -1,6 +1,5 @@
 import {
     getForecastTableData,
-    getForecastTableCount,
 } from "../models/itemColor";
 
 import { phaseToDrop, seasonToShort } from "@/utils/conversions";
@@ -19,25 +18,24 @@ export const getForecastTableDataMapper = async ({
     country,
     brand,
     season_code,
-    search,
+    filters,
 }: ForecastTableRequest): Promise<TableResponse<ForecastTableColumns>> => {
-    const itemColorData = await getForecastTableData({
+    const forecastData = unwrap(await getForecastTableData({
         page,
         sorting,
         country,
         brand,
         season_code,
-        search,
-    });
-    const itemColorDataCount = unwrap((await getForecastTableCount({
-        brand,
-        season_code,
-    })));
+        filters,
+    }));
+    console.log(forecastData);
 
-    const [nextUrl, previousUrl] = buildTableUrl<ForecastTableColumns, ForecastTableRequest>(itemColorDataCount, "/api/sales/reports/forecasts/table", {
+    const forecastDataCount = forecastData[0].totalRowCount ?? 0;
+
+    const [nextUrl, previousUrl] = buildTableUrl<ForecastTableColumns, ForecastTableRequest>(forecastDataCount, "/api/sales/reports/forecasts/table", {
         page,
         sorting,
-        search,
+        filters,
         country,
         brand,
         season_code,
@@ -45,7 +43,7 @@ export const getForecastTableDataMapper = async ({
 
 
     return {
-        data: unwrap(itemColorData).map((data) => {
+        data: forecastData.map((data) => {
             const last = data.last ? Some(data.last) : None;
             const itemNo = data.itemNo;
             const colorCode = data.colorCode;
@@ -87,7 +85,7 @@ export const getForecastTableDataMapper = async ({
             }
         }),
         meta: {
-            totalRowCount: itemColorDataCount,
+            totalRowCount: forecastDataCount,
             next: unwrapOr(nextUrl, undefined),
             previous: unwrapOr(previousUrl, undefined),
         },

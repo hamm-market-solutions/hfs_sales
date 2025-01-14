@@ -14,7 +14,7 @@ export type TableFilter<T extends object> = { column: keyof T, value: string };
 export interface TableRequest<T extends object> {
   page: number;
   sorting: Option<TableSort<T>>;
-  search: Option<string>;
+  filters: Option<TableFilter<T>[]>;
 };
 
 export type TableColumns<T extends object> = {
