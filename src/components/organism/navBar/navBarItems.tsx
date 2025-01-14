@@ -13,14 +13,15 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
 import { matchPath, pathIncludes } from "@/utils/paths";
-import { navigatonTree } from "@/config/navigation";
+import { navigationTree } from "@/config/navigation";
 import Icon from "@/components/atoms/icons/icon";
 import { routes } from "@/config/routes";
+import { isNone, unwrap, unwrapOr } from "@/utils/fp-ts";
 
 export default function NavBarItems({
     navRoutes,
 }: {
-  navRoutes: typeof navigatonTree;
+  navRoutes: typeof navigationTree;
 }) {
     const router = useRouter();
     const pathname = usePathname();
@@ -31,16 +32,18 @@ export default function NavBarItems({
     }
 
     for (const route of navRoutes) {
-        if (route.items === undefined) {
+        const url = unwrapOr(route.url, "");
+
+        if (isNone(route.items)) {
             navBarItems.push(
                 <NavbarItem
                     key={route.key}
-                    isActive={matchPath(route.url ?? "", pathname)}
+                    isActive={matchPath(url, pathname)}
                 >
                     <Link
                         className="text-primary"
                         color="foreground"
-                        href={route.url ?? ""}
+                        href={url}
                     >
                         {route.title}
                     </Link>
@@ -49,17 +52,21 @@ export default function NavBarItems({
         } else {
             const nestedNavBarItems = [];
 
-            for (const subRoute of route.items) {
+            for (const subRoute of route.items.value) {
+                const subRouteUrl = unwrapOr(subRoute.url, "");
+                const subRouteDescription = unwrapOr(subRoute.description, "");
+                const subRouteIcon = unwrapOr(subRoute.icon, "");
+
                 nestedNavBarItems.push(
                     <DropdownItem
                         key={subRoute.key}
                         className={
-                            matchPath(subRoute.url ?? "", pathname) ? "bg-primary-50" : ""
+                            matchPath(subRouteUrl, pathname) ? "bg-primary-50" : ""
                         }
-                        description={subRoute.description}
-                        startContent={<Icon alt="dropdown-item-icon" src={subRoute.icon} />}
+                        description={subRouteDescription}
+                        startContent={<Icon alt="dropdown-item-icon" src={subRouteIcon} />}
                         onPress={() => {
-                            router.push(subRoute.url!);
+                            router.push(unwrap(subRoute.url));
                         }}
                     >
                         {subRoute.title}

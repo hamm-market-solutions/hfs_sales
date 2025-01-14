@@ -4,7 +4,7 @@ import { Link } from "@nextui-org/link";
 
 import NavBarItems from "./navBarItems";
 
-import { navigatonTree } from "@/config/navigation";
+import { navigationTree } from "@/config/navigation";
 import { isUserAuthenticated } from "@/lib/auth/validations";
 
 export default async function NavBar() {
@@ -24,7 +24,7 @@ export default async function NavBar() {
             </NavbarBrand>
             <NavbarContent justify="center">
                 <NavBarItems
-                    navRoutes={isUserAuth ? navigatonTree : ({} as typeof navigatonTree)}
+                    navRoutes={isUserAuth ? navigationTree : ({} as typeof navigationTree)}
                 />
             </NavbarContent>
         </Navbar>

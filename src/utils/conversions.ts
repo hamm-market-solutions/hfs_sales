@@ -1,67 +1,40 @@
 import { NextResponse } from "next/server";
 import { SafeParseReturnType } from "zod";
-import { Err, Ok, Option } from "ts-results";
-import { SortingState } from "@tanstack/react-table";
 import { MySqlColumn } from "drizzle-orm/mysql-core";
-import { asc, desc, SQL } from "drizzle-orm";
+import { asc, desc, eq, like, SQL } from "drizzle-orm";
 import { NextApiResponse } from "next";
+import { Option } from "fp-ts/Option";
 
-import HfsError, { HfsResult } from "../lib/errors/HfsError";
+import { HfsResult } from "../lib/errors/HfsError";
 import { HfsResponse } from "../types/responses";
-
-import {
-    ForecastTableData,
-    ForecastTableRequest,
-    TableResponse,
-} from "@/types/table";
+import { TableFilter, TableSort } from "@/types/table";
+import { Err, isNone, isOk, isSome, None, Ok, Some } from "./fp-ts";
 
 export function resultToResponse<T extends object, R = HfsResponse<T>>(
     result: HfsResult<T>,
-    response?: NextApiResponse<R>,
+    response: Option<NextApiResponse<R>> = None,
 ): NextResponse<R> {
-    if (response) {
-        response.status(result.ok ? 200 : result.val.status);
+    if (isSome(response)) {
+        response.value.status(isOk(result) ? 200 : result.right.status);
     }
-    if (result.ok) {
+    if (isOk(result)) {
         return NextResponse.json({
             status: 200,
-            data: result.val,
+            data: result.left,
         }) as NextResponse<R>;
     } else {
         return NextResponse.json(
-            { ...result.val },
-            { status: result.val.status },
+            { ...result.right },
+            { status: result.right.status },
         ) as NextResponse<R>;
     }
-}
-
-export async function getForecastTableData({
-    start,
-    size,
-    sorting,
-    country,
-    brand,
-    season_code,
-}: ForecastTableRequest): Promise<TableResponse<ForecastTableData>> {
-    const data = await getForecastTableData({
-        start,
-        size,
-        sorting,
-        country,
-        brand,
-        season_code,
-    });
-
-    return data;
 }
 
 export function schemaToResult<Output, Input = Output>(
     schema: SafeParseReturnType<Input, Output>,
 ): HfsResult<Output> {
     if (!schema.success) {
-        return Err(
-            new HfsError(400, schema.error?.errors[0].message || "invalid request"),
-        );
+        return Err({ status: 400, message: schema.error?.errors[0].message, cause: None });
     }
 
     return Ok(schema.data!);
@@ -71,56 +44,47 @@ export function optionToNotFound<T>(
     option: Option<T>,
     errorMessage = "resource not found",
 ): HfsResult<T> {
-    if (option.none || option.val === null || option.val === undefined) {
-        return Err(new HfsError(404, errorMessage));
+    if (isNone(option) || option.value === null || option.value === undefined) {
+        return Err({ status: 404, message: errorMessage, cause: None });
     }
 
-    return Ok(option.val);
+    return Ok(option.value);
 }
 
-export const sortingStateToDrizzle = (
+export const tableSortingToDrizzle = <T extends object>(
     drizzleSelect: { [key: string]: MySqlColumn | SQL },
-    sorting: SortingState,
-) => {
-    const sortings = [];
-
-    for (const sort of sorting) {
-        if (sort.desc) {
-            sortings.push(desc(drizzleSelect[snakeCaseToCamelCase(sort.id)]));
-        } else {
-            sortings.push(asc(drizzleSelect[snakeCaseToCamelCase(sort.id)]));
-        }
+    sort: Option<TableSort<T>>,
+): SQL<unknown>[] => {
+    const sortings: SQL<unknown>[] = [];
+    if (isNone(sort) || sort.value.column === "") {
+        return sortings;
+    }
+    if (sort.value.direction == "descending") {
+        sortings.push(desc(drizzleSelect[snakeCaseToCamelCase(sort.value.column as string)]));
+    } else {
+        sortings.push(asc(drizzleSelect[snakeCaseToCamelCase(sort.value.column as string)]));
     }
 
     return sortings;
-    // let flattenedSorting: { [key: string]: string } = {};
-
-    // for (const sort of sorting) {
-    //   flattenedSorting = {
-    //     ...flattenedSorting,
-    //     [sort.id]: sort.desc ? "desc" : "asc",
-    //   };
-    // }
-    // for (const key in prismaSelect) {
-    //   if (typeof prismaSelect[key] === "object") {
-    //     prismaSelect[key] = sortingStateToDrizzle(
-    //       prismaSelect[key]["select"],
-    //       sorting,
-    //     );
-    //     if (Object.keys(prismaSelect[key]).length === 0) {
-    //       delete prismaSelect[key];
-    //     }
-    //   } else {
-    //     if (flattenedSorting[key]) {
-    //       prismaSelect[key] = flattenedSorting[key];
-    //     } else {
-    //       delete prismaSelect[key];
-    //     }
-    //   }
-    // }
-
-    // return prismaSelect;
 };
+
+export const tableFiltersToDrizzle = <T extends object>(
+    drizzleSelect: { [key: string]: MySqlColumn | SQL },
+    filters: Option<TableFilter<T>[]>,
+): SQL<unknown>[] => {
+    const filterings: SQL<unknown>[] = [];
+    if (isNone(filters)) {
+        return filterings;
+    }
+
+    filters.value.forEach((filter) => {
+        const columnName = snakeCaseToCamelCase(filter.column as string);
+        const column = drizzleSelect[columnName];
+        filterings.push(like(column, `%${filter.value}%`));
+    });
+
+    return filterings;
+}
 
 export const phaseToDrop = ({
     pre_collection,
@@ -178,11 +142,15 @@ export const toCamelCase = (input: string) => {
         .join('');
 };
 
-export const seasonToShort = (season: string) => {
+export const seasonToShort = (season: string): Option<string> => {
+    if (!season) {
+        return None;
+    }
+
     const [firstSeason, secondSeasonAndYear] = season?.split("/") ?? [];
     const [secondSeason, year] = secondSeasonAndYear.split(" ") ?? [];
     const firstLetterFirstSeason = firstSeason?.charAt(0).toUpperCase();
     const firstLetterSecondSeason = secondSeason?.charAt(0).toUpperCase();
 
-    return `${firstLetterFirstSeason}/${firstLetterSecondSeason} ${year}`;
+    return Some(`${firstLetterFirstSeason}/${firstLetterSecondSeason} ${year}`);
 };

@@ -1,22 +1,24 @@
+import { unwrapOr } from "@/utils/fp-ts";
 import { Image } from "@nextui-org/image";
 import { Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from "@nextui-org/modal";
+import { Option } from "fp-ts/Option";
 
 export default function ProductImage({
     itemNo,
     colorCode,
 }: {
-    last?: string;
-    itemNo?: string;
-    colorCode?: string;
+    last: Option<string>;
+    itemNo: Option<string>;
+    colorCode: Option<string>;
 }) {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
-    const url = `https://hfs.hamm-footwear.com/purchase/item/image?item_no=${itemNo}&color=${colorCode}`;
+    const url = `https://hfs.hamm-footwear.com/purchase/item/image?item_no=${unwrapOr(itemNo, "")}&color=${unwrapOr(colorCode, "")}`;
 
     return (
         <>
             <Image
                 alt="product-image"
-                className="product-image h-10 w-10"
+                className="product-image h-10 w-10 cursor-pointer"
                 src={url}
                 fallbackSrc="/assets/img-placeholder.svg"
                 radius="sm"

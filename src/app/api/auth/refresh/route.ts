@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Ok } from "ts-results";
+import * as O from "fp-ts/Option";
 
 import { updateAccessToken } from "@/lib/models/user";
 import { getRefreshTokenAndVerify } from "@/lib/auth/jwt";
@@ -10,26 +10,27 @@ import {
     RefreshResponse,
 } from "@/types/responses";
 import { resultToResponse } from "@/utils/conversions";
+import { isErr, Ok } from "@/utils/fp-ts";
 
 export async function GET(): Promise<NextResponse<RefreshResponse>> {
     const refreshTokenRes = await getRefreshTokenAndVerify();
 
-    if (refreshTokenRes.err) {
+    if (isErr(refreshTokenRes)) {
         return resultToResponse(
             refreshTokenRes,
         ) as NextResponse<RefreshErrResponse>;
     }
 
     const accessTokenRes = await updateAccessToken(
-        parseInt(refreshTokenRes.val[1].sub!),
+        parseInt(refreshTokenRes.left[1].sub!),
     );
 
-    if (accessTokenRes.err) {
+    if (isErr(accessTokenRes)) {
         return resultToResponse(accessTokenRes) as NextResponse<RefreshErrResponse>;
     }
 
     return resultToResponse(
-        Ok({ accessToken: accessTokenRes.val.accessToken }),
+        Ok({ accessToken: accessTokenRes.left.accessToken }),
     ) as NextResponse<RefreshOkResponse>;
 }
 
@@ -37,21 +38,21 @@ export async function POST(
     request: NextRequest,
 ): Promise<NextResponse<HfsResponse<{ accessToken: string }>>> {
     const post = await request.json();
-    const optRefreshToken: string | undefined = post.refreshToken;
+    const optRefreshToken: O.Option<string> = post.refreshToken;
     const refreshTokenRes = await getRefreshTokenAndVerify(optRefreshToken);
 
-    if (refreshTokenRes.err) {
+    if (isErr(refreshTokenRes)) {
         return resultToResponse(refreshTokenRes);
     }
     const accessTokenRes = await updateAccessToken(
-        parseInt(refreshTokenRes.val[1].sub!),
+        parseInt(refreshTokenRes.left[1].sub!),
     );
 
-    if (accessTokenRes.err) {
+    if (isErr(accessTokenRes)) {
         return resultToResponse(accessTokenRes);
     }
 
     return resultToResponse(
-        Ok({ accessToken: accessTokenRes.val.accessToken[0] }),
+        Ok({ accessToken: accessTokenRes.left.accessToken[0] }),
     );
 }

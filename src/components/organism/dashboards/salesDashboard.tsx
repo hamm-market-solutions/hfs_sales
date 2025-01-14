@@ -3,15 +3,16 @@
 import ForecastVsSalesChart from "@/components/molecules/charts/forecastVsSalesChart";
 import { getSumForecastForLastFiveSeasons } from "@/lib/models/forecast";
 import { getQtyPairSumPerSeason } from "@/lib/models/purchaseLine";
+import { unwrap } from "@/utils/fp-ts";
 
 export default async function SalesDashboard() {
-    const forecastQty = (await getSumForecastForLastFiveSeasons()).unwrap();
+    const forecastQty = unwrap((await getSumForecastForLastFiveSeasons()));
     const expected = forecastQty.map((forecast) => ({
         name: forecast.seasonCode.toString(),
         value: forecast.sumQty,
     }));
     const orderQty = forecastQty.map(async (forecast) => {
-        const qtyPairSum = (await getQtyPairSumPerSeason(forecast.seasonCode)).unwrap();
+        const qtyPairSum = unwrap((await getQtyPairSumPerSeason(forecast.seasonCode)));
         return Number(qtyPairSum.qtyPairSum) / 1000;
     });
     const actual = await Promise.all(orderQty);

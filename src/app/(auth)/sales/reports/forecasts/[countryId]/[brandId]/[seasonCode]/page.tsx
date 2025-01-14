@@ -7,6 +7,7 @@ import ForecastTable from "@/components/organism/tables/forecastTable";
 import { validateUserAuthorizedOrRedirect } from "@/lib/auth/validations";
 import { routes } from "@/config/routes";
 import { isSeasonActive } from "@/lib/models/seasonBrandPhase";
+import { Some, unwrapOr } from "@/utils/fp-ts";
 
 export default async function Forecast({
     params,
@@ -14,19 +15,19 @@ export default async function Forecast({
   params: Promise<{ seasonCode: string }>;
 }) {
     await validateUserAuthorizedOrRedirect(
-        routes.sales.reports.forecasts["[countryId]"]["[brandId]"]["[seasonCode]"],
+        Some(routes.sales.reports.forecasts["[countryId]"]["[brandId]"]["[seasonCode]"]),
     );
     const seasonCode = Number((await params).seasonCode);
-    const seasonIsActive = (await isSeasonActive(seasonCode)).unwrapOr(false);
+    const seasonIsActive = unwrapOr((await isSeasonActive(seasonCode)), false);
     const subtitle = "Estimate the sales for the upcoming season";
 
     return (
         <div className="forecast-page">
             <Title
                 subtitle={
-                    seasonIsActive
+                    Some(seasonIsActive
                         ? subtitle
-                        : `${subtitle} - The season you are viewing is inactive`
+                        : `${subtitle} - The season you are viewing is inactive`)
                 }
                 title="Forecast"
             />

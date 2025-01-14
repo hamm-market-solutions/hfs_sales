@@ -1,16 +1,16 @@
 import { eq } from "drizzle-orm";
-import { Err, Ok } from "ts-results";
-
-import HfsError, { HfsResult } from "../errors/HfsError";
+import { Option} from "fp-ts/Option";
+import { HfsResult, throwToHfsError } from "../errors/HfsError";
 import ModelError from "../errors/ModelError";
 
 import { db } from "@/db";
 import { role, userHasRole } from "@/db/schema";
+import { Err, isErr, None, Ok, Some, unwrapOr } from "@/utils/fp-ts";
 
 export async function getUserRoles(userId: number): Promise<
   HfsResult<{
     userId: number;
-    roles: { roleId: number; roleName: string | null }[];
+    roles: { roleId: number; roleName: Option<string> }[];
   }>
 > {
     try {
@@ -20,13 +20,19 @@ export async function getUserRoles(userId: number): Promise<
             .where(eq(userHasRole.userId, userId))
             .leftJoin(role, eq(userHasRole.roleId, role.id));
 
-        return Ok({ userId: userId, roles: userRoles });
+        return Ok({
+            userId: userId,
+            roles: userRoles.map((ur) => ({
+                roleId: ur.roleId,
+                roleName: ur.roleName ? Some(ur.roleName) : None,
+            }))
+        });
     } catch (error) {
         return Err(
-            HfsError.fromThrow(
+            throwToHfsError(
                 500,
                 ModelError.drizzleError("user_has_roles"),
-        error as Error,
+                Some(error as Error),
             ),
         );
     }
@@ -35,9 +41,9 @@ export async function getUserRoles(userId: number): Promise<
 export async function isUserAdmin(userId: number): Promise<HfsResult<boolean>> {
     const userRoles = await getUserRoles(userId);
 
-    if (userRoles.err) {
-        return Err(userRoles.val);
+    if (isErr(userRoles)) {
+        return Err(userRoles.right);
     }
 
-    return Ok(userRoles.val.roles.some((r) => r.roleName === "admin"));
+    return Ok(userRoles.left.roles.some((r) => unwrapOr(r.roleName, "") === "admin"));
 }

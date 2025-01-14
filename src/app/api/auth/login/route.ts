@@ -12,6 +12,7 @@ import {
     schemaToResult,
 } from "@/utils/conversions";
 import { LoginFormSchema } from "@/lib/schemas/login";
+import { isErr } from "@/utils/fp-ts";
 
 export async function POST(
     request: NextRequest,
@@ -28,34 +29,34 @@ export async function POST(
         }),
     );
 
-    if (validatedFields.err) {
+    if (isErr(validatedFields)) {
         return resultToResponse(validatedFields);
     }
     // Get the user by email. If the user is not found, return a 404
     const user = optionToNotFound(
-        await getOptUserByEmail(validatedFields.val.email),
+        await getOptUserByEmail(validatedFields.left.email),
     );
 
-    if (user.err) {
+    if (isErr(user)) {
         return resultToResponse(user);
     }
     // Verify the password. If the password is incorrect, return a 401
-    const passwordVerifyRes = await verifyPassword(user.val.id, loginPassword);
+    const passwordVerifyRes = await verifyPassword(user.left.id, loginPassword);
 
-    if (passwordVerifyRes.err) {
+    if (isErr(passwordVerifyRes)) {
         return resultToResponse(passwordVerifyRes);
     }
-    const updateRes = await updateAccessToken(user.val.id);
+    const updateRes = await updateAccessToken(user.left.id);
 
-    if (updateRes.err) {
+    if (isErr(updateRes)) {
         return resultToResponse(updateRes);
     }
 
     return NextResponse.json({
         status: 200,
         data: {
-            accessToken: updateRes.val.accessToken[0],
-            refreshToken: updateRes.val.refreshToken[0],
+            accessToken: updateRes.left.accessToken[0],
+            refreshToken: updateRes.left.refreshToken[0],
         },
     });
 }

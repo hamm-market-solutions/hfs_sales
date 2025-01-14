@@ -1,57 +1,91 @@
 import {
     getForecastTableData,
-    getForecastTableCount,
 } from "../models/itemColor";
 
-import { seasonToShort } from "@/utils/conversions";
+import { phaseToDrop, seasonToShort } from "@/utils/conversions";
 import {
-    ForecastTableData,
+    ForecastTableColumns,
     ForecastTableRequest,
     TableResponse,
 } from "@/types/table";
+import { buildTableUrl } from "@/utils/tables";
+import { Option } from "fp-ts/Option";
+import { None, Some, unwrap, unwrapOr } from "@/utils/fp-ts";
 
 export const getForecastTableDataMapper = async ({
-    start,
-    size,
+    page,
     sorting,
     country,
     brand,
     season_code,
-    search,
-}: ForecastTableRequest): Promise<TableResponse<ForecastTableData>> => {
-    const itemColorData = await getForecastTableData({
-        start,
-        size,
+    filters,
+}: ForecastTableRequest): Promise<TableResponse<ForecastTableColumns>> => {
+    const forecastData = unwrap(await getForecastTableData({
+        page,
         sorting,
         country,
         brand,
         season_code,
-        search,
-    });
+        filters,
+    }));
+    const forecastDataCount = forecastData[0].totalRowCount ?? 0;
 
-    const itemColorDataCount = await getForecastTableCount({
+    const [nextUrl, previousUrl] = buildTableUrl<ForecastTableColumns, ForecastTableRequest>(forecastDataCount, "/api/sales/reports/forecasts/table", {
+        page,
+        sorting,
+        filters,
+        country,
         brand,
         season_code,
     });
 
+
     return {
-        data: itemColorData.unwrap().map((data) => ({
-            imgSrc: [data.last ?? undefined, data.itemNo.toString(), data.colorCode],
-            brand_no: data.brandNo,
-            brand_name: data.brandName,
-            season_code: data.seasonCode,
-            season_name: seasonToShort(data.seasonName ?? ""),
-            pre_collection: data.preCollection,
-            main_collection: data.mainCollection,
-            late_collection: data.lateCollection,
-            Special_collection: data.specialCollection,
-            item_no: data.itemNo,
-            description: data.description,
-            color_code: data.colorCode,
-            rrp: data.rrp,
-            wsp: data.wsp,
-            forecast_amount: data.forecastAmount,
-        })),
-        meta: { totalRowCount: itemColorDataCount.unwrap() },
+        data: forecastData.map((data) => {
+            const last = data.last ? Some(data.last) : None;
+            const itemNo = data.itemNo;
+            const colorCode = data.colorCode;
+            const brandNo = data.brandNo ? Some(data.brandNo) : None;
+            const brandName = data.brandName ? Some(data.brandName) : None;
+            const seasonCode = data.seasonCode ? Some(data.seasonCode) : None;
+            const seasonName = data.seasonName ? Some(data.seasonName) : None;
+            const preCollection = data.preCollection;
+            const mainCollection = data.mainCollection;
+            const lateCollection = data.lateCollection;
+            const specialCollection = data.specialCollection;
+            const description = data.description ? Some(data.description) : None;
+            const rrp = data.rrp;
+            const wsp = data.wsp;
+            const forecastAmount = data.forecastAmount;
+
+            return {
+                img_src: [last, Some(itemNo), Some(colorCode)] as [Option<string>, Option<string>, Option<string>],
+                brand_no: brandNo,
+                brand_name: brandName,
+                season_code: seasonCode,
+                season_name: seasonToShort(unwrapOr(seasonName, "")),
+                pre_collection: preCollection,
+                main_collection: mainCollection,
+                late_collection: lateCollection,
+                special_collection: specialCollection,
+                drop: phaseToDrop({
+                    pre_collection: preCollection,
+                    main_collection: mainCollection,
+                    late_collection: lateCollection,
+                    Special_collection: specialCollection,
+                }),
+                item_no: Some(itemNo),
+                description: description,
+                color_code: colorCode,
+                rrp: Some(rrp),
+                wsp: Some(wsp),
+                forecast_amount: Some(forecastAmount),
+            }
+        }),
+        meta: {
+            totalRowCount: forecastDataCount,
+            next: unwrapOr(nextUrl, undefined),
+            previous: unwrapOr(previousUrl, undefined),
+        },
     };
 };

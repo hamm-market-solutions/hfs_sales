@@ -1,10 +1,10 @@
 "use server";
 
-import { Err, Ok } from "ts-results";
+import { Option } from "fp-ts/Option";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
-import HfsError, { HfsResult } from "../errors/HfsError";
+import  { HfsResult, HfsError } from "../errors/HfsError";
 import { getCurrentUser, getOrUpdateAccessToken } from "../models/user";
 import AuthError from "../errors/AuthError";
 import { getUserPermissions } from "../models/userHasPermission";
@@ -12,10 +12,11 @@ import { isUserAdmin } from "../models/userHasRole";
 import FieldError from "../errors/FieldError";
 
 import { routePermissions, routes } from "@/config/routes";
+import { Err, isErr, isNone, isSome, None, Ok, unwrap, unwrapOr } from "@/utils/fp-ts";
 
 export async function isUserAuthenticated(): Promise<boolean> {
     try {
-        (await getOrUpdateAccessToken()).unwrap();
+        unwrap((await getOrUpdateAccessToken()));
 
         return true;
     } catch (_) {
@@ -24,53 +25,58 @@ export async function isUserAuthenticated(): Promise<boolean> {
 }
 
 export async function validateUserAuthorized(
-    route?: string,
-    neededPermissions?: string[],
+    route: Option<string> = None,
+    neededPermissions: Option<string[]> = None,
 ): Promise<HfsResult<true>> {
-    if ((!route && !neededPermissions) || (route && neededPermissions)) {
+    if ((isNone(route) && isNone(neededPermissions)) || (isSome(route) && isSome(neededPermissions))) {
+        const err: HfsError = {
+            status: 500,
+            message: FieldError.exactlyOneOfFieldsRequired(["route", "neededPermissions"]),
+            cause: None
+        }
         return Err(
-            new HfsError(
-                500,
-                FieldError.exactlyOneOfFieldsRequired(["route", "neededPermissions"]),
-            ),
+            err,
         );
     }
     await cookies(); // TODO: somehow this is needed so nextjs gets that the user is authenticated, at least if you are coming from /login. investigate why and find a better solution
     const isAuthenticated = await isUserAuthenticated();
 
     if (!isAuthenticated) {
-        return Err(new HfsError(403, AuthError.notAuthenticated()));
+        const err: HfsError = {
+            status: 403,
+            message: AuthError.notAuthenticated(),
+            cause: None
+        }
+        return Err(err);
     }
     const user = await getCurrentUser();
 
-    if (user.err) {
-        return Err(user.val);
+    if (isErr(user)) {
+        return Err(user.right);
     }
-    if ((await isUserAdmin(user.val.id)).unwrapOr(false)) {
+    if (unwrapOr((await isUserAdmin(user.left.id)), false)) {
         return Ok(true);
     }
-    const userPermissions = await getUserPermissions(user.val.id);
+    const userPermissions = await getUserPermissions(user.left.id);
 
-    if (userPermissions.err) {
-        return Err(userPermissions.val);
+    if (isErr(userPermissions)) {
+        return Err(userPermissions.right);
     }
     let permissionsNeeded: string[] = [];
 
-    if (route) {
-        permissionsNeeded = routePermissions[route];
+    if (isSome(route)) {
+        permissionsNeeded = routePermissions[route.value];
     } else {
-        permissionsNeeded = neededPermissions!;
+        permissionsNeeded = unwrapOr(neededPermissions, []);
     }
-    // console.log("permissionsNeeded", permissionsNeeded);
-    // console.log("userPermissions", userPermissions.val.permissions);
 
     const hasAllPermissions = matchPermissions(
         permissionsNeeded,
-        userPermissions.val.permissions.map((p) => p.permissionName ?? ""),
+        userPermissions.left.permissions.map((p) => unwrapOr(p.permissionName, "")),
     );
 
     if (!hasAllPermissions) {
-        return Err(new HfsError(401, AuthError.unauthorized()));
+        return Err({ status: 401, message: AuthError.unauthorized(), cause: None });
     }
 
     return Ok(true);
@@ -87,15 +93,16 @@ function matchPermissions(
  * Validates if the user is authenticated and has the needed permissions, otherwise redirects to the login page or 401 page
  */
 export async function validateUserAuthorizedOrRedirect(
-    route?: string,
-    neededPermissions?: string[],
+    route: Option<string> = None,
+    neededPermissions: Option<string[]> = None,
 ): Promise<void> {
+
     const result = await validateUserAuthorized(route, neededPermissions);
 
-    if (result.err) {
-        if (result.val.is(AuthError.notAuthenticated())) {
+    if (isErr(result)) {
+        if (result.right.message == AuthError.notAuthenticated()) {
             redirect(routes.login);
-        } else if (result.val.is(AuthError.unauthorized())) {
+        } else if (result.right.message == AuthError.unauthorized()) {
             redirect("/401");
         } else {
             // redirect to 500 page

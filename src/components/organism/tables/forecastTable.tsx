@@ -1,192 +1,167 @@
 "use client";
 
-import { ColumnDef } from "@tanstack/react-table";
 import { useParams } from "next/navigation";
-import React, { useMemo, useState } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import React, { ReactNode } from "react";
 
 import BaseTable from "./table";
 
-import { ForecastTableData } from "@/types/table";
-import { phaseToDrop } from "@/utils/conversions";
+import { ForecastTableColumns, TableColumns } from "@/types/table";
 import EditableCell from "@/components/molecules/editableCell";
 import ProductImage from "@/components/molecules/productImage";
+import { isNone, None, Some, unwrapOr } from "@/utils/fp-ts";
+import { Option } from "fp-ts/lib/Option";
+// import { getForecastTableData } from "@/actions/reports/forecast";
 
 export default function ForecastTable({
     isSeasonActive,
 }: {
-  isSeasonActive?: boolean;
+    isSeasonActive: boolean;
 }) {
-    const [editableIndex, setEditableIndex] = useState<number>(-1);
     const params = useParams<{
-    countryId: string;
-    brandId: string;
-    seasonCode: string;
-  }>();
-    const columns = useMemo<ColumnDef<ForecastTableData>[]>(
-        () => [
-            {
-                header: "Image",
-                accessorKey: "img_src",
-                cell: (cell) => {
-                    return (
-                        <ProductImage itemNo={cell.row.original.item_no?.toString()} colorCode={cell.row.original.color_code} />
-                    );
-                },
-                enableSorting: false,
-                size: 60,
+        countryId: string;
+        brandId: string;
+        seasonCode: string;
+    }>();
+    const columns: TableColumns<ForecastTableColumns> = [
+        {
+            header: "Image",
+            key: "img_src",
+            cell: ({ row }) => {
+                return (
+                    <ProductImage itemNo={row.item_no} colorCode={Some(row.color_code)} last={None} />
+                );
             },
-            {
-                header: "Brand",
-                accessorKey: "brand_name",
-                size: 100,
-            },
-            {
-                header: "Season",
-                accessorKey: "season_name",
-                size: 90,
-            },
-            {
-                header: "Drop",
-                cell: (cell) => {
-                    const row = cell.row.original;
-                    const drop = phaseToDrop({
-                        pre_collection: row.pre_collection,
-                        main_collection: row.main_collection,
-                        late_collection: row.late_collection,
-                        Special_collection: row.Special_collection,
-                    });
-
-                    return drop > 0 ? drop : "";
-                },
-                sortingFn: (a, b) => {
-                    const dropA = phaseToDrop({
-                        pre_collection: a.original.pre_collection,
-                        main_collection: a.original.main_collection,
-                        late_collection: a.original.late_collection,
-                        Special_collection: a.original.Special_collection,
-                    });
-                    const dropB = phaseToDrop({
-                        pre_collection: b.original.pre_collection,
-                        main_collection: b.original.main_collection,
-                        late_collection: b.original.late_collection,
-                        Special_collection: b.original.Special_collection,
-                    });
-
-                    return dropA - dropB;
-                },
-                enableSorting: true,
-                size: 60,
-            },
-            {
-                header: "Item No.",
-                accessorKey: "item_no",
-                size: 80,
-            },
-            {
-                header: "Description",
-                accessorKey: "description",
-                size: 200,
-                cell: (cell) => {
-                    return <span className="cut-text">{cell.getValue<string>()}</span>;
-                },
-                enableColumnFilter: true,
-            },
-            {
-                header: "Item Color",
-                accessorKey: "color_code",
-                size: 100,
-            },
-            {
-                header: "Retail Price",
-                accessorKey: "rrp",
-                cell: (cell) => {
-                    const price = cell.getValue() as number;
-
-                    return (price / 1000).toFixed(2);
-                },
-                size: 110,
-            },
-            {
-                header: "Estimated Qty.",
-                accessorKey: "forecast_amount",
-                cell: (cell) => {
-                    const row = cell.row.original;
-
-                    if (!isSeasonActive) {
-                        return Number(cell.getValue());
-                    }
-
-                    return (
-                        <EditableCell<ForecastTableData>
-                            index={cell.row.index}
-                            editableIndex={editableIndex}
-                            setEditableIndex={setEditableIndex}
-                            className="h-10"
-                            initValue={Number(cell.getValue()).toString()}
-                            onBlurFocusNext={true}
-                            min={0}
-                            step={1}
-                            submitFn={async (row, value) => {
-                                const res = await fetch("/api/sales/reports/forecasts", {
-                                    method: "POST",
-                                    headers: {
-                                        "Content-Type": "application/json",
-                                    },
-                                    body: JSON.stringify({
-                                        itemNo: row.item_no,
-                                        colorCode: row.color_code,
-                                        countryCode: params.countryId,
-                                        seasonCode: Number(params.seasonCode),
-                                        amount: value,
-                                    }),
-                                });
-                                const resJson = await res.json();
-
-                                if (resJson.status !== 200) {
-                                    return resJson;
-                                }
-                            }}
-                            tableRow={row}
-                            type="number"
-                            variant="bordered"
-                        />
-                    );
-                },
-                size: 90,
-            },
-        ],
-        [editableIndex, isSeasonActive, params.countryId, params.seasonCode],
-    );
-    const queryClient = new QueryClient({
-        defaultOptions: {
-            queries: {
-                refetchOnWindowFocus: false,
-            },
+            enableSorting: false,
+            size: Some(60),
+            index: None,
         },
-    });
+        {
+            header: "Brand",
+            key: "brand_name",
+            enableSorting: true,
+            size: Some(100),
+            index: None,
+        },
+        {
+            header: "Season",
+            key: "season_code",
+            enableSorting: true,
+            size: Some(90),
+            index: None,
+        },
+        {
+            header: "Drop",
+            key: "drop",
+            enableSorting: true,
+            size: Some(60),
+            index: None,
+        },
+        {
+            header: "Item No.",
+            key: "item_no",
+            enableSorting: true,
+            size: Some(80),
+            index: None,
+        },
+        {
+            header: "Description",
+            key: "description",
+            enableSorting: true,
+            size: Some(200),
+            cell: ({value}: { value: Option<string> }) => {
+                return <p className="cut-text">{unwrapOr(value, "") as unknown as ReactNode}</p>;
+            },
+            index: None,
+        },
+        {
+            header: "Item Color",
+            key: "color_code",
+            enableSorting: true,
+            size: Some(100),
+            index: None,
+        },
+        {
+            header: "Retail Price",
+            enableSorting: true,
+            key: "rrp",
+            cell: ({value}: { value: Option<number> }) => {
+                const price = unwrapOr(value, 0);
+
+                return (price / 1000).toFixed(2);
+            },
+            size: Some(110),
+            index: None,
+        },
+        {
+            header: "Estimated Qty.",
+            key: "forecast_amount",
+            enableSorting: true,
+            cell: ({value, row, index}: { value: Option<number>, row: ForecastTableColumns, index: number }) => {
+                const val = unwrapOr(value, 0);
+                if (!isSeasonActive) {
+                    return Number(val);
+                }
+
+                return (
+                    <EditableCell<ForecastTableColumns>
+                        index={index}
+                        // editableIndex={editableIndex}
+                        // setEditableIndex={setEditableIndex}
+                        className="h-10"
+                        initValue={Some(Number(val).toString())}
+                        onBlurFocusNext={true}
+                        min={0}
+                        step={1}
+                        submitFn={async (row, value) => {
+                            if (isNone(row.item_no)) {
+                                return { status: 400, message: "Item number is required", cause: None };
+                            }
+
+                            const res = await fetch("/api/sales/reports/forecasts", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    itemNo: row.item_no.value,
+                                    colorCode: row.color_code,
+                                    countryCode: params.countryId,
+                                    seasonCode: Number(params.seasonCode),
+                                    amount: value,
+                                }),
+                            });
+                            const resJson = await res.json();
+
+                            if (resJson.status !== 200) {
+                                return resJson;
+                            }
+                        }}
+                        tableRow={row}
+                        type="number"
+                        variant="bordered"
+                    />
+                );
+            },
+            size: Some(90),
+            index: None,
+        },
+    ];
+
+    const fetchUrl = new URL("http://localhost:3000" + "/api/sales/reports/forecasts/table");
+    fetchUrl.searchParams.set("country", params.countryId);
+    fetchUrl.searchParams.set("brand", params.brandId);
+    fetchUrl.searchParams.set("season_code", params.seasonCode);
 
     return (
-        <QueryClientProvider client={queryClient}>
-            <BaseTable
-                columns={columns}
-                // fetchFn={async (start: number, size: number, sorting: SortingState) => {
-                //   console.log("fetchFn", start, size, sorting);
+        <BaseTable<ForecastTableColumns>
+            columns={columns}
+            // fetchFn={async (sorting, search, page) => {
+            //     const t = await getForecastTableData(sorting, search, page, params.countryId, Number(params.brandId), Number(params.seasonCode));
+            //     console.log(t);
+            //     return t;
 
-                //   return await getForecastTableDataAction({
-                //     start: start,
-                //     size: size,
-                //     sorting: sorting,
-                //     country: params.countryId,
-                //     brand: Number(params.brandId),
-                //     season_code: Number(params.seasonCode),
-                //   });
-                // }}
-                url={[
-                    "/api/sales/reports/forecasts/table",
-                    `country=${params.countryId}&brand=${params.brandId}&season_code=${params.seasonCode}`,
-                ]}
-            />
-        </QueryClientProvider>
+            // }}
+            fetchUrl={fetchUrl}
+        />
     );
 }

@@ -1,70 +1,82 @@
-import { Err, Ok } from "ts-results";
 import { eq, max, min } from "drizzle-orm";
+import * as O from "fp-ts/lib/Option";
 
-import HfsError from "../errors/HfsError";
+import { HfsResult, throwToHfsError } from "../errors/HfsError";
 import ModelError from "../errors/ModelError";
 import SeasonBrandPhaseError from "../errors/SeasonbrandPhaseError";
 
 import { db } from "@/db";
 import { sSeasonBrandPhase } from "@/db/schema";
+import { Err, isErr, None, Ok, Some, unwrapOr } from "@/utils/fp-ts";
 
-export const getSeasonTime = async (seasonCode: number) => {
+export const getSeasonTime = async (seasonCode: number): Promise<HfsResult<{
+    code: number;
+    start: O.Option<string>;
+    end: O.Option<string>;
+}>> => {
     try {
+        const data = await db
+            .select({
+                code: sSeasonBrandPhase.seasonCode,
+                start: min(sSeasonBrandPhase.startDate),
+                end: max(sSeasonBrandPhase.endDate),
+            })
+            .from(sSeasonBrandPhase)
+            .where(eq(sSeasonBrandPhase.seasonCode, seasonCode));
+        const seasonTime = data[0];
+
+
+
         return Ok(
-            (
-                await db
-                    .select({
-                        code: sSeasonBrandPhase.seasonCode,
-                        start: min(sSeasonBrandPhase.startDate),
-                        end: max(sSeasonBrandPhase.endDate),
-                    })
-                    .from(sSeasonBrandPhase)
-                    .where(eq(sSeasonBrandPhase.seasonCode, seasonCode))
-            )[0],
+            {
+                code: seasonTime.code,
+                start: seasonTime.start ? Some(seasonTime.start) : None,
+                end: seasonTime.end ? Some(seasonTime.end) : None,
+            }
         );
     } catch (error) {
         return Err(
-            HfsError.fromThrow(
+            throwToHfsError(
                 500,
                 ModelError.notFound("season_brand_phase"),
-        error as Error,
+                Some(error as Error),
             ),
         );
     }
 };
 
-export const isSeasonActive = async (seasonCode: number) => {
+export const isSeasonActive = async (seasonCode: number): Promise<HfsResult<boolean>> => {
     try {
         const now = new Date();
         const seasonTime = await getSeasonTime(seasonCode);
 
-        if (seasonTime.err) {
+        if (isErr(seasonTime)) {
             return seasonTime;
         }
-        const seasonStart = new Date(seasonTime.val.start ?? "2100-01-01");
-        const seasonEnd = new Date(seasonTime.val.end ?? "2000-01-01");
+        const seasonStart = new Date(unwrapOr(seasonTime.left.start, "2100-01-01"));
+        const seasonEnd = new Date(unwrapOr(seasonTime.left.end, "2000-01-01"));
 
         return Ok(seasonStart <= now && now <= seasonEnd);
     } catch (error) {
         return Err(
-            HfsError.fromThrow(
+            throwToHfsError(
                 500,
                 ModelError.notFound("season_brand_phase"),
-        error as Error,
+                Some(error as Error),
             ),
         );
     }
 };
 
-export const assertSeasonActive = async (seasonCode: number) => {
+export const assertSeasonActive = async (seasonCode: number): Promise<HfsResult<true>> => {
     const seasonActive = await isSeasonActive(seasonCode);
 
-    if (seasonActive.err) {
+    if (isErr(seasonActive)) {
         return seasonActive;
     }
-    if (!seasonActive.val) {
+    if (!seasonActive.left) {
         return Err(
-            HfsError.fromThrow(400, SeasonBrandPhaseError.seasonInactive(seasonCode)),
+            throwToHfsError(400, SeasonBrandPhaseError.seasonInactive(seasonCode)),
         );
     }
 

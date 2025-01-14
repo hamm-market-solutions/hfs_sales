@@ -1,3 +1,5 @@
+import { Option } from "fp-ts/Option";
+
 export type HfsResponse<T extends object> =
   | HfsOkResponse<T>
   | HfsErrResponse;
@@ -12,8 +14,8 @@ export type HfsErrResponse = {
   error: string;
   name: string;
   message: string;
-  stack?: string;
-  cause?: Error;
+  stack: Option<string>;
+  cause: Option<Error>;
 };
 
 type HfsThrownError = HfsErrResponse;
@@ -39,7 +41,7 @@ export type GetUserCountriesResponse =
   | GetUserCountriesErrResponse;
 
 export type GetUserCountriesOkResponse = HfsOkResponse<{
-  countries: { code: string; name?: string }[];
+  countries: { code: string; name: Option<string> }[];
 }>;
 
 export type GetUserCountriesErrResponse = HfsErrResponse & HfsThrownError;

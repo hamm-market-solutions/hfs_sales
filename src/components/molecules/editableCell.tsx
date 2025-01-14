@@ -3,85 +3,85 @@
 import { Input, InputProps } from "@nextui-org/input";
 import { useState } from "react";
 import clsx from "clsx";
+import { HfsError } from "@/lib/errors/HfsError";
+import { isNone, isSome, None, Some, unwrapOr } from "@/utils/fp-ts";
+import { Option } from "fp-ts/lib/Option";
 
-import HfsError from "@/lib/errors/HfsError";
+function clickNextEditableCell(currentIndex: number) {
+    const allEditableCells = document.querySelectorAll(".editable-cell");
+    const nextEditableCell = allEditableCells[currentIndex + 1] as HTMLElement;
+
+    if (nextEditableCell) {
+        nextEditableCell.click();
+    }
+}
 
 export default function EditableCell<T extends object>({
     index,
-    editableIndex,
     tableRow,
     initValue,
-    setEditableIndex,
     submitFn,
     ...props
 }: {
   index: number;
-  editableIndex: number;
   tableRow: T;
-  initValue?: string;
-  onBlurFocusNext?: boolean;
-  setEditableIndex: (index: number) => void;
   submitFn: (row: T, value: unknown) => Promise<HfsError | void>;
+  onBlurFocusNext: boolean;
+  initValue: Option<string>;
 } & InputProps) {
-    const [value, setValue] = useState<
-    string | (readonly string[] & string) | undefined
-    	>(initValue);
-    const [error, setError] = useState<HfsError | null>(null);
-    const isEditable = index === editableIndex;
+    const [value, setValue] = useState<Option<string>>(initValue);
+    const [error, setError] = useState<Option<HfsError>>(None);
+    const [isEditable, setIsEditable] = useState<boolean>(false);
 
     if (isEditable) {
         return (
             <Input
                 autoFocus
-                className="editable-cell editable-cell_active"
-                value={value}
+                classNames={{
+                    input: "editable-cell editable-cell_active z-50"
+                }}
+                value={unwrapOr(value, "")}
+                onFocus={(e) => {(e.target as HTMLInputElement).select();}}
                 onBlur={async () => {
-                    setEditableIndex(-1);
-                    setError(null);
+                    setError(None);
+                    setIsEditable(false);
                     if (
-                        value == "" ||
-            value == undefined ||
-            value == null ||
-            value == initValue
+                        isNone(value) ||
+                        value == initValue
                     ) {
                         return;
                     }
-                    const error = await submitFn(tableRow, value);
+                    const error = await submitFn(tableRow, value.value);
 
                     if (error) {
-                        setError(error);
+                        setError(Some(error));
                     } else {
-                        console.log("new value", value);
-
                         setValue(value);
                     }
+
                 }}
                 onChange={(e) => {
-                    const val = e.target.value;
-                    console.log("changed value", val);
-
-                    setValue(val);
+                    setValue(Some(e.target.value));
                 }}
                 onKeyDown={async(e) => {
                     if (["Enter", "Tab"].includes(e.key)) {
                         e.preventDefault();
-                        setEditableIndex(index += 1)
-                        setError(null);
+                        setError(None);
+                        clickNextEditableCell(index);
                         if (
-                            value == "" ||
-              value == undefined ||
-              value == null ||
-              value == initValue
+                            isNone(value) ||
+                            value == initValue
                         ) {
+                            setIsEditable(false);
                             return;
                         }
-                        const error = await submitFn(tableRow, value);
+                        setIsEditable(false);
+                        const error = await submitFn(tableRow, value.value);
 
                         if (error) {
-                            setError(error);
+                            setError(Some(error));
                         } else {
                             setValue(value);
-                            console.log("value", value);
                         }
                     }
                 }}
@@ -92,17 +92,17 @@ export default function EditableCell<T extends object>({
         return (
             <div
                 className={clsx(
-                    "flex flex-col cursor-pointer place-content-center",
+                    "editable-cell editable-cell_inactive flex flex-col z-50 cursor-pointer place-content-center",
                     props.className,
                 )}
                 onClick={() => {
-                    setEditableIndex(index);
+                    setIsEditable(true);
                 }}
             >
-                {error ? (
-                    <span className="editable-cell editable-cell_inactive text-[10px] text-red-500">{error.error}</span>
+                {isSome(error) ? (
+                    <span className="text-[10px] text-red-500">{error.value.message}</span>
                 ) : (
-                    <span className="editable-cell editable-cell_inactive text-tertiary underline">{value ?? initValue}</span>
+                    <span className="text-tertiary underline">{isSome(value) ? value.value : isSome(initValue) ? initValue.value : ""}</span>
                 )}
             </div>
         );

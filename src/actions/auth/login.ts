@@ -9,39 +9,41 @@ import {
     updateAccessToken,
     verifyPassword,
 } from "@/lib/models/user";
+import { HfsError } from "@/lib/errors/HfsError";
+import { isErr, Some } from "@/utils/fp-ts";
+import { Option } from "fp-ts/lib/Option";
 
-export async function handleLogin(form: FormData): Promise<void> {
-    const formValidationRes = validateLoginForm(form);
+export async function handleLogin(prevState: Option<HfsError>, formData: FormData): Promise<Option<HfsError>> {
+    const formValidationRes = validateLoginForm(formData);
 
-    if (formValidationRes.err) {
-        return;
-        // return formValidationRes.val;
+    if (isErr(formValidationRes)) {
+        return Some(formValidationRes.right);
     }
-    const email = formValidationRes.val.email;
-    const password = formValidationRes.val.password;
+    const email = formValidationRes.left.email;
+    const password = formValidationRes.left.password;
+    console.log("email", email);
+    console.log("password", password);
+
     const userRes = await getUserByEmail(email);
 
-    if (userRes.err) {
-        return;
-        // return userRes.val;
+    if (isErr(userRes)) {
+        return Some(userRes.right);
     }
-    const passwordVerifyRes = await verifyPassword(userRes.val.id, password);
+    const passwordVerifyRes = await verifyPassword(userRes.left.id, password);
 
-    if (passwordVerifyRes.err) {
-        return;
-        // return passwordVerifyRes.val;
+    if (isErr(passwordVerifyRes)) {
+        return Some(passwordVerifyRes.right);
     }
-    const accessTokenRes = await updateAccessToken(userRes.val.id);
+    const accessTokenRes = await updateAccessToken(userRes.left.id);
 
-    if (accessTokenRes.err) {
-        return;
-        // return accessTokenRes.val;
+    if (isErr(accessTokenRes)) {
+        return Some(accessTokenRes.right);
     }
-    (await cookies()).set("refreshToken", accessTokenRes.val.refreshToken[0], {
+    (await cookies()).set("refreshToken", accessTokenRes.left.refreshToken[0], {
         httpOnly: true,
         secure: true,
         sameSite: "strict",
-        expires: accessTokenRes.val.refreshToken[1].exp! * 1000,
+        expires: accessTokenRes.left.refreshToken[1].exp! * 1000,
     });
 
     redirect("/dashboard");

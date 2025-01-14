@@ -1,7 +1,7 @@
-import { Err, Ok } from "ts-results";
 import { eq } from "drizzle-orm";
+import { Option } from "fp-ts/Option";
 
-import HfsError, { HfsResult } from "../errors/HfsError";
+import { HfsResult, throwToHfsError } from "../errors/HfsError";
 import ModelError from "../errors/ModelError";
 
 import { getUserRoles } from "./userHasRole";
@@ -9,11 +9,12 @@ import { getRolePermissions } from "./roleHasPermission";
 
 import { db } from "@/db";
 import { permission, userHasPermission } from "@/db/schema";
+import { Err, isErr, None, Ok, Some, unwrap } from "@/utils/fp-ts";
 
 export async function getUserCustomPermissions(userId: number): Promise<
   HfsResult<{
     userId: number;
-    permissions: { permissionId: number; permissionName: string | null }[];
+    permissions: { permissionId: number; permissionName: Option<string> }[];
   }>
 > {
     try {
@@ -26,13 +27,19 @@ export async function getUserCustomPermissions(userId: number): Promise<
             .where(eq(userHasPermission.userId, userId))
             .leftJoin(permission, eq(userHasPermission.permissionId, permission.id));
 
-        return Ok({ userId: userId, permissions: userRoles });
+        return Ok({
+            userId: userId,
+            permissions: userRoles.map((ur) => ({
+                permissionId: ur.permissionId,
+                permissionName: ur.permissionName ? Some(ur.permissionName) : None,
+            }))
+        });
     } catch (error) {
         return Err(
-            HfsError.fromThrow(
+            throwToHfsError(
                 500,
                 ModelError.drizzleError("user_has_permissions"),
-        error as Error,
+                Some(error as Error),
             ),
         );
     }
@@ -41,45 +48,45 @@ export async function getUserCustomPermissions(userId: number): Promise<
 export async function getUserPermissions(userId: number): Promise<
   HfsResult<{
     userId: number;
-    permissions: { permissionId: number; permissionName: string | null }[];
+    permissions: { permissionId: number; permissionName: Option<string> }[];
   }>
 > {
     try {
         const userRoles = await getUserRoles(userId);
 
-        if (userRoles.err) {
+        if (isErr(userRoles)) {
             return userRoles;
         }
         // console.log("userRoles", userRoles.val);
 
         const userPermissions = await getUserCustomPermissions(userId);
 
-        if (userPermissions.err) {
+        if (isErr(userPermissions)) {
             return userPermissions;
         }
         const rolePermissions = [];
 
-        for (const userRole of userRoles.val.roles) {
+        for (const userRole of userRoles.left.roles) {
             const rolePermissionsResult = await getRolePermissions(userRole.roleId);
 
-            if (rolePermissionsResult.err) {
+            if (isErr(rolePermissionsResult)) {
                 return rolePermissionsResult;
             }
-            rolePermissions.push(rolePermissionsResult.unwrap());
+            rolePermissions.push(unwrap(rolePermissionsResult));
         }
-        const permissions = userPermissions.val.permissions.concat(
+        const permissions = userPermissions.left.permissions.concat(
             ...rolePermissions.map((role) => role.permissions),
         );
 
-        permissions.push({ permissionId: 0, permissionName: "user" });
+        permissions.push({ permissionId: 0, permissionName: Some("user") });
 
         return Ok({ userId: userId, permissions: permissions });
     } catch (error) {
         return Err(
-            HfsError.fromThrow(
+            throwToHfsError(
                 500,
                 ModelError.drizzleError("user_has_permissions"),
-        error as Error,
+                Some(error as Error),
             ),
         );
     }

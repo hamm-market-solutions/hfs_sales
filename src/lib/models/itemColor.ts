@@ -1,54 +1,28 @@
-import { Err, Ok } from "ts-results";
-import { and, count, eq, sql } from "drizzle-orm";
+import { and, eq, sql } from "drizzle-orm";
 import _ from "lodash";
 
-import HfsError from "../errors/HfsError";
+import { throwToHfsError } from "../errors/HfsError";
 import ItemColorModelError from "../errors/ItemColorModelError";
 
 import { ForecastTableRequest } from "@/types/table";
 import { db } from "@/db";
 import { brand, sItem, sItemColor, sSeason, } from "@/db/schema";
-import { sortingStateToDrizzle } from "@/utils/conversions";
+import { tableFiltersToDrizzle, tableSortingToDrizzle } from "@/utils/conversions";
+import { TABLE_FETCH_SIZE } from "../tables/constants";
+import { Err, Ok, Some } from "@/utils/fp-ts";
 
-export const getForecastTableCount = async ({
-    brand,
-    season_code,
-}: {
-  brand: number;
-  season_code: number;
-}) => {
-    try {
-        const dataCount = await db
-            .select({ count: count() })
-            .from(sItemColor)
-            .leftJoin(sItem, and(eq(sItemColor.itemNo, sItem.no)))
-            .where(
-                and(
-                    eq(sItem.brandNo, brand.toString()),
-                    eq(sItem.seasonCode, season_code),
-                ),
-            );
-
-        return Ok(dataCount[0].count);
-    } catch (error) {
-        return Err(
-            HfsError.fromThrow(
-                500,
-                ItemColorModelError.getForecastDataCountError(),
-        error as Error,
-            ),
-        );
-    }
-};
-
+/**
+ *
+ * @param param0
+ * @returns [ForecastTableColumns]
+ */
 export const getForecastTableData = async ({
-    start,
-    size,
+    page,
     sorting,
     country,
     brand: brandNo,
     season_code,
-    search,
+    filters,
 }: ForecastTableRequest) => {
     try {
         const select = {
@@ -96,11 +70,13 @@ export const getForecastTableData = async ({
         sql<number>`(SELECT amount FROM forecast WHERE item_no = ${sItemColor.itemNo} AND color_code = ${sItemColor.colorCode} AND country_code = ${country} ORDER BY timestamp DESC LIMIT 1)`.mapWith(
         	Number,
         ),
+            totalRowCount: sql<number>`COUNT(*) OVER()`,
         };
         const orderBySelectClone = _.cloneDeep(select);
-        const orderBy = sortingStateToDrizzle(orderBySelectClone, sorting);
-        console.log("search:", search);
-        const data =await db
+        const whereSelectClone = _.cloneDeep(select);
+        const orderBy = tableSortingToDrizzle(orderBySelectClone, sorting);
+        const filtersWhere = tableFiltersToDrizzle(whereSelectClone, filters);
+        const data = await db
             .select(select)
             .from(sItemColor)
             .leftJoin(sItem, and(eq(sItemColor.itemNo, sItem.no)))
@@ -110,24 +86,23 @@ export const getForecastTableData = async ({
                 and(
                     eq(sItem.brandNo, brandNo.toString()),
                     eq(sItem.seasonCode, season_code),
+                    ...filtersWhere,
                 ),
             )
             .groupBy(sItemColor.itemNo, sItemColor.colorCode)
             .orderBy(...orderBy)
-            .limit(size)
-            .offset(start);
+            .limit(TABLE_FETCH_SIZE)
+            .offset((page - 1) * TABLE_FETCH_SIZE);
 
-
-
-        return Ok(
-            data
-        );
+        return Ok(data);
     } catch (error) {
+        console.log("error", error);
+
         return Err(
-            HfsError.fromThrow(
+            throwToHfsError(
                 500,
                 ItemColorModelError.getForecastDataError(),
-        error as Error,
+                Some(error as Error),
             ),
         );
     }

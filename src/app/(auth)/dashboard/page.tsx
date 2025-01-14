@@ -4,23 +4,28 @@ import { routes } from "@/config/routes";
 import { validateUserAuthorizedOrRedirect } from "@/lib/auth/validations";
 import { getCurrentUser } from "@/lib/models/user";
 import { getUserRoles } from "@/lib/models/userHasRole";
+import { None, Some, unwrap, unwrapOr } from "@/utils/fp-ts";
+import { Option } from "fp-ts/lib/Option";
 
 export default async function Dashboard() {
-    await validateUserAuthorizedOrRedirect(routes.dashboard);
-    const user = (await getCurrentUser()).unwrap();
-    const userRoles = (await getUserRoles(user.id)).unwrap();
-    let dashboardComponent = null;
+    console.log("checking if user is authorized");
+    await validateUserAuthorizedOrRedirect(Some(routes.dashboard));
+    const user = unwrap((await getCurrentUser()));
+    const userRoles = unwrap((await getUserRoles(user.id)));
+    let dashboardComponent: Option<JSX.Element> = None;
 
     if (
-        userRoles.roles.some((r) => r.roleName === "sale" || r.roleName === "admin")
+        userRoles.roles.some((r) => {
+            return unwrapOr(r.roleName, "") == "sale" || unwrapOr(r.roleName, "") == "admin"
+        })
     ) {
-        dashboardComponent = <SalesDashboard />;
+        dashboardComponent = Some(<SalesDashboard />);
     }
 
     return (
         <div className="dashboard-page">
-            <Title title="Dashboard" />
-            {dashboardComponent}
+            <Title title="Dashboard" subtitle={None} />
+            {unwrapOr(dashboardComponent, null)}
         </div>
     );
 }
