@@ -10,6 +10,7 @@ import EditableCell from "@/components/molecules/editableCell";
 import ProductImage from "@/components/molecules/productImage";
 import { isNone, None, Some, unwrapOr } from "@/utils/fp-ts";
 import { Option } from "fp-ts/lib/Option";
+// import { getForecastTableData } from "@/actions/reports/forecast";
 
 export default function ForecastTable({
     isSeasonActive,
@@ -154,8 +155,8 @@ export default function ForecastTable({
     return (
         <BaseTable<ForecastTableColumns>
             columns={columns}
-            // fetchFn={async (sorting, search) => {
-            //     const t = await getForecastTableData(sorting, search, params.countryId, Number(params.brandId), Number(params.seasonCode));
+            // fetchFn={async (sorting, search, page) => {
+            //     const t = await getForecastTableData(sorting, search, page, params.countryId, Number(params.brandId), Number(params.seasonCode));
             //     console.log(t);
             //     return t;
 

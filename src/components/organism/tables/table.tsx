@@ -6,8 +6,9 @@ import { Table, TableBody, TableHeader, TableRow, TableColumn, TableCell, getKey
 import {useInfiniteScroll} from "@nextui-org/use-infinite-scroll";
 import {useAsyncList} from "@react-stately/data";
 
-import { TableColumns, TableResponse, TableSort } from "@/types/table";
+import { TableColumns, TableFilter, TableResponse, TableSort } from "@/types/table";
 import { instanceOfOption, instanceOfResult, unwrapOr } from "@/utils/fp-ts";
+import TableFilters from "@/components/molecules/tableFilters";
 
 export default function BaseTable<T extends object>({
     columns,
@@ -19,8 +20,8 @@ export default function BaseTable<T extends object>({
     const [isLoading, setIsLoading] = React.useState<boolean>(true);
     const [hasMore, setHasMore] = React.useState<boolean>(false);
     const [sorting, setSorting] = React.useState<TableSort<T>|undefined>(undefined);
-    const [search, _setSearch] = React.useState<string>("");
-    // const [nextPageUrl, setNextPageUrl] = React.useState<string>("");
+    const [filters, setFilters] = React.useState<TableFilter<T>[]>([]);
+    const [useStartFetchUrl, setUseStartFetchUrl] = React.useState<boolean>(false);
 
     const list = useAsyncList<T>({
         async load({signal, cursor}) {
@@ -30,19 +31,21 @@ export default function BaseTable<T extends object>({
 
             // If no cursor is available, then we're loading the first page.
             // Otherwise, the cursor is the next URL to load, as returned from the previous page.
-            if (sorting) {
-                fetchUrl.searchParams.set("sorting", JSON.stringify(sorting));
+            let workingFetchUrl: URL;
+            if (useStartFetchUrl) {
+                workingFetchUrl = fetchUrl;
+            } else {
+                workingFetchUrl = new URL(cursor || fetchUrl);
             }
-            fetchUrl.searchParams.set("search", search);
-
-            console.log("fetchUrl", fetchUrl.toString());
-            console.log("cursor", cursor);
-
-            const res = await fetch(cursor || fetchUrl.toString(), {signal});
+            if (sorting) {
+                workingFetchUrl.searchParams.set("sorting", JSON.stringify(sorting));
+            }
+            workingFetchUrl.searchParams.set("search", filters.toString());
+            const res = await fetch(workingFetchUrl, {signal});
             const data: TableResponse<T> = (await res.json()).data;
 
-            setHasMore(data.meta.next !== undefined);
-            // setNextPageUrl(data.meta.next);
+            setUseStartFetchUrl(false);
+            setHasMore(!!data.meta.next);
 
             return {
                 items: data.data,
@@ -57,75 +60,77 @@ export default function BaseTable<T extends object>({
     });
 
     return (
-        <Table
-            isHeaderSticky
-            aria-label="Table"
-            baseRef={scrollerRef}
-            bottomContent={
-                hasMore ? (
-                    <div className="flex w-full justify-center">
-                        <Spinner ref={loaderRef} color="primary" />
-                    </div>
-                ) : null
-            }
-            classNames={{
-                base: "max-h-[620px]",
-                table: "min-h-[500px]",
-            }}
-            sortDescriptor={sorting as SortDescriptor}
-            onSortChange={(sorting) => {
-                console.log("onSortChange", sorting);
-
-                setSorting(sorting as TableSort<T>);
-                list.reload();
-            }}
-        >
-            <TableHeader>
-                {columns.map((column) => (
-                    <TableColumn
-                        key={column.key.toString()}
-                        id={column.key?.toString()}
-                        allowsSorting={column.enableSorting}
-                    >
-                        {column.header}
-                    </TableColumn>
-                ))}
-            </TableHeader>
-            <TableBody
-                isLoading={isLoading}
-                items={list.items}
-                loadingContent={<Spinner color="white" />}
+        <>
+            <TableFilters columns={columns} setFilters={setFilters} />
+            <Table
+                isHeaderSticky
+                aria-label="Table"
+                baseRef={scrollerRef}
+                bottomContent={
+                    hasMore ? (
+                        <div className="flex w-full justify-center">
+                            <Spinner ref={loaderRef} color="primary" />
+                        </div>
+                    ) : null
+                }
+                classNames={{
+                    base: "max-h-[620px]",
+                    table: "min-h-[500px]",
+                }}
+                sortDescriptor={sorting as SortDescriptor}
+                onSortChange={(sort) => {
+                    setUseStartFetchUrl(true);
+                    setSorting(sort as TableSort<T>);
+                    list.reload();
+                }}
             >
-                {(item: T) => {
-                    const index = list.items.indexOf(item);
+                <TableHeader>
+                    {columns.map((column) => (
+                        <TableColumn
+                            key={column.key.toString()}
+                            id={column.key?.toString()}
+                            allowsSorting={column.enableSorting}
+                        >
+                            {column.header}
+                        </TableColumn>
+                    ))}
+                </TableHeader>
+                <TableBody
+                    isLoading={isLoading}
+                    items={list.items}
+                    loadingContent={<Spinner color="white" />}
+                >
+                    {(item: T) => {
+                        const index = list.items.indexOf(item);
 
-                    return (
-                        <TableRow key={index}>
-                            {(columnKey) => {
-                                const column = columns.find((c) => c.key === columnKey);
-                                if (column?.cell) {
+                        return (
+                            <TableRow key={index}>
+                                {(columnKey) => {
+                                    const column = columns.find((c) => c.key === columnKey);
+                                    if (column?.cell) {
+                                        return (
+                                            <TableCell>
+                                                {column.cell({value: getKeyValue(item, columnKey), row: item, index})}
+                                            </TableCell>
+                                        );
+                                    }
+
                                     return (
                                         <TableCell>
-                                            {column.cell({value: getKeyValue(item, columnKey), row: item, index})}
+                                            {
+                                                instanceOfResult(getKeyValue(item, columnKey)) ||
+                                                instanceOfOption(getKeyValue(item, columnKey)) ?
+                                                    unwrapOr(getKeyValue(item, columnKey), "") :
+                                                    getKeyValue(item, columnKey)
+                                            }
                                         </TableCell>
-                                    );
-                                }
-
-                                return (
-                                    <TableCell>
-                                        {
-                                            instanceOfResult(getKeyValue(item, columnKey)) ||
-                                            instanceOfOption(getKeyValue(item, columnKey)) ?
-                                                unwrapOr(getKeyValue(item, columnKey), "") :
-                                                getKeyValue(item, columnKey)
-                                        }
-                                    </TableCell>
-                                )
-                            }}
-                        </TableRow>
-                    )
-                }}
-            </TableBody>
-        </Table>
+                                    )
+                                }}
+                            </TableRow>
+                        )
+                    }}
+                </TableBody>
+            </Table>
+        </>
     );
 }

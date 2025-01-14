@@ -66,33 +66,6 @@ export const sortingStateToDrizzle = <T extends object>(
     }
 
     return sortings;
-    // let flattenedSorting: { [key: string]: string } = {};
-
-    // for (const sort of sorting) {
-    //   flattenedSorting = {
-    //     ...flattenedSorting,
-    //     [sort.id]: sort.desc ? "desc" : "asc",
-    //   };
-    // }
-    // for (const key in prismaSelect) {
-    //   if (typeof prismaSelect[key] === "object") {
-    //     prismaSelect[key] = sortingStateToDrizzle(
-    //       prismaSelect[key]["select"],
-    //       sorting,
-    //     );
-    //     if (Object.keys(prismaSelect[key]).length === 0) {
-    //       delete prismaSelect[key];
-    //     }
-    //   } else {
-    //     if (flattenedSorting[key]) {
-    //       prismaSelect[key] = flattenedSorting[key];
-    //     } else {
-    //       delete prismaSelect[key];
-    //     }
-    //   }
-    // }
-
-    // return prismaSelect;
 };
 
 export const phaseToDrop = ({
@@ -120,8 +93,6 @@ export const phaseToDrop = ({
 };
 
 export const snakeCaseToCamelCase = (str: string) => {
-    console.log("str", str);
-
     return str.replace(/([-_]\w)/g, (g) => g[1].toUpperCase());
 };
 

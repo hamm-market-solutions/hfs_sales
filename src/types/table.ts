@@ -9,6 +9,7 @@ export interface TableResponse<T extends object> {
 export type TableSortDirection = "ascending" | "descending";
 
 export type TableSort<T extends object> = { column: keyof T, direction: TableSortDirection };
+export type TableFilter<T extends object> = { column: keyof T, value: string };
 
 export interface TableRequest<T extends object> {
   page: number;

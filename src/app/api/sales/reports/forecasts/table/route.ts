@@ -21,8 +21,6 @@ export const GET = async (
         sorting = pipe(
             O.fromNullable(searchParams.get("sorting") != "" ? searchParams.get("sorting") : null),
             O.map((sort) => {
-                console.log("CEOWIOCE", sort, typeof sort);
-
                 return JSON.parse(sort) as TableSort<ForecastTableColumns>
             }),
         );
