@@ -31,6 +31,7 @@ export default function ForecastTable({
                     <ProductImage itemNo={row.item_no} colorCode={Some(row.color_code)} last={None} />
                 );
             },
+            enableFiltering: false,
             enableSorting: false,
             size: Some(60),
             index: None,
@@ -38,6 +39,7 @@ export default function ForecastTable({
         {
             header: "Brand",
             key: "brand_name",
+            enableFiltering: true,
             enableSorting: true,
             size: Some(100),
             index: None,
@@ -45,6 +47,7 @@ export default function ForecastTable({
         {
             header: "Season",
             key: "season_code",
+            enableFiltering: false,
             enableSorting: true,
             size: Some(90),
             index: None,
@@ -52,6 +55,7 @@ export default function ForecastTable({
         {
             header: "Drop",
             key: "drop",
+            enableFiltering: true,
             enableSorting: true,
             size: Some(60),
             index: None,
@@ -59,6 +63,7 @@ export default function ForecastTable({
         {
             header: "Item No.",
             key: "item_no",
+            enableFiltering: true,
             enableSorting: true,
             size: Some(80),
             index: None,
@@ -66,6 +71,7 @@ export default function ForecastTable({
         {
             header: "Description",
             key: "description",
+            enableFiltering: true,
             enableSorting: true,
             size: Some(200),
             cell: ({value}: { value: Option<string> }) => {
@@ -76,12 +82,14 @@ export default function ForecastTable({
         {
             header: "Item Color",
             key: "color_code",
+            enableFiltering: true,
             enableSorting: true,
             size: Some(100),
             index: None,
         },
         {
             header: "Retail Price",
+            enableFiltering: true,
             enableSorting: true,
             key: "rrp",
             cell: ({value}: { value: Option<number> }) => {
@@ -95,6 +103,7 @@ export default function ForecastTable({
         {
             header: "Estimated Qty.",
             key: "forecast_amount",
+            enableFiltering: true,
             enableSorting: true,
             cell: ({value, row, index}: { value: Option<number>, row: ForecastTableColumns, index: number }) => {
                 const val = unwrapOr(value, 0);

@@ -33,7 +33,7 @@ export default function TableFilters<T extends object>({ columns, appliedFilters
                                     }}
                                 >
                                     {columns.map((column) => (
-                                        <Input
+                                        column.enableFiltering ? <Input
                                             key={column.key as string}
                                             name={column.key as string}
                                             label={column.header}
@@ -50,7 +50,7 @@ export default function TableFilters<T extends object>({ columns, appliedFilters
                                                     return newFilters;
                                                 });
                                             }}
-                                        />
+                                        /> : null
                                     ))}
                                     <Button type="submit" variant="bordered">Apply Filters</Button>
                                 </Form>

@@ -21,6 +21,7 @@ export type TableColumns<T extends object> = {
   header: string;
   key: keyof T;
   enableSorting: boolean;
+  enableFiltering: boolean;
   cell?: (props: {
     value: any;
     row: T;
