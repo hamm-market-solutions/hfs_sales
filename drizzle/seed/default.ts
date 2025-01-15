@@ -1,4 +1,4 @@
-import { chunkArray } from "@/utils/chunker";
+import { chunkArray } from "../../src/utils/chunker";
 import { toCamelCase } from "drizzle-orm/casing";
 import { drizzle } from "drizzle-orm/mysql2";
 

@@ -6,8 +6,11 @@
     "dev": "next dev --turbo",
     "build": "NODE_ENV=production next build",
     "start": "NODE_ENV=production node server.mjs",
-    "lint": "eslint . --fix",
-    "seed": "npx tsx drizzle/seed/seed.ts"
+    "lint": "next lint",
+    "migrate": "npx drizzle-kit migrate",
+    "seed:up": "npx tsx drizzle/seed/seed.ts -- up",
+    "seed:down": "npx tsx drizzle/seed/seed.ts -- down",
+    "seed:reset": "npx tsx drizzle/seed/seed.ts -- reset"
   },
   "dependencies": {
     "@nextui-org/alert": "^2.2.9",

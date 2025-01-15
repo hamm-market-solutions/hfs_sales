@@ -68,10 +68,10 @@ import {
     down as sItemColorDown,
 } from "./seed_s_item_color";
 
-import * as schemas from "@/db/schema";
+import * as schemas from "../../src/db/schema";
 
 import minimist from "minimist";
-import { writeFileSync } from "fs";
+import { writeFileSync } from "node:fs";
 import { drizzle } from "drizzle-orm/mysql2";
 import { sql } from "drizzle-orm";
 

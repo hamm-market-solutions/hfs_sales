@@ -1,6 +1,6 @@
 import { TABLE_DATA } from "./data/menu";
 
-import { menu } from "@/db/schema";
+import { menu } from "../../src/db/schema";
 import { defaultDown, defaultUp } from "./default";
 
 export async function up() {

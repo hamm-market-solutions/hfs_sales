@@ -1,6 +1,6 @@
 import { TABLE_DATA } from "./data/user";
 
-import { user } from "@/db/schema";
+import { user } from "../../src/db/schema";
 import { defaultDown, defaultUp } from "./default";
 
 export async function up() {

@@ -1,6 +1,6 @@
 import { TABLE_DATA } from "./data/s_season";
 
-import { sSeason } from "@/db/schema";
+import { sSeason } from "../../src/db/schema";
 import { defaultDown, defaultUp } from "./default";
 
 export async function up() {

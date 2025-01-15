@@ -1,6 +1,6 @@
 import { TABLE_DATA } from "./data/role_has_permission";
 
-import { roleHasPermission } from "@/db/schema";
+import { roleHasPermission } from "../../src/db/schema";
 import { defaultDown, defaultUp } from "./default";
 
 export async function up() {

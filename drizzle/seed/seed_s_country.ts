@@ -1,6 +1,6 @@
 import { TABLE_DATA } from "./data/s_country";
 
-import { sCountry } from "@/db/schema";
+import { sCountry } from "../../src/db/schema";
 import { defaultDown, defaultUp } from "./default";
 
 export async function up() {

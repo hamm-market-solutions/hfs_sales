@@ -1,6 +1,6 @@
 import { TABLE_DATA } from "./data/s_purchase_line";
 
-import { sPurchaseLine } from "@/db/schema";
+import { sPurchaseLine } from "../../src/db/schema";
 import { defaultDown, defaultUp } from "./default";
 
 export async function up() {

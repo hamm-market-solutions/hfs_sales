@@ -1,6 +1,6 @@
 import { TABLE_DATA } from "./data/s_season_brand_phase";
 
-import { sSeasonBrandPhase } from "@/db/schema";
+import { sSeasonBrandPhase } from "../../src/db/schema";
 import { defaultDown, defaultUp } from "./default";
 
 export async function up() {

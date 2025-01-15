@@ -1,6 +1,6 @@
 import { TABLE_DATA } from "./data/s_variant";
 
-import { sVariant } from "@/db/schema";
+import { sVariant } from "../../src/db/schema";
 import { defaultDown, defaultUp } from "./default";
 
 export async function up() {

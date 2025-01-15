@@ -1,6 +1,6 @@
 import { TABLE_DATA } from "./data/s_item_color";
 
-import { sItemColor } from "@/db/schema";
+import { sItemColor } from "../../src/db/schema";
 import { defaultDown, defaultUp } from "./default";
 
 export async function up() {
