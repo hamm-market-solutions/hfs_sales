@@ -4,9 +4,9 @@ import { userHasCountry } from "../../src/db/schema";
 import { defaultDown, defaultUp } from "./default";
 
 export async function up() {
-    await defaultUp(userHasCountry, TABLE_DATA.user_has_country);
+  await defaultUp(userHasCountry, TABLE_DATA.user_has_country);
 }
 
 export async function down() {
-    await defaultDown(userHasCountry);
+  await defaultDown(userHasCountry);
 }

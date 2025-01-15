@@ -4,9 +4,9 @@ import { roleHasPermission } from "../../src/db/schema";
 import { defaultDown, defaultUp } from "./default";
 
 export async function up() {
-    await defaultUp(roleHasPermission, TABLE_DATA.role_has_permission);
+  await defaultUp(roleHasPermission, TABLE_DATA.role_has_permission);
 }
 
 export async function down() {
-    await defaultDown(roleHasPermission);
+  await defaultDown(roleHasPermission);
 }

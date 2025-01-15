@@ -1,6 +1,6 @@
 export const authConfig = {
-    access_token_secret: process.env.ACCESS_TOKEN_SECRET!,
-    refresh_token_secret: process.env.REFRESH_TOKEN_SECRET!,
+  access_token_secret: process.env.ACCESS_TOKEN_SECRET!,
+  refresh_token_secret: process.env.REFRESH_TOKEN_SECRET!,
 };
 
 export const ACCESS_TOKEN_LIFETIME = 5 * 60; // 5 minutes

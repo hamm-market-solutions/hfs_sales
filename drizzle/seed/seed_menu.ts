@@ -4,9 +4,9 @@ import { menu } from "../../src/db/schema";
 import { defaultDown, defaultUp } from "./default";
 
 export async function up() {
-    await defaultUp(menu, TABLE_DATA.menu);
+  await defaultUp(menu, TABLE_DATA.menu);
 }
 
 export async function down() {
-    await defaultDown(menu);
+  await defaultDown(menu);
 }

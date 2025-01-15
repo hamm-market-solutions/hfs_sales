@@ -2,7 +2,7 @@ import { z } from "zod";
 
 import { HfsResult } from "../errors/HfsError";
 
-import { schemaToResult } from "@/utils/conversions";
+import { schemaToResult } from "@/src/utils/conversions";
 
 export type LoginFormValues = {
   email: string;
@@ -10,17 +10,17 @@ export type LoginFormValues = {
 };
 
 export const LoginFormSchema = z.object({
-    email: z.string().email({ message: "Please enter a valid email." }).trim(),
-    password: z.string().trim().min(1, { message: "Please enter a password." }),
+  email: z.string().email({ message: "Please enter a valid email." }).trim(),
+  password: z.string().trim().min(1, { message: "Please enter a password." }),
 });
 
 export const validateLoginForm = (
-    data: FormData,
+  data: FormData,
 ): HfsResult<LoginFormValues> => {
-    return schemaToResult(
-        LoginFormSchema.safeParse({
-            email: data.get("email"),
-            password: data.get("password"),
-        }),
-    );
+  return schemaToResult(
+    LoginFormSchema.safeParse({
+      email: data.get("email"),
+      password: data.get("password"),
+    }),
+  );
 };

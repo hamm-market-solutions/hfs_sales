@@ -1,4 +1,8 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "deno.enable": true,
+  // "deno.lint": true,
+  "deno.importMap": "./import_map.json"
+  // "deno.config": "./tsconfig.json"
 }

@@ -4,29 +4,31 @@ import { Link } from "@nextui-org/link";
 
 import NavBarItems from "./navBarItems";
 
-import { navigationTree } from "@/config/navigation";
-import { isUserAuthenticated } from "@/lib/auth/validations";
+import { navigationTree } from "@/src/config/navigation";
+import { isUserAuthenticated } from "@/src/lib/auth/validations";
 
 export default async function NavBar() {
-    const isUserAuth = await isUserAuthenticated();
+  const isUserAuth = await isUserAuthenticated();
 
-    return (
-        <Navbar isBordered>
-            <NavbarBrand className="gap-3">
-                <Link href="/dashboard">
-                    <Image
-                        alt="logo"
-                        className="rounded-none"
-                        src="/assets/logo.png"
-                        width={150}
-                    />
-                </Link>
-            </NavbarBrand>
-            <NavbarContent justify="center">
-                <NavBarItems
-                    navRoutes={isUserAuth ? navigationTree : ({} as typeof navigationTree)}
-                />
-            </NavbarContent>
-        </Navbar>
-    );
+  return (
+    <Navbar isBordered>
+      <NavbarBrand className="gap-3">
+        <Link href="/dashboard">
+          <Image
+            alt="logo"
+            className="rounded-none"
+            src="/assets/logo.png"
+            width={150}
+          />
+        </Link>
+      </NavbarBrand>
+      <NavbarContent justify="center">
+        <NavBarItems
+          navRoutes={isUserAuth
+            ? navigationTree
+            : ({} as typeof navigationTree)}
+        />
+      </NavbarContent>
+    </Navbar>
+  );
 }

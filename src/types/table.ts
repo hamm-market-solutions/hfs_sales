@@ -3,19 +3,22 @@ import { Option } from "fp-ts/Option";
 
 export interface TableResponse<T extends object> {
   data: T[];
-  meta: { totalRowCount: number, next?: string, previous?: string };
-};
+  meta: { totalRowCount: number; next?: string; previous?: string };
+}
 
 export type TableSortDirection = "ascending" | "descending";
 
-export type TableSort<T extends object> = { column: keyof T, direction: TableSortDirection };
-export type TableFilter<T extends object> = { column: keyof T, value: string };
+export type TableSort<T extends object> = {
+  column: keyof T;
+  direction: TableSortDirection;
+};
+export type TableFilter<T extends object> = { column: keyof T; value: string };
 
 export interface TableRequest<T extends object> {
   page: number;
   sorting: Option<TableSort<T>>;
   filters: Option<TableFilter<T>[]>;
-};
+}
 
 export type TableColumns<T extends object> = {
   header: string;
@@ -25,18 +28,19 @@ export type TableColumns<T extends object> = {
   cell?: (props: {
     value: any;
     row: T;
-    index: number
+    index: number;
   }) => React.ReactNode;
   sortingFn?: (a: { original: T }, b: { original: T }) => number;
   size: Option<number>;
   index: Option<number>;
 }[];
 
-export interface ForecastTableRequest extends TableRequest<ForecastTableColumns> {
+export interface ForecastTableRequest
+  extends TableRequest<ForecastTableColumns> {
   country: string;
   brand: number;
   season_code: number;
-};
+}
 
 export interface ForecastTableColumns {
   img_src: [Option<string>, Option<string>, Option<string>];
@@ -55,4 +59,4 @@ export interface ForecastTableColumns {
   rrp: Option<number>;
   wsp: Option<number>;
   forecast_amount: Option<number>;
-};
+}

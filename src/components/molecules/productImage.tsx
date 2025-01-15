@@ -1,48 +1,57 @@
-import { unwrapOr } from "@/utils/fp-ts";
+import { unwrapOr } from "@/src/utils/fp-ts.ts";
 import { Image } from "@nextui-org/image";
-import { Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from "@nextui-org/modal";
+import {
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalHeader,
+  useDisclosure,
+} from "@nextui-org/modal";
 import { Option } from "fp-ts/Option";
+import React from "react";
 
 export default function ProductImage({
-    itemNo,
-    colorCode,
+  itemNo,
+  colorCode,
 }: {
-    last: Option<string>;
-    itemNo: Option<string>;
-    colorCode: Option<string>;
+  last: Option<string>;
+  itemNo: Option<string>;
+  colorCode: Option<string>;
 }) {
-    const { isOpen, onOpen, onOpenChange } = useDisclosure();
-    const url = `https://hfs.hamm-footwear.com/purchase/item/image?item_no=${unwrapOr(itemNo, "")}&color=${unwrapOr(colorCode, "")}`;
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const url = `https://hfs.hamm-footwear.com/purchase/item/image?item_no=${
+    unwrapOr(itemNo, "")
+  }&color=${unwrapOr(colorCode, "")}`;
 
-    return (
-        <>
+  return (
+    <>
+      <Image
+        alt="product-image"
+        className="product-image h-10 w-10 cursor-pointer"
+        src={url}
+        fallbackSrc="/assets/img-placeholder.svg"
+        radius="sm"
+        onClick={onOpen}
+      />
+      <Modal
+        backdrop="blur"
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+      >
+        <ModalContent>
+          <ModalHeader className="flex flex-col gap-1">
+            Product Image
+          </ModalHeader>
+          <ModalBody className="flex flex-row justify-center">
             <Image
-                alt="product-image"
-                className="product-image h-10 w-10 cursor-pointer"
-                src={url}
-                fallbackSrc="/assets/img-placeholder.svg"
-                radius="sm"
-                onClick={onOpen}
+              alt="img"
+              className="h-80 w-80"
+              fallbackSrc="/assets/img-placeholder.svg"
+              src={url}
             />
-            <Modal
-                backdrop="blur"
-                isOpen={isOpen}
-                onOpenChange={onOpenChange}
-            >
-                <ModalContent>
-                    <ModalHeader className="flex flex-col gap-1">
-                        Product Image
-                    </ModalHeader>
-                    <ModalBody className="flex flex-row justify-center">
-                        <Image
-                            alt="img"
-                            className="h-80 w-80"
-                            fallbackSrc="/assets/img-placeholder.svg"
-                            src={url}
-                        />
-                    </ModalBody>
-                </ModalContent>
-            </Modal>
-        </>
-    )
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+    </>
+  );
 }

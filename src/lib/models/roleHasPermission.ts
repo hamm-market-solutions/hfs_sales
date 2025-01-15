@@ -1,12 +1,12 @@
 import { Option } from "fp-ts/Option";
 import { eq } from "drizzle-orm";
 
-import  { HfsResult, throwToHfsError } from "../errors/HfsError";
+import { HfsResult, throwToHfsError } from "../errors/HfsError";
 import ModelError from "../errors/ModelError";
 
-import { db } from "@/db";
-import { permission, roleHasPermission } from "@/db/schema";
-import { Err, None, Ok, Some } from "@/utils/fp-ts";
+import { db } from "@/src/db";
+import { permission, roleHasPermission } from "@/src/db/schema";
+import { Err, None, Ok, Some } from "@/src/utils/fp-ts";
 
 export async function getRolePermissions(roleId: number): Promise<
   HfsResult<{
@@ -14,30 +14,30 @@ export async function getRolePermissions(roleId: number): Promise<
     permissions: { permissionId: number; permissionName: Option<string> }[];
   }>
 > {
-    try {
-        const rolePermissions = await db
-            .select({
-                permissionId: roleHasPermission.permissionId,
-                permissionName: permission.name,
-            })
-            .from(roleHasPermission)
-            .where(eq(roleHasPermission.roleId, roleId))
-            .leftJoin(permission, eq(roleHasPermission.permissionId, permission.id));
+  try {
+    const rolePermissions = await db
+      .select({
+        permissionId: roleHasPermission.permissionId,
+        permissionName: permission.name,
+      })
+      .from(roleHasPermission)
+      .where(eq(roleHasPermission.roleId, roleId))
+      .leftJoin(permission, eq(roleHasPermission.permissionId, permission.id));
 
-        return Ok({
-            roleId: roleId,
-            permissions: rolePermissions.map((rp) => ({
-                permissionId: rp.permissionId,
-                permissionName: rp.permissionName ? Some(rp.permissionName) : None,
-            }))
-        });
-    } catch (error) {
-        return Err(
-            throwToHfsError(
-                500,
-                ModelError.drizzleError("role_has_permission"),
-                Some(error as Error),
-            ),
-        );
-    }
+    return Ok({
+      roleId: roleId,
+      permissions: rolePermissions.map((rp) => ({
+        permissionId: rp.permissionId,
+        permissionName: rp.permissionName ? Some(rp.permissionName) : None,
+      })),
+    });
+  } catch (error) {
+    return Err(
+      throwToHfsError(
+        500,
+        ModelError.drizzleError("role_has_permission"),
+        Some(error as Error),
+      ),
+    );
+  }
 }

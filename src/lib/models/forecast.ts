@@ -5,49 +5,51 @@ import { HfsResult, throwToHfsError } from "../errors/HfsError";
 import ForecastModelError from "../errors/ForecastModelError";
 import { getAccessTokenPayload } from "../auth/jwt";
 
-import { db } from "@/db";
-import { forecast } from "@/db/schema";
+import { db } from "@/src/db";
+import { forecast } from "@/src/db/schema";
 import { getAllSeasons } from "./season";
-import { isErr, None, unwrap, unwrapOr } from "@/utils/fp-ts";
+import { isErr, None, unwrap, unwrapOr } from "@/src/utils/fp-ts";
 
 import _ from "lodash";
 
 import ItemColorModelError from "../errors/ItemColorModelError";
 
-import { ForecastTableRequest } from "@/types/table";
-import { brand, sItem, sItemColor, sSeason, } from "@/db/schema";
-import { tableFiltersToDrizzle, tableSortingToDrizzle } from "@/utils/conversions";
+import { ForecastTableRequest } from "@/src/types/table";
+import { brand, sItem, sItemColor, sSeason } from "@/src/db/schema";
+import {
+  tableFiltersToDrizzle,
+  tableSortingToDrizzle,
+} from "@/src/utils/conversions";
 import { TABLE_FETCH_SIZE } from "../tables/constants";
-import { Err, Ok, Some } from "@/utils/fp-ts";
+import { Err, Ok, Some } from "@/src/utils/fp-ts";
 
 /**
- *
  * @param param0
  * @returns [ForecastTableColumns]
  */
 export const getForecastTableData = async ({
-    page,
-    sorting,
-    country,
-    brand: brandNo,
-    season_code,
-    filters,
+  page,
+  sorting,
+  country,
+  brand: brandNo,
+  season_code,
+  filters,
 }: ForecastTableRequest) => {
-    try {
-        const select = {
-            brandNo: sItem.brandNo,
-            brandName: brand.name,
-            seasonCode: sItem.seasonCode,
-            seasonName: sSeason.name,
-            description: sItem.description,
-            preCollection: sItemColor.preCollection,
-            mainCollection: sItemColor.mainCollection,
-            lateCollection: sItemColor.lateCollection,
-            specialCollection: sItemColor.specialCollection,
-            last: sItem.last,
-            itemNo: sItemColor.itemNo,
-            colorCode: sItemColor.colorCode,
-            rrp: sql<number>`(
+  try {
+    const select = {
+      brandNo: sItem.brandNo,
+      brandName: brand.name,
+      seasonCode: sItem.seasonCode,
+      seasonName: sSeason.name,
+      description: sItem.description,
+      preCollection: sItemColor.preCollection,
+      mainCollection: sItemColor.mainCollection,
+      lateCollection: sItemColor.lateCollection,
+      specialCollection: sItemColor.specialCollection,
+      last: sItem.last,
+      itemNo: sItemColor.itemNo,
+      colorCode: sItemColor.colorCode,
+      rrp: sql<number>`(
         SELECT
           rep_retail_price
         FROM s_variant
@@ -60,8 +62,8 @@ export const getForecastTableData = async ({
         LIMIT 1
       )`.mapWith(
         Number,
-    ),
-            wsp: sql<number>`(
+      ),
+      wsp: sql<number>`(
         SELECT
           unit_sale_price
         FROM s_variant
@@ -74,229 +76,238 @@ export const getForecastTableData = async ({
         LIMIT 1
       )`.mapWith(
         Number,
-    ),
-            forecastAmount:
-        sql<number>`(SELECT amount FROM forecast WHERE item_no = ${sItemColor.itemNo} AND color_code = ${sItemColor.colorCode} AND country_code = ${country} ORDER BY timestamp DESC LIMIT 1)`.mapWith(
-        	Number,
+      ),
+      forecastAmount: sql<
+        number
+      >`(SELECT amount FROM forecast WHERE item_no = ${sItemColor.itemNo} AND color_code = ${sItemColor.colorCode} AND country_code = ${country} ORDER BY timestamp DESC LIMIT 1)`
+        .mapWith(
+          Number,
         ),
-            totalRowCount: sql<number>`COUNT(*) OVER()`,
-        };
-        const orderBySelectClone = _.cloneDeep(select);
-        const whereSelectClone = _.cloneDeep(select);
-        const orderBy = tableSortingToDrizzle(orderBySelectClone, sorting);
-        const filtersWhere = tableFiltersToDrizzle(whereSelectClone, filters);
-        const data = await db
-            .select(select)
-            .from(sItemColor)
-            .leftJoin(sItem, and(eq(sItemColor.itemNo, sItem.no)))
-            .leftJoin(brand, eq(sItem.brandNo, brand.no))
-            .leftJoin(sSeason, eq(sItem.seasonCode, sSeason.code))
-            .where(
-                and(
-                    eq(sItem.brandNo, brandNo.toString()),
-                    eq(sItem.seasonCode, season_code),
-                    ...filtersWhere,
-                ),
-            )
-            .groupBy(sItemColor.itemNo, sItemColor.colorCode)
-            .orderBy(...orderBy)
-            .limit(TABLE_FETCH_SIZE)
-            .offset((page - 1) * TABLE_FETCH_SIZE);
+      totalRowCount: sql<number>`COUNT(*) OVER()`,
+    };
+    const orderBySelectClone = _.cloneDeep(select);
+    const whereSelectClone = _.cloneDeep(select);
+    const orderBy = tableSortingToDrizzle(orderBySelectClone, sorting);
+    const filtersWhere = tableFiltersToDrizzle(whereSelectClone, filters);
+    const data = await db
+      .select(select)
+      .from(sItemColor)
+      .leftJoin(sItem, and(eq(sItemColor.itemNo, sItem.no)))
+      .leftJoin(brand, eq(sItem.brandNo, brand.no))
+      .leftJoin(sSeason, eq(sItem.seasonCode, sSeason.code))
+      .where(
+        and(
+          eq(sItem.brandNo, brandNo.toString()),
+          eq(sItem.seasonCode, season_code),
+          ...filtersWhere,
+        ),
+      )
+      .groupBy(sItemColor.itemNo, sItemColor.colorCode)
+      .orderBy(...orderBy)
+      .limit(TABLE_FETCH_SIZE)
+      .offset((page - 1) * TABLE_FETCH_SIZE);
 
-        return Ok(data);
-    } catch (error) {
-        console.log("error", error);
+    return Ok(data);
+  } catch (error) {
+    console.log("error", error);
 
-        return Err(
-            throwToHfsError(
-                500,
-                ItemColorModelError.getForecastDataError(),
-                Some(error as Error),
-            ),
-        );
-    }
+    return Err(
+      throwToHfsError(
+        500,
+        ItemColorModelError.getForecastDataError(),
+        Some(error as Error),
+      ),
+    );
+  }
 };
 
 export const createForecast = async (
-    seasonCode: number,
-    itemNo: number,
-    colorCode: string,
-    countryCode: string,
-    amount: number,
+  seasonCode: number,
+  itemNo: number,
+  colorCode: string,
+  countryCode: string,
+  amount: number,
 ): Promise<HfsResult<typeof forecast.$inferInsert>> => {
-    try {
-        const res: HfsResult<Option<typeof forecast.$inferSelect>> = await getLatestForecast(itemNo, colorCode);
-        const latestForecastOpt: Option<typeof forecast.$inferSelect> = unwrapOr(res, None);
-        const latestForecast: typeof forecast.$inferSelect = unwrap(latestForecastOpt); // TODO: Handle unwrap
+  try {
+    const res: HfsResult<Option<typeof forecast.$inferSelect>> =
+      await getLatestForecast(itemNo, colorCode);
+    const latestForecastOpt: Option<typeof forecast.$inferSelect> = unwrapOr(
+      res,
+      None,
+    );
+    const latestForecast: typeof forecast.$inferSelect = unwrap(
+      latestForecastOpt,
+    ); // TODO: Handle unwrap
 
-        if (latestForecast && latestForecast.amount === amount) {
-            return Ok(latestForecast);
-        }
-        const user = await getAccessTokenPayload();
-
-        if (isErr(user)) {
-            return user;
-        }
-        const userId = user.left.sub!;
-        const result = await db.insert(forecast).values({
-            seasonCode: seasonCode,
-            itemNo: itemNo.toString(),
-            colorCode: colorCode,
-            amount: amount,
-            countryCode: countryCode.toUpperCase(),
-            createdBy: Number(userId),
-        }) as any as typeof forecast.$inferInsert;
-
-        return Ok(result);
-    } catch (error) {
-        return Err(
-            throwToHfsError(
-                500,
-                ForecastModelError.saveForecastError(),
-                Some(error as Error),
-            ),
-        );
+    if (latestForecast && latestForecast.amount === amount) {
+      return Ok(latestForecast);
     }
+    const user = await getAccessTokenPayload();
+
+    if (isErr(user)) {
+      return user;
+    }
+    const userId = user.left.sub!;
+    const result = await db.insert(forecast).values({
+      seasonCode: seasonCode,
+      itemNo: itemNo.toString(),
+      colorCode: colorCode,
+      amount: amount,
+      countryCode: countryCode.toUpperCase(),
+      createdBy: Number(userId),
+    }) as any as typeof forecast.$inferInsert;
+
+    return Ok(result);
+  } catch (error) {
+    return Err(
+      throwToHfsError(
+        500,
+        ForecastModelError.saveForecastError(),
+        Some(error as Error),
+      ),
+    );
+  }
 };
 
 export async function getLatestForecast(
-    itemNo: number,
-    colorCode: string,
+  itemNo: number,
+  colorCode: string,
 ): Promise<HfsResult<Option<typeof forecast.$inferSelect>>> {
-    try {
-        const latestForecast = await db
-            .select()
-            .from(forecast)
-            .where(
-                and(
-                    eq(forecast.itemNo, itemNo.toString()),
-                    eq(forecast.colorCode, colorCode),
-                ),
-            )
-            .orderBy(desc(forecast.timestamp))
-            .limit(1);
+  try {
+    const latestForecast = await db
+      .select()
+      .from(forecast)
+      .where(
+        and(
+          eq(forecast.itemNo, itemNo.toString()),
+          eq(forecast.colorCode, colorCode),
+        ),
+      )
+      .orderBy(desc(forecast.timestamp))
+      .limit(1);
 
-        if (latestForecast) {
-            return Ok(Some(latestForecast[0]));
-        } else {
-            return Ok(None);
-        }
-    } catch (error) {
-        console.error(error);
-
-        return Err(
-            throwToHfsError(
-                500,
-                ForecastModelError.getError("latest forecast"),
-                Some(error as Error),
-            ),
-        );
+    if (latestForecast) {
+      return Ok(Some(latestForecast[0]));
+    } else {
+      return Ok(None);
     }
+  } catch (error) {
+    console.error(error);
+
+    return Err(
+      throwToHfsError(
+        500,
+        ForecastModelError.getError("latest forecast"),
+        Some(error as Error),
+      ),
+    );
+  }
 }
 
 export async function getSumForecastForSeason(seasonCode: number) {
-    try {
-        const forecasts = await db
-            .select({ sumQty: sum(forecast.amount) })
-            .from(forecast)
-            .where(eq(forecast.seasonCode, seasonCode));
+  try {
+    const forecasts = await db
+      .select({ sumQty: sum(forecast.amount) })
+      .from(forecast)
+      .where(eq(forecast.seasonCode, seasonCode));
 
-        return Ok(forecasts[0]);
-    } catch (error) {
-        return Err(
-            throwToHfsError(
-                500,
-                ForecastModelError.getError("all forecasts"),
-                Some(error as Error),
-            ),
-        );
-    }
+    return Ok(forecasts[0]);
+  } catch (error) {
+    return Err(
+      throwToHfsError(
+        500,
+        ForecastModelError.getError("all forecasts"),
+        Some(error as Error),
+      ),
+    );
+  }
 }
 
 export async function getSumForecastForLastFiveSeasons() {
-    try {
-        const seasons = unwrapOr((await getAllSeasons()), []);
-        const lastFiveSeasons = seasons.slice(0, 5);
-        const seasonCodes = lastFiveSeasons.map((season) => season.code);
-        const forecastSums = seasonCodes.map(async (seasonCode) => {
-            const qty = unwrap((await getSumForecastForSeason(seasonCode)));
+  try {
+    const seasons = unwrapOr(await getAllSeasons(), []);
+    const lastFiveSeasons = seasons.slice(0, 5);
+    const seasonCodes = lastFiveSeasons.map((season) => season.code);
+    const forecastSums = seasonCodes.map(async (seasonCode) => {
+      const qty = unwrap(await getSumForecastForSeason(seasonCode));
 
-            return { seasonCode: seasonCode, sumQty: Number(qty.sumQty) };
-        });
-        const forecasts = await Promise.all(forecastSums);
+      return { seasonCode: seasonCode, sumQty: Number(qty.sumQty) };
+    });
+    const forecasts = await Promise.all(forecastSums);
 
-        return Ok(forecasts);
-    } catch (error) {
-        return Err(
-            throwToHfsError(
-                500,
-                ForecastModelError.getError("all forecasts"),
-                Some(error as Error),
-            ),
-        );
-    }
+    return Ok(forecasts);
+  } catch (error) {
+    return Err(
+      throwToHfsError(
+        500,
+        ForecastModelError.getError("all forecasts"),
+        Some(error as Error),
+      ),
+    );
+  }
 }
 
 export async function exportLatestForecasts() {
-    try {
-        const forecasts = await db
-            .select()
-            .from(forecast)
-            .orderBy(desc(forecast.timestamp))
-            .where(isNull(forecast.exportedOn));
+  try {
+    const forecasts = await db
+      .select()
+      .from(forecast)
+      .orderBy(desc(forecast.timestamp))
+      .where(isNull(forecast.exportedOn));
 
-        await db.update(forecast).set({
-            exportedOn: sql`NOW()`,
-        }).where(inArray(forecast.id, forecasts.map((f) => f.id)));
+    await db.update(forecast).set({
+      exportedOn: sql`NOW()`,
+    }).where(inArray(forecast.id, forecasts.map((f) => f.id)));
 
-        return Ok(forecasts);
-    } catch (error) {
-        return Err(
-            throwToHfsError(
-                500,
-                ForecastModelError.getError("latest forecasts for export"),
-                Some(error as Error),
-            ),
-        );
-    }
+    return Ok(forecasts);
+  } catch (error) {
+    return Err(
+      throwToHfsError(
+        500,
+        ForecastModelError.getError("latest forecasts for export"),
+        Some(error as Error),
+      ),
+    );
+  }
 }
 
 export const getLastForecasts = async (
-    userId: number,
-    seasonCode: number,
-): Promise<HfsResult<{
-    last: Option<string>,
-    amount: number,
-}[]>> => {
-    try {
-        const data = await db
-            .selectDistinct({
-                last: sItem.last,
-                amount: sum(forecast.amount),
-            })
-            .from(forecast)
-            .leftJoin(sItem, eq(forecast.itemNo, sItem.no))
-            .where(and(
-                eq(forecast.createdBy, userId),
-                eq(forecast.seasonCode, seasonCode),
-            ))
-            .orderBy(desc(forecast.timestamp));
-        console.log("data", data);
+  userId: number,
+  seasonCode: number,
+): Promise<
+  HfsResult<{
+    last: Option<string>;
+    amount: number;
+  }[]>
+> => {
+  try {
+    const data = await db
+      .selectDistinct({
+        last: sItem.last,
+        amount: sum(forecast.amount),
+      })
+      .from(forecast)
+      .leftJoin(sItem, eq(forecast.itemNo, sItem.no))
+      .where(and(
+        eq(forecast.createdBy, userId),
+        eq(forecast.seasonCode, seasonCode),
+      ))
+      .orderBy(desc(forecast.timestamp));
+    console.log("data", data);
 
-        const forecasts = data.map((f) => ({
-            last: fromNullable(f.last),
-            amount: Number(f.amount),
-        }));
+    const forecasts = data.map((f) => ({
+      last: fromNullable(f.last),
+      amount: Number(f.amount),
+    }));
 
-        return Ok(forecasts);
-
-    } catch (error) {
-        return Err(
-            throwToHfsError(
-                500,
-                ForecastModelError.getError("forecasts grouped by lasts"),
-                Some(error as Error),
-            ),
-        );
-    }
-}
+    return Ok(forecasts);
+  } catch (error) {
+    return Err(
+      throwToHfsError(
+        500,
+        ForecastModelError.getError("forecasts grouped by lasts"),
+        Some(error as Error),
+      ),
+    );
+  }
+};

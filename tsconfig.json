@@ -20,6 +20,7 @@
     "incremental": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "allowImportingTsExtensions": true,
     "plugins": [
       {
         "name": "next"

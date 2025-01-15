@@ -3,175 +3,195 @@
 import { useParams } from "next/navigation";
 import React, { ReactNode } from "react";
 
-import BaseTable from "./table";
+import BaseTable from "./table.tsx";
 
-import { ForecastTableColumns, TableColumns } from "@/types/table";
-import EditableCell from "@/components/molecules/editableCell";
-import ProductImage from "@/components/molecules/productImage";
-import { isNone, None, Some, unwrapOr } from "@/utils/fp-ts";
+import { ForecastTableColumns, TableColumns } from "@/src/src/types/table.ts";
+import EditableCell from "@/src/components/molecules/editableCell";
+import ProductImage from "@/src/components/molecules/productImage";
+import { isNone, None, Some, unwrapOr } from "@/src/utils/fp-ts";
 import { Option } from "fp-ts/lib/Option";
-// import { getForecastTableData } from "@/actions/reports/forecast";
+// import { getForecastTableData } from "@/src/actions/reports/forecast";
 
 export default function ForecastTable({
-    isSeasonActive,
+  isSeasonActive,
 }: {
-    isSeasonActive: boolean;
+  isSeasonActive: boolean;
 }) {
-    const params = useParams<{
-        countryId: string;
-        brandId: string;
-        seasonCode: string;
-    }>();
-    const columns: TableColumns<ForecastTableColumns> = [
-        {
-            header: "Image",
-            key: "img_src",
-            cell: ({ row }) => {
-                return (
-                    <ProductImage itemNo={row.item_no} colorCode={Some(row.color_code)} last={None} />
-                );
-            },
-            enableFiltering: false,
-            enableSorting: false,
-            size: Some(60),
-            index: None,
-        },
-        {
-            header: "Brand",
-            key: "brand_name",
-            enableFiltering: true,
-            enableSorting: true,
-            size: Some(100),
-            index: None,
-        },
-        {
-            header: "Season",
-            key: "season_code",
-            enableFiltering: false,
-            enableSorting: true,
-            size: Some(90),
-            index: None,
-        },
-        {
-            header: "Drop",
-            key: "drop",
-            enableFiltering: true,
-            enableSorting: true,
-            size: Some(60),
-            index: None,
-        },
-        {
-            header: "Item No.",
-            key: "item_no",
-            enableFiltering: true,
-            enableSorting: true,
-            size: Some(80),
-            index: None,
-        },
-        {
-            header: "Description",
-            key: "description",
-            enableFiltering: true,
-            enableSorting: true,
-            size: Some(200),
-            cell: ({value}: { value: Option<string> }) => {
-                return <p className="cut-text">{unwrapOr(value, "") as unknown as ReactNode}</p>;
-            },
-            index: None,
-        },
-        {
-            header: "Item Color",
-            key: "color_code",
-            enableFiltering: true,
-            enableSorting: true,
-            size: Some(100),
-            index: None,
-        },
-        {
-            header: "Retail Price",
-            enableFiltering: true,
-            enableSorting: true,
-            key: "rrp",
-            cell: ({value}: { value: Option<number> }) => {
-                const price = unwrapOr(value, 0);
+  const params = useParams<{
+    countryId: string;
+    brandId: string;
+    seasonCode: string;
+  }>();
+  const columns: TableColumns<ForecastTableColumns> = [
+    {
+      header: "Image",
+      key: "img_src",
+      cell: ({ row }) => {
+        return (
+          <ProductImage
+            itemNo={row.item_no}
+            colorCode={Some(row.color_code)}
+            last={None}
+          />
+        );
+      },
+      enableFiltering: false,
+      enableSorting: false,
+      size: Some(60),
+      index: None,
+    },
+    {
+      header: "Brand",
+      key: "brand_name",
+      enableFiltering: true,
+      enableSorting: true,
+      size: Some(100),
+      index: None,
+    },
+    {
+      header: "Season",
+      key: "season_code",
+      enableFiltering: false,
+      enableSorting: true,
+      size: Some(90),
+      index: None,
+    },
+    {
+      header: "Drop",
+      key: "drop",
+      enableFiltering: true,
+      enableSorting: true,
+      size: Some(60),
+      index: None,
+    },
+    {
+      header: "Item No.",
+      key: "item_no",
+      enableFiltering: true,
+      enableSorting: true,
+      size: Some(80),
+      index: None,
+    },
+    {
+      header: "Description",
+      key: "description",
+      enableFiltering: true,
+      enableSorting: true,
+      size: Some(200),
+      cell: ({ value }: { value: Option<string> }) => {
+        return (
+          <p className="cut-text">
+            {unwrapOr(value, "") as unknown as ReactNode}
+          </p>
+        );
+      },
+      index: None,
+    },
+    {
+      header: "Item Color",
+      key: "color_code",
+      enableFiltering: true,
+      enableSorting: true,
+      size: Some(100),
+      index: None,
+    },
+    {
+      header: "Retail Price",
+      enableFiltering: true,
+      enableSorting: true,
+      key: "rrp",
+      cell: ({ value }: { value: Option<number> }) => {
+        const price = unwrapOr(value, 0);
 
-                return (price / 1000).toFixed(2);
-            },
-            size: Some(110),
-            index: None,
+        return (price / 1000).toFixed(2);
+      },
+      size: Some(110),
+      index: None,
+    },
+    {
+      header: "Estimated Qty.",
+      key: "forecast_amount",
+      enableFiltering: true,
+      enableSorting: true,
+      cell: (
+        { value, row, index }: {
+          value: Option<number>;
+          row: ForecastTableColumns;
+          index: number;
         },
-        {
-            header: "Estimated Qty.",
-            key: "forecast_amount",
-            enableFiltering: true,
-            enableSorting: true,
-            cell: ({value, row, index}: { value: Option<number>, row: ForecastTableColumns, index: number }) => {
-                const val = unwrapOr(value, 0);
-                if (!isSeasonActive) {
-                    return Number(val);
-                }
+      ) => {
+        const val = unwrapOr(value, 0);
+        if (!isSeasonActive) {
+          return Number(val);
+        }
 
-                return (
-                    <EditableCell<ForecastTableColumns>
-                        index={index}
-                        // editableIndex={editableIndex}
-                        // setEditableIndex={setEditableIndex}
-                        className="h-10"
-                        initValue={Some(Number(val).toString())}
-                        onBlurFocusNext={true}
-                        min={0}
-                        step={1}
-                        submitFn={async (row, value) => {
-                            if (isNone(row.item_no)) {
-                                return { status: 400, message: "Item number is required", cause: None };
-                            }
+        return (
+          <EditableCell<ForecastTableColumns>
+            index={index}
+            // editableIndex={editableIndex}
+            // setEditableIndex={setEditableIndex}
+            className="h-10"
+            initValue={Some(Number(val).toString())}
+            onBlurFocusNext={true}
+            min={0}
+            step={1}
+            submitFn={async (row, value) => {
+              if (isNone(row.item_no)) {
+                return {
+                  status: 400,
+                  message: "Item number is required",
+                  cause: None,
+                };
+              }
 
-                            const res = await fetch("/api/sales/reports/forecasts", {
-                                method: "POST",
-                                headers: {
-                                    "Content-Type": "application/json",
-                                },
-                                body: JSON.stringify({
-                                    itemNo: row.item_no.value,
-                                    colorCode: row.color_code,
-                                    countryCode: params.countryId,
-                                    seasonCode: Number(params.seasonCode),
-                                    amount: value,
-                                }),
-                            });
-                            const resJson = await res.json();
+              const res = await fetch("/api/sales/reports/forecasts", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  itemNo: row.item_no.value,
+                  colorCode: row.color_code,
+                  countryCode: params.countryId,
+                  seasonCode: Number(params.seasonCode),
+                  amount: value,
+                }),
+              });
+              const resJson = await res.json();
 
-                            if (resJson.status !== 200) {
-                                return resJson;
-                            }
-                        }}
-                        tableRow={row}
-                        type="number"
-                        variant="bordered"
-                    />
-                );
-            },
-            size: Some(90),
-            index: None,
-        },
-    ];
+              if (resJson.status !== 200) {
+                return resJson;
+              }
+            }}
+            tableRow={row}
+            type="number"
+            variant="bordered"
+          />
+        );
+      },
+      size: Some(90),
+      index: None,
+    },
+  ];
 
-    const host = window.location.origin;
-    const fetchUrl = new URL(host + "/api/sales/reports/forecasts/table");
-    fetchUrl.searchParams.set("country", params.countryId);
-    fetchUrl.searchParams.set("brand", params.brandId);
-    fetchUrl.searchParams.set("season_code", params.seasonCode);
+  console.log(globalThis);
 
-    return (
-        <BaseTable<ForecastTableColumns>
-            columns={columns}
-            // fetchFn={async (sorting, search, page) => {
-            //     const t = await getForecastTableData(sorting, search, page, params.countryId, Number(params.brandId), Number(params.seasonCode));
-            //     console.log(t);
-            //     return t;
+  const host = globalThis.location.origin;
+  const fetchUrl = new URL(host + "/api/sales/reports/forecasts/table");
+  fetchUrl.searchParams.set("country", params.countryId);
+  fetchUrl.searchParams.set("brand", params.brandId);
+  fetchUrl.searchParams.set("season_code", params.seasonCode);
 
-            // }}
-            fetchUrl={fetchUrl}
-        />
-    );
+  return (
+    <BaseTable<ForecastTableColumns>
+      columns={columns}
+      // fetchFn={async (sorting, search, page) => {
+      //     const t = await getForecastTableData(sorting, search, page, params.countryId, Number(params.brandId), Number(params.seasonCode));
+      //     console.log(t);
+      //     return t;
+
+      // }}
+      fetchUrl={fetchUrl}
+    />
+  );
 }

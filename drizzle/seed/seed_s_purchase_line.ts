@@ -4,9 +4,9 @@ import { sPurchaseLine } from "../../src/db/schema";
 import { defaultDown, defaultUp } from "./default";
 
 export async function up() {
-    await defaultUp(sPurchaseLine, TABLE_DATA.s_purchase_line);
+  await defaultUp(sPurchaseLine, TABLE_DATA.s_purchase_line);
 }
 
 export async function down() {
-    await defaultDown(sPurchaseLine);
+  await defaultDown(sPurchaseLine);
 }

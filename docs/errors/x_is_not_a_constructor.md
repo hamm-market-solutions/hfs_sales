@@ -1,6 +1,7 @@
 # X is not a Constructor
 
 ## Error
+
 ```bash
 ⨯ TypeError: x is not a constructor
    at t.createPool (/html/hfs_sales/.next/server/chunks/993.js:1:261332)
@@ -18,7 +19,11 @@
 
 ## Background
 
-We were getting this error when running the project in production. The login form was rendered correctly. When you submitted the form with the credentials to the server action to handle it, the error occured. This only happens when a server action gets handled in a client component manually. Meaning via a wrapper function or hook:
+We were getting this error when running the project in production. The login
+form was rendered correctly. When you submitted the form with the credentials to
+the server action to handle it, the error occured. This only happens when a
+server action gets handled in a client component manually. Meaning via a wrapper
+function or hook:
 
 **Wrapper Function**
 
@@ -28,7 +33,7 @@ const [state, setState] = useState(null);
 const handleForm = async (data: FormData) => {
   const res = await handleLogin(data);
   setState(res);
-}
+};
 
 return (
   <div className="login-page">
@@ -56,24 +61,31 @@ return (
 );
 ```
 
-Although we can pass the function to the Form `action` directly (<Form action={handleLogin}></Form>) and then it works correctly, we then can't display errors returned by the server action to the user.
+Although we can pass the function to the Form `action` directly
+(<Form action={handleLogin}></Form>) and then it works correctly, we then can't
+display errors returned by the server action to the user.
 
 ## Reproduction Steps
 
-*src/app/login/page.tsx*
+_src/app/login/page.tsx_
 
 1. Implement one of wrapper function or a hook to handle the server action
-2. Replace the *.env.production* with the *.env.development* for a local production build
+2. Replace the _.env.production_ with the _.env.development_ for a local
+   production build
 3. `npm run build`
 4. `npm run start`
 5. Try to log in with the local admin
-    - admin@hfs.com
-    - Test1234.
+   - admin@hfs.com
+   - Test1234.
 
 ## Ideas
 
-According to the Error we get, `t.createPool`, my first guess is that Next.js thinks we would use the database connection somewhere on the client side. Like it would call the server action but as a client side function, ignoring the `use server` tag in the *src/actions/auth/login.ts*.
+According to the Error we get, `t.createPool`, my first guess is that Next.js
+thinks we would use the database connection somewhere on the client side. Like
+it would call the server action but as a client side function, ignoring the
+`use server` tag in the _src/actions/auth/login.ts_.
 
 ## Solution
 
-I was returning classes from a server action, which is not allowed by Next.js. Instead I now return interfaces.
+I was returning classes from a server action, which is not allowed by Next.js.
+Instead I now return interfaces.

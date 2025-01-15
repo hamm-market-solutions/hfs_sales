@@ -4,9 +4,9 @@ import { brand } from "../../src/db/schema";
 import { defaultDown, defaultUp } from "./default";
 
 export async function up() {
-    await defaultUp(brand, TABLE_DATA.brand);
+  await defaultUp(brand, TABLE_DATA.brand);
 }
 
 export async function down() {
-    await defaultDown(brand);
+  await defaultDown(brand);
 }

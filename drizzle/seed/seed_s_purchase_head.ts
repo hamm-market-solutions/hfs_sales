@@ -4,9 +4,9 @@ import { sPurchaseHead } from "../../src/db/schema";
 import { defaultDown, defaultUp } from "./default";
 
 export async function up() {
-    await defaultUp(sPurchaseHead, TABLE_DATA.s_purchase_head);
+  await defaultUp(sPurchaseHead, TABLE_DATA.s_purchase_head);
 }
 
 export async function down() {
-    await defaultDown(sPurchaseHead);
+  await defaultDown(sPurchaseHead);
 }
