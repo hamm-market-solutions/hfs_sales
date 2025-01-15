@@ -39,7 +39,6 @@ npm run seed -- up
 git pull
 npm i
 npm run build
-npx drizzle-kit migrate
-DATABASE_URL=mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}:${MYSQL_TCP_PORT}/${MYSQL_DATABASE} npx drizzle-kit migrate
+source .env.production && DATABASE_URL=$DATABASE_URL npx drizzle-kit migrate
 mwservicectl restart
 ```

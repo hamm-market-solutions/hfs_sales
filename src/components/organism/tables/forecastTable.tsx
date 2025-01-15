@@ -148,6 +148,8 @@ export default function ForecastTable({
     ];
 
     const host = window.location.origin;
+    console.log(host);
+
     const fetchUrl = new URL(host + "/api/sales/reports/forecasts/table");
     fetchUrl.searchParams.set("country", params.countryId);
     fetchUrl.searchParams.set("brand", params.brandId);
