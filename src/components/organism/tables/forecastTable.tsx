@@ -147,7 +147,10 @@ export default function ForecastTable({
         },
     ];
 
-    const fetchUrl = new URL("http://localhost:3000" + "/api/sales/reports/forecasts/table");
+    const host = window.location.origin;
+    console.log(host);
+
+    const fetchUrl = new URL(host + "/api/sales/reports/forecasts/table");
     fetchUrl.searchParams.set("country", params.countryId);
     fetchUrl.searchParams.set("brand", params.brandId);
     fetchUrl.searchParams.set("season_code", params.seasonCode);
