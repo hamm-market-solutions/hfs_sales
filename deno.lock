@@ -1,6 +1,8 @@
 {
   "version": "4",
   "specifiers": {
+    "npm:@eslint/eslintrc@^3.2.0": "3.2.0",
+    "npm:@next/eslint-plugin-next@^15.1.4": "15.1.4",
     "npm:@nextui-org/alert@^2.2.9": "2.2.9_@nextui-org+system@2.4.6__framer-motion@11.11.17___react@18.3.1___react-dom@18.3.1____react@18.3.1__react@18.3.1__react-dom@18.3.1___react@18.3.1__@nextui-org+theme@2.4.3___tailwindcss@3.4.14____postcss@8.4.47____ts-node@10.9.2_____@types+node@22.5.4_____typescript@5.7.3____typescript@5.7.3___ts-node@10.9.2____@types+node@22.5.4____typescript@5.7.3___typescript@5.7.3__tailwindcss@3.4.14___postcss@8.4.47___ts-node@10.9.2____@types+node@22.5.4____typescript@5.7.3___typescript@5.7.3__ts-node@10.9.2___@types+node@22.5.4___typescript@5.7.3__typescript@5.7.3_@nextui-org+theme@2.4.3__tailwindcss@3.4.14___postcss@8.4.47___ts-node@10.9.2____@types+node@22.5.4____typescript@5.7.3___typescript@5.7.3__ts-node@10.9.2___@types+node@22.5.4___typescript@5.7.3__typescript@5.7.3_react@18.3.1_react-dom@18.3.1__react@18.3.1_framer-motion@11.11.17__react@18.3.1__react-dom@18.3.1___react@18.3.1_tailwindcss@3.4.14__postcss@8.4.47__ts-node@10.9.2___@types+node@22.5.4___typescript@5.7.3__typescript@5.7.3_ts-node@10.9.2__@types+node@22.5.4__typescript@5.7.3_typescript@5.7.3",
     "npm:@nextui-org/button@2.0.38": "2.0.38_@nextui-org+system@2.2.6__framer-motion@11.11.17___react@18.3.1___react-dom@18.3.1____react@18.3.1__react@18.3.1__react-dom@18.3.1___react@18.3.1__@nextui-org+theme@2.4.3___tailwindcss@3.4.14____postcss@8.4.47____ts-node@10.9.2_____@types+node@22.5.4_____typescript@5.7.3____typescript@5.7.3___ts-node@10.9.2____@types+node@22.5.4____typescript@5.7.3___typescript@5.7.3__tailwindcss@3.4.14___postcss@8.4.47___ts-node@10.9.2____@types+node@22.5.4____typescript@5.7.3___typescript@5.7.3__ts-node@10.9.2___@types+node@22.5.4___typescript@5.7.3__typescript@5.7.3_@nextui-org+theme@2.4.3__tailwindcss@3.4.14___postcss@8.4.47___ts-node@10.9.2____@types+node@22.5.4____typescript@5.7.3___typescript@5.7.3__ts-node@10.9.2___@types+node@22.5.4___typescript@5.7.3__typescript@5.7.3_framer-motion@11.11.17__react@18.3.1__react-dom@18.3.1___react@18.3.1_react@18.3.1_react-dom@18.3.1__react@18.3.1_tailwindcss@3.4.14__postcss@8.4.47__ts-node@10.9.2___@types+node@22.5.4___typescript@5.7.3__typescript@5.7.3_ts-node@10.9.2__@types+node@22.5.4__typescript@5.7.3_typescript@5.7.3",
     "npm:@nextui-org/card@^2.0.34": "2.2.9_@nextui-org+system@2.4.6__framer-motion@11.11.17___react@18.3.1___react-dom@18.3.1____react@18.3.1__react@18.3.1__react-dom@18.3.1___react@18.3.1__@nextui-org+theme@2.4.3___tailwindcss@3.4.14____postcss@8.4.47____ts-node@10.9.2_____@types+node@22.5.4_____typescript@5.7.3____typescript@5.7.3___ts-node@10.9.2____@types+node@22.5.4____typescript@5.7.3___typescript@5.7.3__tailwindcss@3.4.14___postcss@8.4.47___ts-node@10.9.2____@types+node@22.5.4____typescript@5.7.3___typescript@5.7.3__ts-node@10.9.2___@types+node@22.5.4___typescript@5.7.3__typescript@5.7.3_@nextui-org+theme@2.4.3__tailwindcss@3.4.14___postcss@8.4.47___ts-node@10.9.2____@types+node@22.5.4____typescript@5.7.3___typescript@5.7.3__ts-node@10.9.2___@types+node@22.5.4___typescript@5.7.3__typescript@5.7.3_framer-motion@11.11.17__react@18.3.1__react-dom@18.3.1___react@18.3.1_react@18.3.1_react-dom@18.3.1__react@18.3.1_tailwindcss@3.4.14__postcss@8.4.47__ts-node@10.9.2___@types+node@22.5.4___typescript@5.7.3__typescript@5.7.3_ts-node@10.9.2__@types+node@22.5.4__typescript@5.7.3_typescript@5.7.3",
@@ -581,6 +583,12 @@
     },
     "@next/eslint-plugin-next@15.0.0": {
       "integrity": "sha512-UG/Gnsq6Sc4wRhO9qk+vc/2v4OfRXH7GEH6/TGlNF5eU/vI9PIO7q+kgd65X2DxJ+qIpHWpzWwlPLmqMi1FE9A==",
+      "dependencies": [
+        "fast-glob@3.3.1"
+      ]
+    },
+    "@next/eslint-plugin-next@15.1.4": {
+      "integrity": "sha512-HwlEXwCK3sr6zmVGEvWBjW9tBFs1Oe6hTmTLoFQtpm4As5HCdu8jfSE0XJOp7uhfEGLniIx8yrGxEWwNnY0fmQ==",
       "dependencies": [
         "fast-glob@3.3.1"
       ]
@@ -3308,7 +3316,7 @@
     "eslint-config-next@15.0.0_eslint@9.18.0_typescript@5.7.3_@typescript-eslint+parser@8.20.0__eslint@9.18.0__typescript@5.7.3_eslint-plugin-import@2.31.0__eslint@9.18.0": {
       "integrity": "sha512-HFeTwCR2lFEUWmdB00WZrzaak2CvMvxici38gQknA6Bu2HPizSE4PNFGaFzr5GupjBt+SBJ/E0GIP57ZptOD3g==",
       "dependencies": [
-        "@next/eslint-plugin-next",
+        "@next/eslint-plugin-next@15.0.0",
         "@rushstack/eslint-patch",
         "@typescript-eslint/eslint-plugin",
         "@typescript-eslint/parser",
@@ -5218,6 +5226,8 @@
   "workspace": {
     "packageJson": {
       "dependencies": [
+        "npm:@eslint/eslintrc@^3.2.0",
+        "npm:@next/eslint-plugin-next@^15.1.4",
         "npm:@nextui-org/alert@^2.2.9",
         "npm:@nextui-org/button@2.0.38",
         "npm:@nextui-org/card@^2.0.34",
