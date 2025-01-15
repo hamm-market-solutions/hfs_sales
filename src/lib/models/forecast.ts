@@ -1,5 +1,5 @@
 import { and, desc, eq, inArray, isNull, sql, sum } from "drizzle-orm";
-import { Option } from "fp-ts/Option";
+import { fromNullable, Option } from "fp-ts/Option";
 
 import { HfsResult, throwToHfsError } from "../errors/HfsError";
 import ForecastModelError from "../errors/ForecastModelError";
@@ -8,7 +8,114 @@ import { getAccessTokenPayload } from "../auth/jwt";
 import { db } from "@/db";
 import { forecast } from "@/db/schema";
 import { getAllSeasons } from "./season";
-import { Err, isErr, None, Ok, Some, unwrap, unwrapOr } from "@/utils/fp-ts";
+import { isErr, None, unwrap, unwrapOr } from "@/utils/fp-ts";
+
+import _ from "lodash";
+
+import ItemColorModelError from "../errors/ItemColorModelError";
+
+import { ForecastTableRequest } from "@/types/table";
+import { brand, sItem, sItemColor, sSeason, } from "@/db/schema";
+import { tableFiltersToDrizzle, tableSortingToDrizzle } from "@/utils/conversions";
+import { TABLE_FETCH_SIZE } from "../tables/constants";
+import { Err, Ok, Some } from "@/utils/fp-ts";
+
+/**
+ *
+ * @param param0
+ * @returns [ForecastTableColumns]
+ */
+export const getForecastTableData = async ({
+    page,
+    sorting,
+    country,
+    brand: brandNo,
+    season_code,
+    filters,
+}: ForecastTableRequest) => {
+    try {
+        const select = {
+            brandNo: sItem.brandNo,
+            brandName: brand.name,
+            seasonCode: sItem.seasonCode,
+            seasonName: sSeason.name,
+            description: sItem.description,
+            preCollection: sItemColor.preCollection,
+            mainCollection: sItemColor.mainCollection,
+            lateCollection: sItemColor.lateCollection,
+            specialCollection: sItemColor.specialCollection,
+            last: sItem.last,
+            itemNo: sItemColor.itemNo,
+            colorCode: sItemColor.colorCode,
+            rrp: sql<number>`(
+        SELECT
+          rep_retail_price
+        FROM s_variant
+        LEFT JOIN s_assortment ON s_variant.size_code = s_assortment.code
+        WHERE s_variant.item_no = ${sItemColor.itemNo}
+          AND s_variant.color_code = ${sItemColor.colorCode}
+          AND s_assortment.code IS NULL
+          AND s_variant.size_code NOT LIKE 'L%'
+          AND s_variant.size_code NOT LIKE 'R%'
+        LIMIT 1
+      )`.mapWith(
+        Number,
+    ),
+            wsp: sql<number>`(
+        SELECT
+          unit_sale_price
+        FROM s_variant
+        LEFT JOIN s_assortment ON s_variant.size_code = s_assortment.code
+        WHERE s_variant.item_no = ${sItemColor.itemNo}
+          AND s_variant.color_code = ${sItemColor.colorCode}
+          AND s_assortment.code IS NULL
+          AND s_variant.size_code NOT LIKE 'L%'
+          AND s_variant.size_code NOT LIKE 'R%'
+        LIMIT 1
+      )`.mapWith(
+        Number,
+    ),
+            forecastAmount:
+        sql<number>`(SELECT amount FROM forecast WHERE item_no = ${sItemColor.itemNo} AND color_code = ${sItemColor.colorCode} AND country_code = ${country} ORDER BY timestamp DESC LIMIT 1)`.mapWith(
+        	Number,
+        ),
+            totalRowCount: sql<number>`COUNT(*) OVER()`,
+        };
+        const orderBySelectClone = _.cloneDeep(select);
+        const whereSelectClone = _.cloneDeep(select);
+        const orderBy = tableSortingToDrizzle(orderBySelectClone, sorting);
+        const filtersWhere = tableFiltersToDrizzle(whereSelectClone, filters);
+        const data = await db
+            .select(select)
+            .from(sItemColor)
+            .leftJoin(sItem, and(eq(sItemColor.itemNo, sItem.no)))
+            .leftJoin(brand, eq(sItem.brandNo, brand.no))
+            .leftJoin(sSeason, eq(sItem.seasonCode, sSeason.code))
+            .where(
+                and(
+                    eq(sItem.brandNo, brandNo.toString()),
+                    eq(sItem.seasonCode, season_code),
+                    ...filtersWhere,
+                ),
+            )
+            .groupBy(sItemColor.itemNo, sItemColor.colorCode)
+            .orderBy(...orderBy)
+            .limit(TABLE_FETCH_SIZE)
+            .offset((page - 1) * TABLE_FETCH_SIZE);
+
+        return Ok(data);
+    } catch (error) {
+        console.log("error", error);
+
+        return Err(
+            throwToHfsError(
+                500,
+                ItemColorModelError.getForecastDataError(),
+                Some(error as Error),
+            ),
+        );
+    }
+};
 
 export const createForecast = async (
     seasonCode: number,
@@ -148,6 +255,46 @@ export async function exportLatestForecasts() {
             throwToHfsError(
                 500,
                 ForecastModelError.getError("latest forecasts for export"),
+                Some(error as Error),
+            ),
+        );
+    }
+}
+
+export const getLastForecasts = async (
+    userId: number,
+    seasonCode: number,
+): Promise<HfsResult<{
+    last: Option<string>,
+    amount: number,
+}[]>> => {
+    try {
+        const data = await db
+            .selectDistinct({
+                last: sItem.last,
+                amount: sum(forecast.amount),
+            })
+            .from(forecast)
+            .leftJoin(sItem, eq(forecast.itemNo, sItem.no))
+            .where(and(
+                eq(forecast.createdBy, userId),
+                eq(forecast.seasonCode, seasonCode),
+            ))
+            .orderBy(desc(forecast.timestamp));
+        console.log("data", data);
+
+        const forecasts = data.map((f) => ({
+            last: fromNullable(f.last),
+            amount: Number(f.amount),
+        }));
+
+        return Ok(forecasts);
+
+    } catch (error) {
+        return Err(
+            throwToHfsError(
+                500,
+                ForecastModelError.getError("forecasts grouped by lasts"),
                 Some(error as Error),
             ),
         );

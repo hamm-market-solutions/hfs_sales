@@ -8,7 +8,6 @@ import { None, Some, unwrap, unwrapOr } from "@/utils/fp-ts";
 import { Option } from "fp-ts/lib/Option";
 
 export default async function Dashboard() {
-    console.log("checking if user is authorized");
     await validateUserAuthorizedOrRedirect(Some(routes.dashboard));
     const user = unwrap((await getCurrentUser()));
     const userRoles = unwrap((await getUserRoles(user.id)));

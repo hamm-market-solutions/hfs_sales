@@ -3,13 +3,14 @@
 import { getUserCountries} from "@/lib/models/userHasCountry";
 import { GetUserCountriesOkResponse } from "@/types/responses";
 import { HfsResult } from "@/lib/errors/HfsError";
-import { getOrUpdateAccessToken } from "@/lib/models/user";
+import { getCurrentUser, getOrUpdateAccessToken } from "@/lib/models/user";
 // import { ForecastTableColumns, TableResponse, TableSorting } from "@/types/table";
 // import { getForecastTableDataMapper } from "@/lib/tables/forecast";
-import { Err, isErr, Ok, Some } from "@/utils/fp-ts";
+import { Err, isErr, isSome, Ok, Some, unwrap } from "@/utils/fp-ts";
 import { fromNullable } from "fp-ts/lib/Option";
 import { ForecastTableColumns, TableFilter, TableResponse, TableSort } from "@/types/table";
 import { getForecastTableDataMapper } from "@/lib/tables/forecast";
+import { getLastForecasts } from "@/lib/models/forecast";
 
 export async function getUserCountriesAction(): Promise<HfsResult<GetUserCountriesOkResponse>> {
     const payloadRes = await getOrUpdateAccessToken();
@@ -101,3 +102,24 @@ export const getForecastTableData = async (
 
 //   return { status: 200, data: {} };
 // }
+
+export const getLastForecastsAction = async (seasonCode: number): Promise<HfsResult<{
+    last: string;
+    amount: number;
+}[]>> => {
+    const user = await getCurrentUser();
+
+    if (isErr(user)) {
+        return Err(user.right);
+    }
+    const data = await getLastForecasts(user.left.id, seasonCode);
+
+    if (isErr(data)) {
+        return Err(data.right);
+    }
+
+    return Ok(data.left.filter((forecast) => isSome(forecast.last)).map((forecast) => ({
+        last: unwrap(forecast.last),
+        amount: forecast.amount,
+    })));
+}

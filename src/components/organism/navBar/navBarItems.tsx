@@ -21,7 +21,7 @@ import { isNone, unwrap, unwrapOr } from "@/utils/fp-ts";
 export default function NavBarItems({
     navRoutes,
 }: {
-  navRoutes: typeof navigationTree;
+    navRoutes: typeof navigationTree;
 }) {
     const router = useRouter();
     const pathname = usePathname();

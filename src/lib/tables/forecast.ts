@@ -1,7 +1,3 @@
-import {
-    getForecastTableData,
-} from "../models/itemColor";
-
 import { phaseToDrop, seasonToShort } from "@/utils/conversions";
 import {
     ForecastTableColumns,
@@ -11,6 +7,7 @@ import {
 import { buildTableUrl } from "@/utils/tables";
 import { Option } from "fp-ts/Option";
 import { None, Some, unwrap, unwrapOr } from "@/utils/fp-ts";
+import { getForecastTableData } from "../models/forecast";
 
 export const getForecastTableDataMapper = async ({
     page,
