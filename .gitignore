@@ -44,3 +44,6 @@ drizzle/0000_sad_aqueduct.sql
 # Mittwald
 .mwservice.yaml
 .htaccess
+
+data/export
+data/import
