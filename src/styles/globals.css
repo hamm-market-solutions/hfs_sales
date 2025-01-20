@@ -15,3 +15,9 @@
   width: 160px;
   white-space: nowrap;
 }
+
+.cut-text:hover {
+  text-overflow: clip;
+  overflow: visible;
+  white-space: normal;
+}

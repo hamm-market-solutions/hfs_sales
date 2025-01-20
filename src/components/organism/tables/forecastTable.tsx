@@ -36,22 +36,22 @@ export default function ForecastTable({
             size: Some(60),
             index: None,
         },
-        {
-            header: "Brand",
-            key: "brand_name",
-            enableFiltering: true,
-            enableSorting: true,
-            size: Some(100),
-            index: None,
-        },
-        {
-            header: "Season",
-            key: "season_code",
-            enableFiltering: false,
-            enableSorting: true,
-            size: Some(90),
-            index: None,
-        },
+        // {
+        //     header: "Brand",
+        //     key: "brand_name",
+        //     enableFiltering: true,
+        //     enableSorting: true,
+        //     size: Some(100),
+        //     index: None,
+        // },
+        // {
+        //     header: "Season",
+        //     key: "season_code",
+        //     enableFiltering: false,
+        //     enableSorting: true,
+        //     size: Some(90),
+        //     index: None,
+        // },
         {
             header: "Drop",
             key: "drop",
@@ -59,13 +59,20 @@ export default function ForecastTable({
             enableSorting: true,
             size: Some(60),
             index: None,
+            cell: ({value}: { value: number }) => {
+                if (value === 0) {
+                    return "";
+                }
+
+                return value;
+            }
         },
         {
             header: "Item No.",
             key: "item_no",
             enableFiltering: true,
             enableSorting: true,
-            size: Some(80),
+            size: Some(40),
             index: None,
         },
         {
@@ -80,11 +87,22 @@ export default function ForecastTable({
             index: None,
         },
         {
-            header: "Item Color",
+            header: "Item Color Code",
             key: "color_code",
             enableFiltering: true,
             enableSorting: true,
             size: Some(100),
+            index: None,
+        },
+        {
+            header: "Item Color Name",
+            key: "color_name",
+            enableFiltering: true,
+            enableSorting: true,
+            size: Some(100),
+            cell: ({value}: { value: string }) => {
+                return <p className="z-50 cut-text max-w-[90px]">{value}</p>
+            },
             index: None,
         },
         {

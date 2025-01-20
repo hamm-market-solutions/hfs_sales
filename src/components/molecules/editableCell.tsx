@@ -38,7 +38,8 @@ export default function EditableCell<T extends object>({
             <Input
                 autoFocus
                 classNames={{
-                    input: "editable-cell editable-cell_active z-50"
+                    input: "editable-cell editable-cell_active z-50 max-w-[105px]",
+                    mainWrapper: "max-w-[105px]"
                 }}
                 value={unwrapOr(value, "")}
                 onFocus={(e) => {(e.target as HTMLInputElement).select();}}

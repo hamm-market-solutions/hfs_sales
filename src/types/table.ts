@@ -46,6 +46,7 @@ export interface ForecastTableColumns {
   special_collection: number;
   drop: number;
   color_code: string;
+  color_name: string;
   brand_no: Option<string>;
   brand_name: Option<string>;
   season_code: Option<number>;

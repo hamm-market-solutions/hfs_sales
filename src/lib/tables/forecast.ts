@@ -54,6 +54,7 @@ export const getForecastTableDataMapper = async ({
             const rrp = data.rrp;
             const wsp = data.wsp;
             const forecastAmount = data.forecastAmount;
+            const colorName = data.colorName ?? "";
 
             return {
                 img_src: [last, Some(itemNo), Some(colorCode)] as [Option<string>, Option<string>, Option<string>],
@@ -74,6 +75,7 @@ export const getForecastTableDataMapper = async ({
                 item_no: Some(itemNo),
                 description: description,
                 color_code: colorCode,
+                color_name: colorName,
                 rrp: Some(rrp),
                 wsp: Some(wsp),
                 forecast_amount: Some(forecastAmount),

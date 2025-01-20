@@ -1,7 +1,7 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-    name: "HFS Sales",
+    name: "HF Sales",
     description: "",
     navItems: [
         {

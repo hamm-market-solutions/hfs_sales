@@ -89,20 +89,24 @@ export default function BaseTable<T extends object>({
                 }}
             >
                 <TableHeader>
-                    {columns.map((column) => (
-                        <TableColumn
-                            key={column.key.toString()}
-                            id={column.key?.toString()}
-                            allowsSorting={column.enableSorting}
-                        >
-                            {column.header}
-                        </TableColumn>
-                    ))}
+                    {columns.map((column) => {
+                        // TODO: Implement column size
+                        // const size: number | undefined = unwrapOr(column?.size ?? None, undefined);
+                        return (
+                            <TableColumn
+                                key={column.key.toString()}
+                                id={column.key?.toString()}
+                                allowsSorting={column.enableSorting}
+                                // width={size}
+                            >
+                                {column.header}
+                            </TableColumn>
+                        )
+                    })}
                 </TableHeader>
                 <TableBody
                     isLoading={isLoading}
                     items={list.items}
-                    loadingContent={<Spinner color="white" />}
                 >
                     {(item: T) => {
                         const index = list.items.indexOf(item);
@@ -111,6 +115,7 @@ export default function BaseTable<T extends object>({
                             <TableRow key={index}>
                                 {(columnKey) => {
                                     const column = columns.find((c) => c.key === columnKey);
+
                                     if (column?.cell) {
                                         return (
                                             <TableCell>

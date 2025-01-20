@@ -6,7 +6,7 @@ import ForecastModelError from "../errors/ForecastModelError";
 import { getAccessTokenPayload } from "../auth/jwt";
 
 import { db } from "@/db";
-import { forecast } from "@/db/schema";
+import { forecast, sColor } from "@/db/schema";
 import { getAllSeasons } from "./season";
 import { isErr, None, unwrap, unwrapOr } from "@/utils/fp-ts";
 
@@ -47,6 +47,7 @@ export const getForecastTableData = async ({
             last: sItem.last,
             itemNo: sItemColor.itemNo,
             colorCode: sItemColor.colorCode,
+            colorName: sColor.name,
             rrp: sql<number>`(
         SELECT
           rep_retail_price
@@ -91,6 +92,7 @@ export const getForecastTableData = async ({
             .leftJoin(sItem, and(eq(sItemColor.itemNo, sItem.no)))
             .leftJoin(brand, eq(sItem.brandNo, brand.no))
             .leftJoin(sSeason, eq(sItem.seasonCode, sSeason.code))
+            .leftJoin(sColor, and(eq(sItemColor.colorCode, sColor.code), eq(sItem.seasonCode, sColor.seasonCode)))
             .where(
                 and(
                     eq(sItem.brandNo, brandNo.toString()),
