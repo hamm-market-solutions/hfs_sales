@@ -7,7 +7,7 @@ export const runner = async (command: string, commandArgs: { [key: string]: stri
         console.log("Exporting forecasts...");
         const data = unwrap(await exportLatestForecasts());
 
-        if (Object.keys(commandArgs).includes("--output")) {
+        if (Object.keys(commandArgs).includes("--output") || Object.keys(commandArgs).includes("-o")) {
             console.log(`Writing to ${commandArgs["--output"]}`);
             writeFileSync(commandArgs["--output"], JSON.stringify(data));
             return `Forecasts written to ${commandArgs["--output"]}`;
