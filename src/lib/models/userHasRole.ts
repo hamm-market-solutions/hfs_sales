@@ -3,9 +3,9 @@ import { Option } from "fp-ts/Option";
 import { HfsResult, throwToHfsError } from "../errors/HfsError";
 import ModelError from "../errors/ModelError";
 
-import { db } from "@/src/db";
-import { role, userHasRole } from "@/src/db/schema";
-import { Err, isErr, None, Ok, Some, unwrapOr } from "@/src/utils/fp-ts";
+import { db } from "@/db";
+import { role, userHasRole } from "@/db/schema";
+import { Err, isErr, None, Ok, Some, unwrapOr } from "@/utils/fp-ts";
 
 export async function getUserRoles(userId: number): Promise<
   HfsResult<{

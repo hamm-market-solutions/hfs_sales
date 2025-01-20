@@ -1,10 +1,10 @@
-import Title from "@/src/components/molecules/title";
-import SalesDashboard from "@/src/components/organism/dashboards/salesDashboard";
-import { routes } from "@/src/config/routes";
-import { validateUserAuthorizedOrRedirect } from "@/src/lib/auth/validations";
-import { getCurrentUser } from "@/src/lib/models/user";
-import { getUserRoles } from "@/src/lib/models/userHasRole";
-import { None, Some, unwrap, unwrapOr } from "@/src/utils/fp-ts";
+import Title from "@/components/molecules/title";
+import SalesDashboard from "@/components/organism/dashboards/salesDashboard";
+import { routes } from "@/config/routes";
+import { validateUserAuthorizedOrRedirect } from "@/lib/auth/validations";
+import { getCurrentUser } from "@/lib/models/user";
+import { getUserRoles } from "@/lib/models/userHasRole";
+import { None, Some, unwrap, unwrapOr } from "@/utils/fp-ts";
 import { Option } from "fp-ts/lib/Option";
 
 export default async function Dashboard() {

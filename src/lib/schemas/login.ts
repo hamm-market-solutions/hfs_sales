@@ -2,7 +2,7 @@ import { z } from "zod";
 
 import { HfsResult } from "../errors/HfsError";
 
-import { schemaToResult } from "@/src/utils/conversions";
+import { schemaToResult } from "@/utils/conversions";
 
 export type LoginFormValues = {
   email: string;

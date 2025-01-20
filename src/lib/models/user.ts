@@ -9,22 +9,22 @@ import { map, Option } from "fp-ts/Option";
 import UserModelError from "../errors/UserModelError";
 import JwtError, { ACCESS_TOKEN, REFRESH_TOKEN } from "../errors/JwtError";
 
-import { HfsResult } from "@/src/lib/errors/HfsError";
+import { HfsResult } from "@/lib/errors/HfsError";
 import {
   decodeJWT,
   getAccessTokenAndVerify,
   getRefreshTokenAndVerify,
   signJWT,
-} from "@/src/lib/auth/jwt";
-import { authConfig } from "@/src/config/auth";
+} from "@/lib/auth/jwt";
+import { authConfig } from "@/config/auth";
 import {
   ACCESS_TOKEN_LIFETIME,
   REFRESH_TOKEN_LIFETIME,
-} from "@/src/config/auth";
-import { optionToNotFound } from "@/src/utils/conversions";
-import { user as userTable } from "@/src/db/schema";
-import { db } from "@/src/db";
-import { Err, isErr, isNone, None, Ok, Some, unwrap } from "@/src/utils/fp-ts";
+} from "@/config/auth";
+import { optionToNotFound } from "@/utils/conversions";
+import { user as userTable } from "@/db/schema";
+import { db } from "@/db";
+import { Err, isErr, isNone, None, Ok, Some, unwrap } from "@/utils/fp-ts";
 import { pipe } from "fp-ts/lib/function";
 
 export const getOptUserById = async (

@@ -1,4 +1,4 @@
-import { None } from "@/src/utils/fp-ts";
+import { None } from "@/utils/fp-ts";
 import * as E from "fp-ts/Either";
 import * as O from "fp-ts/Option";
 

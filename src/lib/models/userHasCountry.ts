@@ -4,12 +4,12 @@ import { eq } from "drizzle-orm";
 
 import UserHasCountryModelError from "../errors/UserHasCountryModelError";
 
-import { db } from "@/src/db";
+import { db } from "@/db";
 import {
   sCountry,
   userHasCountry as userHasCountryTable,
-} from "@/src/db/schema";
-import { Err, isErr, Ok, Some } from "@/src/utils/fp-ts";
+} from "@/db/schema";
+import { Err, isErr, Ok, Some } from "@/utils/fp-ts";
 
 export const userHasCountry = async (userId: number, countryCode: string) => {
   const userCountries = await getUserCountries(userId);

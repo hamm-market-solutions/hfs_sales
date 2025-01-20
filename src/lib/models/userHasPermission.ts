@@ -7,9 +7,9 @@ import ModelError from "../errors/ModelError";
 import { getUserRoles } from "./userHasRole";
 import { getRolePermissions } from "./roleHasPermission";
 
-import { db } from "@/src/db";
-import { permission, userHasPermission } from "@/src/db/schema";
-import { Err, isErr, None, Ok, Some, unwrap } from "@/src/utils/fp-ts";
+import { db } from "@/db";
+import { permission, userHasPermission } from "@/db/schema";
+import { Err, isErr, None, Ok, Some, unwrap } from "@/utils/fp-ts";
 
 export async function getUserCustomPermissions(userId: number): Promise<
   HfsResult<{

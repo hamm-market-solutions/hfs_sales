@@ -1,4 +1,4 @@
-import { unwrapOr } from "@/src/utils/fp-ts.ts";
+import { unwrapOr } from "@/utils/fp-ts";
 import { Card, CardBody } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import React from "react";

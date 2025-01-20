@@ -37,7 +37,7 @@
     }
   },
   "initializeCommand": "cp -p ./.env.development ./.devcontainer/.env",
-  "postCreateCommand": "deno install -g npm:nextui-cli"
+  "postCreateCommand": "curl -fsSL https://deno.land/install.sh | sh && deno install -g npm:nextui-cli"
   // use local user
   // "remoteUser": "${localEnv:USER}"
 }

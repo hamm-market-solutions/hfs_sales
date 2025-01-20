@@ -1,8 +1,8 @@
 "use client";
 
-import { getLastForecastsAction } from "@/src/actions/reports/forecast.ts";
-import { HfsError } from "@/src/lib/errors/HfsError.ts";
-import { isErr, unwrap, unwrapOr } from "@/src/utils/fp-ts.ts";
+import { getLastForecastsAction } from "@/actions/reports/forecast";
+import { HfsError } from "@/lib/errors/HfsError";
+import { isErr, unwrap, unwrapOr } from "@/utils/fp-ts";
 import { CardBody } from "@nextui-org/card";
 import { Select, SelectItem } from "@nextui-org/select";
 import { Spinner } from "@nextui-org/spinner";

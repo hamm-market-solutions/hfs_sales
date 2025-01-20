@@ -1,4 +1,4 @@
-import { unwrapOr } from "@/src/utils/fp-ts";
+import { unwrapOr } from "@/utils/fp-ts";
 import { Option } from "fp-ts/Option";
 
 export default function Title({

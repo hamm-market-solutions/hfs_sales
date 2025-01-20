@@ -1,22 +1,35 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 
-import BaseTable from "./table.tsx";
+import BaseTable from "./table";
 
-import { ForecastTableColumns, TableColumns } from "@/src/src/types/table.ts";
-import EditableCell from "@/src/components/molecules/editableCell";
-import ProductImage from "@/src/components/molecules/productImage";
-import { isNone, None, Some, unwrapOr } from "@/src/utils/fp-ts";
+import { ForecastTableColumns, TableColumns } from "@/types/table";
+import EditableCell from "@/components/molecules/editableCell";
+import ProductImage from "@/components/molecules/productImage";
+import { isNone, None, Some, unwrap, unwrapOr } from "@/utils/fp-ts";
 import { Option } from "fp-ts/lib/Option";
-// import { getForecastTableData } from "@/src/actions/reports/forecast";
+import { getMetadata } from "@/actions/metadata";
+import { Metadata } from "next";
 
 export default function ForecastTable({
   isSeasonActive,
 }: {
   isSeasonActive: boolean;
 }) {
+  const [metadata, setMetadata] = useState<Option<Metadata>>(None);
+
+  useEffect(() => {
+    const fetchMetadata = () => {
+      const metadata = getMetadata();
+      console.log("metadata", metadata);
+
+      setMetadata(Some(metadata));
+    }
+    fetchMetadata();
+  }, []);
+
   const params = useParams<{
     countryId: string;
     brandId: string;
@@ -173,10 +186,9 @@ export default function ForecastTable({
       index: None,
     },
   ];
+  const host= unwrapOr(metadata, {other: {host: "http://localhost:3000"}}).other?.host;
+  console.log(host);
 
-  console.log(globalThis);
-
-  const host = globalThis.location.origin;
   const fetchUrl = new URL(host + "/api/sales/reports/forecasts/table");
   fetchUrl.searchParams.set("country", params.countryId);
   fetchUrl.searchParams.set("brand", params.brandId);

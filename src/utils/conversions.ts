@@ -7,7 +7,7 @@ import { Option } from "fp-ts/Option";
 
 import { HfsResult } from "../lib/errors/HfsError";
 import { HfsResponse } from "../types/responses";
-import { TableFilter, TableSort } from "@/src/types/table";
+import { TableFilter, TableSort } from "@/types/table";
 import { Err, isNone, isOk, isSome, None, Ok, Some } from "./fp-ts";
 
 export function resultToResponse<T extends object, R = HfsResponse<T>>(

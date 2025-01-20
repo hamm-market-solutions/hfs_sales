@@ -1,5 +1,5 @@
-import { NavigationTreeItem } from "@/src/config/navigation";
-import { unwrap } from "@/src/utils/fp-ts";
+import { NavigationTreeItem } from "@/config/navigation";
+import { unwrap } from "@/utils/fp-ts";
 import { Button } from "@nextui-org/button";
 import { Link } from "@nextui-org/link";
 

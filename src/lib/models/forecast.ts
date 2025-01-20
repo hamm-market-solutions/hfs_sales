@@ -5,23 +5,23 @@ import { HfsResult, throwToHfsError } from "../errors/HfsError";
 import ForecastModelError from "../errors/ForecastModelError";
 import { getAccessTokenPayload } from "../auth/jwt";
 
-import { db } from "@/src/db";
-import { forecast } from "@/src/db/schema";
+import { db } from "@/db";
+import { forecast } from "@/db/schema";
 import { getAllSeasons } from "./season";
-import { isErr, None, unwrap, unwrapOr } from "@/src/utils/fp-ts";
+import { isErr, None, unwrap, unwrapOr } from "@/utils/fp-ts";
 
 import _ from "lodash";
 
 import ItemColorModelError from "../errors/ItemColorModelError";
 
-import { ForecastTableRequest } from "@/src/types/table";
-import { brand, sItem, sItemColor, sSeason } from "@/src/db/schema";
+import { ForecastTableRequest } from "@/types/table";
+import { brand, sItem, sItemColor, sSeason } from "@/db/schema";
 import {
   tableFiltersToDrizzle,
   tableSortingToDrizzle,
-} from "@/src/utils/conversions";
+} from "@/utils/conversions";
 import { TABLE_FETCH_SIZE } from "../tables/constants";
-import { Err, Ok, Some } from "@/src/utils/fp-ts";
+import { Err, Ok, Some } from "@/utils/fp-ts";
 
 /**
  * @param param0

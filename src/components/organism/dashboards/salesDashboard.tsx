@@ -1,11 +1,11 @@
 "use server";
 
-// import { getSumForecastForLastFiveSeasons } from "@/src/lib/models/forecast";
-// import { getQtyPairSumPerSeason } from "@/src/lib/models/purchaseLine";
-import { unwrap } from "@/src/utils/fp-ts";
+// import { getSumForecastForLastFiveSeasons } from "@/lib/models/forecast";
+// import { getQtyPairSumPerSeason } from "@/lib/models/purchaseLine";
+import { unwrap } from "@/utils/fp-ts";
 import NavSuggestion from "../navBar/navSuggestion";
-import { navigationTree } from "@/src/config/navigation";
-import ForecastPerLast from "@/src/components/molecules/charts/forecastPerLast";
+import { navigationTree } from "@/config/navigation";
+import ForecastPerLast from "@/components/molecules/charts/forecastPerLast";
 
 export default async function SalesDashboard() {
   // const forecastQty = unwrap((await getSumForecastForLastFiveSeasons()));

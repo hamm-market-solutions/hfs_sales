@@ -1,7 +1,7 @@
-import { getAllSeasons } from "@/src/lib/models/season.ts";
-import { isErr } from "@/src/utils/fp-ts.ts";
+import { getAllSeasons } from "@/lib/models/season";
+import { isErr } from "@/utils/fp-ts";
 import { Card, CardHeader } from "@nextui-org/card";
-import ForecastPerLastBody from "./forecastPerLastBody.tsx";
+import ForecastPerLastBody from "./forecastPerLastBody";
 import React from "react";
 
 export default async function ForecastPerLast() {

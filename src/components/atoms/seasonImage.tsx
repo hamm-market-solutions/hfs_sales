@@ -1,8 +1,8 @@
 import clsx from "clsx";
 
-import { seasonToShort } from "@/src/utils/conversions";
+import { seasonToShort } from "@/utils/conversions";
 import * as O from "fp-ts/Option";
-import { unwrapOr } from "@/src/utils/fp-ts";
+import { unwrapOr } from "@/utils/fp-ts";
 
 export default function SeasonImage({
   name,

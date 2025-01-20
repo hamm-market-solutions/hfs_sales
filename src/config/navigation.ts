@@ -1,6 +1,6 @@
 import * as O from "fp-ts/Option";
 import { routePermissions, routes } from "./routes";
-import { None, Some } from "@/src/utils/fp-ts";
+import { None, Some } from "@/utils/fp-ts";
 
 export const navigationTree: NavigationTree = [
   {

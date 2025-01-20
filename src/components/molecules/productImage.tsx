@@ -1,4 +1,4 @@
-import { unwrapOr } from "@/src/utils/fp-ts.ts";
+import { unwrapOr } from "@/utils/fp-ts";
 import { Image } from "@nextui-org/image";
 import {
   Modal,

@@ -4,10 +4,10 @@ import { asc } from "drizzle-orm";
 
 import BrandModelError from "../errors/BrandModelError";
 
-import { db } from "@/src/db";
-import { brand } from "@/src/db/schema";
+import { db } from "@/db";
+import { brand } from "@/db/schema";
 import { throwToHfsError } from "../errors/HfsError";
-import { Err, Ok, Some } from "@/src/utils/fp-ts";
+import { Err, Ok, Some } from "@/utils/fp-ts";
 
 export const getAllBrands = async () => {
   try {

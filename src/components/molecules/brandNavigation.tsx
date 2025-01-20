@@ -1,10 +1,10 @@
 import { CardFooter } from "@nextui-org/card";
 
-import { PicCards, PicCardsData } from "./picCards.tsx";
+import { PicCards, PicCardsData } from "./picCards";
 
-import { brandLogos } from "@/src/lib/brands.ts";
-import { Brand } from "@/src/types/brands.ts";
-import { None, Some } from "@/src/utils/fp-ts.ts";
+import { brandLogos } from "@/lib/brands";
+import { Brand } from "@/types/brands";
+import { None, Some } from "@/utils/fp-ts";
 import React from "react";
 
 export function BrandNavigation({

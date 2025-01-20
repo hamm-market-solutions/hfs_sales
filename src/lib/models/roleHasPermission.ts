@@ -4,9 +4,9 @@ import { eq } from "drizzle-orm";
 import { HfsResult, throwToHfsError } from "../errors/HfsError";
 import ModelError from "../errors/ModelError";
 
-import { db } from "@/src/db";
-import { permission, roleHasPermission } from "@/src/db/schema";
-import { Err, None, Ok, Some } from "@/src/utils/fp-ts";
+import { db } from "@/db";
+import { permission, roleHasPermission } from "@/db/schema";
+import { Err, None, Ok, Some } from "@/utils/fp-ts";
 
 export async function getRolePermissions(roleId: number): Promise<
   HfsResult<{

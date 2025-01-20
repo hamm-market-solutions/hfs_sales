@@ -1,16 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import * as O from "fp-ts/Option";
 
-import { updateAccessToken } from "@/src/lib/models/user";
-import { getRefreshTokenAndVerify } from "@/src/lib/auth/jwt";
+import { updateAccessToken } from "@/lib/models/user";
+import { getRefreshTokenAndVerify } from "@/lib/auth/jwt";
 import {
   HfsResponse,
   RefreshErrResponse,
   RefreshOkResponse,
   RefreshResponse,
-} from "@/src/types/responses";
-import { resultToResponse } from "@/src/utils/conversions";
-import { isErr, Ok } from "@/src/utils/fp-ts";
+} from "@/types/responses";
+import { resultToResponse } from "@/utils/conversions";
+import { isErr, Ok } from "@/utils/fp-ts";
 
 export async function GET(): Promise<NextResponse<RefreshResponse>> {
   const refreshTokenRes = await getRefreshTokenAndVerify();

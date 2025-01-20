@@ -1,9 +1,9 @@
-import { db } from "@/src/db";
-import { sPurchaseHead, sPurchaseLine } from "@/src/db/schema";
+import { db } from "@/db";
+import { sPurchaseHead, sPurchaseLine } from "@/db/schema";
 import { eq, sum } from "drizzle-orm";
 import PurchaseHeadModelError from "../errors/PurchaseHeadModelError";
 import { throwToHfsError } from "../errors/HfsError";
-import { Err, Ok, Some } from "@/src/utils/fp-ts";
+import { Err, Ok, Some } from "@/utils/fp-ts";
 
 export const getQtyPairSumPerSeason = async (seasonCode: number) => {
   try {

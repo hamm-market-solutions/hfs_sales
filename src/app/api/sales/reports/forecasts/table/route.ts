@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import * as O from "fp-ts/Option";
 
-import { getForecastTableDataMapper } from "@/src/lib/tables/forecast";
+import { getForecastTableDataMapper } from "@/lib/tables/forecast";
 import {
   ForecastTableColumns,
   TableFilter,
   TableSort,
-} from "@/src/types/table";
-import { resultToResponse } from "@/src/utils/conversions";
-import { Err, None, Ok } from "@/src/utils/fp-ts";
+} from "@/types/table";
+import { resultToResponse } from "@/utils/conversions";
+import { Err, None, Ok } from "@/utils/fp-ts";
 import { pipe } from "fp-ts/lib/function";
 
 export const GET = async (

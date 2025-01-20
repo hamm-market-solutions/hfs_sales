@@ -1,12 +1,12 @@
-import { phaseToDrop, seasonToShort } from "@/src/utils/conversions";
+import { phaseToDrop, seasonToShort } from "@/utils/conversions";
 import {
   ForecastTableColumns,
   ForecastTableRequest,
   TableResponse,
-} from "@/src/types/table";
-import { buildTableUrl } from "@/src/utils/tables";
+} from "@/types/table";
+import { buildTableUrl } from "@/utils/tables";
 import { Option } from "fp-ts/Option";
-import { None, Some, unwrap, unwrapOr } from "@/src/utils/fp-ts";
+import { None, Some, unwrap, unwrapOr } from "@/utils/fp-ts";
 import { getForecastTableData } from "../models/forecast";
 
 export const getForecastTableDataMapper = async ({

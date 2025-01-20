@@ -3,14 +3,14 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-import { validateLoginForm } from "@/src/lib/schemas/login";
+import { validateLoginForm } from "@/lib/schemas/login";
 import {
   getUserByEmail,
   updateAccessToken,
   verifyPassword,
-} from "@/src/lib/models/user";
-import { HfsError } from "@/src/lib/errors/HfsError";
-import { isErr, Some } from "@/src/utils/fp-ts";
+} from "@/lib/models/user";
+import { HfsError } from "@/lib/errors/HfsError";
+import { isErr, Some } from "@/utils/fp-ts";
 import { Option } from "fp-ts/lib/Option";
 
 export async function handleLogin(

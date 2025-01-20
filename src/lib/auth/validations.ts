@@ -11,7 +11,7 @@ import { getUserPermissions } from "../models/userHasPermission";
 import { isUserAdmin } from "../models/userHasRole";
 import FieldError from "../errors/FieldError";
 
-import { routePermissions, routes } from "@/src/config/routes";
+import { routePermissions, routes } from "@/config/routes";
 import {
   Err,
   isErr,
@@ -21,7 +21,7 @@ import {
   Ok,
   unwrap,
   unwrapOr,
-} from "@/src/utils/fp-ts";
+} from "@/utils/fp-ts";
 
 export async function isUserAuthenticated(): Promise<boolean> {
   try {

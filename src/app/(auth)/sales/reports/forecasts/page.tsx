@@ -1,15 +1,15 @@
 "use server";
 
-import { getUserCountriesAction } from "@/src/actions/reports/forecast";
-import Title from "@/src/components/molecules/title";
-import { getAllBrands } from "@/src/lib/models/brand";
-import { GetUserCountriesOkResponse } from "@/src/types/responses";
-import ForecastNavigation from "@/src/components/organism/forecastNavigation";
-import { getAllSeasons } from "@/src/lib/models/season";
-import { validateUserAuthorizedOrRedirect } from "@/src/lib/auth/validations";
-import { routes } from "@/src/config/routes";
+import { getUserCountriesAction } from "@/actions/reports/forecast";
+import Title from "@/components/molecules/title";
+import { getAllBrands } from "@/lib/models/brand";
+import { GetUserCountriesOkResponse } from "@/types/responses";
+import ForecastNavigation from "@/components/organism/forecastNavigation";
+import { getAllSeasons } from "@/lib/models/season";
+import { validateUserAuthorizedOrRedirect } from "@/lib/auth/validations";
+import { routes } from "@/config/routes";
 import * as O from "fp-ts/Option";
-import { Some, unwrap } from "@/src/utils/fp-ts";
+import { Some, unwrap } from "@/utils/fp-ts";
 
 export default async function ForecastNavigationPage() {
   await validateUserAuthorizedOrRedirect(

@@ -1,18 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { LoginRequest } from "@/src/types/requests";
+import { LoginRequest } from "@/types/requests";
 import {
   getOptUserByEmail,
   updateAccessToken,
   verifyPassword,
-} from "@/src/lib/models/user";
+} from "@/lib/models/user";
 import {
   optionToNotFound,
   resultToResponse,
   schemaToResult,
-} from "@/src/utils/conversions";
-import { LoginFormSchema } from "@/src/lib/schemas/login";
-import { isErr } from "@/src/utils/fp-ts";
+} from "@/utils/conversions";
+import { LoginFormSchema } from "@/lib/schemas/login";
+import { isErr } from "@/utils/fp-ts";
 
 export async function POST(
   request: NextRequest,

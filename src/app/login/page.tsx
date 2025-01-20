@@ -5,9 +5,9 @@ import { Button } from "@nextui-org/button";
 import React, { useActionState } from "react";
 import Form from "next/form";
 
-import Title from "@/src/components/molecules/title";
-import { handleLogin } from "@/src/actions/auth/login";
-import { None, unwrapOr } from "@/src/utils/fp-ts";
+import Title from "@/components/molecules/title";
+import { handleLogin } from "@/actions/auth/login";
+import { None, unwrapOr } from "@/utils/fp-ts";
 
 export default function Login() {
   const [error, setError, isPending] = useActionState(handleLogin, None);

@@ -4,7 +4,7 @@
 
 import * as O from "fp-ts/Option";
 import * as E from "fp-ts/Either";
-import { HfsResult } from "@/src/lib/errors/HfsError";
+import { HfsResult } from "@/lib/errors/HfsError";
 
 /// Check if the object is an instance of HfsResult. We do this by checking if the object has a left or right property.
 export function instanceOfResult<T>(object: any): object is HfsResult<T> {

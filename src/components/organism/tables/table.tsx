@@ -20,13 +20,13 @@ import {
   TableFilter,
   TableResponse,
   TableSort,
-} from "@/src/types/table";
+} from "@/types/table";
 import {
   instanceOfOption,
   instanceOfResult,
   unwrapOr,
-} from "@/src/utils/fp-ts";
-import TableFilters from "@/src/components/molecules/tableFilters";
+} from "@/utils/fp-ts";
+import TableFilters from "@/components/molecules/tableFilters";
 
 export default function BaseTable<T extends object>({
   columns,

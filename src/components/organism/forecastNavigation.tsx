@@ -8,7 +8,7 @@ import { CountryNavigation } from "../molecules/countryNavigation";
 import TabNavigation from "../molecules/tabNavigation";
 import SeasonNavigation from "../molecules/seasonNavigation";
 
-import { routes } from "@/src/config/routes";
+import { routes } from "@/config/routes";
 import { Option } from "fp-ts/Option";
 
 export default function ForecastNavigation({

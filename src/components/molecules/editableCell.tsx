@@ -3,8 +3,8 @@
 import { Input, InputProps } from "@nextui-org/input";
 import { useState } from "react";
 import clsx from "clsx";
-import { HfsError } from "@/src/lib/errors/HfsError.ts";
-import { isNone, isSome, None, Some, unwrapOr } from "@/src/utils/fp-ts.ts";
+import { HfsError } from "@/lib/errors/HfsError";
+import { isNone, isSome, None, Some, unwrapOr } from "@/utils/fp-ts";
 import { Option } from "fp-ts/lib/Option";
 import React from "react";
 

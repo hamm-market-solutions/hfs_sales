@@ -1,4 +1,4 @@
-import { TableColumns, TableFilter } from "@/src/types/table";
+import { TableColumns, TableFilter } from "@/types/table";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import {

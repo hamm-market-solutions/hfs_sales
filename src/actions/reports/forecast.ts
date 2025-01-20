@@ -1,21 +1,21 @@
 "use server";
 
-import { getUserCountries } from "@/src/lib/models/userHasCountry";
-import { GetUserCountriesOkResponse } from "@/src/types/responses";
-import { HfsResult } from "@/src/lib/errors/HfsError";
-import { getCurrentUser, getOrUpdateAccessToken } from "@/src/lib/models/user";
-// import { ForecastTableColumns, TableResponse, TableSorting } from "@/src/types/table";
-// import { getForecastTableDataMapper } from "@/src/lib/tables/forecast";
-import { Err, isErr, isSome, Ok, Some, unwrap } from "@/src/utils/fp-ts";
+import { getUserCountries } from "@/lib/models/userHasCountry";
+import { GetUserCountriesOkResponse } from "@/types/responses";
+import { HfsResult } from "@/lib/errors/HfsError";
+import { getCurrentUser, getOrUpdateAccessToken } from "@/lib/models/user";
+// import { ForecastTableColumns, TableResponse, TableSorting } from "@/types/table";
+// import { getForecastTableDataMapper } from "@/lib/tables/forecast";
+import { Err, isErr, isSome, Ok, Some, unwrap } from "@/utils/fp-ts";
 import { fromNullable } from "fp-ts/lib/Option";
 import {
   ForecastTableColumns,
   TableFilter,
   TableResponse,
   TableSort,
-} from "@/src/types/table";
-import { getForecastTableDataMapper } from "@/src/lib/tables/forecast";
-import { getLastForecasts } from "@/src/lib/models/forecast";
+} from "@/types/table";
+import { getForecastTableDataMapper } from "@/lib/tables/forecast";
+import { getLastForecasts } from "@/lib/models/forecast";
 
 export async function getUserCountriesAction(): Promise<
   HfsResult<GetUserCountriesOkResponse>

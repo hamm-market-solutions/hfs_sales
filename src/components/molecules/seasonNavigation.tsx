@@ -4,7 +4,7 @@ import SeasonImage from "../atoms/seasonImage";
 
 import { PicCards } from "./picCards";
 import { Option } from "fp-ts/Option";
-import { None, Some, unwrapOr } from "@/src/utils/fp-ts";
+import { None, Some, unwrapOr } from "@/utils/fp-ts";
 
 export default function SeasonNavigation({
   seasons,

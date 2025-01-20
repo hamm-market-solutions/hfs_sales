@@ -12,11 +12,11 @@ import clsx from "clsx";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
-import { matchPath, pathIncludes } from "@/src/utils/paths";
-import { navigationTree } from "@/src/config/navigation";
-import Icon from "@/src/components/atoms/icons/icon";
-import { routes } from "@/src/config/routes";
-import { isNone, unwrap, unwrapOr } from "@/src/utils/fp-ts";
+import { matchPath, pathIncludes } from "@/utils/paths";
+import { navigationTree } from "@/config/navigation";
+import Icon from "@/components/atoms/icons/icon";
+import { routes } from "@/config/routes";
+import { isNone, unwrap, unwrapOr } from "@/utils/fp-ts";
 
 export default function NavBarItems({
   navRoutes,

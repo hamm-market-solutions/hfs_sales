@@ -6,8 +6,8 @@ import { HfsError, HfsResult } from "../errors/HfsError";
 import JwtError, { ACCESS_TOKEN, REFRESH_TOKEN } from "../errors/JwtError";
 import { getOrUpdateAccessToken } from "../models/user";
 
-import { authConfig } from "@/src/config/auth";
-import { Err, isErr, isNone, isSome, None, Ok, Some } from "@/src/utils/fp-ts";
+import { authConfig } from "@/config/auth";
+import { Err, isErr, isNone, isSome, None, Ok, Some } from "@/utils/fp-ts";
 
 export const decodeJWT = (token: string): HfsResult<JWTPayload> => {
   try {

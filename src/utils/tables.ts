@@ -1,6 +1,6 @@
-import { appConfig } from "@/src/config/app";
-import { TABLE_FETCH_SIZE } from "@/src/lib/tables/constants";
-import { TableFilter, TableRequest } from "@/src/types/table";
+import { appConfig } from "@/config/app";
+import { TABLE_FETCH_SIZE } from "@/lib/tables/constants";
+import { TableFilter, TableRequest } from "@/types/table";
 import _ from "lodash";
 import { isSome, Option } from "fp-ts/Option";
 import { instanceOfOption, instanceOfResult, isOk, None, Some } from "./fp-ts";

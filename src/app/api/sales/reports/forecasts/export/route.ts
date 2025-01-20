@@ -1,7 +1,7 @@
 "use server";
 
-import { exportLatestForecasts } from "@/src/lib/models/forecast";
-import { resultToResponse } from "@/src/utils/conversions";
+import { exportLatestForecasts } from "@/lib/models/forecast";
+import { resultToResponse } from "@/utils/conversions";
 import { NextResponse } from "next/server";
 
 export const GET = async (): Promise<NextResponse> => {

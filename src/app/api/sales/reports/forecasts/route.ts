@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { forecast } from "@/src/db/schema";
-import { createForecast } from "@/src/lib/models/forecast";
-import { resultToResponse } from "@/src/utils/conversions";
-import { validateUserAuthorized } from "@/src/lib/auth/validations";
-import { HfsResult } from "@/src/lib/errors/HfsError";
-import { assertSeasonActive } from "@/src/lib/models/seasonBrandPhase";
-import { Err, isErr, None, Some } from "@/src/utils/fp-ts";
+import { forecast } from "@/db/schema";
+import { createForecast } from "@/lib/models/forecast";
+import { resultToResponse } from "@/utils/conversions";
+import { validateUserAuthorized } from "@/lib/auth/validations";
+import { HfsResult } from "@/lib/errors/HfsError";
+import { assertSeasonActive } from "@/lib/models/seasonBrandPhase";
+import { Err, isErr, None, Some } from "@/utils/fp-ts";
 
 export const POST = async (
   request: NextRequest,

@@ -2,7 +2,7 @@ import { CardFooter } from "@nextui-org/card";
 
 import { PicCards } from "./picCards";
 import { Option } from "fp-ts/Option";
-import { None, Some, unwrapOr } from "@/src/utils/fp-ts";
+import { None, Some, unwrapOr } from "@/utils/fp-ts";
 
 export function CountryNavigation({
   countries,

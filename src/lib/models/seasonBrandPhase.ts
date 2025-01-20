@@ -5,9 +5,9 @@ import { HfsResult, throwToHfsError } from "../errors/HfsError";
 import ModelError from "../errors/ModelError";
 import SeasonBrandPhaseError from "../errors/SeasonbrandPhaseError";
 
-import { db } from "@/src/db";
-import { sSeasonBrandPhase } from "@/src/db/schema";
-import { Err, isErr, None, Ok, Some, unwrapOr } from "@/src/utils/fp-ts";
+import { db } from "@/db";
+import { sSeasonBrandPhase } from "@/db/schema";
+import { Err, isErr, None, Ok, Some, unwrapOr } from "@/utils/fp-ts";
 
 export const getSeasonTime = async (seasonCode: number): Promise<
   HfsResult<{

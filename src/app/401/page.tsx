@@ -1,7 +1,7 @@
 import { Link } from "@nextui-org/link";
 
-import Title from "@/src/components/molecules/title";
-import { None } from "@/src/utils/fp-ts";
+import Title from "@/components/molecules/title";
+import { None } from "@/utils/fp-ts";
 
 export default function Page() {
   return (
