@@ -8,7 +8,7 @@
     "start": "NODE_ENV=production node server.mjs",
     "lint": "eslint . --fix",
     "cli": "npx tsx cli/index.ts",
-    "export:forecasts": "npm run cli export forecasts"
+    "export:forecasts": "npm run cli export forecasts -- --output=\"data/export/forecasts_$(date +%s).json\""
   },
   "dependencies": {
     "@nextui-org/alert": "^2.2.9",
