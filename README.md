@@ -30,7 +30,7 @@ npx drizzle-kit migrate
 ### Seed database
 
 ```bash
-npm run seed -- up
+npm run cli seed up
 ```
 
 ## Update production build

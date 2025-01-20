@@ -7,7 +7,7 @@
     "build": "NODE_ENV=production next build",
     "start": "NODE_ENV=production node server.mjs",
     "lint": "eslint . --fix",
-    "seed": "npx tsx drizzle/seed/seed.ts"
+    "cli": "npx tsx cli/index.ts"
   },
   "dependencies": {
     "@nextui-org/alert": "^2.2.9",
