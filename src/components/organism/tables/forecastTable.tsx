@@ -68,6 +68,17 @@ export default function ForecastTable({
             }
         },
         {
+            header: "Last",
+            key: "last",
+            enableFiltering: true,
+            enableSorting: true,
+            size: Some(60),
+            index: None,
+            cell: ({value}: { value: Option<string> }) => {
+                return <p className="cut-text">{unwrapOr(value, "") as unknown as ReactNode}</p>;
+            },
+        },
+        {
             header: "Item No.",
             key: "item_no",
             enableFiltering: true,
@@ -174,8 +185,8 @@ export default function ForecastTable({
         },
     ];
 
-    const host = window.location.origin;
-    const fetchUrl = new URL(host + "/api/sales/reports/forecasts/table");
+    // const host = window.location.origin;
+    const fetchUrl = new URL("http://localhost:3000" + "/api/sales/reports/forecasts/table");
     fetchUrl.searchParams.set("country", params.countryId);
     fetchUrl.searchParams.set("brand", params.brandId);
     fetchUrl.searchParams.set("season_code", params.seasonCode);
@@ -183,12 +194,6 @@ export default function ForecastTable({
     return (
         <BaseTable<ForecastTableColumns>
             columns={columns}
-            // fetchFn={async (sorting, search, page) => {
-            //     const t = await getForecastTableData(sorting, search, page, params.countryId, Number(params.brandId), Number(params.seasonCode));
-            //     console.log(t);
-            //     return t;
-
-            // }}
             fetchUrl={fetchUrl}
         />
     );

@@ -4,6 +4,7 @@ import { Option } from "fp-ts/Option";
 export interface TableResponse<T extends object> {
   data: T[];
   meta: { totalRowCount: number, next?: string, previous?: string };
+  aggregations?: Record<keyof T, number>;
 };
 
 export type TableSortDirection = "ascending" | "descending";
@@ -47,6 +48,7 @@ export interface ForecastTableColumns {
   drop: number;
   color_code: string;
   color_name: string;
+  last: Option<string>;
   brand_no: Option<string>;
   brand_name: Option<string>;
   season_code: Option<number>;

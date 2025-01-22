@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Spinner } from "@nextui-org/spinner";
 import { Table, TableBody, TableHeader, TableRow, TableColumn, TableCell, getKeyValue, SortDescriptor } from "@nextui-org/table";
 import {useInfiniteScroll} from "@nextui-org/use-infinite-scroll";
@@ -22,6 +22,11 @@ export default function BaseTable<T extends object>({
     const [sorting, setSorting] = React.useState<TableSort<T>|undefined>(undefined);
     const [filters, setFilters] = React.useState<TableFilter<T>[]>([]);
     const [useStartFetchUrl, setUseStartFetchUrl] = React.useState<boolean>(false);
+    const [aggregations, setAggregations] = React.useState<{[key: string]: number}|null>(null);
+
+    useEffect(() => {
+        list.reload();
+    }, [filters, sorting]);
 
     const list = useAsyncList<T>({
         async load({signal, cursor}) {
@@ -47,6 +52,12 @@ export default function BaseTable<T extends object>({
             setUseStartFetchUrl(false);
             setHasMore(!!data.meta.next);
 
+            if (data.aggregations) {
+                console.log(data.aggregations);
+
+                setAggregations(data.aggregations);
+            }
+
             return {
                 items: data.data,
                 cursor: data.meta.next,
@@ -59,12 +70,13 @@ export default function BaseTable<T extends object>({
         onLoadMore: list.loadMore,
     });
 
+    console.log(aggregations);
+
     return (
         <div className="table-container flex flex-col gap-2">
-            <TableFilters columns={columns} appliedFilters={filters} setFilters={(filters: TableFilter<T>[]) => {
-                setFilters(filters);
+            <TableFilters columns={columns} appliedFilters={filters} setFilters={(f: TableFilter<T>[]) => {
                 setUseStartFetchUrl(true);
-                list.reload();
+                setFilters(f);
             }} />
             <Table
                 isHeaderSticky
@@ -75,7 +87,23 @@ export default function BaseTable<T extends object>({
                         <div className="flex w-full justify-center">
                             <Spinner ref={loaderRef} color="primary" />
                         </div>
-                    ) : null
+                    ) : aggregations != null ? <TableRow key="aggregations">
+                        {
+                            columns.map((column) => {
+                                if (aggregations[column.key as string]) {
+                                    return (
+                                        <TableCell key={column.key.toString()}>
+                                            {aggregations[column.key as string]}
+                                        </TableCell>
+                                    );
+                                }
+
+                                return (
+                                    <TableCell key={column.key.toString()}>0</TableCell>
+                                );
+                            })
+                        }
+                    </TableRow> : null
                 }
                 classNames={{
                     base: "max-h-[620px]",

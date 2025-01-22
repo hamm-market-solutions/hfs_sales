@@ -14,11 +14,12 @@ import _ from "lodash";
 
 import ItemColorModelError from "../errors/ItemColorModelError";
 
-import { ForecastTableRequest } from "@/types/table";
+import { ForecastTableColumns, ForecastTableRequest, TableResponse } from "@/types/table";
 import { brand, sItem, sItemColor, sSeason, } from "@/db/schema";
 import { tableFiltersToDrizzle, tableSortingToDrizzle } from "@/utils/conversions";
 import { TABLE_FETCH_SIZE } from "../tables/constants";
 import { Err, Ok, Some } from "@/utils/fp-ts";
+import { getCurrentUser } from "./user";
 
 /**
  *
@@ -34,6 +35,13 @@ export const getForecastTableData = async ({
     filters,
 }: ForecastTableRequest) => {
     try {
+        const user = await getCurrentUser();
+
+        if (isErr(user)) {
+            return user;
+        }
+        const currentUser = unwrap(user);
+
         const select = {
             brandNo: sItem.brandNo,
             brandName: brand.name,
@@ -77,7 +85,7 @@ export const getForecastTableData = async ({
         Number,
     ),
             forecastAmount:
-        sql<number>`(SELECT amount FROM forecast WHERE item_no = ${sItemColor.itemNo} AND color_code = ${sItemColor.colorCode} AND country_code = ${country} ORDER BY timestamp DESC LIMIT 1)`.mapWith(
+        sql<number>`(SELECT amount FROM forecast WHERE item_no = ${sItemColor.itemNo} AND color_code = ${sItemColor.colorCode} AND country_code = ${country} AND created_by = ${currentUser.id} ORDER BY timestamp DESC LIMIT 1)`.mapWith(
         	Number,
         ),
             totalRowCount: sql<number>`COUNT(*) OVER()`,
@@ -118,6 +126,19 @@ export const getForecastTableData = async ({
         );
     }
 };
+
+export const calculateForecastTableAggregations = (data: TableResponse<ForecastTableColumns>): Record<string, number> => {
+    const sumForecastAmount = data.data.map((d) => {
+        return {
+            forecastAmount: unwrapOr(d.forecast_amount, 0),
+        }
+    });
+    const sumForecastAmountTotal = sumForecastAmount.reduce((acc, curr) => acc + curr.forecastAmount, 0);
+
+    return {
+        forecast_amount: sumForecastAmountTotal,
+    };
+}
 
 export const createForecast = async (
     seasonCode: number,

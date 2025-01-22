@@ -5,12 +5,12 @@ import { Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from "@nex
 import {Form} from "@nextui-org/form";
 import { useState } from "react";
 
-export default function TableFilters<T extends object>({ columns, appliedFilters, setFilters }: {columns: TableColumns<T>; appliedFilters: TableFilter<T>[], setFilters: (filters: TableFilter<T>[]) => void}) {
+export default function TableFilters<T extends object>({ columns, appliedFilters, setFilters }: {columns: TableColumns<T>; appliedFilters: TableFilter<T>[], setFilters: (f: TableFilter<T>[]) => void}) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [currentFilters, setCurrentFilters] = useState<TableFilter<T>[]>(appliedFilters);
 
     return (
-        <>
+        <div className="flex space-x-4">
             <Button onClick={onOpen} className="bg-tertiary text-white font-bold">Filters</Button>
             <Modal
                 backdrop="blur"
@@ -59,6 +59,16 @@ export default function TableFilters<T extends object>({ columns, appliedFilters
                     )}
                 </ModalContent>
             </Modal>
-        </>
+            <Button
+                color="warning"
+                isDisabled={appliedFilters.length == 0}
+                onClick={() => {
+                    setCurrentFilters([]);
+                    setFilters([]);
+                }}
+                className="text-white font-bold">
+                    Clear Filters
+            </Button>
+        </div>
     )
 }
