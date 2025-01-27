@@ -51,8 +51,8 @@ export const getForecastTableDataMapper = async ({
             const lateCollection = data.lateCollection;
             const specialCollection = data.specialCollection;
             const description = data.description ? Some(data.description) : None;
-            const rrp = data.rrp;
-            const wsp = data.wsp;
+            const rrp = data.rrp ?? 0;
+            const wsp = data.wsp ?? 0;
             const forecastAmount = data.forecastAmount;
             const colorName = data.colorName ?? "";
 

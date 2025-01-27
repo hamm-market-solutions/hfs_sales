@@ -1,4 +1,4 @@
-import { and, desc, eq, inArray, isNull, SQL, sql, sum } from "drizzle-orm";
+import { and, desc, eq, inArray, isNull, like, not, SQL, sql, sum } from "drizzle-orm";
 import { fromNullable, Option } from "fp-ts/Option";
 
 import { HfsResult, throwToHfsError } from "../errors/HfsError";
@@ -6,7 +6,7 @@ import ForecastModelError from "../errors/ForecastModelError";
 import { getAccessTokenPayload } from "../auth/jwt";
 
 import { db } from "@/db";
-import { forecast, sColor } from "@/db/schema";
+import { forecast, sAssortment, sColor, sVariant } from "@/db/schema";
 import { getAllSeasons } from "./season";
 import { isErr, None, unwrap, unwrapOr } from "@/utils/fp-ts";
 
@@ -47,19 +47,17 @@ export const getForecastTableData = async ({
     itemNo: string ,
     colorCode: string,
     colorName: string | null,
-    rrp: number,
-    wsp: number ,
+    rrp: number | null,
+    wsp: number | null,
     forecastAmount: number,
     totalRowCount: number,
 }[], Partial<Record<keyof ForecastTableColumns, { description: string, value: number }>>]>> => {
     try {
         const user = await getCurrentUser();
-
         if (isErr(user)) {
             return user;
         }
         const currentUser = unwrap(user);
-
         const select = {
             brandNo: sItem.brandNo,
             brandName: brand.name,
@@ -74,38 +72,11 @@ export const getForecastTableData = async ({
             itemNo: sItemColor.itemNo,
             colorCode: sItemColor.colorCode,
             colorName: sColor.name,
-            rrp: sql<number>`(
-        SELECT
-          rep_retail_price
-        FROM s_variant
-        LEFT JOIN s_assortment ON s_variant.size_code = s_assortment.code
-        WHERE s_variant.item_no = ${sItemColor.itemNo}
-          AND s_variant.color_code = ${sItemColor.colorCode}
-          AND s_assortment.code IS NULL
-          AND s_variant.size_code NOT LIKE 'L%'
-          AND s_variant.size_code NOT LIKE 'R%'
-        LIMIT 1
-      )`.mapWith(
-        Number,
-    ),
-            wsp: sql<number>`(
-        SELECT
-          unit_sale_price
-        FROM s_variant
-        LEFT JOIN s_assortment ON s_variant.size_code = s_assortment.code
-        WHERE s_variant.item_no = ${sItemColor.itemNo}
-          AND s_variant.color_code = ${sItemColor.colorCode}
-          AND s_assortment.code IS NULL
-          AND s_variant.size_code NOT LIKE 'L%'
-          AND s_variant.size_code NOT LIKE 'R%'
-        LIMIT 1
-      )`.mapWith(
-        Number,
-    ),
-            forecastAmount:
-        sql<number>`(SELECT amount FROM forecast WHERE item_no = ${sItemColor.itemNo} AND color_code = ${sItemColor.colorCode} AND country_code = ${country} AND created_by = ${currentUser.id} ORDER BY timestamp DESC LIMIT 1)`.mapWith(
-        	Number,
-        ),
+            rrp: sVariant.repRetailPrice,
+            wsp: sVariant.unitSalePrice,
+            forecastAmount: sql<number>`(SELECT amount FROM forecast WHERE item_no = ${sItemColor.itemNo} AND color_code = ${sItemColor.colorCode} AND country_code = ${country} AND created_by = ${currentUser.id} ORDER BY timestamp DESC LIMIT 1)`.mapWith(
+                Number,
+            ),
             totalRowCount: sql<number>`COUNT(*) OVER()`,
         };
         const orderBySelectClone = _.cloneDeep(select);
@@ -119,6 +90,8 @@ export const getForecastTableData = async ({
             .leftJoin(brand, eq(sItem.brandNo, brand.no))
             .leftJoin(sSeason, eq(sItem.seasonCode, sSeason.code))
             .leftJoin(sColor, and(eq(sItemColor.colorCode, sColor.code), eq(sItem.seasonCode, sColor.seasonCode)))
+            .leftJoin(sAssortment, eq(sItemColor.colorCode, sAssortment.code))
+            .leftJoin(sVariant, and(eq(sItemColor.itemNo, sVariant.itemNo), eq(sItemColor.colorCode, sVariant.colorCode), isNull(sAssortment.code), not(like(sVariant.sizeCode, "L%")), not(like(sVariant.sizeCode, "R%"))))
             .where(
                 and(
                     eq(sItem.brandNo, brandNo.toString()),
@@ -130,8 +103,7 @@ export const getForecastTableData = async ({
             .orderBy(...orderBy)
             .limit(TABLE_FETCH_SIZE)
             .offset((page - 1) * TABLE_FETCH_SIZE);
-
-        const aggregations = await calculateForecastTableAggregations(filtersWhere, brandNo.toString(), season_code);
+        const aggregations = await calculateForecastTableAggregations(filtersWhere, brandNo.toString(), season_code, country, currentUser.id);
 
         return Ok([data, aggregations]);
     } catch (error) {
@@ -147,22 +119,32 @@ export const getForecastTableData = async ({
     }
 };
 
-const calculateForecastTableAggregations = async (filtersWhere: SQL<unknown>[], brandNo: string, seasonCode: number): Promise<Partial<Record<keyof ForecastTableColumns, { description: string, value: number }>>> => {
-    const data = await db
-        .select({forecast_amount: sum(forecast.amount)})
-        .from(forecast)
-        .leftJoin(sItem, eq(forecast.itemNo, sItem.no))
-        .where(and(
-            eq(sItem.brandNo, brandNo),
-            eq(sItem.seasonCode, seasonCode),
-            ...filtersWhere,
-        ));
+const calculateForecastTableAggregations = async (filtersWhere: SQL<unknown>[], brandNo: string, seasonCode: number, country: string, userId: number): Promise<Partial<Record<keyof ForecastTableColumns, { description: string, value: number }>>> => {
+    console.log("filtersWhere", filtersWhere[0]);
 
-    return {
-        forecast_amount: {
-            description: "Total Forecast Amount",
-            value: Number(data[0].forecast_amount),
-        },
+    try {
+        const data = await db
+            .select({forecast_amount: sum(forecast.amount)})
+            .from(forecast)
+            .leftJoin(sItem, eq(forecast.itemNo, sItem.no))
+            .where(and(
+                eq(sItem.brandNo, brandNo),
+                eq(sItem.seasonCode, seasonCode),
+                eq(forecast.countryCode, country),
+                eq(forecast.createdBy, userId),
+                ...filtersWhere,
+            ))
+            .groupBy(forecast.itemNo, forecast.colorCode)
+            .orderBy(desc(forecast.timestamp));
+
+        return {
+            forecast_amount: {
+                description: "Total Forecast Amount",
+                value: Number(data[0].forecast_amount),
+            },
+        };
+    } catch (_error) {
+        return {};
     }
 }
 

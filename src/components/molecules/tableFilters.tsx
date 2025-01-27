@@ -4,6 +4,7 @@ import { Input } from "@heroui/input";
 import { Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from "@heroui/modal";
 import {Form} from "@heroui/form";
 import { useState } from "react";
+import { FlowGrid } from "../atoms/flowGrid";
 
 export default function TableFilters<T extends object>({ columns, appliedFilters, setFilters }: {columns: TableColumns<T>; appliedFilters: TableFilter<T>[], setFilters: (f: TableFilter<T>[]) => void}) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -12,6 +13,28 @@ export default function TableFilters<T extends object>({ columns, appliedFilters
     return (
         <div className="flex space-x-4">
             <Button onClick={onOpen} className="bg-tertiary text-white font-bold">Filters</Button>
+            {
+                appliedFilters.length > 0 && (
+                    <FlowGrid>
+                        {appliedFilters.map((filter) => {
+                            const column = columns.find((c) => c.key === filter.column);
+                            return (
+                                <Button
+                                    key={filter.column as string}
+                                    onClick={() => {
+                                        setFilters(appliedFilters.filter((f) => f.column !== filter.column));
+                                        setCurrentFilters(currentFilters.filter((f) => f.column !== filter.column));
+                                    }}
+                                    className="text-white font-bold bg-alert"
+                                >
+                                    <span className="font-bold">{column?.header}:</span>
+                                    <span className="font-normal">{filter.value}</span>
+                                </Button>
+                            );
+                        })}
+                    </FlowGrid>
+                )
+            }
             <Modal
                 backdrop="blur"
                 isOpen={isOpen}
@@ -59,16 +82,6 @@ export default function TableFilters<T extends object>({ columns, appliedFilters
                     )}
                 </ModalContent>
             </Modal>
-            <Button
-                color="warning"
-                isDisabled={appliedFilters.length == 0}
-                onClick={() => {
-                    setCurrentFilters([]);
-                    setFilters([]);
-                }}
-                className="text-white font-bold">
-                    Clear Filters
-            </Button>
         </div>
     )
 }

@@ -24,11 +24,6 @@ export default function BaseTable<T extends object>({
     const [filters, setFilters] = React.useState<TableFilter<T>[]>([]);
     const [useStartFetchUrl, setUseStartFetchUrl] = React.useState<boolean>(false);
     const [aggregations, setAggregations] = React.useState<Partial<Record<keyof T, { description: string, value: number }>>>({});
-
-    useEffect(() => {
-        list.reload();
-    }, [filters, sorting]);
-
     const list = useAsyncList<T>({
         async load({signal, cursor}) {
             if (cursor) {
@@ -54,8 +49,6 @@ export default function BaseTable<T extends object>({
             setHasMore(!!data.meta.next);
 
             if (data.aggregations) {
-                console.log(data.aggregations);
-
                 setAggregations(data.aggregations);
             }
 
@@ -65,13 +58,14 @@ export default function BaseTable<T extends object>({
             };
         },
     });
+    useEffect(() => {
+        list.reload();
+    }, [filters, sorting]);
 
     const [loaderRef, scrollerRef] = useInfiniteScroll({
         hasMore,
         onLoadMore: list.loadMore,
     });
-
-    console.log(aggregations);
 
     return (
         <div className="table-container flex flex-col gap-2">

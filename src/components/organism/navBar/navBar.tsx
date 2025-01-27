@@ -7,11 +7,11 @@ import NavBarItems from "./navBarItems";
 import { navigationTree } from "@/config/navigation";
 import { isUserAuthenticated } from "@/lib/auth/validations";
 
-export default async function NavBar() {
+export default async function NavBar(): Promise<JSX.Element> {
     const isUserAuth = await isUserAuthenticated();
 
     return (
-        <Navbar isBordered>
+        <Navbar>
             <NavbarBrand className="gap-3">
                 <Link href="/dashboard">
                     <Image
