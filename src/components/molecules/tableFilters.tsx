@@ -1,6 +1,7 @@
 import { TableColumns, TableFilter } from "@/types/table";
 import { Button } from "@heroui/button";
 import { Input } from "@heroui/input";
+import { Tooltip } from "@heroui/tooltip";
 import { Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from "@heroui/modal";
 import {Form} from "@heroui/form";
 import { useState } from "react";
@@ -19,17 +20,19 @@ export default function TableFilters<T extends object>({ columns, appliedFilters
                         {appliedFilters.map((filter) => {
                             const column = columns.find((c) => c.key === filter.column);
                             return (
-                                <Button
-                                    key={filter.column as string}
-                                    onClick={() => {
-                                        setFilters(appliedFilters.filter((f) => f.column !== filter.column));
-                                        setCurrentFilters(currentFilters.filter((f) => f.column !== filter.column));
-                                    }}
-                                    className="text-white font-bold bg-alert"
-                                >
-                                    <span className="font-bold">{column?.header}:</span>
-                                    <span className="font-normal">{filter.value}</span>
-                                </Button>
+                                <Tooltip content="Click to remove filter" key={filter.column as string}>
+                                    <Button
+                                        key={filter.column as string}
+                                        onClick={() => {
+                                            setFilters(appliedFilters.filter((f) => f.column !== filter.column));
+                                            setCurrentFilters(currentFilters.filter((f) => f.column !== filter.column));
+                                        }}
+                                        className="text-white font-bold bg-alert"
+                                    >
+                                        <span className="font-bold">{column?.header}:</span>
+                                        <span className="font-normal">{filter.value}</span>
+                                    </Button>
+                                </Tooltip>
                             );
                         })}
                     </FlowGrid>

@@ -54,7 +54,7 @@ export default function ForecastTable({
         {
             header: "Drop",
             key: "drop",
-            enableFiltering: true,
+            enableFiltering: false,
             enableSorting: true,
             size: Some(60),
             index: None,
