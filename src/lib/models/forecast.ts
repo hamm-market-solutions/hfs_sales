@@ -121,9 +121,9 @@ export const getForecastTableData = async ({
 
 const calculateForecastTableAggregations = async (filtersWhere: SQL<unknown>[], brandNo: string, seasonCode: number, country: string, userId: number): Promise<Partial<Record<keyof ForecastTableColumns, { description: string, value: number }>>> => {
     try {
-        const data = await await db
+        const data = await db
             .select({
-                forecast_amount: sql<number>`(SELECT sum(amount) FROM forecast WHERE item_no = ${sItemColor.itemNo} AND color_code = ${sItemColor.colorCode} AND country_code = ${country} AND created_by = ${userId} ORDER BY timestamp DESC LIMIT 1)`.mapWith(
+                forecast_amount: sql<number>`(SELECT amount FROM forecast WHERE item_no = ${sItemColor.itemNo} AND color_code = ${sItemColor.colorCode} AND country_code = ${country} AND created_by = ${userId} ORDER BY timestamp DESC LIMIT 1)`.mapWith(
                     Number,
                 ),
             })
@@ -146,7 +146,7 @@ const calculateForecastTableAggregations = async (filtersWhere: SQL<unknown>[], 
         return {
             forecast_amount: {
                 description: "Total Forecast Amount",
-                value: Number(data[0].forecast_amount),
+                value: Number(data.map((d) => d.forecast_amount).reduce((acc, curr) => acc + curr, 0)),
             },
         };
     } catch (_error) {
