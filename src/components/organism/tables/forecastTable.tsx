@@ -112,7 +112,7 @@ export default function ForecastTable({
             enableSorting: true,
             size: Some(100),
             cell: ({value}: { value: string }) => {
-                return <p className="z-50 cut-text max-w-[90px]">{value}</p>
+                return <p className="cut-text max-w-[90px]">{value}</p>
             },
             index: None,
         },
