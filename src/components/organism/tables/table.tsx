@@ -105,6 +105,7 @@ export default function BaseTable<T extends object>({
                                 id={column.key?.toString()}
                                 allowsSorting={column.enableSorting}
                                 // width={size}
+                                className="text-left z-50"
                             >
                                 <p>{column.header}</p>
                             </TableColumn>
@@ -147,13 +148,11 @@ export default function BaseTable<T extends object>({
                     }}
                 </TableBody>
             </Table>
-            <Listbox aria-label="table aggregations" selectionMode="none">
+            <Listbox aria-label="table aggregations" variant="light">
                 {Object.entries(aggregations).map(([key, value]) => {
                     const val: { description: string, value: number } = value as { description: string, value: number };
                     return (
-                        <ListboxItem key={key}>
-                            {val.description}: {val.value}
-                        </ListboxItem>
+                        <ListboxItem key={key} className="hover:bg-white" title={val.description} description={val.value} />
                     )})}
             </Listbox>
         </div>

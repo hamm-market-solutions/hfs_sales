@@ -38,7 +38,7 @@ export default function EditableCell<T extends object>({
             <Input
                 autoFocus
                 classNames={{
-                    input: "editable-cell editable-cell_active z-50 max-w-[105px]",
+                    input: "editable-cell editable-cell_active z-10 max-w-[105px]",
                     mainWrapper: "max-w-[105px]"
                 }}
                 value={unwrapOr(value, "")}
@@ -93,7 +93,7 @@ export default function EditableCell<T extends object>({
         return (
             <div
                 className={clsx(
-                    "editable-cell editable-cell_inactive flex flex-col z-50 cursor-pointer place-content-center",
+                    "editable-cell editable-cell_inactive flex flex-col z-10 cursor-pointer place-content-center",
                     props.className,
                 )}
                 onClick={() => {
