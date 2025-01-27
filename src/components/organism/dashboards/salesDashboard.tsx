@@ -6,6 +6,7 @@ import { unwrap } from "@/utils/fp-ts";
 import NavSuggestion from "../navBar/navSuggestion";
 import { navigationTree } from "@/config/navigation";
 import ForecastPerLast from "@/components/molecules/charts/forecastPerLast";
+import { FlowGrid } from "@/components/atoms/flowGrid";
 
 export default async function SalesDashboard() {
     // const forecastQty = unwrap((await getSumForecastForLastFiveSeasons()));
@@ -27,9 +28,9 @@ export default async function SalesDashboard() {
             <div className="flex flex-row gap-2 mb-4">
                 <NavSuggestion suggestion={unwrap(navigationTree[1].items)[0]} />
             </div>
-            <section className="sales-dashboard grid grid-cols-2 gap-4 place-items-center">
+            <FlowGrid>
                 <ForecastPerLast />
-            </section>
+            </FlowGrid>
         </>
     );
 }

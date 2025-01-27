@@ -4,6 +4,7 @@ import { getLastForecastsAction } from "@/actions/reports/forecast";
 import { HfsError } from "@/lib/errors/HfsError";
 import {  isErr, unwrap, unwrapOr } from "@/utils/fp-ts";
 import {  CardBody } from "@heroui/card";
+import { Listbox } from "@heroui/listbox";
 import { Select, SelectItem } from "@heroui/select";
 import { Spinner } from "@heroui/spinner";
 import { Option } from "fp-ts/lib/Option";
@@ -14,7 +15,7 @@ export default function ForecastPerLastBody({ seasons }: {seasons: {
     name: Option<string>;
 }[]}) {
     const [season, setSeason] = useState<number>(seasons[0].code);
-    const [_forecasts, setForecasts] = useState<{
+    const [forecasts, setForecasts] = useState<{
         last: string;
         amount: number;
     }[]>([]);
@@ -23,9 +24,6 @@ export default function ForecastPerLastBody({ seasons }: {seasons: {
 
     const handleFetchData = async () => {
         setIsLoading(true);
-
-        console.log("fetching forecasts for season", season);
-
         const forecastsRes = await getLastForecastsAction(season);
         if (isErr(forecastsRes)) {
             setError(forecastsRes.right);
@@ -42,10 +40,10 @@ export default function ForecastPerLastBody({ seasons }: {seasons: {
     }, [season]);
 
     return (
-        <CardBody className="h-[350px] w-[450px] gap-6">
+        <CardBody className="max-h-[350px]">
             <Select
                 defaultSelectedKeys={[season.toString()]}
-                className="max-w-xs"
+                className="w-full"
                 label="Season"
                 value={season}
                 onSelectionChange={(e) => setSeason(Number(e.currentKey))}
@@ -56,7 +54,18 @@ export default function ForecastPerLastBody({ seasons }: {seasons: {
                     </SelectItem>
                 ))}
             </Select>
-            {!isLoading ? !error ? JSON.stringify(_forecasts) : error.message : <Spinner />}
+            {!isLoading ? !error ?
+                <Listbox variant="light">
+                    {forecasts.map((forecast) => (
+                        <SelectItem aria-label="The forecasted amount per last" key={forecast.last} value={forecast.amount}>
+                            <div className="flex justify-between">
+                                <span>{forecast.last}</span>
+                                <span>{forecast.amount}</span>
+                            </div>
+                        </SelectItem>
+                    ))}
+                </Listbox> :
+                error.message : <Spinner />}
         </CardBody>
     )
 }

@@ -10,7 +10,7 @@ import { Err, isErr, isSome, Ok, Some, unwrap } from "@/utils/fp-ts";
 import { fromNullable } from "fp-ts/lib/Option";
 import { ForecastTableColumns, TableFilter, TableResponse, TableSort } from "@/types/table";
 import { getForecastTableDataMapper } from "@/lib/tables/forecast";
-import { getLastForecasts } from "@/lib/models/forecast";
+import { getForecastsPerLast } from "@/lib/models/forecast";
 
 export async function getUserCountriesAction(): Promise<HfsResult<GetUserCountriesOkResponse>> {
     const payloadRes = await getOrUpdateAccessToken();
@@ -112,7 +112,7 @@ export const getLastForecastsAction = async (seasonCode: number): Promise<HfsRes
     if (isErr(user)) {
         return Err(user.right);
     }
-    const data = await getLastForecasts(user.left.id, seasonCode);
+    const data = await getForecastsPerLast(user.left.id, seasonCode);
 
     if (isErr(data)) {
         return Err(data.right);

@@ -1,4 +1,4 @@
-import { and, desc, eq, inArray, isNull, like, not, SQL, sql, sum } from "drizzle-orm";
+import { and, asc, desc, eq, inArray, isNull, like, not, SQL, sql, sum } from "drizzle-orm";
 import { fromNullable, Option } from "fp-ts/Option";
 
 import { HfsResult, throwToHfsError } from "../errors/HfsError";
@@ -298,7 +298,10 @@ export async function exportLatestForecasts() {
     }
 }
 
-export const getLastForecasts = async (
+/**
+ * Gets the total forecasts value for a given season grouped by the last
+ */
+export const getForecastsPerLast = async (
     userId: number,
     seasonCode: number,
 ): Promise<HfsResult<{
@@ -306,21 +309,31 @@ export const getLastForecasts = async (
     amount: number,
 }[]>> => {
     try {
-        const data = await db
-            .selectDistinct({
+        const forecastPerLast = await db
+            .select({
                 last: sItem.last,
                 amount: sum(forecast.amount),
             })
             .from(forecast)
             .leftJoin(sItem, eq(forecast.itemNo, sItem.no))
-            .where(and(
-                eq(forecast.createdBy, userId),
-                eq(forecast.seasonCode, seasonCode),
-            ))
-            .orderBy(desc(forecast.timestamp));
-        console.log("data", data);
-
-        const forecasts = data.map((f) => ({
+            .leftJoin(sItemColor, and(eq(sItem.no, sItemColor.itemNo), eq(forecast.colorCode, sItemColor.colorCode)))
+            .where(
+                and(
+                    eq(forecast.seasonCode, seasonCode),
+                    eq(forecast.createdBy, userId),
+                    sql`${forecast.timestamp} = (
+                        SELECT MAX(${forecast.timestamp})
+                        FROM forecast
+                        WHERE item_no = ${sItem.no}
+                        AND color_code = ${sItemColor.colorCode}
+                        AND season_code = ${seasonCode}
+                        AND created_by = ${userId}
+                    )`,
+                ),
+            )
+            .groupBy(sItem.last)
+            .orderBy(asc(sItem.last));
+        const forecasts = forecastPerLast.map((f) => ({
             last: fromNullable(f.last),
             amount: Number(f.amount),
         }));
