@@ -1,6 +1,6 @@
 import { unwrapOr } from "@/utils/fp-ts";
-import { Card, CardBody } from "@nextui-org/card";
-import { Image } from "@nextui-org/image";
+import { Card, CardBody } from "@heroui/card";
+import { Image } from "@heroui/image";
 import React from "react";
 import { Option } from "fp-ts/Option";
 

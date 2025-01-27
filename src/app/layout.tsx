@@ -30,10 +30,10 @@ export default async function RootLayout({
                     fontSans.variable,
                 )}
             >
-                <Header />
-                <main className="main-content flex flex-row justify-center">
-                    {children}
-                </main>
+                <div className={"container mx-auto flex flex-col min-h-screen"}>
+                    <Header />
+                    <main className={"flex-grow p-4"}>{children}</main>
+                </div>
             </body>
         </html>
     );

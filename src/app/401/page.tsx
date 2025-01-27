@@ -1,4 +1,4 @@
-import { Link } from "@nextui-org/link";
+import { Link } from "@heroui/link";
 
 import Title from "@/components/molecules/title";
 import { None } from "@/utils/fp-ts";

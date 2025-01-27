@@ -64,7 +64,7 @@ export default function ForecastTable({
                     return "";
                 }
 
-                return value;
+                return <p>{value}</p>;
             }
         },
         {
@@ -124,7 +124,7 @@ export default function ForecastTable({
             cell: ({value}: { value: Option<number> }) => {
                 const price = unwrapOr(value, 0);
 
-                return (price / 1000).toFixed(2);
+                return <p>{(price / 1000).toFixed(2)}</p>;
             },
             size: Some(110),
             index: None,
@@ -137,7 +137,7 @@ export default function ForecastTable({
             cell: ({value, row, index}: { value: Option<number>, row: ForecastTableColumns, index: number }) => {
                 const val = unwrapOr(value, 0);
                 if (!isSeasonActive) {
-                    return Number(val);
+                    return <p>{Number(val)}</p>;
                 }
 
                 return (

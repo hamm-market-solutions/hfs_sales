@@ -1,6 +1,6 @@
 import { getAllSeasons } from "@/lib/models/season";
 import { isErr } from "@/utils/fp-ts";
-import { Card, CardHeader } from "@nextui-org/card";
+import { Card, CardHeader } from "@heroui/card";
 import ForecastPerLastBody from "./forecastPerLastBody";
 
 export default async function ForecastPerLast() {

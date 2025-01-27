@@ -1,13 +1,13 @@
 "use client";
 
-import { Button } from "@nextui-org/button";
+import { Button } from "@heroui/button";
 import {
     Dropdown,
     DropdownItem,
     DropdownMenu,
     DropdownTrigger,
-} from "@nextui-org/dropdown";
-import { NavbarItem } from "@nextui-org/navbar";
+} from "@heroui/dropdown";
+import { NavbarItem } from "@heroui/navbar";
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";

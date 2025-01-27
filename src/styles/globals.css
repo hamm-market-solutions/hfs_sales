@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-.main-content {
-  /* div with class ending with "-page" */
-  > div[class$="-page"] {
-    @apply max-w-[1024px] w-full justify-start p-6;
-  }
+p {
+  @apply text-xs;
+  @apply sm:text-sm;
+  @apply md:text-base;
+  /* @apply lg:text-lg; */
 }
 
 .cut-text {

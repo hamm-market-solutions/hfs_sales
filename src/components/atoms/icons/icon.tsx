@@ -1,4 +1,4 @@
-import { Image, ImageProps } from "@nextui-org/image";
+import { Image, ImageProps } from "@heroui/image";
 import clsx from "clsx";
 
 export default function Icon({

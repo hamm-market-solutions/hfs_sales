@@ -1,4 +1,4 @@
-import { and, desc, eq, inArray, isNull, sql, sum } from "drizzle-orm";
+import { and, desc, eq, inArray, isNull, SQL, sql, sum } from "drizzle-orm";
 import { fromNullable, Option } from "fp-ts/Option";
 
 import { HfsResult, throwToHfsError } from "../errors/HfsError";
@@ -14,7 +14,7 @@ import _ from "lodash";
 
 import ItemColorModelError from "../errors/ItemColorModelError";
 
-import { ForecastTableColumns, ForecastTableRequest, TableResponse } from "@/types/table";
+import { ForecastTableColumns, ForecastTableRequest } from "@/types/table";
 import { brand, sItem, sItemColor, sSeason, } from "@/db/schema";
 import { tableFiltersToDrizzle, tableSortingToDrizzle } from "@/utils/conversions";
 import { TABLE_FETCH_SIZE } from "../tables/constants";
@@ -33,7 +33,25 @@ export const getForecastTableData = async ({
     brand: brandNo,
     season_code,
     filters,
-}: ForecastTableRequest) => {
+}: ForecastTableRequest): Promise<HfsResult<[{
+    brandNo: string | null,
+    brandName: string | null,
+    seasonCode: number | null,
+    seasonName: string | null,
+    description: string | null,
+    preCollection: number,
+    mainCollection: number,
+    lateCollection: number,
+    specialCollection: number,
+    last: string | null,
+    itemNo: string ,
+    colorCode: string,
+    colorName: string | null,
+    rrp: number,
+    wsp: number ,
+    forecastAmount: number,
+    totalRowCount: number,
+}[], Partial<Record<keyof ForecastTableColumns, { description: string, value: number }>>]>> => {
     try {
         const user = await getCurrentUser();
 
@@ -113,7 +131,9 @@ export const getForecastTableData = async ({
             .limit(TABLE_FETCH_SIZE)
             .offset((page - 1) * TABLE_FETCH_SIZE);
 
-        return Ok(data);
+        const aggregations = await calculateForecastTableAggregations(filtersWhere, brandNo.toString(), season_code);
+
+        return Ok([data, aggregations]);
     } catch (error) {
         console.log("error", error);
 
@@ -127,17 +147,23 @@ export const getForecastTableData = async ({
     }
 };
 
-export const calculateForecastTableAggregations = (data: TableResponse<ForecastTableColumns>): Record<string, number> => {
-    const sumForecastAmount = data.data.map((d) => {
-        return {
-            forecastAmount: unwrapOr(d.forecast_amount, 0),
-        }
-    });
-    const sumForecastAmountTotal = sumForecastAmount.reduce((acc, curr) => acc + curr.forecastAmount, 0);
+const calculateForecastTableAggregations = async (filtersWhere: SQL<unknown>[], brandNo: string, seasonCode: number): Promise<Partial<Record<keyof ForecastTableColumns, { description: string, value: number }>>> => {
+    const data = await db
+        .select({forecast_amount: sum(forecast.amount)})
+        .from(forecast)
+        .leftJoin(sItem, eq(forecast.itemNo, sItem.no))
+        .where(and(
+            eq(sItem.brandNo, brandNo),
+            eq(sItem.seasonCode, seasonCode),
+            ...filtersWhere,
+        ));
 
     return {
-        forecast_amount: sumForecastAmountTotal,
-    };
+        forecast_amount: {
+            description: "Total Forecast Amount",
+            value: Number(data[0].forecast_amount),
+        },
+    }
 }
 
 export const createForecast = async (

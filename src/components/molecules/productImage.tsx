@@ -1,6 +1,6 @@
 import { unwrapOr } from "@/utils/fp-ts";
-import { Image } from "@nextui-org/image";
-import { Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from "@nextui-org/modal";
+import { Image } from "@heroui/image";
+import { Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from "@heroui/modal";
 import { Option } from "fp-ts/Option";
 
 export default function ProductImage({

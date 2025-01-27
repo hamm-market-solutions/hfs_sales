@@ -3,9 +3,9 @@
 import { getLastForecastsAction } from "@/actions/reports/forecast";
 import { HfsError } from "@/lib/errors/HfsError";
 import {  isErr, unwrap, unwrapOr } from "@/utils/fp-ts";
-import {  CardBody } from "@nextui-org/card";
-import { Select, SelectItem } from "@nextui-org/select";
-import { Spinner } from "@nextui-org/spinner";
+import {  CardBody } from "@heroui/card";
+import { Select, SelectItem } from "@heroui/select";
+import { Spinner } from "@heroui/spinner";
 import { Option } from "fp-ts/lib/Option";
 import { useEffect, useState } from "react";
 

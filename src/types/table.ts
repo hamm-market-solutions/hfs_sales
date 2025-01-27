@@ -4,7 +4,7 @@ import { Option } from "fp-ts/Option";
 export interface TableResponse<T extends object> {
   data: T[];
   meta: { totalRowCount: number, next?: string, previous?: string };
-  aggregations?: Record<keyof T, number>;
+  aggregations?: Partial<Record<keyof T, { description: string, value: number }>>;
 };
 
 export type TableSortDirection = "ascending" | "descending";

@@ -8,7 +8,6 @@ import { validateUserAuthorizedOrRedirect } from "@/lib/auth/validations";
 import { routes } from "@/config/routes";
 import { isSeasonActive } from "@/lib/models/seasonBrandPhase";
 import { Some, unwrapOr } from "@/utils/fp-ts";
-
 export default async function Forecast({
     params,
 }: {

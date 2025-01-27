@@ -7,7 +7,7 @@ import {
 import { buildTableUrl } from "@/utils/tables";
 import { Option } from "fp-ts/Option";
 import { None, Some, unwrap, unwrapOr } from "@/utils/fp-ts";
-import { calculateForecastTableAggregations, getForecastTableData } from "../models/forecast";
+import { getForecastTableData } from "../models/forecast";
 
 export const getForecastTableDataMapper = async ({
     page,
@@ -17,7 +17,7 @@ export const getForecastTableDataMapper = async ({
     season_code,
     filters,
 }: ForecastTableRequest): Promise<TableResponse<ForecastTableColumns>> => {
-    const forecastData = unwrap(await getForecastTableData({
+    const [forecastData, aggs] = unwrap(await getForecastTableData({
         page,
         sorting,
         country,
@@ -89,7 +89,7 @@ export const getForecastTableDataMapper = async ({
         }
     };
     // TODO: This only works for the page that is currently fetched. We need to aggregate all pages.
-    const aggs = calculateForecastTableAggregations(resp);
+    // const aggs = calculateForecastTableAggregations(resp);
     return {
         ...resp,
         aggregations: aggs,

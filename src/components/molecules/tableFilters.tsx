@@ -1,8 +1,8 @@
 import { TableColumns, TableFilter } from "@/types/table";
-import { Button } from "@nextui-org/button";
-import { Input } from "@nextui-org/input";
-import { Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from "@nextui-org/modal";
-import {Form} from "@nextui-org/form";
+import { Button } from "@heroui/button";
+import { Input } from "@heroui/input";
+import { Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from "@heroui/modal";
+import {Form} from "@heroui/form";
 import { useState } from "react";
 
 export default function TableFilters<T extends object>({ columns, appliedFilters, setFilters }: {columns: TableColumns<T>; appliedFilters: TableFilter<T>[], setFilters: (f: TableFilter<T>[]) => void}) {

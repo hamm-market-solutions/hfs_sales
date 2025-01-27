@@ -1,4 +1,4 @@
-import { CardFooter } from "@nextui-org/card";
+import { CardFooter } from "@heroui/card";
 
 import { PicCards, PicCardsData } from "./picCards";
 

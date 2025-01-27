@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { Spinner } from "@nextui-org/spinner";
-import { Table, TableBody, TableHeader, TableRow, TableColumn, TableCell, getKeyValue, SortDescriptor } from "@nextui-org/table";
-import {useInfiniteScroll} from "@nextui-org/use-infinite-scroll";
+import { Spinner } from "@heroui/spinner";
+import { Table, TableBody, TableHeader, TableRow, TableColumn, TableCell, getKeyValue, SortDescriptor } from "@heroui/table";
+import {useInfiniteScroll} from "@heroui/use-infinite-scroll";
+import {Listbox, ListboxItem} from "@heroui/listbox";
 import {useAsyncList} from "@react-stately/data";
 
 import { TableColumns, TableFilter, TableResponse, TableSort } from "@/types/table";
@@ -22,7 +23,7 @@ export default function BaseTable<T extends object>({
     const [sorting, setSorting] = React.useState<TableSort<T>|undefined>(undefined);
     const [filters, setFilters] = React.useState<TableFilter<T>[]>([]);
     const [useStartFetchUrl, setUseStartFetchUrl] = React.useState<boolean>(false);
-    const [aggregations, setAggregations] = React.useState<{[key: string]: number}|null>(null);
+    const [aggregations, setAggregations] = React.useState<Partial<Record<keyof T, { description: string, value: number }>>>({});
 
     useEffect(() => {
         list.reload();
@@ -87,23 +88,7 @@ export default function BaseTable<T extends object>({
                         <div className="flex w-full justify-center">
                             <Spinner ref={loaderRef} color="primary" />
                         </div>
-                    ) : aggregations != null ? <TableRow key="aggregations">
-                        {
-                            columns.map((column) => {
-                                if (aggregations[column.key as string]) {
-                                    return (
-                                        <TableCell key={column.key.toString()}>
-                                            {aggregations[column.key as string]}
-                                        </TableCell>
-                                    );
-                                }
-
-                                return (
-                                    <TableCell key={column.key.toString()}>0</TableCell>
-                                );
-                            })
-                        }
-                    </TableRow> : null
+                    ) : null
                 }
                 classNames={{
                     base: "max-h-[620px]",
@@ -127,7 +112,7 @@ export default function BaseTable<T extends object>({
                                 allowsSorting={column.enableSorting}
                                 // width={size}
                             >
-                                {column.header}
+                                <p>{column.header}</p>
                             </TableColumn>
                         )
                     })}
@@ -154,12 +139,12 @@ export default function BaseTable<T extends object>({
 
                                     return (
                                         <TableCell>
-                                            {
+                                            <p>{
                                                 instanceOfResult(getKeyValue(item, columnKey)) ||
                                                 instanceOfOption(getKeyValue(item, columnKey)) ?
                                                     unwrapOr(getKeyValue(item, columnKey), "") :
                                                     getKeyValue(item, columnKey)
-                                            }
+                                            }</p>
                                         </TableCell>
                                     )
                                 }}
@@ -168,6 +153,15 @@ export default function BaseTable<T extends object>({
                     }}
                 </TableBody>
             </Table>
+            <Listbox aria-label="table aggregations" selectionMode="none">
+                {Object.entries(aggregations).map(([key, value]) => {
+                    const val: { description: string, value: number } = value as { description: string, value: number };
+                    return (
+                        <ListboxItem key={key}>
+                            {val.description}: {val.value}
+                        </ListboxItem>
+                    )})}
+            </Listbox>
         </div>
     );
 }

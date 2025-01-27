@@ -1,6 +1,6 @@
 "use client";
 
-import { Input, InputProps } from "@nextui-org/input";
+import { Input, InputProps } from "@heroui/input";
 import { useState } from "react";
 import clsx from "clsx";
 import { HfsError } from "@/lib/errors/HfsError";
@@ -101,9 +101,9 @@ export default function EditableCell<T extends object>({
                 }}
             >
                 {isSome(error) ? (
-                    <span className="text-[10px] text-red-500">{error.value.message}</span>
+                    <p className="text-[10px] text-red-500">{error.value.message}</p>
                 ) : (
-                    <span className="text-tertiary underline">{isSome(value) ? value.value : isSome(initValue) ? initValue.value : ""}</span>
+                    <p className="text-tertiary underline">{isSome(value) ? value.value : isSome(initValue) ? initValue.value : ""}</p>
                 )}
             </div>
         );
