@@ -150,9 +150,9 @@ export default function BaseTable<T extends object>({
             </Table>
             <Listbox aria-label="table aggregations" variant="light">
                 {Object.entries(aggregations).map(([key, value]) => {
-                    const val: { description: string, value: number } = value as { description: string, value: number };
+                    const val = value as { description: string, value: number };
                     return (
-                        <ListboxItem key={key} className="hover:bg-white" title={val.description} description={val.value} />
+                        <ListboxItem key={key} title={val.description} description={val.value.toLocaleString()} />
                     )})}
             </Listbox>
         </div>
