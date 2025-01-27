@@ -120,22 +120,28 @@ export const getForecastTableData = async ({
 };
 
 const calculateForecastTableAggregations = async (filtersWhere: SQL<unknown>[], brandNo: string, seasonCode: number, country: string, userId: number): Promise<Partial<Record<keyof ForecastTableColumns, { description: string, value: number }>>> => {
-    console.log("filtersWhere", filtersWhere[0]);
-
     try {
-        const data = await db
-            .select({forecast_amount: sum(forecast.amount)})
-            .from(forecast)
-            .leftJoin(sItem, eq(forecast.itemNo, sItem.no))
-            .where(and(
-                eq(sItem.brandNo, brandNo),
-                eq(sItem.seasonCode, seasonCode),
-                eq(forecast.countryCode, country),
-                eq(forecast.createdBy, userId),
-                ...filtersWhere,
-            ))
-            .groupBy(forecast.itemNo, forecast.colorCode)
-            .orderBy(desc(forecast.timestamp));
+        const data = await await db
+            .select({
+                forecast_amount: sql<number>`(SELECT sum(amount) FROM forecast WHERE item_no = ${sItemColor.itemNo} AND color_code = ${sItemColor.colorCode} AND country_code = ${country} AND created_by = ${userId} ORDER BY timestamp DESC LIMIT 1)`.mapWith(
+                    Number,
+                ),
+            })
+            .from(sItemColor)
+            .leftJoin(sItem, and(eq(sItemColor.itemNo, sItem.no)))
+            .leftJoin(brand, eq(sItem.brandNo, brand.no))
+            .leftJoin(sSeason, eq(sItem.seasonCode, sSeason.code))
+            .leftJoin(sColor, and(eq(sItemColor.colorCode, sColor.code), eq(sItem.seasonCode, sColor.seasonCode)))
+            .leftJoin(sAssortment, eq(sItemColor.colorCode, sAssortment.code))
+            .leftJoin(sVariant, and(eq(sItemColor.itemNo, sVariant.itemNo), eq(sItemColor.colorCode, sVariant.colorCode), isNull(sAssortment.code), not(like(sVariant.sizeCode, "L%")), not(like(sVariant.sizeCode, "R%"))))
+            .where(
+                and(
+                    eq(sItem.brandNo, brandNo.toString()),
+                    eq(sItem.seasonCode, seasonCode),
+                    ...filtersWhere,
+                ),
+            )
+            .groupBy(sItemColor.itemNo, sItemColor.colorCode);
 
         return {
             forecast_amount: {
